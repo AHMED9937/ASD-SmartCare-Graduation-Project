@@ -1,7 +1,7 @@
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
-import 'package:asdsmartcare/presentation/signup/screen/SignUpScreen.dart';
+import 'package:asdsmartcare/presentation/signupCubits/screen/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 
 class SelectLoginOrSignupscreen extends StatefulWidget {

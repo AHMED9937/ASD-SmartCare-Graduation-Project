@@ -3,13 +3,9 @@ import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/AsdAppLayouts/cubit/asd_cubit.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/AsdAppLayouts/screens/BottomNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/login/screen/parentsSignUpScreen.dart';
-import 'package:asdsmartcare/presentation/login/screen/SelectusertypeScreen.dart';
-import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
-import 'package:asdsmartcare/presentation/onBoarding/onboardingNavgationaScreens.dart';
-import 'package:asdsmartcare/presentation/signup/screen/SignUpScreen.dart';
+import 'package:asdsmartcare/presentation/login/screen/SelectUserTypeScreen.dart';
+import 'package:asdsmartcare/presentation/signupCubits/screen/DoctorSignUpScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
@@ -48,8 +44,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        home:Selectusertypescreen(),
-      
+        home:Bottomnavgationscreen(),
       ),
     );
   }

@@ -1,8 +1,8 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:flutter/material.dart';
 
-class  Chatscreen extends StatelessWidget {
-  const  Chatscreen({super.key});
+class  ChatBotscreen extends StatelessWidget {
+  const  ChatBotscreen({super.key});
 
   @override
   Widget build(BuildContext context) {

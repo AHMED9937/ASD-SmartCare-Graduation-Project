@@ -3,8 +3,10 @@ import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/Doctor/screen/DoctorsListPage.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/AsdAppLayouts/cubit/asd_state.dart';
+import 'package:asdsmartcare/presentation/AfterLoginRootes/Evaluate/screens/Evaluate.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/apphome/appHome.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/chat/screen/chatScreen.dart';
+import 'package:asdsmartcare/presentation/AfterLoginRootes/progress/screens/progress.dart';
 import 'package:asdsmartcare/presentation/profile/screen/profileScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +19,8 @@ class AsdCubit extends Cubit<AsdStates> {
          List MyAppBottomNavgation= [
             HomePage(),
             DoctorsListPage(),
-            Chatscreen(),
+            Evaluate(),
+            Progress(),
             Profilescreen(),
           ];
   

@@ -1,3 +1,4 @@
+import 'package:asdsmartcare/networking/api_constants.dart';
 import 'package:dio/dio.dart';
 
 // change here from the project
@@ -7,7 +8,7 @@ class Diohelper {
   static init() {
     dio = Dio(
       BaseOptions(
-          baseUrl: 'https://asd-final-project-cr777.vercel.app/',
+          baseUrl: ApiConstants.apiBaseUrl,
           receiveDataWhenStatusError: true,
           headers: {
             'Content-Type': 'application/json',
@@ -38,7 +39,7 @@ class Diohelper {
     final options = Options(
       headers: {
         'Content-Type': 'application/json',
-        if (token != null) 'Authorization': 'Bearer $token',
+         'Authorization': 'Bearer $token',
       },
     );
     Response<dynamic> res = await dio.post(

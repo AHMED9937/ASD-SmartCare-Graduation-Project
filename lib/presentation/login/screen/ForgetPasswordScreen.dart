@@ -46,7 +46,7 @@ class Forgetpasswordscreen extends StatelessWidget {
                   const SizedBox(
                     height: 26,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 346,
                     child: Appformtextfield(
                       hintText: "Enter your email",

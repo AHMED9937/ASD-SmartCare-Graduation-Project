@@ -1,0 +1,6 @@
+abstract class GetDoctorsListStates {}
+
+class GetDoctorsListinitialStates extends GetDoctorsListStates{}
+class GetDoctorsListLoadingStates extends GetDoctorsListStates{}
+class GetDoctorsListSuccsessStates extends GetDoctorsListStates{}
+class GetDoctorsListFailedStates extends GetDoctorsListStates{}

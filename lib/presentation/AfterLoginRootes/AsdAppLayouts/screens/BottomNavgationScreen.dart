@@ -9,39 +9,73 @@ class Bottomnavgationscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AsdCubit, AsdStates>(
-      listener: (context, state) {
-        
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: Colors.white,
           bottomNavigationBar: NavigationBar(
+            backgroundColor: Colors.white,
+            indicatorColor: Colors.white,
             selectedIndex: AsdCubit.get(context).current_index,
-            destinations: const [
+            destinations: [
               NavigationDestination(
-                icon: Icon(
-                  Icons.home,
-                  color: Color(0xFF133E87),
+                
+                icon: Image(
+                  color: AsdCubit.get(context).current_index == 0
+                      ? Color(0xFF133E87)
+                      : Colors.grey,
+                  image: AssetImage(
+                      'lib/appassets/images/homeOnboarding.png'), // Path to your local image
+                  width: 33, // Specify width
+                  height: 25, // Specify height
                 ),
                 label: 'home',
               ),
               NavigationDestination(
-                icon: Icon(
-                  Icons.health_and_safety,
-                  color: Color(0xFF133E87),
+                icon: Image(
+                  color: AsdCubit.get(context).current_index == 1
+                      ? Color(0xFF133E87)
+                      : Colors.grey,
+                  image: AssetImage(
+                      'lib/appassets/images/doctorOnboarding.png'), // Path to your local image
+                  width: 33, // Specify width
+                  height: 25, // Specify height
                 ),
-                label: 'doctor',
+                label: 'doctors',
               ),
               NavigationDestination(
-                icon: Icon(
-                  Icons.chat_bubble,
-                  color: Color(0xFF133E87),
+                icon: Image(
+                  color: AsdCubit.get(context).current_index == 2
+                      ? Color(0xFF133E87)
+                      : Colors.grey,
+                  image: AssetImage(
+                      'lib/appassets/images/evaluate.png'), // Path to your local image
+                  width: 33, // Specify width
+                  height: 25, // Specify height
                 ),
-                label: 'chat',
+                label: 'Evaluate',
               ),
               NavigationDestination(
-                icon: Icon(
-                  Icons.account_circle,
-                  color: Color(0xFF133E87),
+                icon: Image(
+                  color: AsdCubit.get(context).current_index == 3
+                      ? Color(0xFF133E87)
+                      : Colors.grey,
+                  image: AssetImage(
+                      'lib/appassets/images/progressonboardin.png'), // Path to your local image
+                  width: 33, // Specify width
+                  height: 25, // Specify height
+                ),
+                label: 'progress',
+              ),
+              NavigationDestination(
+                icon:  Image(
+                  color: AsdCubit.get(context).current_index == 4
+                      ? Color.fromARGB(255, 19, 62, 135)
+                      : Colors.grey,
+                  image: AssetImage(
+                      'lib/appassets/images/profile.png'), // Path to your local image
+                  width: 30, // Specify width
+                  height: 30, // Specify height
                 ),
                 label: 'profile',
               ),
@@ -50,7 +84,11 @@ class Bottomnavgationscreen extends StatelessWidget {
               AsdCubit.get(context).change_index(index);
             },
           ),
-          body: AsdCubit.get(context).MyAppBottomNavgation[AsdCubit.get(context).current_index],
+          body:
+          Padding(padding: EdgeInsets.fromLTRB(15,15,15,0),
+          child: AsdCubit.get(context).MyAppBottomNavgation[AsdCubit.get(context).current_index],
+           
+          )
         );
       },
     );

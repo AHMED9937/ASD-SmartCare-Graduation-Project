@@ -7,7 +7,7 @@ import 'package:asdsmartcare/presentation/login/LoginCubits/Usercubit/login_stat
 
 import 'package:asdsmartcare/presentation/login/widgets/loginform.dart';
 import 'package:asdsmartcare/presentation/login/widgets/my_RichText.dart';
-import 'package:asdsmartcare/presentation/signup/screen/SignUpScreen.dart';
+import 'package:asdsmartcare/presentation/signupCubits/screen/SignUpScreen.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +30,7 @@ class _LoginscreenState extends State<Loginscreen> {
           isSuccessLogin(state, context);
           if (state is UserLoginErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
+          const    SnackBar(
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.red,
                 content: Text("Invalid Email or Password!"),

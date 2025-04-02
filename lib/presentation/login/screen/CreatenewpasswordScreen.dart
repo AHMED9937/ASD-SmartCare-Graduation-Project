@@ -50,14 +50,14 @@ class CreatenewpasswordScreen extends StatelessWidget {
                   const SizedBox(
                     height: 26,
                   ),
-                const Appformtextfield(
+                 Appformtextfield(
               hintText: "New Password",
                             
                             ),
                             const SizedBox(
               height: 20,
                             ),
-                            const Appformtextfield(
+                             Appformtextfield(
               hintText: "Confirm Password",
               isObscureText: true,
                             ),
