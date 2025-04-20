@@ -3,7 +3,7 @@ import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
 import 'package:asdsmartcare/presentation/login/LoginCubits/Usercubit/login_state.dart';
 import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
-import 'package:asdsmartcare/presentation/login/model/loginModel.dart';
+
 import 'package:asdsmartcare/presentation/login/model/loginParentModel.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +20,8 @@ class UserLoginCubit extends Cubit<UserLoginState> {
   Icon visibility_icon = Icon(Icons.visibility);
   bool UserRememberMe = false;
 
-  late LoginUserModel mylogingusermodel;
-  late LoginParentmodel parentloginModel;
+
+  late LoginParentModel parentloginModel;
   late LoginDoctorModel DoctorloginModel;
 
   void change_Password_visibilty() {
@@ -37,26 +37,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
     emit(remebermeState());
   }
 
-  void userLogin(
-      {required String email,
-      required String Password,
-      String userRole = "user"}) {
-    emit(UserLoginLoadingState());
-
-    Diohelper.PostData(
-      url: ApiConstants.login,
-      data: {
-        "email": email,
-        "password": Password,
-      },
-    ).then((value) {
-      print(value.data);
-      emit(UserLoginSuccessState(mylogingusermodel));
-    }).catchError((onError) {
-      emit(UserLoginErrorState("Invalid Emaile or Password !!"));
-    });
-  }
-
+ 
 
   void parentLogin(
       {required String email,
@@ -72,7 +53,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
       },
     ).then((value) {
       print(value.data);
-      parentloginModel = LoginParentmodel.fromJson(value.data);
+      parentloginModel = LoginParentModel.fromJson(value.data);
       emit(ParentLoginSuccessState(parentloginModel));
     }).catchError((onError) {
       emit(UserLoginErrorState("Invalid Emaile or Password !!"));
@@ -91,7 +72,7 @@ class UserLoginCubit extends Cubit<UserLoginState> {
         "password": Password,
       },
     ).then((value) {
-      print(value.data);
+    
       DoctorloginModel = LoginDoctorModel.fromJson(value.data);
       emit(DoctorLoginSuccessState(DoctorloginModel));
     }).catchError((onError) {

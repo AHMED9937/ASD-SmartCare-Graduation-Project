@@ -10,22 +10,23 @@ class LoginDoctorModel {
   factory LoginDoctorModel.fromJson(Map<String, dynamic> json) {
     return LoginDoctorModel(
       data: DoctorData.fromJson(json['data']),
-      token:json['token'],
+      token: json['token'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "data": data.toJson(),
+        'data': data.toJson(),
+        'token': token,
       };
 }
 
 class DoctorData {
   String id;
-  DoctorUserData user;
+  DoctorUserData parent;
   String speciailization;
   String qualifications;
   String medicalLicense;
-  String address;
+  // address was not in your sample JSON, so it’s removed here
   int sessionPrice;
   List<dynamic> availableDays;
   int ratingQuantity;
@@ -35,11 +36,10 @@ class DoctorData {
 
   DoctorData({
     required this.id,
-    required this.user,
+    required this.parent,
     required this.speciailization,
     required this.qualifications,
     required this.medicalLicense,
-    required this.address,
     required this.sessionPrice,
     required this.availableDays,
     required this.ratingQuantity,
@@ -51,13 +51,12 @@ class DoctorData {
   factory DoctorData.fromJson(Map<String, dynamic> json) {
     return DoctorData(
       id: json['_id'] ?? json['id'],
-      user: DoctorUserData.fromJson(json['user']),
+      parent: DoctorUserData.fromJson(json['parent']),
       speciailization: json['speciailization'],
       qualifications: json['qualifications'],
       medicalLicense: json['medicalLicense'],
-      address: json['address'],
       sessionPrice: json['Session_price'],
-      availableDays: json['availableDays'],
+      availableDays: json['availableDays'] ?? [],
       ratingQuantity: json['ratingQuantity'],
       createdAt: json['createdAt'],
       updatedAt: json['updatedAt'],
@@ -66,19 +65,18 @@ class DoctorData {
   }
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
-        "user": user.toJson(),
-        "speciailization": speciailization,
-        "qualifications": qualifications,
-        "medicalLicense": medicalLicense,
-        "address": address,
-        "Session_price": sessionPrice,
-        "availableDays": availableDays,
-        "ratingQuantity": ratingQuantity,
-        "createdAt": createdAt,
-        "updatedAt": updatedAt,
-        "__v": v,
-        "id": id,
+        '_id': id,
+        'parent': parent.toJson(),
+        'speciailization': speciailization,
+        'qualifications': qualifications,
+        'medicalLicense': medicalLicense,
+        'Session_price': sessionPrice,
+        'availableDays': availableDays,
+        'ratingQuantity': ratingQuantity,
+        'createdAt': createdAt,
+        'updatedAt': updatedAt,
+        '__v': int.tryParse(v) ?? 0,
+        'id': id,
       };
 }
 
@@ -97,7 +95,7 @@ class DoctorUserData {
 
   factory DoctorUserData.fromJson(Map<String, dynamic> json) {
     return DoctorUserData(
-      id: json['_id'],
+      id: json['_id'] ?? json['id'],
       userName: json['userName'],
       email: json['email'],
       role: json['role'],
@@ -105,9 +103,9 @@ class DoctorUserData {
   }
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
-        "userName": userName,
-        "email": email,
-        "role": role,
+        '_id': id,
+        'userName': userName,
+        'email': email,
+        'role': role,
       };
 }

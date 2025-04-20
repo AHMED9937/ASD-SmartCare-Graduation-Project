@@ -1,7 +1,8 @@
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/presentation/SignUp/screen/ParentSignUpScreen.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
-import 'package:asdsmartcare/presentation/signupCubits/screen/SignUpScreen.dart';
+
 import 'package:flutter/material.dart';
 
 class SelectLoginOrSignupscreen extends StatefulWidget {
@@ -82,7 +83,7 @@ class _SelectLoginOrSignupscreenState extends State<SelectLoginOrSignupscreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  Signupscreen(),
+                          builder: (context) =>  ParentSignUpScreen(),
                         ));
                   },
                       containerColor: Color(0xFFE7EBF4),

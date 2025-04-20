@@ -1,104 +1,103 @@
-import 'package:asdsmartcare/presentation/login/model/loginModel.dart';
-import 'package:flutter/rendering.dart';
-
-class LoginParentmodel extends LoginUserModel {
-  final ParentData Pdata;
+class LoginParentModel {
+  final ParentData data;
   final String token;
 
-  LoginParentmodel({
-    required this.Pdata,
+  LoginParentModel({
+    required this.data,
     required this.token,
   });
 
-  factory LoginParentmodel.fromJson(Map<String, dynamic> json) {
-    return LoginParentmodel(
-      Pdata: ParentData.fromJson(json['data']),
-      token: json['token'],
+  factory LoginParentModel.fromJson(Map<String, dynamic> json) {
+    return LoginParentModel(
+      data: ParentData.fromJson(json['data'] as Map<String, dynamic>),
+      token: json['token'] as String,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "data": Pdata.toJson(),
-        "token": token,
+        'data': data.toJson(),
+        'token': token,
       };
 }
 
 class ParentData {
-  String id;
-  ParentUserData user;
-  String childName;
-  String birthday;
-  String gender;
-  String address;
-  String createdAt;
-  String updatedAt;
-  String v;
+  final String id;
+  final String userName;
+  final String email;
+  final String password;
+  final int age;
+  final String phone;
+  final String address;
+  final bool active;
+  final String role;
+  final int numOfChild;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final int v;
+  final String? emailResetCode;
+  final DateTime? emailResetExpire;
+  final bool? emailResetVerified;
 
   ParentData({
     required this.id,
-    required this.user,
+    required this.userName,
+    required this.email,
+    required this.password,
+    required this.age,
+    required this.phone,
     required this.address,
-    required this.birthday,
-    required this.childName,
+    required this.active,
+    required this.role,
+    required this.numOfChild,
     required this.createdAt,
-    required this.gender,
     required this.updatedAt,
     required this.v,
+    this.emailResetCode,
+    this.emailResetExpire,
+    this.emailResetVerified,
   });
 
   factory ParentData.fromJson(Map<String, dynamic> json) {
     return ParentData(
-      id: json['_id'],
-      user: ParentUserData.fromJson(json['user']),
-      address: json['address'],
-      birthday: json['birthday'],
-      childName: json['childName'],
-      createdAt: json['createdAt'],
-      gender: json['gender'],
-      updatedAt: json['updatedAt'],
-      v: json['__v'].toString(),
+      id: json['_id'] as String,
+      userName: json['userName'] as String,
+      email: json['email'] as String,
+      password: json['password'] as String,
+      age: json['age'] as int,
+      phone: json['phone'] as String,
+      address: json['address'] as String,
+      active: json['active'] as bool,
+      role: json['role'] as String,
+      numOfChild: json['numOfChild'] as int,
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      v: json['__v'] as int,
+      emailResetCode: json['emailResetCode'] as String?,
+      emailResetExpire: json['emailResetExpire'] != null
+          ? DateTime.parse(json['emailResetExpire'] as String)
+          : null,
+      emailResetVerified: json['emailResetVerfied'] as bool?,
     );
   }
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
-        "user": user.toJson(),
-        "address": address,
-        "birthday": birthday,
-        "childName": childName,
-        "createdAt": createdAt,
-        "gender": gender,
-        "updatedAt": updatedAt,
-        "__v": v,
-      };
-}
-
-class ParentUserData {
-  String id;
-  String userName;
-  String email;
-  String role;
-
-  ParentUserData({
-    required this.id,
-    required this.userName,
-    required this.email,
-    required this.role,
-  });
-
-  factory ParentUserData.fromJson(Map<String, dynamic> json) {
-    return ParentUserData(
-      id: json['_id'],
-      userName: json['userName'],
-      email: json['email'],
-      role: json['role'],
-    );
-  }
-
-  Map<String, dynamic> toJson() => {
-        "_id": id,
-        "userName": userName,
-        "email": email,
-        "role": role,
+        '_id': id,
+        'userName': userName,
+        'email': email,
+        'password': password,
+        'age': age,
+        'phone': phone,
+        'address': address,
+        'active': active,
+        'role': role,
+        'numOfChild': numOfChild,
+        'createdAt': createdAt.toIso8601String(),
+        'updatedAt': updatedAt.toIso8601String(),
+        '__v': v,
+        if (emailResetCode != null) 'emailResetCode': emailResetCode,
+        if (emailResetExpire != null)
+          'emailResetExpire': emailResetExpire!.toIso8601String(),
+        if (emailResetVerified != null)
+          'emailResetVerfied': emailResetVerified,
       };
 }

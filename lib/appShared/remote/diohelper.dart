@@ -52,4 +52,26 @@ class Diohelper {
     return res;
   }
 
+static Future<Response> DeleteData({
+    required String url,
+    required data,
+    Map<String, dynamic>? query,
+    String? token,
+  }) async {
+    final options = Options(
+      headers: {
+        'Content-Type': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    );
+    Response<dynamic> res = await dio.delete(
+      url,
+      queryParameters: query,
+      options: options,
+      data: data,
+    );
+    print("DELETE >> ${res.statusCode}");
+    return res;
+  }
+
 }

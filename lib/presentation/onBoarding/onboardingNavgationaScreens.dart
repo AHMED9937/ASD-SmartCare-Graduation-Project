@@ -28,19 +28,19 @@ class _OnboardingNavigationScreensState
         discrption:
             "Innovative tools to improve the lives of children with autism.",
         image_Link:
-            "C:/Users/57992/Desktop/allpreojects/AsdSmartCare/lib/appassets/images/onboarding1.png"),
+            "lib/appassets/images/onboarding1.png"),
     onBoardingScreen(
         title: "Easy Assessment and Diagnosis",
         discrption:
             "An intelligent chatbot for evaluation, with recommendations for the best doctors and quick appointment booking.",
         image_Link:
-            "C:/Users/57992/Desktop/allpreojects/AsdSmartCare/lib/appassets/images/onboarding2.png"),
+            "lib/appassets/images/onboarding2.png"),
     onBoardingScreen(
         title: "Your First Step Toward Change",
         discrption:
             "Create your account today and start supporting your child the way they deserve.",
         image_Link:
-            "C:/Users/57992/Desktop/allpreojects/AsdSmartCare/lib/appassets/images/onboarding3.png"),
+            "lib/appassets/images/onboarding3.png"),
   ];
 
   final PageController pageController = PageController();

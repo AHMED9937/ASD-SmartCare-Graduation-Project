@@ -39,14 +39,10 @@ class AppButtons {
   }
   static Widget arrowbutton(onPressed)
   {
-  return IconButton(
-  icon: SvgPicture.asset(
-    'lib/appassets/images/Vectorarrow.svg',
-    height: 28.99,
-    width: 15.72,
-  ),
-  onPressed: onPressed,
-);
+  return    IconButton(
+    icon: Icon(Icons.arrow_back_ios, color: Color(0xFF133E87),size: 33,),
+    onPressed: onPressed,
+  );
   }
 
 }

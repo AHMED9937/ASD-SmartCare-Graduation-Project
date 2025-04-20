@@ -2,12 +2,13 @@ import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/AfterLoginRootes/AsdAppLayouts/screens/BottomNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/SignUp/screen/ParentSignUpScreen.dart';
 import 'package:asdsmartcare/presentation/login/LoginCubits/Usercubit/login_cubit.dart';
 import 'package:asdsmartcare/presentation/login/LoginCubits/Usercubit/login_state.dart';
 
 import 'package:asdsmartcare/presentation/login/widgets/loginform.dart';
 import 'package:asdsmartcare/presentation/login/widgets/my_RichText.dart';
-import 'package:asdsmartcare/presentation/signupCubits/screen/SignUpScreen.dart';
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -98,6 +99,7 @@ class _LoginscreenState extends State<Loginscreen> {
                               print(loginCubit.passwordtextcontroller.text);
                               final String? chosenRole =
                                   CacheHelper.getData(key: "role");
+                                 
                               loginByRole(chosenRole!, loginCubit);
                             }
                           }, containerColor: const Color(0xFF25B9D3)),
@@ -107,7 +109,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         ),
                         const SizedBox(height: 6),
                         const MyRichtext(
-                          navgaitto: Signupscreen(),
+                          navgaitto: ParentSignUpScreen(),
                         ),
                       ],
                     ),
@@ -123,8 +125,8 @@ class _LoginscreenState extends State<Loginscreen> {
 
   void loginByRole(String chosenRole, UserLoginCubit loginCubit) {
       CacheHelper.SaveData(key: "role", value: chosenRole);
-
-    if (chosenRole == "doctor") {
+      
+    if (chosenRole == "Doctor") {
       loginCubit.DoctorLogin(
         email: loginCubit.emailtextcontroller.text,
         Password: loginCubit.passwordtextcontroller.text,
@@ -138,22 +140,7 @@ class _LoginscreenState extends State<Loginscreen> {
   }
 
   void isSuccessLogin(UserLoginState state, BuildContext context) {
-    if (state is UserLoginSuccessState) {
-      CacheHelper.SaveData(
-        key: 'role',
-        value: state.myUsermodel.data!.role,
-      );
-      CacheHelper.SaveData(
-        key: 'token',
-        value: state.myUsermodel.token,
-      ).then((value) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => Bottomnavgationscreen()),
-          (Route<dynamic> route) => false,
-        );
-      });
-    } else if (state is ParentLoginSuccessState) {
+    if (state is ParentLoginSuccessState) {
       CacheHelper.SaveData(
         key: 'token',
         value: state.myParentmodel.token,
