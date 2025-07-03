@@ -1,0 +1,17 @@
+abstract class ParentChildsListStates {}
+
+class GetParentChildsListinitialStates extends ParentChildsListStates{}
+class GetParentChildsListLoadingStates extends ParentChildsListStates{}
+class GetParentChildsListSuccsessStates extends ParentChildsListStates{}
+class GetParentChildsListFailedStates extends ParentChildsListStates{}
+
+class addChildinitialStates extends ParentChildsListStates{}
+class AddChildLoadingStates extends ParentChildsListStates{}
+class addChildSuccsessStates extends ParentChildsListStates{}
+class addChildFailedStates extends ParentChildsListStates{}
+
+
+class DeleteChildinitialStates extends ParentChildsListStates{}
+class DeleteChildLoadingStates extends ParentChildsListStates{}
+class DeleteChildSuccsessStates extends ParentChildsListStates{}
+class DeleteChildFailedStates extends ParentChildsListStates{}

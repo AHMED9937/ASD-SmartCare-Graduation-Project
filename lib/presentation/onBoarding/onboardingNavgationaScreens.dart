@@ -1,7 +1,8 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
-import 'package:asdsmartcare/presentation/login/screen/select_Login_or_SignUpScreen.dart';
+import 'package:asdsmartcare/presentation/login/screen/SelectusertypeScreen.dart';
 import 'package:asdsmartcare/presentation/onBoarding/onBoardingWidget.dart';
+import 'package:asdsmartcare/presentation/login/screen/select_Login_or_SignUpScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -9,8 +10,10 @@ class OnboardingNavigationScreens extends StatefulWidget {
   const OnboardingNavigationScreens({Key? key}) : super(key: key);
 
   @override
+  
   State<OnboardingNavigationScreens> createState() =>
       _OnboardingNavigationScreensState();
+    
 }
 
 class _OnboardingNavigationScreensState
@@ -99,7 +102,7 @@ class _OnboardingNavigationScreensState
             right: 41,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF25B9D3),
+                backgroundColor: const Color(0xFF133E87),
                 padding: const EdgeInsets.symmetric(vertical: 16),
               ),
               onPressed: isLastPage

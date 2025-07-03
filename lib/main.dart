@@ -1,52 +1,60 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:asdsmartcare/appShared/Components/myblockob.dart';
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/presentation/AfterLoginRootes/AsdAppLayouts/cubit/asd_cubit.dart';
-import 'package:asdsmartcare/presentation/login/screen/SelectUserTypeScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:device_preview/device_preview.dart';
+import 'package:asdsmartcare/presentation/AsdAppLayouts/cubit/asd_cubit.dart';
+import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/DoctorNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // Ensures asynchronous operations work in main()
-  await  CacheHelper.init(); // Initialize CacheHelper
+  WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   Diohelper.init();
+
   bool? onBoarding = CacheHelper.getData(key: "loginSingUp");
   String? token = CacheHelper.getData(key: "token");
-  //print(token);
-  
-  runApp(
-       MyApp(onBoardin: onBoarding),
-    
-  );
+
+  runApp(MyApp(onBoarding: onBoarding));
 }
 
-class MyApp extends StatefulWidget {
-  final bool? onBoardin;
-  const MyApp({super.key, required this.onBoardin});
+class MyApp extends StatelessWidget {
+  final bool? onBoarding;
+  const MyApp({Key? key, this.onBoarding}) : super(key: key);
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AsdCubit(),
-        )
+          create: (_) => AsdCubit(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
-        // Add the DevicePreview builder to allow preview functionality in the app.
-        
-        builder: DevicePreview.appBuilder,
-        home: Selectusertypescreen(),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: const AppBarTheme(
+            
+            color: Colors.white,
+            iconTheme: IconThemeData(color: Colors.black),
+            titleTextStyle: TextStyle(
+              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Colors.white,
+            elevation: 8,
+            selectedItemColor: Color(0xFF133E87),
+            unselectedItemColor: Colors.grey,
+            selectedIconTheme: IconThemeData(size: 28),
+            unselectedIconTheme: IconThemeData(size: 24),
+            showUnselectedLabels: true,
+          ),
+          primaryColor: const Color(0xFF133E87),
+        ),
+        home:  Doctornavgationscreen(),
       ),
     );
   }

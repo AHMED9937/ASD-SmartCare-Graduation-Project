@@ -4,31 +4,36 @@ import 'package:flutter_svg/flutter_svg.dart';
 class AppButtons {
   // ContainerTextButton: A customizable button with a text widget inside a styled container
   static Widget containerTextButton(
-      Widget txtWidget,
-       VoidCallback onePressFunc, {
-        double ? containerWidth ,
-        double ? containerHeight,
-        BorderRadius ?containerBorderRadius ,
-        Color ? containerColor,
-      }) {
-    return TextButton(
-      
-      onPressed: onePressFunc, // Correctly passing the function
-      child: Container(
-        width: containerWidth ?? 346.0,
-        height: containerHeight ??57.35,
-        
-        decoration: BoxDecoration(
-          color: containerColor ??const Color(0xFF133E87),
-          
-          borderRadius: containerBorderRadius??const BorderRadius.all(Radius.circular(48)),
+  Widget txtWidget,
+  VoidCallback onePressFunc, {
+  double containerWidth=358,
+  double containerHeight=57,
+  BorderRadius? containerBorderRadius,
+  Color? containerColor,
+}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: TextButton(
+      onPressed: onePressFunc,
+      style: TextButton.styleFrom(
+        backgroundColor: containerColor ?? const Color(0xFF133E87),
+        shape: RoundedRectangleBorder(
+          borderRadius: containerBorderRadius ??
+              const BorderRadius.all(Radius.circular(11)),
         ),
-        child: Center( // Use Center widget instead of Column for single child
-          child: txtWidget,
-        ),
+        // only force a fixedSize when both width & height are passed
+        fixedSize: (containerWidth != null && containerHeight != null)
+            ? Size(containerWidth, containerHeight)
+            : null,
+        // otherwise give it comfortable padding around its child
+        padding: (containerWidth == null && containerHeight == null)
+            ? const EdgeInsets.symmetric(horizontal: 33,vertical: 6)
+            : EdgeInsets.zero,
       ),
-    );
-  }
+      child: txtWidget,
+    ),
+  );
+}
 
   // SimpleTxtButton: A plain TextButton with a text widget
   static Widget simpleTxtButton(Widget txtWidget, VoidCallback onePressFunc) {

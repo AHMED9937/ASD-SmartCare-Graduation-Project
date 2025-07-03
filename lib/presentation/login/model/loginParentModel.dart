@@ -1,103 +1,149 @@
 class LoginParentModel {
-  final ParentData data;
-  final String token;
+  ParentData? data;
+  String? token;
 
-  LoginParentModel({
-    required this.data,
-    required this.token,
-  });
+  LoginParentModel({this.data, this.token});
 
-  factory LoginParentModel.fromJson(Map<String, dynamic> json) {
-    return LoginParentModel(
-      data: ParentData.fromJson(json['data'] as Map<String, dynamic>),
-      token: json['token'] as String,
-    );
+  LoginParentModel.fromJson(Map<String, dynamic> json) {
+    data = json['data'] != null ? new ParentData.fromJson(json['data']) : null;
+    token = json['token'];
   }
 
-  Map<String, dynamic> toJson() => {
-        'data': data.toJson(),
-        'token': token,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    data['token'] = this.token;
+    return data;
+  }
 }
 
 class ParentData {
-  final String id;
-  final String userName;
-  final String email;
-  final String password;
-  final int age;
-  final String phone;
-  final String address;
-  final bool active;
-  final String role;
-  final int numOfChild;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final int v;
-  final String? emailResetCode;
-  final DateTime? emailResetExpire;
-  final bool? emailResetVerified;
+  String? sId;
+  String? userName;
+  String? email;
+  String? password;
+  int? age;
+  String? phone;
+  String? address;
+  bool? active;
+  String? role;
+  int? numOfChild;
+  String? createdAt;
+  String? updatedAt;
+  String? sessionId;
+  int? iV;
+  String? emailResetCode;
+  String? emailResetExpire;
+  bool? emailResetVerfied;
+  String? image;
+  String? passwordChangedAt;
+  List<Childs>? childs;
+  String? id;
 
-  ParentData({
-    required this.id,
-    required this.userName,
-    required this.email,
-    required this.password,
-    required this.age,
-    required this.phone,
-    required this.address,
-    required this.active,
-    required this.role,
-    required this.numOfChild,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
-    this.emailResetCode,
-    this.emailResetExpire,
-    this.emailResetVerified,
-  });
+  ParentData(
+      {this.sId,
+      this.userName,
+      this.email,
+      this.password,
+      this.age,
+      this.phone,
+      this.address,
+      this.active,
+      this.role,
+      this.numOfChild,
+      this.createdAt,
+      this.updatedAt,
+      this.sessionId,
+      this.iV,
+      this.emailResetCode,
+      this.emailResetExpire,
+      this.emailResetVerfied,
+      this.image,
+      this.passwordChangedAt,
+      this.childs,
+      this.id});
 
-  factory ParentData.fromJson(Map<String, dynamic> json) {
-    return ParentData(
-      id: json['_id'] as String,
-      userName: json['userName'] as String,
-      email: json['email'] as String,
-      password: json['password'] as String,
-      age: json['age'] as int,
-      phone: json['phone'] as String,
-      address: json['address'] as String,
-      active: json['active'] as bool,
-      role: json['role'] as String,
-      numOfChild: json['numOfChild'] as int,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
-      v: json['__v'] as int,
-      emailResetCode: json['emailResetCode'] as String?,
-      emailResetExpire: json['emailResetExpire'] != null
-          ? DateTime.parse(json['emailResetExpire'] as String)
-          : null,
-      emailResetVerified: json['emailResetVerfied'] as bool?,
-    );
+  ParentData.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    userName = json['userName'];
+    email = json['email'];
+    password = json['password'];
+    age = json['age'];
+    phone = json['phone'];
+    address = json['address'];
+    active = json['active'];
+    role = json['role'];
+    numOfChild = json['numOfChild'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    sessionId = json['session_id'];
+    iV = json['__v'];
+    emailResetCode = json['emailResetCode'];
+    emailResetExpire = json['emailResetExpire'];
+    emailResetVerfied = json['emailResetVerfied'];
+    image = json['image'];
+    passwordChangedAt = json['passwordChangedAt'];
+    if (json['childs'] != null) {
+      childs = <Childs>[];
+      json['childs'].forEach((v) {
+        childs!.add(new Childs.fromJson(v));
+      });
+    }
+    id = json['id'];
   }
 
-  Map<String, dynamic> toJson() => {
-        '_id': id,
-        'userName': userName,
-        'email': email,
-        'password': password,
-        'age': age,
-        'phone': phone,
-        'address': address,
-        'active': active,
-        'role': role,
-        'numOfChild': numOfChild,
-        'createdAt': createdAt.toIso8601String(),
-        'updatedAt': updatedAt.toIso8601String(),
-        '__v': v,
-        if (emailResetCode != null) 'emailResetCode': emailResetCode,
-        if (emailResetExpire != null)
-          'emailResetExpire': emailResetExpire!.toIso8601String(),
-        if (emailResetVerified != null)
-          'emailResetVerfied': emailResetVerified,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['userName'] = this.userName;
+    data['email'] = this.email;
+    data['password'] = this.password;
+    data['age'] = this.age;
+    data['phone'] = this.phone;
+    data['address'] = this.address;
+    data['active'] = this.active;
+    data['role'] = this.role;
+    data['numOfChild'] = this.numOfChild;
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    data['session_id'] = this.sessionId;
+    data['__v'] = this.iV;
+    data['emailResetCode'] = this.emailResetCode;
+    data['emailResetExpire'] = this.emailResetExpire;
+    data['emailResetVerfied'] = this.emailResetVerfied;
+    data['image'] = this.image;
+    data['passwordChangedAt'] = this.passwordChangedAt;
+    if (this.childs != null) {
+      data['childs'] = this.childs!.map((v) => v.toJson()).toList();
+    }
+    data['id'] = this.id;
+    return data;
+  }
+}
+
+class Childs {
+  String? sId;
+  String? childName;
+  String? age;
+  String? gender;
+
+  Childs({this.sId, this.childName, this.age, this.gender});
+
+  Childs.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    childName = json['childName'];
+    age = json['age'];
+    gender = json['gender'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['childName'] = this.childName;
+    data['age'] = this.age;
+    data['gender'] = this.gender;
+    return data;
+  }
 }

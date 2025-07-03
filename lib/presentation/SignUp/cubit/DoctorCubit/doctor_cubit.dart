@@ -92,4 +92,6 @@ class DoctorSignUpCubit extends Cubit<DoctorSignUpState> {
       emit(DoctorSignUpErrorState(error.toString()));
     }
   }
+
+
 }

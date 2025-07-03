@@ -1,31 +1,20 @@
-import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
-import 'package:asdsmartcare/presentation/login/model/loginModel.dart';
-import 'package:asdsmartcare/presentation/login/model/loginParentModel.dart';
+// login_state.dart
 
-abstract class UserLoginState{}
+abstract class UserLoginState {}
 
+class LoginInitial extends UserLoginState {}
+class LoginLoading extends UserLoginState {}
 
-class UserLoginInitialState extends UserLoginState{}
-class UserLoginLoadingState extends UserLoginState{}
-
-
-class DoctorLoginSuccessState extends UserLoginState{
-  final LoginDoctorModel  myDoctormodel;
-  DoctorLoginSuccessState(this.myDoctormodel);
-
+/// Carries either a LoginParentModel or LoginDoctorModel
+class LoginSuccess extends UserLoginState {
+  final dynamic userModel;
+  LoginSuccess(this.userModel);
 }
 
-class UserLoginErrorState extends UserLoginState{
+class LoginError extends UserLoginState {
   final String error;
-  UserLoginErrorState(this.error);
+  LoginError(this.error);
 }
 
-
-class ParentLoginSuccessState extends UserLoginState{
-  final LoginParentModel  myParentmodel;
-  ParentLoginSuccessState(this.myParentmodel);
-
-}
-
-class remebermeState extends UserLoginState{}
-class changePasswordVisibltyState extends UserLoginState{}
+class RememberMeState extends UserLoginState {}
+class ChangePasswordVisibilityState extends UserLoginState {}

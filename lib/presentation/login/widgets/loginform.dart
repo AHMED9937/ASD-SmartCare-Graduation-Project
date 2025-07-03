@@ -3,7 +3,7 @@ import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/login/LoginCubits/Usercubit/login_cubit.dart';
 
-import 'package:asdsmartcare/presentation/login/screen/ForgetPasswordScreen.dart';
+import 'package:asdsmartcare/presentation/login/ForgetPassword/Screens/ForgetPasswordScreen.dart';
 import 'package:flutter/material.dart';
 
 String? emailValdation(value) {
@@ -40,7 +40,7 @@ class _LoginformState extends State<Loginform> {
             children: [
               Appformtextfield(
                 formValidator: emailValdation,
-                TextController: login_cubit.emailtextcontroller,
+                TextController: login_cubit.emailController,
                 hintText: "Enter your email",
                 prefixIcon:const Icon(
                   size: 24,
@@ -53,7 +53,7 @@ class _LoginformState extends State<Loginform> {
               ),
               Appformtextfield(
                 formValidator: passwordValdation,
-                TextController: login_cubit.passwordtextcontroller,
+                TextController: login_cubit.passwordController,
                 hintText: "Enter your password",
                 isObscureText: login_cubit.isObscureText,
                 prefixIcon:const Icon(
@@ -62,8 +62,8 @@ class _LoginformState extends State<Loginform> {
                   color: Color(0xFF133E87),
                 ),
                 suffixIcon: IconButton(
-                    onPressed: login_cubit.change_Password_visibilty,
-                    icon: login_cubit.visibility_icon),
+                    onPressed: login_cubit.changePasswordVisibility,
+                    icon: login_cubit.visibilityIcon),
               ),
              const SizedBox(
                 height: 16,
@@ -74,15 +74,15 @@ class _LoginformState extends State<Loginform> {
                   Row(
                     children: [
                       Checkbox(
-                        value: login_cubit.UserRememberMe,
+                        value: login_cubit.userRememberMe,
                         checkColor:const Color(0xFF133E87),
                         activeColor: Colors.white,
-                        onChanged: login_cubit.RememberMefunc,
+                        onChanged: login_cubit.rememberMeFunc,
                       ),
                       TextUtils.textDescription("Remember Me",
                           disTextColor:const Color(0xFF133E87)),
                       const SizedBox(
-                        width: 20,
+                        width: 12,
                       ),
                     ],
                   ),

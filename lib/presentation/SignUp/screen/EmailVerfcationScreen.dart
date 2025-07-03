@@ -1,6 +1,7 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/presentation/SignUp/screen/AddChildScreen.dart';
 import 'package:asdsmartcare/presentation/login/screen/SelectusertypeScreen.dart';
 import 'package:asdsmartcare/presentation/SignUp/cubit/Parentcubit/parent_sign_up_cubit.dart';
 import 'package:asdsmartcare/presentation/SignUp/cubit/Parentcubit/parent_sign_up_state.dart';
@@ -66,11 +67,11 @@ class Emailverfcationscreen extends StatelessWidget {
                         ),
                         () {
                           if (CacheHelper.getData(key: "role") == "parent")
-                            Navigator.pushAndRemoveUntil(
+                            Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Selectusertypescreen()),
-                              (Route<dynamic> route) => false,
+                                  builder: (context) => AddChildScreen(ParentId: parentID,)),
+                            
                             );
                           else {
                             
@@ -244,11 +245,11 @@ class Emailverfcationscreen extends StatelessWidget {
                         disTextColor: const Color(0xFF133E87),
                         fontSize: 18,
                       ),
-                      () {},
+                      () {
+
+                      },
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    
                     ConditionalBuilder(
                       condition: state is! ParentSignUpresetCodeLoadingState,
                       builder: (context) => AppButtons.containerTextButton(
@@ -260,23 +261,23 @@ class Emailverfcationscreen extends StatelessWidget {
                           ), () {
                         ParentSignUpCubit.get(context).verifyemail();
                       },
-                          containerColor: const Color(0xFF25B9D3),
                           containerWidth: 380,
                           containerHeight: 57),
                       fallback: (context) => const Center(
                         child: CircularProgressIndicator(),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                 
                     AppButtons.simpleTxtButton(
                       TextUtils.textDescription(
                         "Change Email",
                         disTextColor: const Color(0xFF133E87),
                         fontSize: 18,
                       ),
-                      () {},
+                      () {
+                          ParentSignUpCubit.get(context).DeleteParent(ParentId: parentID, ParentUserName: ParentUserName);
+          
+                      },
                     ),
                   ],
                 ),

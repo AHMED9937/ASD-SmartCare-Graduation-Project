@@ -9,7 +9,7 @@ class ParentSignUpInitialState extends ParentSignUpState{}
 class ParentSignUpLoadingState extends ParentSignUpState{}
 
 class ParentSignUpSuccessState extends ParentSignUpState{
-  SignupParentResponseModel lum;
+  var lum;
   ParentSignUpSuccessState(this.lum);
 }
 
@@ -25,3 +25,10 @@ class ParentSignUpresetCodeErrorState extends ParentSignUpState{}
 class DeleteParentSuccessState extends ParentSignUpState{}
 class DeleteParentLoadingState extends ParentSignUpState{}
 class DeleteParentErrorState extends ParentSignUpState{}
+
+class AddChildSuccessState extends ParentSignUpState{
+  var child;
+  AddChildSuccessState(child);
+}
+class AddChildLoadingState extends ParentSignUpState{}
+class AddChildErrorState extends ParentSignUpState{}

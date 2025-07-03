@@ -1,5 +1,22 @@
+/// Model classes for parsing parent sign-up response without json_serializable
+/// Example JSON:
+/// {
+///   "parent": {
+///     "userName": "Khaled_Elmorse",
+///     "email": "...",
+///     ...
+///   },
+///   "token": "..."
+/// }
+
+import 'dart:convert';
+
+/// Response model for parent sign-up, matching the server's JSON structure.
 class SignupParentResponseModel {
+  /// Parent data mapped from the JSON key "parent".
   final SignupParentData data;
+  
+  /// JWT token returned upon successful sign-up.
   final String token;
 
   SignupParentResponseModel({
@@ -7,21 +24,31 @@ class SignupParentResponseModel {
     required this.token,
   });
 
+  /// Creates an instance from a JSON map.
   factory SignupParentResponseModel.fromJson(Map<String, dynamic> json) {
     return SignupParentResponseModel(
-      data: SignupParentData.fromJson(json['data']),
+      data: SignupParentData.fromJson(json['parent'] as Map<String, dynamic>),
       token: json['token'] as String,
     );
   }
 
+  /// Converts this instance to a JSON map.
   Map<String, dynamic> toJson() {
     return {
-      'data': data.toJson(),
+      'parent': data.toJson(),
       'token': token,
     };
   }
+
+  /// Parses a raw JSON string into an instance.
+  factory SignupParentResponseModel.fromRawJson(String str) =>
+      SignupParentResponseModel.fromJson(json.decode(str) as Map<String, dynamic>);
+
+  /// Converts this instance to a raw JSON string.
+  String toRawJson() => json.encode(toJson());
 }
 
+/// Detailed information about the signed-up parent.
 class SignupParentData {
   final String userName;
   final String email;
@@ -32,13 +59,21 @@ class SignupParentData {
   final bool active;
   final String role;
   final int numOfChild;
+
+  /// MongoDB document ID.
   final String sId;
+
   final DateTime createdAt;
   final DateTime updatedAt;
+
+  /// Record version (Mongoose __v).
   final int v;
+
   final String emailResetCode;
   final DateTime emailResetExpire;
   final bool emailResetVerfied;
+
+  /// Redundant string ID field.
   final String id;
 
   SignupParentData({
@@ -61,6 +96,7 @@ class SignupParentData {
     required this.id,
   });
 
+  /// Creates an instance from a JSON map.
   factory SignupParentData.fromJson(Map<String, dynamic> json) {
     return SignupParentData(
       userName: json['userName'] as String,
@@ -83,6 +119,7 @@ class SignupParentData {
     );
   }
 
+  /// Converts this instance to a JSON map.
   Map<String, dynamic> toJson() {
     return {
       'userName': userName,

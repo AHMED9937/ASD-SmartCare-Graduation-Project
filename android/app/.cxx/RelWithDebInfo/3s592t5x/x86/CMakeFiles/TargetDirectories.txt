@@ -1,0 +1,2 @@
+C:/Users/57992/Desktop/allpreojects/AsdSmartCare/android/app/.cxx/RelWithDebInfo/3s592t5x/x86/CMakeFiles/edit_cache.dir
+C:/Users/57992/Desktop/allpreojects/AsdSmartCare/android/app/.cxx/RelWithDebInfo/3s592t5x/x86/CMakeFiles/rebuild_cache.dir

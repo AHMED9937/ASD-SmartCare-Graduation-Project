@@ -1,0 +1,2 @@
+C:/Users/57992/Desktop/allpreojects/AsdSmartCare/android/app/.cxx/Debug/414y4i16/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/57992/Desktop/allpreojects/AsdSmartCare/android/app/.cxx/Debug/414y4i16/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,12 +1,15 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/presentation/SignUp/Model/AddParent.dart';
 import 'package:asdsmartcare/presentation/SignUp/Model/SignUpParentModel.dart';
 import 'package:asdsmartcare/presentation/SignUp/cubit/Parentcubit/parent_sign_up_state.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 class ParentSignUpCubit extends Cubit<ParentSignUpState> {
   ParentSignUpCubit() : super(ParentSignUpInitialState());
@@ -14,7 +17,7 @@ class ParentSignUpCubit extends Cubit<ParentSignUpState> {
   static ParentSignUpCubit get(context) => BlocProvider.of(context);
   var formKey = GlobalKey<FormState>();
   String? userToken;
-
+  var addParentFormKey=GlobalKey<FormState>();
   // Parent Form Controller
   var userNametextcontroller = TextEditingController();
   var emailtextcontroller = TextEditingController();
@@ -23,12 +26,18 @@ class ParentSignUpCubit extends Cubit<ParentSignUpState> {
   var confirmPasswordtextcontroller = TextEditingController();
   var Agetextcontroller = TextEditingController();
   var addresstextcontroller = TextEditingController();
+  // Add Child Form 
+  var ChildNametextcontroller = TextEditingController();
+  var ChildAgetextcontroller = TextEditingController();
+  var ChildGendertextcontroller = TextEditingController();
 
+  List<Widget> ParentChilds=[  ];
   
 
   List<TextEditingController?> Pintextcontroller = [];
 
   late SignupParentResponseModel signUpResponseModel;
+  late ChildResponse ChildResponseModel;
 
   String? verificationCode;
 void verifyemail() {
@@ -115,4 +124,49 @@ void DeleteParent({required  final String ParentId,required final String ParentU
 
     
   }
+
+Future<void> addChild({required String parentId}) async {
+  final url = ApiConstants.addChild(parentId);
+
+  emit(AddChildLoadingState());
+print (ChildNametextcontroller.text+" "+ChildGendertextcontroller.text+ " "+"${ int.parse(ChildAgetextcontroller.text)}");
+  try {
+    final response = await Diohelper.PostData(
+      url: url,
+      data: {
+        "childName": ChildNametextcontroller.text,
+        "birthday": "2/7/2034",
+        "gender": ChildGendertextcontroller.text,
+        // parse to int if desired, or leave as String if your API expects a string
+        "age": int.parse(ChildAgetextcontroller.text),
+      },
+      token: CacheHelper.getData(key: "token"),
+    );
+
+    final data = response.data as Map<String, dynamic>;
+
+    // Handle API-level validation errors
+    if (data['errors'] != null) {
+      final errors = data['errors'] as List<dynamic>;
+      final msg = errors.map((e) => e['msg'] as String).join('\n');
+      emit(AddChildErrorState());
+      return;
+    }
+
+    // Success: parse and emit
+    final childResponse = ChildResponse.fromJson(data);
+    emit(AddChildSuccessState(childResponse));
+  } on DioError catch (err) {
+    String msg;
+    final errData = err.response?.data;
+    if (errData is Map<String, dynamic> && errData['errors'] != null) {
+      final errors = errData['errors'] as List<dynamic>;
+      msg = errors.map((e) => e['msg'] as String).join('\n');
+    } else {
+      msg = err.message ?? 'Unexpected error';
+    }
+    print(msg);
+    emit(AddChildErrorState());
+  }
+}
 }

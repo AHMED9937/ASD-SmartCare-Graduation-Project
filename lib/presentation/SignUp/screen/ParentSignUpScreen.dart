@@ -78,7 +78,6 @@ class ParentSignUpScreen extends StatelessWidget {
                             
                             ParentSignUpCubit.get(context).ParentSignUp();
                           },
-                          containerColor: Color(0xFF25B9D3),
                         ),
                         fallback: (context) => const Center(
                           child: CircularProgressIndicator(),

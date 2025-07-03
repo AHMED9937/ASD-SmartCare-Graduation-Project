@@ -34,7 +34,7 @@ class Doctorsignupscreen extends StatelessWidget {
              Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Selectusertypescreen()),
+                                  builder: (context) => Loginscreen()),
                               (Route<dynamic> route) => false,
                             );
                          
@@ -90,7 +90,6 @@ class Doctorsignupscreen extends StatelessWidget {
                         () {
                           DoctorSignUpCubit.get(context).doctorSignUp();
                         },
-                        containerColor: Color(0xFF25B9D3),
                       ),
                      
                         fallback: (context) => const Center(

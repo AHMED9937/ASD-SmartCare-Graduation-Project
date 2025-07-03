@@ -10,8 +10,6 @@ class DoctorSignUpLoadingState extends DoctorSignUpState{}
 
 class DoctorSignUpSuccessState extends DoctorSignUpState{
   
-  //  DoctorSignUpSuccessState lum;
-  //  DoctorSignUpSuccessState(this.lum);
 }
 
 class DoctorSignUpErrorState extends DoctorSignUpState{

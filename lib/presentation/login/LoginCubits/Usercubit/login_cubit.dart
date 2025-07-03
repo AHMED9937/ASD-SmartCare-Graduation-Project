@@ -10,75 +10,63 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserLoginCubit extends Cubit<UserLoginState> {
-  UserLoginCubit() : super(UserLoginInitialState());
+  UserLoginCubit() : super(LoginInitial());
 
   static UserLoginCubit get(context) => BlocProvider.of(context);
-  var formKey = GlobalKey<FormState>();
-  var emailtextcontroller = TextEditingController();
-  var passwordtextcontroller = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   bool isObscureText = true;
-  Icon visibility_icon = Icon(Icons.visibility);
-  bool UserRememberMe = false;
+  Icon visibilityIcon = Icon(Icons.visibility);
+  bool userRememberMe = false;
 
+  late LoginParentModel parentModel;
+  late LoginDoctorModel doctorModel;
 
-  late LoginParentModel parentloginModel;
-  late LoginDoctorModel DoctorloginModel;
-
-  void change_Password_visibilty() {
+  void changePasswordVisibility() {
     isObscureText = !isObscureText;
-    visibility_icon = isObscureText
+    visibilityIcon = isObscureText
         ? Icon(Icons.visibility_off_outlined)
         : Icon(Icons.visibility);
-    emit(changePasswordVisibltyState());
+    emit(ChangePasswordVisibilityState());
   }
 
-  void RememberMefunc(bool? value) {
-    UserRememberMe = value ?? false; // Ensures safety in case value is null
-    emit(remebermeState());
+  void rememberMeFunc(bool? value) {
+    userRememberMe = value ?? false;
+     emit(RememberMeState());
   }
+Future<void> login({
+  required String email,
+  required String password,
+}) async {
+  emit(LoginLoading());
+    final role = CacheHelper.getData(key: "role");
+print(role);
+  try {
+    // kick off the request and timeout after 10s
+    final response = await Diohelper.PostData(
+      url: ApiConstants.login,
+      data: {"email": email, "password": password},
+    ).timeout(
+      const Duration(seconds: 44),
+      onTimeout: () => throw Exception("Login request timed out"),
+    );
+print(response.data);
 
- 
-
-  void parentLogin(
-      {required String email,
-      required String Password,
-      String userRole = "parent"}) {
-    emit(UserLoginLoadingState());
-
-    Diohelper.PostData(
-      url: ApiConstants.Parentlogin,
-      data: {
-        "email": email,
-        "password": Password,
-      },
-    ).then((value) {
-      print(value.data);
-      parentloginModel = LoginParentModel.fromJson(value.data);
-      emit(ParentLoginSuccessState(parentloginModel));
-    }).catchError((onError) {
-      emit(UserLoginErrorState("Invalid Emaile or Password !!"));
-    });
+    print(role);
+    if (role == 'parent') {
+      parentModel = LoginParentModel.fromJson(response.data);
+      emit(LoginSuccess(parentModel));
+    } else  {
+      doctorModel = LoginDoctorModel.fromJson(response.data);
+      emit(LoginSuccess(doctorModel));
+    } 
+  } catch (e, st) {
+    // you’ll see this print in your console
+    print("🔴 Login failed: $e\n$st");
+    emit(LoginError(e.toString()));
   }
-  void DoctorLogin(
-      {required String email,
-      required String Password,
-      String userRole = "doctor"}) {
-    emit(UserLoginLoadingState());
-
-    Diohelper.PostData(
-      url: ApiConstants.doctorlogin,
-      data: {
-        "email": email,
-        "password": Password,
-      },
-    ).then((value) {
-    
-      DoctorloginModel = LoginDoctorModel.fromJson(value.data);
-      emit(DoctorLoginSuccessState(DoctorloginModel));
-    }).catchError((onError) {
-      emit(UserLoginErrorState("Invalid Emaile or Password !!"));
-    });
-  }
-
-
+}
 }
