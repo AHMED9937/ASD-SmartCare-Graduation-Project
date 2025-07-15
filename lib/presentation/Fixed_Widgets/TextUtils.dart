@@ -5,7 +5,7 @@ class TextUtils {
 
 
   /// Creates a customizable text widget with optional font size and color.
-  static Widget textDescription(String disText, {FontWeight?my_FontWeight, String myfontFamily='Inter',double fontSize = 16, Color disTextColor =  Colors.black,TextAlign ?myTextAlign}) {
+  static Widget textDescription(String disText, {FontWeight?my_FontWeight, String myfontFamily='Inter',double fontSize = 14, Color disTextColor =  Colors.black,TextAlign ?myTextAlign}) {
     return Text(
       disText,
       textAlign: myTextAlign??TextAlign.center,

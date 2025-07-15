@@ -7,8 +7,8 @@ class AutsiumTestChangeState extends AutsiumTestStates{}
 
 class GetQsfinalPredicationLoadingState extends AutsiumTestStates{}
 class GetQsfinalPredicationSuccessState extends AutsiumTestStates{
-   int asdLevel;
-   GetQsfinalPredicationSuccessState(this.asdLevel);
+  final int prediction;
+   GetQsfinalPredicationSuccessState(this.prediction);
 }
 class GetOneQsPredicationSuccessState extends AutsiumTestStates{
   

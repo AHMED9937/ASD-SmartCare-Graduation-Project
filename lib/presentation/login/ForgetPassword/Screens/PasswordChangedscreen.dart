@@ -1,8 +1,6 @@
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
-import 'package:asdsmartcare/presentation/login/widgets/loginform.dart';
-import 'package:asdsmartcare/presentation/login/widgets/my_RichText.dart';
 import 'package:flutter/material.dart';
 
 class Passwordchangedscreen extends StatelessWidget {
@@ -10,66 +8,84 @@ class Passwordchangedscreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
+      backgroundColor: theme.scaffoldBackgroundColor,
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 77,
-                ),
+                // Logo
                 Image.asset(
                   'lib/appassets/images/Group22.png',
-                  width: 166,
-                  height: 166,
+                  width: 120,
+                  height: 120,
                 ),
-                SizedBox(
-                  height: 55,
+                const SizedBox(height: 40),
+
+                // Title
+                TextUtils.textHeader(
+                  "Password Changed!",
+                  fontSize: 28,
+                  myfontFamily: 'Roboto',
                 ),
-                SizedBox(
-                  width: 322,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextUtils.textHeader("password Changed!",
-                          fontSize: 33, myfontFamily: 'Roboto'),
-                      TextUtils.textDescription(
-                        "Your  password been changed successfully.",
-                        myfontFamily: 'Roboto',
-                        fontSize: 12,
+                const SizedBox(height: 16),
+
+                // Description Container
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    
+                                     color: Colors.white,
+
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(
-                  height: 24,
-                ),
-                AppButtons.containerTextButton(
-                  TextUtils.textHeader(
-                    "Back to Login",
-                    headerTextColor: Colors.white,
-                    myfontFamily: "Roboto",
-                    fontSize: 20,
+                  child: TextUtils.textDescription(
+                    "Your password has been changed successfully.",
+                    myfontFamily: 'Roboto',
+                    fontSize: 14,
+                    myTextAlign: TextAlign.center,
                   ),
-                  () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Loginscreen(),
-                      ),
-                      (route) => false,
-                    );
-                  },
                 ),
-                const SizedBox(
-                  height: 26,
+                const SizedBox(height: 32),
+
+                // Back to Login Button
+                SizedBox(
+                  width: double.infinity,
+                  height: 57,
+                  child: AppButtons.containerTextButton(
+                    TextUtils.textHeader(
+                      "Back to Login",
+                      headerTextColor: Colors.white,
+                      myfontFamily: 'Roboto',
+                      fontSize: 16,
+                    ),
+                    () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Loginscreen(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

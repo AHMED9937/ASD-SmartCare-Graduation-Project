@@ -80,10 +80,7 @@ class Parentchilds extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.white,
-                    ),
+                   
                     const SizedBox(width: 16),
                     Expanded(
                       child: Column(

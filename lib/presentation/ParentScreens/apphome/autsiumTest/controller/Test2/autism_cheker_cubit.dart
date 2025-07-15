@@ -75,7 +75,7 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
                 },
                 icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
               ),
-              TextUtils.textHeader('${_currentAge} m', fontSize: 20),
+              TextUtils.textHeader('${_currentAge}y', fontSize: 20),
               IconButton(
                 onPressed: () {
                   if (_currentAge < 100) 

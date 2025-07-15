@@ -12,6 +12,11 @@ class RegisteredChildrenListCubit extends Cubit<GetRegisteredChildrenListStates>
   
   static RegisteredChildrenListCubit get(context) => BlocProvider.of(context); 
   RegisteredChildren ?registeredchildren;
+    /// Call this to go back to the initial (form) state
+  void reset() {
+    emit(GetRegisteredChildrenListinitialStates());
+  }
+
   void getRegisteredChildrenList() {
     emit(GetRegisteredChildrenListLoadingStates());
 
@@ -29,5 +34,25 @@ class RegisteredChildrenListCubit extends Cubit<GetRegisteredChildrenListStates>
       emit(GetRegisteredChildrenListFailedStates());
     });
   }
+
+    void CreateSession(result) {
+    emit(CreatSessionLoadingStates());
+
+    Diohelper.PostData(
+      url: ApiConstants.CreateSessions,
+      token: CacheHelper.getData(key: "token"),
+      data:result,
+    ).then((value) {
+     
+       print(value.data);
+      
+      emit(CreatSessionSuccsessStates());
+    }).catchError((error) {
+      print("Error fetching RegisteredChildren list: $error");
+      emit(CreatSessionFailedStates());
+    });
+  }
+  
+  
 }
 

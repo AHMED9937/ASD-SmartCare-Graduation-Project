@@ -7,3 +7,8 @@ class GetRegisteredChildrenListLoadingStates extends GetRegisteredChildrenListSt
 class GetRegisteredChildrenListSuccsessStates extends GetRegisteredChildrenListStates{
 }
 class GetRegisteredChildrenListFailedStates extends GetRegisteredChildrenListStates{}
+
+class CreatSessionLoadingStates extends GetRegisteredChildrenListStates{}
+class CreatSessionSuccsessStates extends GetRegisteredChildrenListStates{
+}
+class CreatSessionFailedStates extends GetRegisteredChildrenListStates{}

@@ -266,4 +266,11 @@ class AutsiumTestCubit extends Cubit<AutsiumTestStates> {
       emit(GetQsfinalPredicationErrorState());
     }
   }
+
+
+void GetChildAutsiumHistory(){
+
+
+  }
+
 }

@@ -12,9 +12,9 @@ import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/EditProfile/edit_profile_state.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditParentProfileScreen extends StatelessWidget {
   final GetLoggedParentData parentD;
-  const EditProfileScreen({Key? key, required this.parentD}) : super(key: key);
+  const EditParentProfileScreen({Key? key, required this.parentD}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +73,7 @@ class EditProfileScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              forceMaterialTransparency: true,
               backgroundColor: Colors.white,
               elevation: 0,
               leading: IconButton(
@@ -132,7 +133,7 @@ class EditProfileScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   _buildField(label: "Address", controller: cubit.addressCtrl),
                   const SizedBox(height: 20),
-                   _buildField(label: "Password",suffix: IconButton(onPressed: ()=>NavgatTO(context, ChangePasswordScreen()), icon: Icon(Icons.arrow_forward_outlined))),
+                   _buildField(label: "Password",suffix: IconButton(onPressed: ()=>NavgatTO(context, ChangePasswordScreen(isParent: true,)), icon: Icon(Icons.arrow_forward_outlined))),
                   const SizedBox(height: 20),
  AppButtons.containerTextButton(
                     TextUtils.textHeader("Childs Management",headerTextColor: Colors.white,),

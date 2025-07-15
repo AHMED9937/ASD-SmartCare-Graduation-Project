@@ -52,4 +52,46 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
       // Optionally inspect response, e.g. statusCode or message
     
   }
+   void DeleteDocAvailability(slots)  {
+    emit(DeleteDoctorAvailabilityLoading());
+    
+     Diohelper.DeleteData(
+      data: {},
+      token: CacheHelper.getData(key: "token"),
+        url: ApiConstants.DeleteDoctorAvailability(CacheHelper.getData(key: 'id')),  // replace with your configured endpoint
+      ).then((value){
+        print(value.data);
+       
+  
+      emit(DeleteDoctorAvailabilitySuccess(slots:slots  ));
+
+      }).catchError((e){
+      emit(DeleteDoctorAvailabilityError(e.toString()));
+
+      });
+      
+      // Optionally inspect response, e.g. statusCode or message
+    
+  }
+
+ Future< void> DeleteAppointmet(String appointmentId)async{
+    print(appointmentId);
+  emit(DeleteDocAppoimentLoading());
+    
+    await Diohelper.DeleteData(
+      url: ApiConstants.DeleteSpacificDoctorApoiment,  // replace with your configured endpoint
+      data: {
+        "appointmentId":appointmentId
+      },
+      token: CacheHelper.getData(key: "token"),
+      ).then((value){
+        print(value.data);
+       
+    emit(DeleteDocAppoimentSuccess());
+
+      }).catchError((e){
+    emit(DeleteDocAppoimentError(e.toString()));
+
+      });
+  }
 }

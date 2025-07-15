@@ -4,7 +4,7 @@ import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/cubit/doctors_list_state.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Screen/AvailableMedicineScreen.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/CharityAndDonations/Screen/CharityMedicine.dart';
+import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharityMedicine.dart';
 import 'package:asdsmartcare/presentation/Doctor/Home/DoctorHomeScreen.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/Education/screen/Articles.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/Screen/AiEvaluation.dart';
@@ -20,244 +20,58 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-
-    return  Scaffold(
-            backgroundColor: Colors.white,
-
-            drawer: const CurvedDrawer(),
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              toolbarHeight: 80,
-              scrolledUnderElevation: 0.0,
-              shadowColor: Colors.white,
-              centerTitle: true,
-              title: LogoImage(60, 60),
-              actions: [
-                Icon(
-                  Icons.notifications, //color: Color(0xFF133E87)
-                ),
+    return Scaffold(
+        backgroundColor: Colors.white,
+        drawer: const CurvedDrawer(),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarHeight: 80,
+          scrolledUnderElevation: 0.0,
+          shadowColor: Colors.white,
+          centerTitle: true,
+          title: LogoImage(60, 60),
+          actions: [
+            Icon(
+              Icons.notifications, //color: Color(0xFF133E87)
+            ),
+          ],
+        ),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+           
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 3,
+              childAspectRatio: 1,
+              physics: NeverScrollableScrollPhysics(),
+              children: [
+                _buildServiceItem("lib/appassets/images/autism.png",
+                    "Ai Evaluation", context, AiEvaluationScreen()),
+                _buildServiceItem("lib/appassets/images/child_progress.png",
+                    "Child progress", context, ChildProgressScreen()),
+                _buildServiceItem("lib/appassets/images/education.png",
+                    "Educational ", context, Articles()),
+                _buildServiceItem("lib/appassets/images/chatbot.png",
+                    "Chat bot Help", context, ChatBotscreen()),
+                _buildServiceItem("lib/appassets/images/medical.png",
+                    "Medical ", context, Availablemedicinescreen()),
+                _buildServiceItem("lib/appassets/images/charity.png",
+                    " charities", context, CharityMedicine()),
               ],
             ),
-            body: BlocProvider(
-              create: (context) => DoctorsListCubit()..getDoctorsList(RecomededDoctor: true),
-              child: BlocConsumer<DoctorsListCubit, GetDoctorsListStates>(
-                listener: (context, state) {
-               
-                },
-                builder: (context, state) {
-                    
-                
-
-               
-                  
-                  return SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text("Welcome ",
-                                style: TextStyle(
-                                    color: Color(0xFF133E87), fontSize: 18)),
-                            Text("Ahmed,",
-                                style: TextStyle(
-                                    color: Color(0xFF90AED4),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                        SizedBox(height: 10),SizedBox(height: 8),
-                       
-                        SizedBox(height: 8),
-                        GridView.count(
-                          shrinkWrap: true,
-                          crossAxisCount: 3,
-                          childAspectRatio: 1,
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            _buildServiceItem("lib/appassets/images/autism.png",
-                                "Ai Evaluation", context, AiEvaluationScreen()),
-                            _buildServiceItem(
-                                "lib/appassets/images/child_progress.png",
-                                "Child progress",
-                                context,
-                                ChildProgressScreen()),
-                            _buildServiceItem(
-                                "lib/appassets/images/education.png",
-                                "Educational ",
-                                context,
-                                Articles()),
-                            _buildServiceItem(
-                                "lib/appassets/images/chatbot.png",
-                                "Chat bot Help",
-                                context,
-                                ChatBotscreen()),
-                            _buildServiceItem(
-                                "lib/appassets/images/medical.png",
-                                "Medical ",
-                                context,
-                                Availablemedicinescreen()),
-                            _buildServiceItem(
-                                "lib/appassets/images/charity.png",
-                                " charities",
-                                context,
-                                CharityMedicine()),
-                          ],
-                        ),
-                        SizedBox(height: 9),
-                        TextUtils.textHeader("Recommended Doctors",
-                            fontSize: 20, headerTextColor: Color(0xFF082F71)),
-                        TextUtils.textDescription(
-                            "We connect you with the best therapists in every department!",
-                            fontSize: 10,
-                            disTextColor: Color(0xFF082F71)),
-                        ConditionalBuilder(condition: state is !GetDoctorsListLoadingStates, builder: (_)=>SizedBox(
-                          width: 500,
-                          height: 350,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount:  DoctorsListCubit.get(context).myDoctorList.length,
-                            itemBuilder: (context, index) => Padding(
-                              padding: const EdgeInsets.all(3.0),
-                              child: Row(
-                                children: [
-                                  Specialist( DoctorsListCubit.get(context).myDoctorList[index],context),
-                                  SizedBox(width: 24),
-
-                                  // You can add more specialist containers here
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                       fallback: (_)=>Center(child:CircularProgressIndicator() ,)),
-                        
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-          )
-        ;
-  }
-
-  Widget Specialist(Doctor doctor,BuildContext context){
-
-    return Card(
-      shadowColor: Color(0xFF133E87),
-      elevation: 10,
-      child: Container(
-        width: 220, // increased width
-        height: 280, // increased height
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(23),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
+            SizedBox(height: 9),
+            TextUtils.textHeader("Recommended Doctors",
+                fontSize: 19, headerTextColor: Color(0xFF082F71)),
+            TextUtils.textDescription(
+                "We connect you with the best therapists in every department!",
+                fontSize: 10,
+                disTextColor: Color(0xFF082F71)),
+            Expanded(flex: 1, child: RecomededDoctorWidget()),
           ],
-        ),
-        child: Column(
-          
-          children: [
-            Expanded(
-              child: Container(
-                width: 220,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(23),
-                    topRight: Radius.circular(23),
-                  ),
-                ),
-                // Optionally show an image here:
-                
-                child: doctor.image!=null? Image.network(
-                  doctor.image!,
-                ):Container(decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(22),topRight: Radius.circular(22) )),),
-              ),
-            ),
-            SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextUtils.textHeader(
-                        doctor.parent!.userName??"",
-                        headerTextColor: Color(0xFF00225C),
-                        fontSize: 14,
-                      ),
-                      TextUtils.textDescription(
-                        doctor.specialization??"",
-                        fontSize: 10,
-                      ),
-                    ],
-                  ),
-                  Container(
-                    width: 46,
-                    height: 22,
-                    decoration: BoxDecoration(
-                      color: Color(0xFF00225C),
-                      borderRadius: BorderRadius.all(Radius.circular(36)),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ShaderMask(
-                          shaderCallback: (Rect bounds) {
-                            return LinearGradient(
-                              colors: [Color(0xFFFFC80B), Color(0xFFE89318)],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ).createShader(bounds);
-                          },
-                          child: Icon(
-                            Icons.star,
-                            size: 15,
-                            color: Colors.white,
-                          ),
-                        ),
-                        TextUtils.textDescription("${doctor.ratingQuantity}.0",
-                            disTextColor: Colors.white, fontSize: 10),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 8),
-            Center(
-              child: AppButtons.containerTextButton(
-                TextUtils.textHeader(
-                  "Book Now!",
-                  headerTextColor: Colors.white,
-                ),
-                () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context) => Reservationscreen(myDoctor: doctor),));
-                },
-                containerHeight: 30,
-                containerWidth: 128,
-                containerColor: Color(0xFF133E87),
-              ),
-            ),
-            SizedBox(height: 8),
-          ],
-        ),
-      ),
-    );
+        ));
   }
 
   Widget _buildServiceItem(
@@ -292,6 +106,160 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class RecomededDoctorWidget extends StatelessWidget {
+  const RecomededDoctorWidget({Key? key}) : super(key: key);
+
+  Widget Specialist(Doctor doctor, BuildContext context) {
+    return Card(
+      shadowColor: const Color(0xFF133E87),
+      elevation: 10,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(23)),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(23),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        width: 220,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(23),
+                  topRight: Radius.circular(23),
+                ),
+                child: doctor.image != null
+                    ? Image.network(
+                        doctor.image!,
+                        fit: BoxFit.contain,
+                        width: double.infinity,
+                      )
+                    : Container(
+                        color: Colors.grey,
+                        width: double.infinity,
+                      ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextUtils.textHeader(
+                    doctor.parent?.userName ?? '',
+                    headerTextColor: const Color(0xFF00225C),
+                    fontSize: 14,
+                  ),
+                  TextUtils.textDescription(
+                    doctor.specialization ?? '',
+                    fontSize: 10,
+                  ),
+                  Container(
+                    width: 48,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF00225C),
+                      borderRadius: BorderRadius.circular(36),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.star, size: 14, color: Colors.amber),
+                        const SizedBox(width: 4),
+                        TextUtils.textDescription(
+                          '${doctor.ratingsAverage??0}.0',
+                          disTextColor: Colors.white,
+                          fontSize: 10,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 8),
+            Center(
+              child: AppButtons.containerTextButton(
+                TextUtils.textHeader(
+                  'Book Now!',
+                  headerTextColor: Colors.white,
+                  fontSize: 14,
+                ),
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => Reservationscreen(myDoctor: doctor),
+                    ),
+                  );
+                },
+                containerHeight: 32,
+                containerWidth: 120,
+                containerColor: const Color(0xFF133E87),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => DoctorsListCubit()..getDoctorsList(RecomededDoctor: true),
+      child: BlocConsumer<DoctorsListCubit, GetDoctorsListStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          final docs = DoctorsListCubit.get(context).myDoctorList;
+          if (state is GetDoctorsListLoadingStates) {
+            return const SizedBox(
+              height: 300,
+              child: Center(child: CircularProgressIndicator()),
+            );
+          }
+          if (state is GetDoctorsListSuccsessStates) {
+            return SizedBox(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  // control size by flex values: change cardFlex to adjust width
+                  const int cardFlex = 6;
+                  const int totalFlex = 10;
+                  final cardWidth = constraints.maxWidth * cardFlex / totalFlex;
+
+                  return ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    itemCount: docs.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 16),
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        width: cardWidth,
+                        child: Specialist(docs[index], context),
+                      );
+                    },
+                  );
+                },
+              ),
+            );
+          }
+          return const SizedBox();
+        },
       ),
     );
   }

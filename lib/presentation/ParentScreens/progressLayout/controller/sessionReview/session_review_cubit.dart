@@ -11,31 +11,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-
 class SessionReviewCubit extends Cubit<SessionReviewState> {
-  
-  SessionReviewCubit() : super(SessionReviewStateInitial());
 
-  static SessionReviewCubit get(context) => BlocProvider.of(context); 
-    int rating = 0;
+  SessionReviewCubit() :super(SessionReviewStateInitial());
+
+  static SessionReviewCubit get(context) => BlocProvider.of(context);
+  int rating = 0;
   final TextEditingController controller = TextEditingController();
 
-void submitReview(String id ){
-print(controller.text);
-print(rating);
+  void submitSessionReview(String id) {
+    print(id);
+    print(controller.text);
+    print(rating);
 
     emit(SessionReviewStateLoading());
 
     Diohelper.PostData(
-      url: ApiConstants.SessionReview(id), // Ensure this matches your API endpoint key
-      data: {
- "title":controller.text,
-    "ratings":rating
-      },
+      url: ApiConstants.SessionReview(
+          id), // Ensure this matches your API endpoint key
+      data: {"title": controller.text, "ratings": rating},
       token: CacheHelper.getData(key: "token"),
     ).then((value) {
-     
-       print(value.data);
+      print(value.data);
       //print(myDoctorList.data[0]);
       emit(SessionReviewStateLoaded());
     }).catchError((error) {
@@ -44,10 +41,32 @@ print(rating);
     });
   }
 
- void updateRating(int r){
-  rating=r;
-  emit(updateRatingState());
-}
+  void submitDoctorReview(String DoctorId) {
+    print(DoctorId);
+    print(controller.text);
+    print(rating);
+
+    emit(DoctorReviewStateLoading());
+
+    Diohelper.PostData(
+      url: ApiConstants.AddDoctorReview(
+          DoctorId), // Ensure this matches your API endpoint key
+      data: {"title": controller.text, "ratings": rating},
+      token: CacheHelper.getData(key: "token"),
+    ).then((value) {
+      print(value.data);
+
+      emit(DoctorReviewStateLoaded());
+    }).catchError((error) {
+      print("Error ");
+      emit(DoctorReviewStateError());
+    });
+  }
+
+  void updateRating(int r) {
+    rating = r;
+    emit(updateRatingState());
+  }
+
 
 }
-

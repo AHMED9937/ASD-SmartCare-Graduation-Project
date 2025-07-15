@@ -1,5 +1,7 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/colorUtils.dart';
 import 'package:asdsmartcare/presentation/login/screen/SelectusertypeScreen.dart';
 import 'package:asdsmartcare/presentation/onBoarding/onBoardingWidget.dart';
 import 'package:asdsmartcare/presentation/login/screen/select_Login_or_SignUpScreen.dart';
@@ -55,89 +57,64 @@ class _OnboardingNavigationScreensState
     pageController.dispose();
     super.dispose();
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    extendBodyBehindAppBar: true,              // ✱ allow the body to draw under the AppBar
+    backgroundColor: Colors.white,
+    appBar: AppBar(
+      backgroundColor: Colors.transparent,     // ✱ make the AppBar see-through
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      actions: !isLastPage                       // ✱ show Skip until last page
+          ? [
+              TextButton(
+                onPressed: () => pageController.jumpToPage(onboardingScreens.length - 1),
+                child: const Text("Skip", style: TextStyle(color: Colors.black)),
+              ),
+            ]
+          : null,
+    ),
+    body: PageView(
+      controller: pageController,
+      onPageChanged: (i) => setState(() {
+        isFirstPage = i == 0;
+        isLastPage  = i == onboardingScreens.length - 1;
+      }),
+      children: onboardingScreens,
+    ),
+    bottomSheet: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          PageView(
+          SmoothPageIndicator(
             controller: pageController,
-            onPageChanged: (index) {
-              setState(() {
-                isLastPage = index == onboardingScreens.length - 1;
-                isFirstPage = index == 0;
-              });
+            count: onboardingScreens.length,
+            effect: const WormEffect(
+              dotWidth: 16.84, dotHeight: 4.65, spacing: 1.74,
+              activeDotColor: const Color(0xFF133E87),
+              dotColor: Color(0xFFB2BFD9),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF133E87),
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+            ),
+            onPressed: isLastPage ? _navigateToLogin : () {
+              pageController.nextPage(
+                duration: const Duration(milliseconds: 600),
+                curve: Curves.easeIn,
+              );
             },
-            children: onboardingScreens,
-          ),
-          if (!isFirstPage)
-            Positioned(
-              left: 10,
-              top: 50,
-              child: AppButtons.arrowbutton(() {
-                pageController.previousPage(
-                  duration: const Duration(milliseconds: 600),
-                  curve: Curves.easeOut,
-                );
-              }),
-            ),
-          if (!isLastPage)
-            Positioned(
-              right: 10,
-              top: 50,
-              child: TextButton(
-                onPressed: () =>
-                    pageController.jumpToPage(onboardingScreens.length - 1),
-                child: const Text(
-                  "Skip",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-          Positioned(
-            bottom: 35,
-            left: 41,
-            right: 41,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF133E87),
-                padding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-              onPressed: isLastPage
-                  ? _navigateToLogin
-                  : () {
-                      pageController.nextPage(
-                        duration: const Duration(milliseconds: 600),
-                        curve: Curves.easeIn,
-                      );
-                    },
-              child: Text(
-                isLastPage ? "Get Started" : "Next",
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 167,
-            bottom: 120,
-            child: SmoothPageIndicator(
-              controller: pageController,
-              count: onboardingScreens.length,
-              effect: const WormEffect(
-                dotWidth: 16.84,
-                dotHeight: 4.65,
-                spacing: 1.74,
-                activeDotColor: Color(0xFF25B9D3),
-                dotColor: Color(0xFFB2BFD9),
-              ),
-            ),
+            child: Text(isLastPage ? "Get Started" : "Next",style: TextStyle(color: Colors.white),),
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 
   void _navigateToLogin() {
     CacheHelper.SaveData(key: 'loginSingUp', value: true).then((value) {

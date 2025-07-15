@@ -31,13 +31,10 @@ class DoctorsListPage extends StatelessWidget {
               children: [
                 // 1) Header
                 Container(
-                  height: 180,
+                  height: 90,
                   width: double.infinity,
                   decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF4A90E2), Color(0xFF133E87)],
-                     
-                    ),
+                   
                     borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(32),
                     ),
@@ -52,7 +49,7 @@ class DoctorsListPage extends StatelessWidget {
                     ),
                   ),
                 ),
-            
+
                 // 2) Search bar (overlapping)
                 Transform.translate(
                   offset: const Offset(0, -40),
@@ -74,18 +71,17 @@ class DoctorsListPage extends StatelessWidget {
                       child: TextField(
                         onChanged: (q) => cubit.SearchDoctorsList(ByName: q),
                         decoration: const InputDecoration(
-                          hintText: "Search by specialization or area…",
-                          prefixIcon: Icon(Icons.search, color: Colors.grey),
-                          border: InputBorder.none,
-                          contentPadding: EdgeInsets.all(15)
-                        ),
+                            hintText: "Search by specialization or area…",
+                            prefixIcon: Icon(Icons.search, color: Colors.grey),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.all(15)),
                       ),
                     ),
                   ),
                 ),
-            
+
                 const SizedBox(height: 16),
-            
+
                 // 3) Section title
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
@@ -101,9 +97,9 @@ class DoctorsListPage extends StatelessWidget {
                     ),
                   ),
                 ),
-            
+
                 const SizedBox(height: 12),
-            
+
                 // 4) List
                 Expanded(
                   child: state is GetDoctorsListLoadingStates
@@ -145,13 +141,15 @@ class DoctorsListPage extends StatelessWidget {
           children: [
             // Photo
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16)),
               child: d.image != null
-                  ? Image.network(d.image!, height: 160, fit: BoxFit.contain)
+                  ? Image.network(d.image!,height:200 , width: double.maxFinite, fit: BoxFit.contain,alignment: Alignment.topCenter,)
                   : Container(
                       height: 160,
                       color: Colors.grey[200],
-                      child: const Icon(Icons.person, size: 60, color: Colors.grey),
+                      child: const Icon(Icons.person,
+                          size: 60, color: Colors.grey),
                     ),
             ),
 
@@ -175,21 +173,25 @@ class DoctorsListPage extends StatelessWidget {
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
                   const SizedBox(height: 12),
-
                   Row(
                     children: [
                       RatingBarIndicator(
-                        rating: d.ratingQuantity!.toDouble(),
+                        // if ratingsAverage is null, treat it as 0
+                        rating: (d.ratingsAverage ?? 0).toDouble(),
                         itemCount: 5,
-                        itemSize: 16,
+                        itemSize: 16.0,
                         direction: Axis.horizontal,
-                        itemBuilder: (_, __) =>
-                            const Icon(Icons.star, color: Colors.amber, size: 16),
+                        itemBuilder: (context, index) => const Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: 16,
+                        ),
                       ),
                       const SizedBox(width: 6),
                       Text(
                         "${d.ratingQuantity} reviews",
-                        style: const TextStyle(fontSize: 12, color: Colors.blue),
+                        style:
+                            const TextStyle(fontSize: 12, color: Colors.blue),
                       ),
                       const Spacer(),
                       Row(
@@ -207,7 +209,6 @@ class DoctorsListPage extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 16),
                   SizedBox(
                     width: double.infinity,
@@ -227,7 +228,9 @@ class DoctorsListPage extends StatelessWidget {
                       child: const Text(
                         "Reserve",
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600,color: Colors.white),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white),
                       ),
                     ),
                   ),

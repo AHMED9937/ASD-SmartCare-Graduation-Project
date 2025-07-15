@@ -1,4 +1,5 @@
 import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 
 class Confirmreservationscreen extends StatelessWidget {
  Doctor DoctorData;
-   Confirmreservationscreen({super.key, required this.DoctorData});
+ BookSession  sessionD;
+   Confirmreservationscreen({super.key, required this.DoctorData,required this .sessionD});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +43,11 @@ class Confirmreservationscreen extends StatelessWidget {
                     color: Colors.white,
                   ),
 
-                  child: Image.asset(
-                    'lib/appassets/images/doctor1.png',
+                  child: Image.network(
+                    DoctorData.image??"",
                     height: 99,
                     width: 88,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                   ),
                 ),
               ),
@@ -57,7 +59,7 @@ class Confirmreservationscreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Doctor Name',
+                      DoctorData.parent!.userName??"",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -66,7 +68,7 @@ class Confirmreservationscreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      'Doctor Splications',
+                      DoctorData.specialization??"",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white,
@@ -74,16 +76,14 @@ class Confirmreservationscreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     // Star Rating
-                    Row(
-                      children: List.generate(
-                        5,
-                            (index) => Icon(
-                          index < 2 ? Icons.star : Icons.star_border,
-                          color: Colors.amber,
-                          size: 12,
-                        ),
-                      ),
-                    ),
+                  Row(
+  children: List.generate(5, (index) => Icon(
+    index < DoctorData.ratingQuantity! ? Icons.star : Icons.star_border,
+    color: Colors.amber,
+    size: 12.0,
+  )),
+),
+
                     Expanded(
                       flex: 0,
                       child: AppButtons.containerTextButton(
@@ -120,16 +120,16 @@ class Confirmreservationscreen extends StatelessWidget {
             children: [
 
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
-                TextUtils.textHeader("Session price",fontSize: 24),
-                TextUtils.textDescription("350 pounds")
+                TextUtils.textHeader("Session Price",fontSize: 24),
+                TextUtils.textDescription(DoctorData.sessionPrice.toString())
               ],),
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                 TextUtils.textHeader("Date",fontSize: 24),
-                TextUtils.textDescription("01 Jul 2025")
+                TextUtils.textDescription(sessionD.data!.date??"")
               ],),
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
                 TextUtils.textHeader("Time",fontSize: 24),
-                TextUtils.textDescription("09.00 Am")
+                TextUtils.textDescription(sessionD.data!.time??"")
               ],
               ),
               AppButtons.containerTextButton(TextUtils.textHeader("Done",headerTextColor: Colors.white),(){

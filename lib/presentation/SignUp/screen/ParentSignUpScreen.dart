@@ -1,4 +1,5 @@
 
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/SignUp/screen/EmailVerfcationScreen.dart';
@@ -47,17 +48,14 @@ class ParentSignUpScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             resizeToAvoidBottomInset: true,
-            appBar: AppBar(
-              leading: AppButtons.arrowbutton(() {
-                Navigator.pop(context);
-              }),
-            ),
+            appBar:AppBarWithText(context, ""),
+            
             body: SafeArea(
               child: SingleChildScrollView(
-                child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      const SizedBox(height: 14),
                       TextUtils.textHeader("Sign up",
                           fontSize: 36, myfontFamily: 'Roboto'),
                       TextUtils.textDescription(
@@ -66,29 +64,7 @@ class ParentSignUpScreen extends StatelessWidget {
                           fontSize: 12),
                       const SizedBox(height: 40),
                       Parentsignupform(), // Make sure this form is correctly set up with the SignUpCubit
-                      const SizedBox(height: 47),
-                      ConditionalBuilder(
-                        condition: state is! ParentSignUpLoadingState,
-                        builder: (context) => AppButtons.containerTextButton(
-                          TextUtils.textHeader("Next Step ",
-                              headerTextColor: Colors.white,
-                              myfontFamily: "Roboto",
-                              fontSize: 20),
-                          () {
-                            
-                            ParentSignUpCubit.get(context).ParentSignUp();
-                          },
-                        ),
-                        fallback: (context) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                       const SizedBox(height: 26),
-                      const MyRichtext(
-                          navgaitto: Loginscreen(),
-                          Textdis: "You have an account? ",
-                          Textheader: " Login"),
-                      const SizedBox(height: 20),
+                     
                     ],
                   ),
                 ),

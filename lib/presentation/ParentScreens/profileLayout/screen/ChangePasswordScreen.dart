@@ -1,11 +1,13 @@
 import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/ChangePassword/cubit/change_password_cubit.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/ChangePassword/cubit/change_password_state.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
+import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChangePasswordScreen extends StatelessWidget {
-  ChangePasswordScreen({Key? key}) : super(key: key);
+  bool isParent;
+  ChangePasswordScreen({Key? key,required this.isParent}) : super(key: key);
 
   InputDecoration _decoration({
     required String hint,
@@ -35,6 +37,7 @@ class ChangePasswordScreen extends StatelessWidget {
       create: (_) => ChanagePasswordCubit(),
       child: BlocConsumer<ChanagePasswordCubit, ChanagePasswordStates>(
         listener: (context, state) {
+         
           // TODO: implement listener
         },
         builder: (context, state) {
@@ -42,7 +45,7 @@ class ChangePasswordScreen extends StatelessWidget {
           return Scaffold(
                 backgroundColor: Colors.white,
             extendBodyBehindAppBar: true,
-            appBar:AppBarWithText(context, ""),
+            appBar:AppBarWithText(context, " "),
             body: Stack(
               children: [
                
@@ -164,6 +167,8 @@ class ChangePasswordScreen extends StatelessWidget {
                                                   Text('Password changed!')),
                                         );
                                         Navigator.of(ctx).pop();
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Loginscreen(),),(route) => false,);
+
                                       }
                                       if (state
                                           is ChanagePasswordFailedStates) {
@@ -190,6 +195,7 @@ class ChangePasswordScreen extends StatelessWidget {
                                                     ChanagePasswordCubit.get(
                                                             ctx)
                                                         .changePassword(
+                                                          IsParent: isParent,
                                                       currentPassword:
                                                           cubit.currentController
                                                               .text,

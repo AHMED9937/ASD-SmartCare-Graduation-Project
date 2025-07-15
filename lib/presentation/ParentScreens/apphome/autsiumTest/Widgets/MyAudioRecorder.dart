@@ -63,10 +63,8 @@ class _MyAudioRecorderState extends State<MyAudioRecorder> {
   }
 
   @override
-  Widget build(BuildContext context) {
-                
-                final cubit = context.read<AutsiumTestCubit>();
-
+  Widget build(BuildContext context) {            
+    final cubit = context.read<AutsiumTestCubit>();
     return Column(
       children: [
         Text( widget.question,style:TextStyle( color: Colors.black,  fontSize: 15,) ,overflow: TextOverflow.clip),

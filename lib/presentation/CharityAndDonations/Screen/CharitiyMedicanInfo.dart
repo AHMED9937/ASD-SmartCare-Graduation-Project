@@ -1,11 +1,11 @@
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/CharityAndDonations/Model/CharityResponse.dart';
+import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/model/MedicinesResponse.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 
 class Charitiymedicaninfo extends StatelessWidget {
-  final CharityMedican medicen;
+  final CharityMedicine medicen;
   const Charitiymedicaninfo({super.key, required this.medicen});
 
   @override

@@ -1,4 +1,5 @@
 import 'package:asdsmartcare/presentation/Fixed_Widgets/AppFormTextField.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/login/ForgetPassword/cubit/forget_password_cubit.dart';
@@ -39,78 +40,78 @@ class CreatenewpasswordScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              leading: AppButtons.arrowbutton(() {
-                Navigator.pop(context);
-              }),
-            ),
-            body: Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 337,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(
-                          height: 67.5,
-                        ),
-                        TextUtils.textHeader("Create new password",
-                            fontSize: 33,
+            appBar:AppBarWithText(context,""),
+            body: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: 337,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 67.5,
+                          ),
+                          TextUtils.textHeader("Create new password",
+                              fontSize: 30,
+                              myfontFamily: 'Roboto',
+                              myTextAlign: TextAlign.start),
+                          const SizedBox(
+                            height: 11,
+                          ),
+                          TextUtils.textDescription(
+                            "Your new password must be unique from those previously used.",
                             myfontFamily: 'Roboto',
-                            myTextAlign: TextAlign.start),
-                        const SizedBox(
-                          height: 11,
-                        ),
-                        TextUtils.textDescription(
-                          "Your new password must be unique from those previously used.",
-                          myfontFamily: 'Roboto',
-                          fontSize: 12,
-                          my_FontWeight: FontWeight.w500,
-                          myTextAlign: TextAlign.start,
-                        ),
-                        const SizedBox(
-                          height: 26,
-                        ),
-                        Appformtextfield(
-                          hintText: "New Password",
-                          TextController: ForgetPasswordCubit.get(context).NewPasswordController,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Appformtextfield(
-                          hintText: "Confirm Password",
-                          TextController: ForgetPasswordCubit.get(context).ConfirmPasswordController,
-
-                          isObscureText: true,
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 45,
-                  ),
-                   ConditionalBuilder(
-                      condition: state is! ForgetPasswordLoading,
-                      builder: (context) =>  AppButtons.containerTextButton(
-                      TextUtils.textHeader(
-                        "Reset Password",
-                        headerTextColor: Colors.white,
-                        myfontFamily: "Roboto",
-                        fontSize: 20,
-                      ), () 
-                  {
-                  
-                  ForgetPasswordCubit.get(context).ResetPasswordCall();
-                  
-                  }, containerWidth: 358, containerHeight: 57),
-               fallback: (_) => const Center(
-                        child: CircularProgressIndicator(),
+                            fontSize: 12,
+                            my_FontWeight: FontWeight.w500,
+                            myTextAlign: TextAlign.start,
+                          ),
+                          const SizedBox(
+                            height: 26,
+                          ),
+                          Appformtextfield(
+                            hintText: "New Password",
+                            TextController: ForgetPasswordCubit.get(context).NewPasswordController,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Appformtextfield(
+                            hintText: "Confirm Password",
+                            TextController: ForgetPasswordCubit.get(context).ConfirmPasswordController,
+                
+                            isObscureText: true,
+                          ),
+                        ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 45,
+                    ),
+                     ConditionalBuilder(
+                        condition: state is! ForgetPasswordLoading,
+                        builder: (context) =>  AppButtons.containerTextButton(
+                        TextUtils.textHeader(
+                          "Reset Password",
+                          headerTextColor: Colors.white,
+                          myfontFamily: "Roboto",
+                          fontSize: 16,
+                        ), () 
+                    {
                     
-                   ],
+                    ForgetPasswordCubit.get(context).ResetPasswordCall();
+                    
+                    }, containerWidth: 358, containerHeight: 57),
+                 fallback: (_) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                      
+                     ],
+                ),
               ),
             ),
           );

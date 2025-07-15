@@ -1,3 +1,6 @@
+import 'package:intl/intl.dart';
+
+/// Represents a list of sessions received from the API.
 class SessionsResponse {
   final List<Session>? data;
 
@@ -5,11 +8,9 @@ class SessionsResponse {
 
   factory SessionsResponse.fromJson(Map<String, dynamic> json) {
     return SessionsResponse(
-      data: json['data'] != null
-          ? (json['data'] as List)
-              .map((e) => Session.fromJson(e as Map<String, dynamic>))
-              .toList()
-          : null,
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => Session.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
@@ -19,6 +20,7 @@ class SessionsResponse {
       };
 }
 
+/// Represents a single session between a doctor and a parent.
 class Session {
   final String? id;
   final DoctorData? doctor;
@@ -47,8 +49,19 @@ class Session {
   });
 
   factory Session.fromJson(Map<String, dynamic> json) {
+    // Parse session_date which comes in M/d/yyyy format
+    DateTime? parsedSessionDate;
+    final dateString = json['session_date'] as String?;
+    if (dateString != null && dateString.isNotEmpty) {
+      try {
+        parsedSessionDate = DateFormat('M/d/yyyy').parse(dateString);
+      } catch (_) {
+        parsedSessionDate = null;
+      }
+    }
+
     return Session(
-      id: json['id'] as String? ?? json['_id'] as String?,
+      id: (json['id'] as String?) ?? (json['_id'] as String?),
       doctor: json['doctorId'] != null
           ? DoctorData.fromJson(json['doctorId'] as Map<String, dynamic>)
           : null,
@@ -56,13 +69,11 @@ class Session {
           ? ParentData.fromJson(json['parentId'] as Map<String, dynamic>)
           : null,
       sessionNumber: json['session_number'] as int?,
-      sessionDate: json['session_date'] != null
-          ? DateTime.parse(json['session_date'] as String)
-          : null,
+      sessionDate: parsedSessionDate,
       statusOfSession: json['statusOfSession'] as String?,
-      comments: json['comments'] != null
-          ? List<String>.from(json['comments'] as List)
-          : null,
+      comments: (json['comments'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       sessionReview: json['session_review'] != null
           ? List<dynamic>.from(json['session_review'] as List)
           : null,
@@ -76,22 +87,30 @@ class Session {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        '_id': id,
-        if (doctor != null) 'doctorId': doctor!.toJson(),
-        if (parent != null) 'parentId': parent!.toJson(),
-        'session_number': sessionNumber,
-        'session_date': sessionDate?.toIso8601String(),
-        'statusOfSession': statusOfSession,
-        if (comments != null) 'comments': comments,
-        if (sessionReview != null) 'session_review': sessionReview,
-        'createdAt': createdAt?.toIso8601String(),
-        'updatedAt': updatedAt?.toIso8601String(),
-        '__v': v,
-        'id': id,
-      };
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{
+      '_id': id,
+      'id': id,
+      'session_number': sessionNumber,
+      'statusOfSession': statusOfSession,
+      '__v': v,
+    };
+
+    if (doctor != null) map['doctorId'] = doctor!.toJson();
+    if (parent != null) map['parentId'] = parent!.toJson();
+    if (sessionDate != null) {
+      map['session_date'] = DateFormat('M/d/yyyy').format(sessionDate!);
+    }
+    if (comments != null) map['comments'] = comments;
+    if (sessionReview != null) map['session_review'] = sessionReview;
+    if (createdAt != null) map['createdAt'] = createdAt!.toIso8601String();
+    if (updatedAt != null) map['updatedAt'] = updatedAt!.toIso8601String();
+
+    return map;
+  }
 }
 
+/// Minimal doctor info nested inside a session.
 class DoctorData {
   final String? id;
   final DoctorParent? parent;
@@ -101,7 +120,7 @@ class DoctorData {
 
   factory DoctorData.fromJson(Map<String, dynamic> json) {
     return DoctorData(
-      id: json['id'] as String? ?? json['_id'] as String?,
+      id: (json['id'] as String?) ?? (json['_id'] as String?),
       parent: json['parent'] != null
           ? DoctorParent.fromJson(json['parent'] as Map<String, dynamic>)
           : null,
@@ -111,12 +130,13 @@ class DoctorData {
 
   Map<String, dynamic> toJson() => {
         '_id': id,
+        'id': id,
         if (parent != null) 'parent': parent!.toJson(),
         'image': image,
-        'id': id,
       };
 }
 
+/// Parent info for a doctor inside a session.
 class DoctorParent {
   final String? id;
   final String? userName;
@@ -127,7 +147,7 @@ class DoctorParent {
 
   factory DoctorParent.fromJson(Map<String, dynamic> json) {
     return DoctorParent(
-      id: json['id'] as String? ?? json['_id'] as String?,
+      id: (json['id'] as String?) ?? (json['_id'] as String?),
       userName: json['userName'] as String?,
       email: json['email'] as String?,
       childs: json['childs'] != null
@@ -138,13 +158,14 @@ class DoctorParent {
 
   Map<String, dynamic> toJson() => {
         '_id': id,
+        'id': id,
         'userName': userName,
         'email': email,
         if (childs != null) 'childs': childs,
-        'id': id,
       };
 }
 
+/// Parent who booked the session.
 class ParentData {
   final String? id;
   final String? userName;
@@ -156,28 +177,27 @@ class ParentData {
 
   factory ParentData.fromJson(Map<String, dynamic> json) {
     return ParentData(
-      id: json['id'] as String? ?? json['_id'] as String?,
+      id: (json['id'] as String?) ?? (json['_id'] as String?),
       userName: json['userName'] as String?,
       email: json['email'] as String?,
       role: json['role'] as String?,
-      childs: json['childs'] != null
-          ? (json['childs'] as List)
-              .map((e) => Child.fromJson(e as Map<String, dynamic>))
-              .toList()
-          : null,
+      childs: (json['childs'] as List<dynamic>?)
+          ?.map((e) => Child.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 
   Map<String, dynamic> toJson() => {
         '_id': id,
+        'id': id,
         'userName': userName,
         'email': email,
         'role': role,
         if (childs != null) 'childs': childs!.map((c) => c.toJson()).toList(),
-        'id': id,
       };
 }
 
+/// A child record under a parent.
 class Child {
   final String? id;
   final String? childName;
@@ -188,7 +208,7 @@ class Child {
 
   factory Child.fromJson(Map<String, dynamic> json) {
     return Child(
-      id: json['id'] as String? ?? json['_id'] as String?,
+      id: (json['id'] as String?) ?? (json['_id'] as String?),
       childName: json['childName'] as String?,
       age: json['age'] as String?,
       gender: json['gender'] as String?,
@@ -197,6 +217,7 @@ class Child {
 
   Map<String, dynamic> toJson() => {
         '_id': id,
+        'id': id,
         'childName': childName,
         'age': age,
         'gender': gender,

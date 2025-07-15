@@ -50,91 +50,98 @@ class _AddChildScreenState extends State<AddChildScreen> {
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Center(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 14),
-                      TextUtils.textHeader(
-                        "Sign up",
-                        fontSize: 36,
-                        myfontFamily: 'Roboto',
-                      ),
-                      TextUtils.textDescription(
-                        "Create an account to use our service.",
-                        myfontFamily: 'Roboto',
-                        fontSize: 12,
-                      ),
-                      const SizedBox(height: 40),
-                      if (ParentSignUpCubit.get(context).ParentChilds.length !=
-                          0)
-                        SizedBox(
-                          height: 100,
-                          width: 350,
-                          child: ListView.builder(
-                            itemCount: ParentSignUpCubit.get(context)
-                                .ParentChilds
-                                .length,
-                            itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  ParentSignUpCubit.get(context)
-                                      .ParentChilds[index],
-                                  SizedBox(
-                                    height: 10,
-                                  )
-                                ],
-                              );
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 14),
+                        TextUtils.textHeader(
+                          "Sign up",
+                          fontSize: 30,
+                          myfontFamily: 'Roboto',
+                        ),
+                        TextUtils.textDescription(
+                          "Create an account to use our service.",
+                          myfontFamily: 'Roboto',
+                          fontSize: 12,
+                        ),
+                        const SizedBox(height: 40),
+                        if (ParentSignUpCubit.get(context).ParentChilds.length !=
+                            0)
+                          SizedBox(
+                            height: 100,
+                            width: 350,
+                            child: ListView.builder(
+                              itemCount: ParentSignUpCubit.get(context)
+                                  .ParentChilds
+                                  .length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  children: [
+                                    ParentSignUpCubit.get(context)
+                                        .ParentChilds[index],
+                                    SizedBox(
+                                      height: 10,
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+                        // <— corrected widget name
+                        AddchildForm(),
+                    
+                        const SizedBox(height: 47),
+                          ConditionalBuilder(
+                          condition: state is! AddChildLoadingState,
+                          builder: (context) {
+                            if(ParentSignUpCubit.get(context).ParentChilds.isEmpty)
+                            return AppButtons.containerTextButton(
+                          containerColor: Color(0xFFCCCDFFF),
+                          TextUtils.textHeader(
+                            "Add Child ",
+                            headerTextColor: Color(0xFF133E87),
+                            myfontFamily: "Roboto",
+                            fontSize: 16,
+                          ),
+                          () {
+                            if ( ParentSignUpCubit.get(context)
+                                .addParentFormKey
+                                .currentState!
+                                .validate()) {
+                             ParentSignUpCubit.get(context)
+                                .addChild(parentId: widget.ParentId);
+                            }
+                          
+                          },
+                        );
+                        return SizedBox();
+                        },
+                         fallback: (_) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                       AppButtons.containerTextButton(
+                            TextUtils.textHeader(
+                              "Next Step",
+                              headerTextColor: Colors.white,
+                              myfontFamily: "Roboto",
+                              fontSize: 16,
+                            ),
+                            () 
+                            {
+                          
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Loginscreen()),
+                      (Route<dynamic> route) => false,
+                    );
+                            
                             },
                           ),
-                        ),
-                      // <— corrected widget name
-                      AddchildForm(),
-
-                      const SizedBox(height: 47),
-                        ConditionalBuilder(
-                        condition: state is! AddChildLoadingState,
-                        builder: (context) =>AppButtons.containerTextButton(
-                        containerColor: Color(0xFFCCCDFFF),
-                        TextUtils.textHeader(
-                          "Add Child ",
-                          headerTextColor: Color(0xFF133E87),
-                          myfontFamily: "Roboto",
-                          fontSize: 20,
-                        ),
-                        () {
-                          if ( ParentSignUpCubit.get(context)
-                              .addParentFormKey
-                              .currentState!
-                              .validate()) {
-                           ParentSignUpCubit.get(context)
-                              .addChild(parentId: widget.ParentId);
-                          }
-                        
-                        },
-                      ),
-                       fallback: (_) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                     AppButtons.containerTextButton(
-                          TextUtils.textHeader(
-                            "Next Step",
-                            headerTextColor: Colors.white,
-                            myfontFamily: "Roboto",
-                            fontSize: 20,
-                          ),
-                          () 
-                          {
-      
-Navigator.pushAndRemoveUntil(
-  context,
-  MaterialPageRoute(builder: (context) => Loginscreen()),
-  (Route<dynamic> route) => false,
-);
-        
-                          },
-                        ),
-                       
-                    ],
+                         
+                      ],
+                    ),
                   ),
                 ),
               ),

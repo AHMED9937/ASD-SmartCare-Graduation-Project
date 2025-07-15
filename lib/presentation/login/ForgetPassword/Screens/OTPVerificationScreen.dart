@@ -1,4 +1,5 @@
 import 'package:asdsmartcare/presentation/Fixed_Widgets/AppFormTextField.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/login/ForgetPassword/cubit/forget_password_cubit.dart';
@@ -39,12 +40,9 @@ class _OtpverificationscreenState extends State<Otpverificationscreen> {
         },
         builder: (context, state) {
           return Scaffold(
-            appBar: AppBar(
-              leading: AppButtons.arrowbutton(() {
-                Navigator.pop(context);
-              }),
-            ),
-            body: Center(
+            appBar: AppBarWithText(context,""),
+            body: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   SizedBox(
@@ -55,7 +53,7 @@ class _OtpverificationscreenState extends State<Otpverificationscreen> {
                         const SizedBox(height: 67.5),
                         TextUtils.textHeader(
                           "OTP Verification?",
-                          fontSize: 36,
+                          fontSize: 30,
                           myfontFamily: 'Roboto',
                           myTextAlign: TextAlign.start,
                         ),
@@ -70,23 +68,23 @@ class _OtpverificationscreenState extends State<Otpverificationscreen> {
                         const SizedBox(height: 26),
                         OtpTextField(
                           numberOfFields: 4,
-                          fieldWidth: 60,
-                          fieldHeight: 60,
+                          fieldWidth: 55,
+                          fieldHeight: 55,
                           margin: EdgeInsets.only(right: 24),
                           contentPadding: EdgeInsets.all(20),
                           borderRadius: BorderRadius.circular(8),
                           keyboardType: TextInputType.number,
                           borderColor: Color(0xFF133E87),
                           showFieldAsBox: true,
-
+              
                           handleControllers: (controllers) {
                             // leave empty or store controllers if you need them
                           },
-
+              
                           onCodeChanged: (String code) {
                             // optional: live-validate as user types
                           },
-
+              
                           onSubmit: (String verificationCode) {
                             // store it on the cubit
                             ForgetPasswordCubit.get(context).VerficationCode =
@@ -104,7 +102,7 @@ class _OtpverificationscreenState extends State<Otpverificationscreen> {
                       "Send code",
                       headerTextColor: Colors.white,
                       myfontFamily: "Roboto",
-                      fontSize: 20,
+                      fontSize: 16,
                     ),
                     () {
                       // actually *call* your check method:

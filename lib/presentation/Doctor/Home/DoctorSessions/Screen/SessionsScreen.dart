@@ -1,4 +1,5 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/Screen/SesstionManagement.dart';
 import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
 import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
@@ -6,6 +7,7 @@ import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooki
 import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/screens/SessionDeatile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class SessionsScreen extends StatelessWidget {
   final String status;
@@ -33,7 +35,7 @@ Widget _buildDetailRow(String label, String value) {
         Text(
           value,
           style: const TextStyle(
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
             color: Colors.black87,
           ),
@@ -137,9 +139,13 @@ void showChildDetailsSheet(
                       // Reviews Tab
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: SesstionReview(session: session),
+                        child:  ReviewListView(
+                          ID:session.id,
+                          showAllReviews: false,
+                         
+                        ),
                       ),
-                      SizedBox(),
+                      SessionManagement(sessionID: session.id),
                     ],
                   ),
                 ),
@@ -157,21 +163,21 @@ void showChildDetailsSheet(
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => DoctorSesstionListCubit()..getDoctorSesstionList(status: status),
+      create: (_) => DoctorSessionListCubit()..fetchSessions(status: status),
       child: Scaffold(
         appBar: AppBarWithText(context, '$status sessions'),
         body: Padding(
           padding: const EdgeInsets.only(top: 20.0),
-          child: BlocConsumer<DoctorSesstionListCubit, GetDoctorSesstionListStates>(
+          child: BlocConsumer<DoctorSessionListCubit, GetDoctorSessionListStates>(
             listener: (context, state) {},
             builder: (context, state) {
-              final cubit = DoctorSesstionListCubit.get(context);
+              final cubit = DoctorSessionListCubit.get(context);
 
-              if (state is GetDoctorSesstionListLoadingStates) {
+              if (state is GetDoctorSessionListLoadingStates) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              if (state is GetDoctorSesstionListFailedStates) {
+              if (state is GetDoctorSessionListFailedStates) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -190,7 +196,7 @@ void showChildDetailsSheet(
                       ),
                       const SizedBox(height: 16),
                       ElevatedButton(
-                        onPressed: () => cubit.getDoctorSesstionList(status: status),
+                        onPressed: () => cubit.fetchSessions(status: status),
                         child: const Text('Retry'),
                       ),
                     ],
@@ -198,7 +204,7 @@ void showChildDetailsSheet(
                 );
               }
 
-              if (cubit.Sessions?.data == null || cubit.Sessions!.data!.isEmpty) {
+              if (cubit.sessions?.data == null || cubit.sessions!.data!.isEmpty) {
                 return Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -223,9 +229,9 @@ void showChildDetailsSheet(
               return ListView.builder(
 
                 padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                itemCount: cubit.Sessions!.data!.length,
+                itemCount: cubit.sessions!.data!.length,
                 itemBuilder: (context, index) {
-                  final session = cubit.Sessions!.data![index];
+                  final session = cubit.sessions!.data![index];
                   final parent = session.parent!;
 
                   // Fallback if no child
@@ -235,7 +241,7 @@ void showChildDetailsSheet(
                       childName: null,
                       age: null,
                       gender: null,
-                      date: "sessionDate",
+                      date: session.createdAt,
                     );
                   }
 
@@ -248,7 +254,7 @@ void showChildDetailsSheet(
                       childName: child.childName,
                       age: '${child.age}',
                       gender: child.gender,
-                      date: "sessionDate",
+                      date: session.createdAt,
                     ),
                   );
                 },
@@ -259,14 +265,12 @@ void showChildDetailsSheet(
       ),
     );
   }
-}
-
-class _SessionCard extends StatelessWidget {
+}class _SessionCard extends StatelessWidget {
   final String userName;
   final String? childName;
-  final String ? age;
+  final String? age;
   final String? gender;
-  final String? date;
+  final DateTime? date;
 
   const _SessionCard({
     Key? key,
@@ -279,73 +283,53 @@ class _SessionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    final theme = Theme.of(context);
+    final displayName = childName ?? 'No child';
+    final details = <String>[];
+    if (age != null) details.add('$age');
+    if (gender != null) details.add('$gender');
+    final infoLine = details.join(' • ');
+    final dateStr = date != null ? DateFormat('dd MMM yyyy').format(date!) : '';
+    final timeStr = date != null ? DateFormat('hh:mm a').format(date!) : '';
 
-      
+    return Card(
       color: Colors.white,
-      margin: const EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      elevation: 3,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: Colors.grey.shade300),
+        borderRadius: BorderRadius.circular(12),
       ),
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CircleAvatar(
-              radius: 30,
-              backgroundColor: Colors.grey[200],
-              child: Icon(
-                Icons.person,
-                color: Theme.of(context).primaryColor,
-                size: 30,
-              ),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    userName,
-                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  if (childName != null) ...[
-                    const SizedBox(height: 4),
-                    Text(childName!),
-                  ],
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      if (age != null) Text('Age: $age'),
-                      if (age != null && gender != null) const SizedBox(width: 16),
-                      if (gender != null) Text('Gender: $gender'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            if (date != null) ...[
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    date!,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).primaryColor,
-                    ),
-                  ),
-                ],
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        leading: CircleAvatar(
+          radius: 28,
+          backgroundColor: theme.primaryColor.withOpacity(0.1),
+          child: Icon(Icons.child_care, color: theme.primaryColor, size: 28),
+        ),
+        title: Text(
+          displayName,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        subtitle: infoLine.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(infoLine, style: TextStyle(color: Colors.black54)),
               )
-            ],
+            : null,
+        trailing: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            if (dateStr.isNotEmpty)
+              Text(dateStr, style: TextStyle(color: theme.primaryColor)),
+            if (timeStr.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(timeStr, style: TextStyle(color: theme.primaryColor)),
+              ),
           ],
         ),
       ),
-    
-    
     );
   }
 }

@@ -13,11 +13,11 @@ class SessionReviewsListCubit extends Cubit<GetSessionReviewsListStates> {
   
   static SessionReviewsListCubit get(context) => BlocProvider.of(context); 
 SessionReviews? DocSessionReviews; 
-  void getSessionReviewsList(String id) {
+  void getDoctorSessionsReviewsList(String Did) {
     emit(GetSessionReviewsListLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants.GetSessionReviewsList(id), // Ensure this matches your API endpoint key
+      url: ApiConstants.getDoctorSessionsReviewsList(Did), // Ensure this matches your API endpoint key
       token: CacheHelper.getData(key: "token"),
     ).then((value) {
      
@@ -31,5 +31,26 @@ SessionReviews? DocSessionReviews;
       emit(GetSessionReviewsListFailedStates());
     });
   }
+
+ 
+  void getSessionReviewsList(String Sid) {
+    emit(GetSessionReviewsListLoadingStates());
+
+    Diohelper.getData(
+      url: ApiConstants.GetSessionReviewsList(Sid), // Ensure this matches your API endpoint key
+      token: CacheHelper.getData(key: "token"),
+    ).then((value) {
+     
+       print(value.data);
+       DocSessionReviews=SessionReviews.fromJson(value.data);
+
+      
+      emit(GetSessionReviewsListSuccsessStates(DocSessionReviews!.data));
+    }).catchError((error) {
+      print("Error fetching SessionReviews list: $error");
+      emit(GetSessionReviewsListFailedStates());
+    });
+  }
+
 }
 

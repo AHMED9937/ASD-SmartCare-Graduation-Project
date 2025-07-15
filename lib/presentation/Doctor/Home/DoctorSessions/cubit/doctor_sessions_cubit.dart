@@ -3,33 +3,79 @@ import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
 import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
 import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/model/DoctorSessions.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/cubit/sessionReviews/session_reviews_state.dart';
-import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DoctorSesstionListCubit extends Cubit<GetDoctorSesstionListStates> {
-  DoctorSesstionListCubit() : super(GetDoctorSesstionListinitialStates());
-  
-  
-  static DoctorSesstionListCubit get(context) => BlocProvider.of(context); 
-  SessionsResponse ?Sessions;
-  void getDoctorSesstionList({required String status}) {
-    emit(GetDoctorSesstionListLoadingStates());
+class DoctorSessionListCubit extends Cubit<GetDoctorSessionListStates> {
+  DoctorSessionListCubit() : super(GetDoctorSessionListInitialStates());
 
-    Diohelper.getData(
-      url: ApiConstants.GetDoctorSesstionList(status), // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: "token"),
-    ).then((value) {
-     
-       print(value.data);
-       Sessions=SessionsResponse.fromJson(value.data);
-      
-      emit(GetDoctorSesstionListSuccsessStates());
-    }).catchError((error) {
-      print("Error fetching DoctorSesstion list: $error");
-      emit(GetDoctorSesstionListFailedStates());
-    });
+  static DoctorSessionListCubit get(context) => BlocProvider.of(context);
+
+  /// All sessions for the doctor
+  SessionsResponse? sessions;
+
+  /// A single session fetched by ID
+  Session? selectedSession;
+
+  /// Fetches the list of sessions filtered by [status].
+  Future<void> fetchSessions({ required String status }) async {
+    emit(GetDoctorSessionListLoadingStates());
+    try {
+      final response = await Diohelper.getData(
+        url: ApiConstants.GetDoctorSesstionList(status),
+        token: CacheHelper.getData(key: "token"),
+      );
+      sessions = SessionsResponse.fromJson(response.data as Map<String, dynamic>);
+      emit(GetDoctorSessionListSuccessStates());
+    } catch (error) {
+      print("Error fetching sessions: $error");
+      emit(GetDoctorSessionListFailedStates());
+    }
+  }
+
+  /// Fetches a single session by [id].
+  Future<void> fetchSessionById(String id) async {
+    emit(GetSpecificSessionLoadingStates());
+    try {
+      final response = await Diohelper.getData(
+        url: ApiConstants.GetSpecificSession(id),
+        token: CacheHelper.getData(key: "token"),
+      );
+      final json = response.data as Map<String, dynamic>;
+
+      // If the API wraps it in { data: [...] }
+      if (json['data'] is List) {
+        selectedSession = SessionsResponse.fromJson(json).data?.first;
+      }
+      // If the API wraps it in { data: { ... } }
+      else if (json['data'] is Map<String, dynamic>) {
+        selectedSession = Session.fromJson(json['data'] as Map<String, dynamic>);
+      }
+      // Or if it returns the session object directly
+      else {
+        selectedSession = Session.fromJson(json);
+      }
+
+      emit(GetSpecificSessionSuccessStates());
+    } catch (error) {
+      print("Error fetching specific session: $error");
+      emit(GetSpecificSessionFailedStates());
+    }
+  }
+
+  /// Updates the comments of session with [sid] to [newComments].
+  Future<void> updateSessionComments(List<String> newComments, String sid) async {
+    emit(UpdateDoctorSessionLoadingStates());
+    try {
+      await Diohelper.PutData(
+        url: ApiConstants.UpdateSession(sid),
+        token: CacheHelper.getData(key: "token"),
+        data: { 'comments': newComments },
+      );
+      emit(UpdateDoctorSessionSuccessStates());
+    } catch (error) {
+      print("Error updating session comments: $error");
+      emit(UpdateDoctorSessionFailedStates());
+    }
   }
 }
-

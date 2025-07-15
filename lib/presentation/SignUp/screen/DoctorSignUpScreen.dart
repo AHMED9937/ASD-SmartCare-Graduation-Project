@@ -54,6 +54,7 @@ class Doctorsignupscreen extends StatelessWidget {
             resizeToAvoidBottomInset:
                 true, // Ensures keyboard doesn't overlap content
             appBar: AppBar(
+              toolbarHeight: 80,
               leading: AppButtons.arrowbutton(() {
                 Navigator.pop(context);
               }),
@@ -63,50 +64,53 @@ class Doctorsignupscreen extends StatelessWidget {
               child: SingleChildScrollView(
                 // Makes content scrollable
                 child: Center(
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 14),
-                      TextUtils.textHeader("Sign up",
-                          fontSize: 36, myfontFamily: 'Roboto'),
-                      TextUtils.textDescription(
-                        "Create an account to use our service.",
-                        myfontFamily: 'Roboto',
-                        fontSize: 12,
-                      ),
-                      const SizedBox(height: 40),
-                      Doctorsignupform(),
-                      const SizedBox(height: 47),
-                      // the emile should not be in the data base the verfication code shold first know then if its right we do the sign in
-                      // "Next Step" Button
-                      ConditionalBuilder(
-                        condition: state is! DoctorSignUpLoadingState,
-                        builder: (context) => AppButtons.containerTextButton(
-                        TextUtils.textHeader(
-                          "Next Step ",
-                          headerTextColor: Colors.white,
-                          myfontFamily: "Roboto",
-                          fontSize: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 14),
+                        TextUtils.textHeader("Sign up",
+                            fontSize: 36, myfontFamily: 'Roboto'),
+                        TextUtils.textDescription(
+                          "Create an account to use our service.",
+                          myfontFamily: 'Roboto',
+                          fontSize: 12,
                         ),
-                        () {
-                          DoctorSignUpCubit.get(context).doctorSignUp();
-                        },
-                      ),
-                     
-                        fallback: (context) => const Center(
-                          child: CircularProgressIndicator(),
+                        const SizedBox(height: 40),
+                        Doctorsignupform(),
+                        const SizedBox(height: 47),
+                        // the emile should not be in the data base the verfication code shold first know then if its right we do the sign in
+                        // "Next Step" Button
+                        ConditionalBuilder(
+                          condition: state is! DoctorSignUpLoadingState,
+                          builder: (context) => AppButtons.containerTextButton(
+                          TextUtils.textHeader(
+                            "Next Step ",
+                            headerTextColor: Colors.white,
+                            myfontFamily: "Roboto",
+                            fontSize: 20,
+                          ),
+                          () {
+                            DoctorSignUpCubit.get(context).doctorSignUp();
+                          },
                         ),
-                      ),
-                      
-                      const SizedBox(height: 26),
-                      // "Login" Link
-                      const MyRichtext(
-                        navgaitto: Loginscreen(),
-                        Textdis: "You have an account? ",
-                        Textheader: " Login",
-                      ),
-                      const SizedBox(
-                          height: 20), // Padding at the bottom for extra space
-                    ],
+                       
+                          fallback: (context) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                        
+                        const SizedBox(height: 26),
+                        // "Login" Link
+                        const MyRichtext(
+                          navgaitto: Loginscreen(),
+                          Textdis: "You have an account? ",
+                          Textheader: " Login",
+                        ),
+                        const SizedBox(
+                            height: 20), // Padding at the bottom for extra space
+                      ],
+                    ),
                   ),
                 ),
               ),

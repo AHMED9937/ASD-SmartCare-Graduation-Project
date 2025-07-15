@@ -3,7 +3,6 @@ import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/screen/DoctorsListPage.dart';
 import 'package:asdsmartcare/presentation/AsdAppLayouts/cubit/asd_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/EvaluateLayout/screens/Evaluate.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/appHome.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/Screen/AiEvaluation.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/screens/progress.dart';
@@ -23,7 +22,9 @@ class AsdCubit extends Cubit<AsdStates> {
             ChildProgressScreen(),
             Profilescreen(),
           ];
-  
+  void Reset(){
+    emit(AsdInitialState());
+  }
   void change_index(int val){
     
     current_index=val;

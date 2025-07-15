@@ -28,9 +28,10 @@ class AutismTestScreen extends StatelessWidget {
 
           if (state is GetQsfinalPredicationSuccessState) {
             // on final prediction, navigate
-            CacheHelper.SaveData(key: 'autism_prediction', value: "${state.asdLevel}");
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => const Testresult(isFirstTest: true,)),
+              MaterialPageRoute(builder: (_) =>  Testresult(
+                autismPrediction: state.prediction.toString(),
+               )),
               (_) => false,
             );
           }
@@ -39,7 +40,7 @@ class AutismTestScreen extends StatelessWidget {
               const SnackBar(
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.red,
-                content: Text("Try again"),
+                content: Text("The Answer Not Relevant Try again"),
               ),
             );
           }
@@ -54,6 +55,8 @@ class AutismTestScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              forceMaterialTransparency: true,
+
               backgroundColor: Colors.white,
               leading: Padding(
                 padding: const EdgeInsets.only(top: 30),

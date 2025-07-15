@@ -4,6 +4,7 @@ import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicin
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,13 +59,10 @@ class Availablemedicinescreen extends StatelessWidget {
                       fillColor: Colors.grey[200],
                     ),
                   ),
-                  SizedBox(height: 15),
 
                   // Medicine List or Loading Indicator
-                  if (state is GetAvailableMedicineSuccess)
-                    Expanded(child: MedicineList(cubit: cubit)),
-                  if (state is GetAvailableMedicineLoading)
-                    Center(child: CircularProgressIndicator()),
+                  ConditionalBuilder(condition: state is !GetAvailableMedicineLoading, builder: (_)=> Expanded(child: MedicineList(cubit: cubit)), fallback: (context) =>  Expanded(child: Center(child: CircularProgressIndicator())),)
+                   
                 ],
               ),
             ),
@@ -142,7 +140,7 @@ class MedicineList extends StatelessWidget {
                                           // ),
                                            AppButtons.containerTextButton(
                                             TextUtils.textHeader(
-                                                "See Medican’s Details",
+                                                "Medican’s Details",
                                                 headerTextColor: Colors.white,
                                                 fontSize: 11),
                                             () {

@@ -32,7 +32,8 @@ class _PaymenttypeState extends State<Paymenttype> {
         listener: (context, state) {
           if (state is CancelBookingSuccess) Navigator.pop(context);
 
-          
+          if (state is GenrateSPSSuccess || state is GenrateCSCOsuccess)
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Confirmreservationscreen(DoctorData: widget.CUR_Doctor,sessionD:  widget.sessionData),), (route) => false);
 
           // TODO: implement listener
         },
@@ -45,7 +46,7 @@ class _PaymenttypeState extends State<Paymenttype> {
                 padding: const EdgeInsets.only(top: 30),
                 child: AppButtons.arrowbutton(() {
                   BookingCubit.get(context)
-                      .CancelBooking(widget.sessionData.data!.sId ?? "");
+                      .CancelBooking(widget.sessionData.data!.sId! );
                 }),
               ),
               centerTitle: true,
@@ -58,75 +59,83 @@ class _PaymenttypeState extends State<Paymenttype> {
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                children: [
-                  // — your existing doctor info card —
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFCCDFFF),
-                      borderRadius: BorderRadius.circular(23),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          // Leading image placeholder
-                          Container(
-                            child: Image.network(widget.CUR_Doctor.image ?? ""),
-                            height: 80,
-                            width: 75,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          // Info column
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                TextUtils.textHeader(
-                                    widget.CUR_Doctor.parent!.userName ?? ""),
-                                SizedBox(height: 4),
-                                RatingBarIndicator(
-                                  rating: 2.0,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) => const Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  itemSize: 12,
-                                  direction: Axis.horizontal,
-                                ),
-                                SizedBox(height: 8),
-                                TextUtils.textDescription(
-                                  widget.CUR_Doctor.specialization ?? "",
-                                  fontSize: 10,
-                                  disTextColor: const Color(0xFF082F71),
-                                ),
-                                TextUtils.textDescription(
-                                  "",
-                                  fontSize: 10,
-                                  disTextColor: const Color(0xFF082F71),
-                                ),
-                              ],
-                            ),
-                          ),
-                          AppButtons.containerTextButton(
-                            Text(
-                              "Chat with doctor",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 11),
-                            ),
-                            () {},
-                            containerWidth: 100,
-                            containerHeight: 30,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                children: [// — updated doctor info card —
+Container(
+  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+  decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(23),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.05),
+        blurRadius: 10,
+        offset: Offset(0, 4),
+      ),
+    ],
+  ),
+  child: Row(
+    children: [
+      // Leading image placeholder
+       ClipOval(
+  child: widget.CUR_Doctor.image != null && widget.CUR_Doctor.image!.isNotEmpty
+      ? Image.network(
+          widget.CUR_Doctor.image!,
+          alignment: Alignment.topCenter,
+          fit: BoxFit.cover,
+          width: 72,
+          height: 72,
+          errorBuilder: (_, __, ___) => Icon(Icons.person, size: 36, color: Colors.grey.shade600),
+        )
+      : Container(
+          color: Colors.grey.shade200,
+          child: Icon(Icons.person, size: 36, color: Colors.grey.shade600),
+        ),
+    ),
+      SizedBox(width: 16),
+      // Info column
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextUtils.textHeader(
+              widget.CUR_Doctor.parent!.userName ?? "",
+              // assume textHeader allows overrides
+            ),
+            SizedBox(height: 6),
+            RatingBarIndicator(
+              rating: 2.0,
+              itemCount: 5,
+              itemBuilder: (context, index) => Icon(
+                Icons.star,
+                color: Colors.amber,
+                size: 14,
+              ),
+              itemSize: 14,
+              direction: Axis.horizontal,
+            ),
+            SizedBox(height: 10),
+            TextUtils.textDescription(
+              widget.CUR_Doctor.specialization ?? "",
+              fontSize: 12,
+              disTextColor: Color(0xFF082F71),
+            ),
+          ],
+        ),
+      ),
+      AppButtons.containerTextButton(
+        Text(
+          "Chat",
+          style: TextStyle(color: Colors.white, fontSize: 12),
+        ),
+        () {
+          // retain your onPressed
+        },
+        containerWidth: 80,
+        containerHeight: 32,
+      ),
+    ],
+  ),
+),
 
                   SizedBox(height: 24),
 
@@ -209,7 +218,7 @@ class _PaymenttypeState extends State<Paymenttype> {
             Expanded(
               child: Text(
                 label,
-                style: TextStyle(fontSize: 16, color: Color(0xFF082F71)),
+                style: TextStyle(fontSize: 15, color: Color(0xFF082F71)),
               ),
             ),
             Radio<PaymentMethod>(

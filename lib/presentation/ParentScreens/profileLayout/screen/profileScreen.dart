@@ -24,6 +24,7 @@ class Profilescreen extends StatelessWidget {
             appBar: Navigator.canPop(context)
                 ? AppBarWithText(context, "Profile Info")
                 : AppBar(
+                  forceMaterialTransparency: true,
                     title: TextUtils.textHeader("Profile Info", fontSize: 24),
                     backgroundColor: Colors.white,
                     centerTitle: true,
@@ -43,7 +44,7 @@ class Profilescreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CircleAvatar(
-                              radius: 80,
+                              radius: 48,
                               backgroundColor: Colors.grey.shade200,
                               backgroundImage: cubit.Cur_Parent!.data!.image != null
                                   ? NetworkImage(cubit.Cur_Parent!.data!.image!)
@@ -66,7 +67,7 @@ class Profilescreen extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (_) => EditProfileScreen(
+                                        builder: (_) => EditParentProfileScreen(
                                         parentD: cubit.Cur_Parent!,
                                         ),
                                       ),
@@ -98,7 +99,7 @@ class Profilescreen extends StatelessWidget {
                       SizedBox(height: 12),
                       // fixed height so ListView.builder can render inside scroll-view
                       SizedBox(
-                        height: 190,
+                        height: 120,
                         child: Parentchilds(
                           parentId: cubit.Cur_Parent!.data!.id!,
                           openEdit: false,
@@ -134,7 +135,7 @@ class Profilescreen extends StatelessWidget {
         children: [
           Text(label, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           SizedBox(width: 8),
-          Expanded(child: Text(value, style: TextStyle(fontSize: 16, color: Colors.grey))),
+          Expanded(child: Text(value, style: TextStyle(fontSize: 14, color: Colors.grey))),
         ],
       ),
     );

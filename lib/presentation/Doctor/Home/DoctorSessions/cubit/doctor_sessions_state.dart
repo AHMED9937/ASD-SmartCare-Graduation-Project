@@ -1,9 +1,13 @@
-// import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Model/GetDoctorSesstionList.dart';
+abstract class GetDoctorSessionListStates {}
+class GetDoctorSessionListInitialStates extends GetDoctorSessionListStates {}
+class GetDoctorSessionListLoadingStates extends GetDoctorSessionListStates {}
+class GetDoctorSessionListSuccessStates extends GetDoctorSessionListStates {}
+class GetDoctorSessionListFailedStates extends GetDoctorSessionListStates {}
 
-abstract class GetDoctorSesstionListStates {}
+class GetSpecificSessionLoadingStates extends GetDoctorSessionListStates {}
+class GetSpecificSessionSuccessStates extends GetDoctorSessionListStates {}
+class GetSpecificSessionFailedStates extends GetDoctorSessionListStates {}
 
-class GetDoctorSesstionListinitialStates extends GetDoctorSesstionListStates{}
-class GetDoctorSesstionListLoadingStates extends GetDoctorSesstionListStates{}
-class GetDoctorSesstionListSuccsessStates extends GetDoctorSesstionListStates{
-}
-class GetDoctorSesstionListFailedStates extends GetDoctorSesstionListStates{}
+class UpdateDoctorSessionLoadingStates extends GetDoctorSessionListStates {}
+class UpdateDoctorSessionSuccessStates extends GetDoctorSessionListStates {}
+class UpdateDoctorSessionFailedStates extends GetDoctorSessionListStates {}

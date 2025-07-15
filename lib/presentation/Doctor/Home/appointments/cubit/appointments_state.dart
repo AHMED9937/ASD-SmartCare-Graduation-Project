@@ -1,0 +1,11 @@
+abstract class GetDoctorAppointmentListStates {}
+class GetDoctorAppointmentListInitialStates extends GetDoctorAppointmentListStates {}
+class GetDoctorAppointmentListLoadingStates extends GetDoctorAppointmentListStates {}
+class GetDoctorAppointmentListSuccessStates extends GetDoctorAppointmentListStates {}
+class GetDoctorAppointmentListFailedStates extends GetDoctorAppointmentListStates {}
+
+
+
+class UpdateDoctorAppointmentLoadingStates extends GetDoctorAppointmentListStates {}
+class UpdateDoctorAppointmentSuccessStates extends GetDoctorAppointmentListStates {}
+class UpdateDoctorAppointmentFailedStates extends GetDoctorAppointmentListStates {}

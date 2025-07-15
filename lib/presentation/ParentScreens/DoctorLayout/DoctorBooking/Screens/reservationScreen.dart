@@ -1,6 +1,7 @@
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/Chat/screen/Chat.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Screens/PaymentType.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Widgets/doctorReviews.dart';
@@ -36,6 +37,11 @@ class _ReservationscreenState extends State<Reservationscreen> {
 
   @override
   Widget build(BuildContext context) {
+    final media = MediaQuery.of(context).size;
+    final toolbarHeight = media.height * 0.25; // 25% of screen height
+    final horizontalPadding = media.width * 0.04; // 4% of screen width
+    final verticalPadding = media.height * 0.02; // 2% of screen height
+
     return BlocProvider(
       create: (_) =>
           BookingCubit()..getDoctorsAppointments(widget.myDoctor.id ?? ""),
@@ -47,7 +53,7 @@ class _ReservationscreenState extends State<Reservationscreen> {
               MaterialPageRoute(
                 builder: (_) => Paymenttype(
                   CUR_Doctor: widget.myDoctor,
-                   sessionData: state.AppoimentData,
+                  sessionData: state.AppoimentData,
                 ),
               ),
             );
@@ -84,9 +90,55 @@ class _ReservationscreenState extends State<Reservationscreen> {
           final sortedDates = cubit.selectableDates.toList()..sort();
           if (sortedDates.isEmpty) {
             return Scaffold(
-              appBar: AppBar(title: const Text("No Appointments")),
-              body: const Center(
-                child: Text("No available appointment dates."),
+              appBar: AppBarWithText(context, "No Appointments"),
+              body: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.calendar_today,
+                          size: 72, color: Colors.grey[400]),
+                      const SizedBox(height: 24),
+                      Text(
+                        'No Available Appointment Dates',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey[800],
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'Please check back later or select a different doctor.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton.icon(
+                        onPressed: () =>
+                            cubit.getDoctorsAppointments(widget.myDoctor.id!),
+                        icon: const Icon(
+                          Icons.refresh,
+                          color: Colors.white,
+                        ),
+                        label: const Text(
+                          'Retry',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF133E87),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 24, vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             );
           }
@@ -100,61 +152,72 @@ class _ReservationscreenState extends State<Reservationscreen> {
             backgroundColor: Colors.white,
             floatingActionButton: ConditionalBuilder(
               condition: state is! BookingLoading,
-              builder: (_) => AppButtons.containerTextButton(
-                TextUtils.textHeader(
-                  "Book Now",
-                  headerTextColor: Colors.white,
-                ),
-                () {
-                  final bookingDate =
-                      sortedDates.contains(_selectedDate)
-                          ? _selectedDate
-                          : sortedDates.first;
-                  if (_selectedTimeSlot == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Please select a time slot."),
-                      ),
+              builder: (_) {
+                final width = MediaQuery.of(context).size.width * 0.9;
+                return AppButtons.containerTextButton(
+                  // constrain height & width
+                  containerHeight: 50,
+                  containerWidth: width-20,
+                  TextUtils.textHeader(
+                    "Book Now",
+                    headerTextColor: Colors.white,
+                  ),
+                  () {
+                    final bookingDate = sortedDates.contains(_selectedDate)
+                        ? _selectedDate
+                        : sortedDates.first;
+                    if (_selectedTimeSlot == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Please select a time slot."),
+                        ),
+                      );
+                      return;
+                    }
+                    cubit.bookWithDoctor(
+                      doctorId: widget.myDoctor.id!,
+                      date: bookingDate,
+                      timeSlot: _selectedTimeSlot!,
                     );
-                    return;
-                  }
-                  cubit.bookWithDoctor(
-                    doctorId: widget.myDoctor.id!,
-                    date: bookingDate,
-                    timeSlot: _selectedTimeSlot!,
-                  );
-                },
-                containerColor: const Color(0xFF133E87),
+                  },
+                  containerColor: const Color(0xFF133E87),
+                );
+              },
+              fallback: (_) => Align(
+                alignment: Alignment.bottomCenter,
+                child: const CircularProgressIndicator(),
               ),
-              fallback: (_) =>
-                  const Center(child: CircularProgressIndicator()),
             ),
             appBar: AppBar(
               backgroundColor: Colors.white,
               automaticallyImplyLeading: false,
-              toolbarHeight: 250,
-              flexibleSpace: _buildDoctorHeader(widget.myDoctor),
+              toolbarHeight: toolbarHeight,
+              flexibleSpace: _buildDoctorHeader(widget.myDoctor, toolbarHeight),
             ),
             body: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.symmetric(
+                horizontal: horizontalPadding,
+                vertical: verticalPadding,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const Text(
+                  Text(
                     "Choose Your Date",
                     style: TextStyle(
                       color: Color(0xFF133E87),
-                      fontSize: 24,
+                      fontSize: media.width * 0.06, // 6% of screen width
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: verticalPadding),
                   CalendarTimeline(
                     initialDate: effectiveDate,
                     firstDate: sortedDates.first,
-                    lastDate: DateTime.now().add(const Duration(days: 365 * 4)),
+                    lastDate: DateTime.now().add(Duration(days: 365 * 4)),
                     onDateSelected: (date) {
                       setState(() {
-                        _selectedDate = DateTime(date.year, date.month, date.day);
+                        _selectedDate =
+                            DateTime(date.year, date.month, date.day);
                         _selectedTimeSlot = null;
                       });
                     },
@@ -169,57 +232,71 @@ class _ReservationscreenState extends State<Reservationscreen> {
                       final d = DateTime(date.year, date.month, date.day);
                       return cubit.selectableDates.contains(d);
                     },
+                    // reduced from 15% to 12% of screen height
+                    height: media.height * 0.1,
                   ),
-                  const SizedBox(height: 24),
-                  if (slotsForDate.isEmpty)
-                    const Center(
-                      child: Text(
-                        "No available times for selected date.",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    )
-                  else
-                    GridView.count(
-                      crossAxisCount: 3,
-                      shrinkWrap: true,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 2,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: slotsForDate.map((time) {
-                        final isSelected = _selectedTimeSlot == time;
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: isSelected
-                                ? const Color(0xFF133E87)
-                                : const Color(0xFFEEEEEE),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8)),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _selectedTimeSlot = isSelected ? null : time;
-                            });
-                          },
-                          child: Text(
-                            time,
-                            style: TextStyle(
-                              color: isSelected
-                                  ? Colors.white
-                                  : const Color(0xFF133E87),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 20,),
-                    TextUtils.textHeader("Reviews!"),
-                  // Here's the fix: wrap in Expanded so it fills remaining space
+                  SizedBox(
+                      height: verticalPadding * 0.8), // slightly less spacing
                   Expanded(
-                    child: ReviewListView(DoctorId: widget.myDoctor.id??"",),
+                    child: slotsForDate.isEmpty
+                        ? Center(
+                            child: Text(
+                              "No available times.",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: media.width * 0.035),
+                            ),
+                          )
+                        : GridView.count(
+                            // keep it compact
+                            shrinkWrap: true,
+                            crossAxisCount: 4,
+                            crossAxisSpacing: media.width * 0.015,
+                            mainAxisSpacing: media.height * 0.015,
+                            childAspectRatio: 2,
+                            children: slotsForDate.map((time) {
+                              final isSelected = _selectedTimeSlot == time;
+                              return ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: isSelected
+                                      ? const Color(0xFF133E87)
+                                      : const Color(0xFFEEEEEE),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(6),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: media.height * 0.01,
+                                    horizontal: media.width * 0.01,
+                                  ),
+                                ),
+                                onPressed: () => setState(() =>
+                                    _selectedTimeSlot =
+                                        isSelected ? null : time),
+                                child: Text(
+                                  time,
+                                  style: TextStyle(
+                                    color: isSelected
+                                        ? Colors.white
+                                        : const Color(0xFF133E87),
+                                    fontSize: media.width *
+                                        0.035, // slightly smaller text
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                          ),
                   ),
-                  SizedBox(height: 70,),
+                  SizedBox(height: verticalPadding),
+                  TextUtils.textHeader("Reviews!",
+                      fontSize: media.width * 0.05),
+                  Expanded(
+                    flex: 2,
+                    child: ReviewListView(
+                      ID: widget.myDoctor.id ?? "",
+                      showAllReviews: true,
+                    ),
+                  ),
+                  SizedBox(height: verticalPadding),
                 ],
               ),
             ),
@@ -229,9 +306,9 @@ class _ReservationscreenState extends State<Reservationscreen> {
     );
   }
 
-  Widget _buildDoctorHeader(Doctor doc) {
+  Widget _buildDoctorHeader(Doctor doc, toolbarHeight) {
     return Container(
-      height: 250,
+      height: toolbarHeight,
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(24, 48, 24, 16),
       decoration: const BoxDecoration(
@@ -252,8 +329,8 @@ class _ReservationscreenState extends State<Reservationscreen> {
             backgroundColor: Colors.white,
             child: ClipOval(
               child: doc.image != null
-                  ? Image.network(
-                      doc.image!, width: 88, height: 88, fit: BoxFit.contain)
+                  ? Image.network(doc.image!,
+                      width: 88, height: 88, fit: BoxFit.contain)
                   : Icon(Icons.person, size: 60, color: Colors.grey.shade400),
             ),
           ),
@@ -289,27 +366,6 @@ class _ReservationscreenState extends State<Reservationscreen> {
                   itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
                 ),
                 const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: AppButtons.containerTextButton(
-                    TextUtils.textHeader(
-                      "Chat",
-                      fontSize: 15,
-                      headerTextColor: const Color(0xFF133E87),
-                    ),
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => Chat(
-                          DoctorName: doc.parent?.userName ?? "",
-                        ),
-                      ),
-                    ),
-                    containerHeight: 32,
-                    containerWidth: 100,
-                    containerColor: Colors.white,
-                  ),
-                ),
               ],
             ),
           ),

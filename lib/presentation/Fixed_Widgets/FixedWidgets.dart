@@ -32,11 +32,13 @@ void NavgatTO(BuildContext context, Navigate_to) {
 
 AppBar AppBarWithText(BuildContext context, String text) {
   return AppBar(
+            forceMaterialTransparency: true,
+
      backgroundColor: Colors.transparent,
               elevation: 0,
     leading: Padding(
       padding: const EdgeInsets.only(top: 30),
-      child: AppButtons.arrowbutton(() => Navigator.pop(context)),
+      child:Navigator.canPop(context)? AppButtons.arrowbutton(() { Navigator.pop(context);}):null,
     ),
     centerTitle: true,
     toolbarHeight: 80,

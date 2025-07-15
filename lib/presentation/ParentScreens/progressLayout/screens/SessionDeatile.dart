@@ -67,7 +67,7 @@ class SesstionReview extends StatelessWidget {
     required this.session,
   });
 
-  final SessionData session;
+  final  session;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class SesstionReview extends StatelessWidget {
                       Align(
                         alignment: Alignment.topRight,
                         child: Text(
-                          session.sessionDate ?? "",
+                          "${session.sessionDate ??""}" ,
                           style: TextStyle(
                             color: Colors.grey.shade600,
                             fontSize: 12,
@@ -135,13 +135,17 @@ class _RatingDialog extends StatelessWidget {
   final SessionData session;
   const _RatingDialog({Key? key, required this.session}) : super(key: key);
 
-  Widget _buildStar(SessionReviewCubit cubit, int i) => IconButton(
-        iconSize: 32,
-        icon: Icon(
-          i < cubit.rating ? Icons.star : Icons.star_border,
-          color: Colors.amber,
+  Widget _buildStar(SessionReviewCubit cubit, int i) => SizedBox(
+        width: 36,
+        child: IconButton(
+          iconSize: 28,
+          padding: EdgeInsets.zero,
+          icon: Icon(
+            i < cubit.rating ? Icons.star : Icons.star_border,
+            color: Colors.amber,
+          ),
+          onPressed: () => cubit.updateRating(i + 1),
         ),
-        onPressed: () => cubit.updateRating(i + 1),
       );
 
   @override
@@ -149,25 +153,100 @@ class _RatingDialog extends StatelessWidget {
     final cubit = SessionReviewCubit.get(context);
 
     return Dialog(
+      backgroundColor: Colors.white,
       insetPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: BlocConsumer<SessionReviewCubit, SessionReviewState>(
         listener: (context, state) {
-          if (state is SessionReviewStateLoaded) {
-            Navigator.of(context).pop(); // close on success
-          } else if (state is SessionReviewStateError) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("error")));
-          }
+          // no-op: UI handled in builder
         },
         builder: (context, state) {
-          return Padding(
+          // Success state
+          if (state is SessionReviewStateLoaded) {
+            return Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.check_circle, color: Colors.green, size: 64),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Thank you!",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Your rating has been submitted successfully.",
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 57,
+                    child: AppButtons.containerTextButton(
+                      TextUtils.textHeader(
+                        "Close",
+                        headerTextColor: Colors.white,
+                        fontSize: 16,
+                      ),
+                      () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          // Error state
+          if (state is SessionReviewStateError) {
+            return Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.error, color: Colors.red, size: 64),
+                  const SizedBox(height: 16),
+                  const Text(
+                    "Submission Failed",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                   "An unexpected error occurred.",
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 57,
+                    child: AppButtons.containerTextButton(
+                      TextUtils.textHeader(
+                        "Retry",
+                        headerTextColor: Colors.white,
+                        fontSize: 16,
+                      ),
+                      () {
+                        FocusScope.of(context).unfocus();
+                        cubit.submitSessionReview(session.sId ?? "");
+                        cubit.submitDoctorReview(session.doctorId!.id ?? "");
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          // Default (loading or initial) state
+          return SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(24, 20, 24, 16),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Text(
                   "Rate this session",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 16),
@@ -177,12 +256,12 @@ class _RatingDialog extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  height: 100,
+                  constraints: const BoxConstraints(minHeight: 80, maxHeight: 120),
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
+                    color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: TextField(
                     controller: cubit.controller,
                     maxLines: null,
@@ -193,31 +272,30 @@ class _RatingDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-
-                // ← Now correctly uses `state is! SessionReviewStateLoading`
-              // inside your BlocBuilder/BlocConsumer in _RatingDialog
-ConditionalBuilder(
-  condition: state is! SessionReviewStateLoading,
-  builder: (_) => AppButtons.containerTextButton(
-    TextUtils.textHeader(
-      "Rate Session",
-      headerTextColor: Colors.white,
-    ),
-    () {
-      // 1) dismiss the keyboard
-      FocusScope.of(context).unfocus();
-
-      // 2) emit loading & start your API call
-      cubit.submitReview(session.sId ?? "");
-    },
-  ),
-  fallback: (_) => const SizedBox(
-    height: 44,
-    child: Center(child: CircularProgressIndicator()),
-  ),
-),
- ],
+                const SizedBox(height: 24),
+                ConditionalBuilder(
+                  condition: state is! SessionReviewStateLoading,
+                  builder: (_) => SizedBox(
+                    height: 57,
+                    child: AppButtons.containerTextButton(
+                      TextUtils.textHeader(
+                        "Rate Session",
+                        headerTextColor: Colors.white,
+                        fontSize: 16,
+                      ),
+                      () {
+                        FocusScope.of(context).unfocus();
+                        cubit.submitSessionReview(session.sId ?? "");
+                        cubit.submitDoctorReview(session.doctorId!.id ?? "");
+                      },
+                    ),
+                  ),
+                  fallback: (_) => const SizedBox(
+                    height: 48,
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
+                ),
+              ],
             ),
           );
         },

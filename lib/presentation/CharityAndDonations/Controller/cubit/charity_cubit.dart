@@ -1,8 +1,8 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/CharityAndDonations/Controller/cubit/charity_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/CharityAndDonations/Model/CharityResponse.dart';
+import 'package:asdsmartcare/presentation/CharityAndDonations/Controller/cubit/charity_state.dart';
+import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class AvailableCharityCubit extends Cubit<AvailableCharityState> {

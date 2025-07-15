@@ -27,11 +27,12 @@ class ChanagePasswordCubit extends Cubit<ChanagePasswordStates> {
     required String currentPassword,
     required String newPassword,
     required String confirmPassword,
+    required bool IsParent,
   }) {
     emit(ChanagePasswordLoadingStates());
 
     Diohelper.PutData(
-      url: ApiConstants.UpdateLogedParentPassword,
+      url:IsParent? ApiConstants.UpdateLogedParentPassword:ApiConstants.UpdateLogedDoctorPassword,
       token: CacheHelper.getData(key: "token"),
       data: {
         "currentPassword": currentPassword,

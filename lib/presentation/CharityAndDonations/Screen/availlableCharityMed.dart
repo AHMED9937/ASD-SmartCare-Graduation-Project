@@ -1,5 +1,5 @@
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/CharityAndDonations/Model/CharityResponse.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/CharityAndDonations/Screen/CharitiyMedicanInfo.dart';
+import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
+import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharitiyMedicanInfo.dart';
 import 'package:flutter/material.dart';
 import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Screen/MedicenInfo.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
@@ -8,7 +8,7 @@ import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 
 /// Displays a list of medicines passed in and allows local search filtering.
 class AvaillableCharityMed extends StatefulWidget {
-  final List<CharityMedican> medicines;
+  final List<CharityMedicine> medicines;
 
   /// [medicines] is the data to display. No Cubit or API call.
   const AvaillableCharityMed({Key? key, required this.medicines}) : super(key: key);
@@ -18,7 +18,7 @@ class AvaillableCharityMed extends StatefulWidget {
 }
 
 class _AvaillableCharityMedState extends State<AvaillableCharityMed> {
-  late List<CharityMedican> displayed;
+  late List<CharityMedicine> displayed;
 
   @override
   void initState() {

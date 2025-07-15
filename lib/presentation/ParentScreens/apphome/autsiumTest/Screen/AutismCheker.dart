@@ -31,7 +31,7 @@ class AutismChekerScreen extends StatelessWidget {
             // on final prediction, navigate
             CacheHelper.SaveData(key: 'degree_prediction', value: "${state.degree_prediction}");
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => const Testresult(isFirstTest: false,)),
+              MaterialPageRoute(builder: (_) =>  Testresult(degreePrediction: state.degree_prediction.toString(),)),
               (_) => false,
             );
           }
@@ -40,7 +40,7 @@ class AutismChekerScreen extends StatelessWidget {
                SnackBar(
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.red,
-                content: Text(state. message),
+                content: Text("The Answer Not Relevant"),
               ),
             );
           }
@@ -55,6 +55,7 @@ class AutismChekerScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              forceMaterialTransparency: true,
               backgroundColor: Colors.white,
               leading: Padding(
                 padding: const EdgeInsets.only(top: 30),

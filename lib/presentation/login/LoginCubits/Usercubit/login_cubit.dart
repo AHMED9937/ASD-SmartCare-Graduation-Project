@@ -35,7 +35,9 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   void rememberMeFunc(bool? value) {
     userRememberMe = value ?? false;
-     emit(RememberMeState());
+    // Persist the choice
+    CacheHelper.SaveData(key: 'rememberMe', value: userRememberMe);
+    emit(RememberMeState());
   }
 Future<void> login({
   required String email,

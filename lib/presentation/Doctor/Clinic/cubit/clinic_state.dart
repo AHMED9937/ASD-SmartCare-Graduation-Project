@@ -48,3 +48,41 @@ class GetDoctorAvailabilityError extends AvailabilityState {
   @override
   List<Object?> get props => [error];
 }
+
+
+
+
+
+class DeleteDoctorAvailabilityLoading extends AvailabilityState {}
+
+class DeleteDoctorAvailabilitySuccess extends AvailabilityState {
+  final List<Map<String, String>> slots ;
+  const DeleteDoctorAvailabilitySuccess({required this.slots});
+
+}
+
+class DeleteDoctorAvailabilityError extends AvailabilityState {
+  final String error;
+  const DeleteDoctorAvailabilityError(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
+
+
+
+class DeleteDocAppoimentLoading extends AvailabilityState {}
+
+class DeleteDocAppoimentSuccess extends AvailabilityState {
+  const DeleteDocAppoimentSuccess();
+
+}
+
+class DeleteDocAppoimentError extends AvailabilityState {
+  final String error;
+  const DeleteDocAppoimentError(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}

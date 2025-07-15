@@ -45,12 +45,12 @@ class onBoardingScreen extends StatelessWidget {
                   children: [
                     TextUtils.textHeader(
                       title,
-                      fontSize: 24,
+                      fontSize: 16,
                     ),
                     SizedBox(height: 24,),
                     TextUtils.textDescription(
                       discrption,
-                      fontSize: 18,
+                      fontSize: 14,
                     ),
 
 

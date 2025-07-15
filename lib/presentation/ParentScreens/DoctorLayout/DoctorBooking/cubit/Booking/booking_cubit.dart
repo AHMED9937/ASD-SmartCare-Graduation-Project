@@ -153,14 +153,9 @@ class BookingCubit extends Cubit<BookingState> {
       token: CacheHelper.getData(key: "token"),
     ).then((value) {
       print(value.data);
-      paymentIntent = value.data['paymentIntent'];
-      ephemeralKey = value.data['ephemeralKey'];
-      customerId = value.data['customer'];
-      publishableKey = value.data['publishableKey'];
-      //print(myDoctorList.data[0]);
+      
       emit(CancelBookingSuccess());
     }).catchError((error) {
-      print("Error fetching doctors list: $error");
       emit(CancelBookingError(error.toString()));
     });
   }

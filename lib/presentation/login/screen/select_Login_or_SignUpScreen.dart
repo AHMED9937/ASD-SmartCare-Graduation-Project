@@ -1,6 +1,8 @@
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/SignUp/screen/ParentSignUpScreen.dart';
+import 'package:asdsmartcare/presentation/SignUp/screen/Selectusertypescreen.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
 
 import 'package:flutter/material.dart';
@@ -17,24 +19,17 @@ class _SelectLoginOrSignupscreenState extends State<SelectLoginOrSignupscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: AppButtons.arrowbutton(() {
-              Navigator.pop(context);
-            }),
-      ),
+      appBar:AppBarWithText(context, ""),
       body: Padding(
         padding: const EdgeInsets.only(top: 84),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             
             Center(
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 77,
-                  ),
-                  Image.asset(
+                   Image.asset(
                     'lib/appassets/images/logo1.png',
                     width: 121,
                     height: 99,
@@ -46,7 +41,7 @@ class _SelectLoginOrSignupscreenState extends State<SelectLoginOrSignupscreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         TextUtils.textHeader("Let’s get started !",
-                            fontSize: 26, myfontFamily: 'Roboto'),
+                            fontSize: 16, myfontFamily: 'Roboto'),
                         TextUtils.textDescription(
                           "Choose login if you already have account or sign up if this is your first time",
                           myfontFamily: 'Roboto',
@@ -75,8 +70,8 @@ class _SelectLoginOrSignupscreenState extends State<SelectLoginOrSignupscreen> {
                             builder: (context) => const Loginscreen(),
                           ));
                     },
-                    containerHeight: 57,
-                    containerWidth: 262,
+                    containerHeight: 50,
+                    containerWidth: 200,
                   ),
                   SizedBox(
                     height: 25,
@@ -88,12 +83,12 @@ class _SelectLoginOrSignupscreenState extends State<SelectLoginOrSignupscreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>  ParentSignUpScreen(),
+                          builder: (context) =>  Selectusertypescreen(),
                         ));
                   },
                       containerColor: Color(0xFFE7EBF4),
-                      containerHeight: 57,
-                      containerWidth: 262),
+                      containerHeight: 50,
+                      containerWidth: 200),
                 ],
               ),
             ),
