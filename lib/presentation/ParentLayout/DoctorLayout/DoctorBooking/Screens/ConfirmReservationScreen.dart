@@ -68,7 +68,7 @@ class Confirmreservationscreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      DoctorData.specialization??"",
+                      DoctorData.speciailization??"",
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.white,

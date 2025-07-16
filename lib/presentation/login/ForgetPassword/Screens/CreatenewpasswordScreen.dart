@@ -22,6 +22,11 @@ class CreatenewpasswordScreen extends StatelessWidget {
       create: (context) => ForgetPasswordCubit(),
       child: BlocConsumer<ForgetPasswordCubit, ForgetPasswordstate>(
         listener: (context, state) {
+            if (state is CheckEmailError ||state is CheckEmailError ||state is  CheckEmailError ) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Error")),
+            );
+          }
         if (state is ForgetPasswordSuccess){
            ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(

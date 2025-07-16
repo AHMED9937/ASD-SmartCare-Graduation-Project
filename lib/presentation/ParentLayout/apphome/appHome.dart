@@ -144,8 +144,9 @@ class RecomededDoctorWidget extends StatelessWidget {
                 child: doctor.image != null
                     ? Image.network(
                         doctor.image!,
-                        fit: BoxFit.contain,
+                        fit: BoxFit.cover,
                         width: double.infinity,
+                        alignment: Alignment.topCenter,
                       )
                     : Container(
                         color: Colors.grey,
@@ -162,12 +163,9 @@ class RecomededDoctorWidget extends StatelessWidget {
                   TextUtils.textHeader(
                     doctor.parent?.userName ?? '',
                     headerTextColor: const Color(0xFF00225C),
-                    fontSize: 14,
+                    fontSize: 12,
                   ),
-                  TextUtils.textDescription(
-                    doctor.specialization ?? '',
-                    fontSize: 10,
-                  ),
+                 
                   Container(
                     width: 48,
                     height: 24,
@@ -191,6 +189,7 @@ class RecomededDoctorWidget extends StatelessWidget {
                 ],
               ),
             ),
+           
             const SizedBox(height: 8),
             Center(
               child: AppButtons.containerTextButton(

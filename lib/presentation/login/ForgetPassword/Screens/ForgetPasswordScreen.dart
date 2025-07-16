@@ -38,6 +38,11 @@ class Forgetpasswordscreen extends StatelessWidget {
                     builder: (context) => Otpverificationscreen(),
                   ));
             }
+            if (state is CheckEmailError ||state is CheckEmailError ||state is  CheckEmailError ) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Error")),
+            );
+          }
           },
           builder: (context, state) {
             return Padding(

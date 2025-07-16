@@ -113,7 +113,7 @@ class Articles extends StatelessWidget {
                           ),
                           AppButtons.containerTextButton(
                             TextUtils.textHeader(
-                              "Read the article",
+                              "Read",
                               headerTextColor: Colors.white,
                               fontSize: 11,
                             ),
@@ -132,7 +132,7 @@ class Articles extends StatelessWidget {
                                 ),
                               );
                             },
-                            containerWidth: 127,
+                            containerWidth: 50,
                             containerHeight: 34,
                           ),
                         ],

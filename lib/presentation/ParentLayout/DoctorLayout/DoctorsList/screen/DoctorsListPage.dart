@@ -124,122 +124,102 @@ class DoctorsListPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDoctorCard(BuildContext context, Doctor d) {
-    return Card(
-      color: Colors.white,
-      margin: const EdgeInsets.only(bottom: 20),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 4,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(16),
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => Reservationscreen(myDoctor: d)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Photo
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-              child: d.image != null
-                  ? Image.network(d.image!,height:200 , width: double.maxFinite, fit: BoxFit.contain,alignment: Alignment.topCenter,)
-                  : Container(
-                      height: 160,
-                      color: Colors.grey[200],
-                      child: const Icon(Icons.person,
-                          size: 60, color: Colors.grey),
-                    ),
-            ),
-
-            // Info & button
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    d.parent?.userName ?? "Unknown",
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1A1A1A),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    d.specialization ?? "General Practitioner",
-                    style: const TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      RatingBarIndicator(
-                        // if ratingsAverage is null, treat it as 0
-                        rating: (d.ratingsAverage ?? 0).toDouble(),
-                        itemCount: 5,
-                        itemSize: 16.0,
-                        direction: Axis.horizontal,
-                        itemBuilder: (context, index) => const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 6),
-                      Text(
-                        "${d.ratingQuantity} reviews",
-                        style:
-                            const TextStyle(fontSize: 12, color: Colors.blue),
-                      ),
-                      const Spacer(),
-                      Row(
-                        children: [
-                          const Icon(Icons.attach_money_outlined, size: 16),
-                          const SizedBox(width: 2),
-                          Text(
-                            "${d.sessionPrice?.toStringAsFixed(0) ?? '0'} EGP",
-                            style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF133E87),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                      ),
-                      onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => Reservationscreen(myDoctor: d)),
-                      ),
-                      child: const Text(
-                        "Reserve",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
+
+
+/// Refined vertical doctor card with full-visible image and balanced spacing
+Widget _buildDoctorCard(BuildContext context, Doctor d) {
+  return Card(
+    color: Colors.white,
+    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    elevation: 3,
+    clipBehavior: Clip.antiAlias,
+    child: InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => Reservationscreen(myDoctor: d)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Image with fixed aspect ratio for consistent sizing
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
+            child: d.image != null
+                ? Image.network(
+                    d.image!,
+                    width: double.infinity,
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter,
+                  )
+                : Container(
+                    width: double.infinity,
+                    height: 150,
+                    color: Colors.grey[200],
+                    child: const Icon(Icons.person, size: 48, color: Colors.grey),
+                  ),
+          ),
+          // Info and action
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  d.parent?.userName ?? 'Unknown',
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  d.speciailization ?? 'General Practitioner',
+                  style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  children: [
+                    RatingBarIndicator(
+                      rating: (d.ratingsAverage ?? 0).toDouble(),
+                      itemBuilder: (_, __) => const Icon(Icons.star, size: 14, color: Colors.amber),
+                      itemCount: 5,
+                      itemSize: 14,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      '${d.ratingQuantity} reviews',
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                    const Spacer(),
+                    Text(
+                      '${d.sessionPrice?.toStringAsFixed(0) ?? '0'} EGP',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    ),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => Reservationscreen(myDoctor: d)),
+                    ),
+                    child: const Text('Reserve', style: TextStyle(fontSize: 14)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }

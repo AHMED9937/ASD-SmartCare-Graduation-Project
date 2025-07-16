@@ -63,7 +63,7 @@ class PaginationResult {
 class Doctor {
   final String? id;
   final Parent? parent;
-  final String? specialization;
+  final String? speciailization;
   final String? qualifications;
   final String? medicalLicense;
   final int? sessionPrice;
@@ -78,7 +78,7 @@ class Doctor {
   Doctor({
     this.id,
     this.parent,
-    this.specialization,
+    this.speciailization,
     this.qualifications,
     this.medicalLicense,
     this.sessionPrice,
@@ -97,7 +97,7 @@ class Doctor {
       parent: json['parent'] != null
           ? Parent.fromJson(json['parent'] as Map<String, dynamic>)
           : null,
-      specialization: json['specialization'] as String?,
+      speciailization: json['speciailization'] as String?,
       qualifications: json['qualifications'] as String?,
       medicalLicense: json['medicalLicense'] as String?,
       sessionPrice: json['Session_price'] as int?,
@@ -121,7 +121,7 @@ class Doctor {
     return {
       if (id != null) '_id': id,
       if (parent != null) 'parent': parent!.toJson(),
-      if (specialization != null) 'specialization': specialization,
+      if (speciailization != null) 'speciailization': speciailization,
       if (qualifications != null) 'qualifications': qualifications,
       if (medicalLicense != null) 'medicalLicense': medicalLicense,
       if (sessionPrice != null) 'Session_price': sessionPrice,

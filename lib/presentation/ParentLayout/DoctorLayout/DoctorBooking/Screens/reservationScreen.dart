@@ -343,19 +343,19 @@ class _ReservationscreenState extends State<Reservationscreen> {
                 Text(
                   doc.parent?.userName ?? "Unknown Doctor",
                   style: const TextStyle(
-                    fontSize: 22,
+                    fontSize: 19,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  doc.specialization ?? "General",
-                  style: const TextStyle(fontSize: 14, color: Colors.white70),
+                  doc.speciailization ?? "General",
+                  style: const TextStyle(fontSize: 12, color: Colors.white70),
                 ),
                 const SizedBox(height: 12),
                 RatingBarIndicator(
-                  rating: (doc.ratingQuantity ?? 0).toDouble(),
+                  rating: (doc.ratingsAverage ?? 0).toDouble(),
                   itemBuilder: (context, index) => const Icon(
                     Icons.star,
                     color: Colors.amber,

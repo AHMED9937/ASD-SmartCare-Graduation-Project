@@ -14,8 +14,11 @@ enum PaymentMethod { cash, card }
 class Paymenttype extends StatefulWidget {
   final Doctor CUR_Doctor;
   final BookSession sessionData;
-  const Paymenttype(
-      {super.key, required this.CUR_Doctor, required this.sessionData});
+  const Paymenttype({
+    super.key,
+    required this.CUR_Doctor,
+    required this.sessionData,
+  });
 
   @override
   _PaymenttypeState createState() => _PaymenttypeState();
@@ -27,15 +30,25 @@ class _PaymenttypeState extends State<Paymenttype> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BookingCubit(),
+      create: (_) => BookingCubit(),
       child: BlocConsumer<BookingCubit, BookingState>(
         listener: (context, state) {
-          if (state is CancelBookingSuccess) Navigator.pop(context);
+          if (state is CancelBookingSuccess) {
+            Navigator.pop(context);
+          }
 
-          if (state is GenrateSPSSuccess || state is GenrateCSCOsuccess)
-          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Confirmreservationscreen(DoctorData: widget.CUR_Doctor,sessionD:  widget.sessionData),), (route) => false);
-
-          // TODO: implement listener
+          if (state is GenrateSPSSuccess || state is GenrateCSCOsuccess) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (_) => Confirmreservationscreen(
+                  DoctorData: widget.CUR_Doctor,
+                  sessionD: widget.sessionData,
+                ),
+              ),
+              (route) => false,
+            );
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -45,8 +58,9 @@ class _PaymenttypeState extends State<Paymenttype> {
               leading: Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: AppButtons.arrowbutton(() {
-                  BookingCubit.get(context)
-                      .CancelBooking(widget.sessionData.data!.sId! );
+                  // Use safe navigation and default to empty ID if null
+                  final sessionId = widget.sessionData.data?.sId ?? "";
+                  BookingCubit.get(context).CancelBooking(sessionId);
                 }),
               ),
               centerTitle: true,
@@ -59,83 +73,80 @@ class _PaymenttypeState extends State<Paymenttype> {
             body: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                children: [// — updated doctor info card —
-Container(
-  margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(23),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.black.withOpacity(0.05),
-        blurRadius: 10,
-        offset: Offset(0, 4),
-      ),
-    ],
-  ),
-  child: Row(
-    children: [
-      // Leading image placeholder
-       ClipOval(
-  child: widget.CUR_Doctor.image != null && widget.CUR_Doctor.image!.isNotEmpty
-      ? Image.network(
-          widget.CUR_Doctor.image!,
-          alignment: Alignment.topCenter,
-          fit: BoxFit.cover,
-          width: 72,
-          height: 72,
-          errorBuilder: (_, __, ___) => Icon(Icons.person, size: 36, color: Colors.grey.shade600),
-        )
-      : Container(
-          color: Colors.grey.shade200,
-          child: Icon(Icons.person, size: 36, color: Colors.grey.shade600),
-        ),
-    ),
-      SizedBox(width: 16),
-      // Info column
-      Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextUtils.textHeader(
-              widget.CUR_Doctor.parent!.userName ?? "",
-              // assume textHeader allows overrides
-            ),
-            SizedBox(height: 6),
-            RatingBarIndicator(
-              rating: 2.0,
-              itemCount: 5,
-              itemBuilder: (context, index) => Icon(
-                Icons.star,
-                color: Colors.amber,
-                size: 14,
-              ),
-              itemSize: 14,
-              direction: Axis.horizontal,
-            ),
-            SizedBox(height: 10),
-            TextUtils.textDescription(
-              widget.CUR_Doctor.specialization ?? "",
-              fontSize: 12,
-              disTextColor: Color(0xFF082F71),
-            ),
-          ],
-        ),
-      ),
-      AppButtons.containerTextButton(
-        Text(
-          "Chat",
-          style: TextStyle(color: Colors.white, fontSize: 12),
-        ),
-        () {
-          // retain your onPressed
-        },
-        containerWidth: 80,
-        containerHeight: 32,
-      ),
-    ],
-  ),
-),
+                children: [
+                  // — updated doctor info card —
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                        vertical: 8.0, horizontal: 16.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(23),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.05),
+                          blurRadius: 10,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        // Leading image placeholder
+                        ClipOval(
+                          child: widget.CUR_Doctor.image != null &&
+                                  widget.CUR_Doctor.image!.isNotEmpty
+                              ? Image.network(
+                                  widget.CUR_Doctor.image!,
+                                  alignment: Alignment.topCenter,
+                                  fit: BoxFit.cover,
+                                  width: 72,
+                                  height: 72,
+                                  errorBuilder: (_, __, ___) =>
+                                      Icon(Icons.person,
+                                          size: 36,
+                                          color: Colors.grey.shade600),
+                                )
+                              : Container(
+                                  color: Colors.grey.shade200,
+                                  width: 72,
+                                  height: 72,
+                                  child: Icon(Icons.person,
+                                      size: 36,
+                                      color: Colors.grey.shade600),
+                                ),
+                        ),
+                        SizedBox(width: 16),
+                        // Info column
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextUtils.textHeader(
+                                // Safe navigation on parent and default to empty
+                                widget.CUR_Doctor.parent?.userName ?? "",
+                                fontSize: 14,
+                              ),
+                              SizedBox(height: 6),
+                              RatingBarIndicator(
+                                // Default to 0.0 if null
+                                rating: (widget.CUR_Doctor.ratingsAverage ?? 0)
+                                    .toDouble(),
+                                itemCount: 5,
+                                itemBuilder: (context, index) => Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 14,
+                                ),
+                                itemSize: 14,
+                                direction: Axis.horizontal,
+                              ),
+                              SizedBox(height: 10),
+                             
+                            ],
+                          ),
+                        ), ],
+                    ),
+                  ),
 
                   SizedBox(height: 24),
 
@@ -164,14 +175,14 @@ Container(
                       onPressed: _selectedMethod == null
                           ? null
                           : () {
+                              // Default to empty string if id is null
+                              final doctorId = widget.CUR_Doctor.id ?? "";
                               if (_selectedMethod == PaymentMethod.card) {
                                 BookingCubit.get(context)
-                                    .generateStripePaymentSheet(
-                                        widget.CUR_Doctor.id ?? "");
-                              } else if (_selectedMethod ==
-                                  PaymentMethod.cash) {
+                                    .generateStripePaymentSheet(doctorId);
+                              } else {
                                 BookingCubit.get(context)
-                                    .cashPayments(widget.CUR_Doctor.id ?? "");
+                                    .cashPayments(doctorId);
                               }
                             },
                       style: ElevatedButton.styleFrom(

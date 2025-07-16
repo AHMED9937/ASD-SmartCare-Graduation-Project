@@ -63,7 +63,7 @@ class Passwordchangedscreen extends StatelessWidget {
                 // Back to Login Button
                 SizedBox(
                   width: double.infinity,
-                  height: 57,
+                  height: 67,
                   child: AppButtons.containerTextButton(
                     TextUtils.textHeader(
                       "Back to Login",

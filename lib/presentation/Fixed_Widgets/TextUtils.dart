@@ -45,7 +45,7 @@ static TextStyle myDisTextStyle({final my_fontWeight=FontWeight.w400,final Strin
     return  Text(
       disText,
       textAlign: myTextAlign ?? TextAlign.center,
-      overflow: TextOverflow.clip,
+      overflow: TextOverflow.ellipsis,
       maxLines: 2,
       
       style: TextStyle(

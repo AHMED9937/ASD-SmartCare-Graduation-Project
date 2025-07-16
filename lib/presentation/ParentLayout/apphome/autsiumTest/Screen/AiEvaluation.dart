@@ -40,7 +40,7 @@ class AiEvaluationScreen extends StatelessWidget {
             appBar: AppBarWithText(context, "Evaluate Tests"),
             backgroundColor: Colors.white,
             body: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 12),
               child: ConditionalBuilder(
                 condition: state is !GetAutisumLevelTestHistoryLoadingStates,
                 fallback: (_)=>Center(child: CircularProgressIndicator(),),
@@ -64,7 +64,7 @@ class AiEvaluationScreen extends StatelessWidget {
                             elevation: 4,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(12),
-                              onTap: () => _navigateToTest(context, true),
+                              onTap: () => _navigateToTest(context, false),
                               child: Padding(
                                 padding: const EdgeInsets.all(16),
                                 child: Column(
@@ -100,7 +100,7 @@ class AiEvaluationScreen extends StatelessWidget {
                             elevation: 4,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(12),
-                              onTap: () => _navigateToTest(context, false),
+                              onTap: () => _navigateToTest(context, true),
                               child: Padding(
                                 padding: const EdgeInsets.all(16),
                                 child: Column(
