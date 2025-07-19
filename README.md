@@ -198,13 +198,7 @@
 - **Booking**: “Doctors” tab → search → view availability → book.  
 - **Session Tracker**: “Progress” → log session outcomes.
 
-## 8. Contributing Guidelines
 
-- Fork and create feature branches (`feature/xyz`).  
-- Follow code patterns and naming conventions.  
-- Write unit and widget tests for new features.  
-- Submit pull requests with descriptive titles and issue references.
-
-## 9. License
+## 8. License
 
 Released under the MIT License. See `LICENSE` for details.
