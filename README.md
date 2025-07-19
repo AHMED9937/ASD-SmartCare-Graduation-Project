@@ -1,5 +1,5 @@
 
-# ASD SmartCare (Graduation Project) Flutter Project Overview
+# ASD SmartCare Flutter Project Overview           
 
 ## 1. Project Summary
 
