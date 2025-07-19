@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/GetParentChildsCubit/parentchild_list_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/GetParentChildsCubit/parentchild_list_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/widgets/AddchildProfile.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/GetParentChildsCubit/parentchild_list_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/GetParentChildsCubit/parentchild_list_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/widgets/AddchildProfile.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

@@ -1,10 +1,10 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/cubit/doctors_list_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/Education/controller/cubit/education_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/Education/model/EducationArticaleResponse.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/cubit/doctors_list_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/controller/cubit/education_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/model/EducationArticaleResponse.dart';
 import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

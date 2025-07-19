@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

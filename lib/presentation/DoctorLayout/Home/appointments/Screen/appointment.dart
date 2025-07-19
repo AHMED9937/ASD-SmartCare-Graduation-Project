@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:asdsmartcare/presentation/Doctor/Home/appointments/cubit/appointments_cubit.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/appointments/cubit/appointments_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/appointments/cubit/appointments_cubit.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/appointments/cubit/appointments_state.dart';
 
 /// Model representing an appointment
 class Appointment {
@@ -104,17 +104,42 @@ class _AppointmentListScreenState extends State<AppointmentListScreen> {
                   ),
                 ),
                 // Appointment list grouped by date
-                Expanded(
-                  child: state is GetDoctorAppointmentListLoadingStates
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                          children: grouped.entries.map((entry) {
-                            return _DateSection(
-                                dateLabel: entry.key, items: entry.value);
-                          }).toList(),
-                        ),
+             Expanded(
+  child: state is GetDoctorAppointmentListLoadingStates
+      ? const Center(child: CircularProgressIndicator())
+      : filtered.isEmpty
+          ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.event_busy, size: 64, color: Colors.grey[400]),
+                    const SizedBox(height: 16),
+                    Text(
+                      'No appointments found',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey[600],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
+              ),
+            )
+          : ListView(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              children: grouped.entries
+                  .map((entry) => _DateSection(
+                        dateLabel: entry.key,
+                        items: entry.value,
+                      ))
+                  .toList(),
+            ),
+),
+
+             
               ],
             ),
           );

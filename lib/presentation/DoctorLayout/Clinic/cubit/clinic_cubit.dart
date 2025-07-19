@@ -3,8 +3,8 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/Doctor/Clinic/cubit/clinic_state.dart';
-import 'package:asdsmartcare/presentation/Doctor/Clinic/model/GetDoctorAvailability.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Clinic/cubit/clinic_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Clinic/model/GetDoctorAvailability.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

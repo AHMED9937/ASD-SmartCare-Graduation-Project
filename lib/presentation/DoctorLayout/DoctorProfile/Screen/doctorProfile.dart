@@ -1,12 +1,12 @@
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/Screen/editDoctorProfile.dart';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/Screen/viewPdf.dart';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/cubit/doctor_profile_data_cubit.dart';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/cubit/doctor_profile_data_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/Screen/editDoctorProfile.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/Screen/viewPdf.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/cubit/doctor_profile_data_cubit.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/cubit/doctor_profile_data_state.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/cubit/Booking/booking_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/screen/ChangePasswordScreen.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/model/GetAllSession.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/Booking/booking_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/ChangePasswordScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/model/GetAllSession.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
@@ -156,13 +156,17 @@ class DoctorProfileScreen extends StatelessWidget {
                                         color: Colors.amber, size: 20),
                                   ),
                                 ),
+                             
+                             
                               ],
+                           
+                           
                             ),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(height: 72),
+                    const SizedBox(height: 85),
 
                    
                     const SizedBox(height: 24),
@@ -198,7 +202,7 @@ class DoctorProfileScreen extends StatelessWidget {
                                   cubit.Cur_Doctor!.data!.qualifications ?? ""),
                               const Divider(),
                               _buildTile(Icons.attach_money, 'Session Price',
-                                  "${cubit.Cur_Doctor!.data!.sessionPrice ?? ""}"),
+                                  "${cubit.Cur_Doctor!.data!.sessionPrice.toString() ?? ""}"),
 
                               const Divider(),
                               _buildTile(Icons.email, 'Email Address',

@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/editProfile/cubit/edit_doctor_profile_cubit.dart';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/editProfile/cubit/edit_doctor_profile_state.dart';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/model/GetLoggedDoctorData.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/editProfile/cubit/edit_doctor_profile_cubit.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/editProfile/cubit/edit_doctor_profile_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/model/GetLoggedDoctorData.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/screen/ChangePasswordScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/ChangePasswordScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,11 +1,11 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/cubit/doctors_list_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/controller/childProgress/child_progress_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/controller/sessionReview/session_review_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/model/GetAllSession.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/model/ParentBookedDoctors.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/cubit/doctors_list_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/controller/childProgress/child_progress_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/controller/sessionReview/session_review_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/model/GetAllSession.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/model/ParentBookedDoctors.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,31 +41,9 @@ class SessionReviewCubit extends Cubit<SessionReviewState> {
     });
   }
 
-  void submitDoctorReview(String DoctorId) {
-    print(DoctorId);
-    print(controller.text);
-    print(rating);
-
-    emit(DoctorReviewStateLoading());
-
-    Diohelper.PostData(
-      url: ApiConstants.AddDoctorReview(
-          DoctorId), // Ensure this matches your API endpoint key
-      data: {"title": controller.text, "ratings": rating},
-      token: CacheHelper.getData(key: "token"),
-    ).then((value) {
-      print(value.data);
-
-      emit(DoctorReviewStateLoaded());
-    }).catchError((error) {
-      print("Error ");
-      emit(DoctorReviewStateError());
-    });
-  }
-
-  void updateRating(int r) {
+ void updateRating(int r) {
     rating = r;
-    emit(updateRatingState());
+    emit(updateDoctorRatingState());
   }
 
 

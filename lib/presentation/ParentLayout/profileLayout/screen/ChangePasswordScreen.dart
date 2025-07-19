@@ -1,5 +1,5 @@
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/ChangePassword/cubit/change_password_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/ChangePassword/cubit/change_password_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/ChangePassword/cubit/change_password_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/ChangePassword/cubit/change_password_state.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
 import 'package:flutter/material.dart';

@@ -1,6 +1,6 @@
 // clinic_doctor_screen.dart
-import 'package:asdsmartcare/presentation/Doctor/Clinic/cubit/clinic_cubit.dart';
-import 'package:asdsmartcare/presentation/Doctor/Clinic/cubit/clinic_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Clinic/cubit/clinic_cubit.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Clinic/cubit/clinic_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';

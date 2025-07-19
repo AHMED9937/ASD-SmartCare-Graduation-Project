@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Model/GetSessionReviewsList.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/cubit/sessionReviews/session_reviews_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/cubit/sessionReviews/session_reviews_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/GetSessionReviewsList.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/sessionReviews/session_reviews_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/sessionReviews/session_reviews_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

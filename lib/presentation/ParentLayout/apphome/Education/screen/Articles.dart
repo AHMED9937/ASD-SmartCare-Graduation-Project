@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/Education/controller/cubit/education_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/Education/controller/cubit/education_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/Education/screen/ShowArticle.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/controller/cubit/education_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/controller/cubit/education_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/screen/ShowArticle.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/appImages.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

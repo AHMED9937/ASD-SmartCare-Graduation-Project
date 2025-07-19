@@ -1,12 +1,12 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/screen/DoctorsListPage.dart';
-import 'package:asdsmartcare/presentation/AsdAppLayouts/cubit/asd_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/appHome.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/Screen/AiEvaluation.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/screens/progress.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/screen/profileScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/screen/DoctorsListPage.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/cubit/asd_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/appHome.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/AiEvaluation.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/progress.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/profileScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AsdCubit extends Cubit<AsdStates> {

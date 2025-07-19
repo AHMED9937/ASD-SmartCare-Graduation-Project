@@ -1,7 +1,7 @@
 import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharitiyMedicanInfo.dart';
 import 'package:flutter/material.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Screen/MedicenInfo.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Screen/MedicenInfo.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/Doctor/Clinic/Screen/clinicScreen.dart';
-import 'package:asdsmartcare/presentation/Doctor/DoctorProfile/Screen/doctorProfile.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorHomeScreen.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Clinic/Screen/clinicScreen.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/Screen/doctorProfile.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorHomeScreen.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharityMedicine.dart';

@@ -1,9 +1,9 @@
 import 'dart:ffi';
 
-import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/appHome.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/Screen/AutismCheker.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/Screen/AutismTest.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/appHome.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/AutismCheker.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/AutismTest.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

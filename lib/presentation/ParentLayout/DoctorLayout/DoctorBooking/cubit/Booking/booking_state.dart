@@ -1,6 +1,6 @@
 // login_state.dart
 
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
 
 abstract class BookingState {}
 

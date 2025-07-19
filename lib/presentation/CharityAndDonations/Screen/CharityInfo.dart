@@ -1,5 +1,5 @@
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Screens/ConfirmReservationScreen.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/cubit/Booking/booking_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Screens/ConfirmReservationScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/Booking/booking_state.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/availlableCharityMed.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Screen/AvailableMedicineScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Screen/AvailableMedicineScreen.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/cubit/Booking/booking_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/Booking/booking_cubit.dart';
 
 enum CharityPaymentMethod { cash, card }
 
@@ -214,7 +214,7 @@ class _CharityInfoState extends State<CharityInfo> {
                     condition: state is !GenrateSPSLoading || state is !GenrateCSCOLoading,
                     builder:(_)=> ElevatedButton(
                       onPressed: () {
-                        final id = "68502150d29361dcad110270";
+                        final id = "6877223da9bf499365cfbb28";
                         if (_selectedMethod == CharityPaymentMethod.card) {
                           context
                               .read<BookingCubit>()

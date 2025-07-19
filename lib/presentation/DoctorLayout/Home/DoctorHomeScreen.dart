@@ -1,7 +1,7 @@
-import 'package:asdsmartcare/presentation/Doctor/Home/RigesteredChild/screen/RegesterChilds.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/appointments/Screen/appointment.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/RigesteredChild/screen/RegesterChilds.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/appointments/Screen/appointment.dart';
 import 'package:flutter/material.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/Screen/SessionsScreen.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/Screen/SessionsScreen.dart';
 
 class QuickAccessPage extends StatelessWidget {
   /// Builds a tappable card with icon, title, and subtitle.

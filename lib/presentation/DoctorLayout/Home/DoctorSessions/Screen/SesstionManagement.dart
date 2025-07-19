@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/model/DoctorSessions.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/model/DoctorSessions.dart';
 
 class SessionManagement extends StatefulWidget {
   const SessionManagement({Key? key, required this.sessionID}) : super(key: key);
@@ -45,36 +45,47 @@ class _SessionManagementState extends State<SessionManagement> {
     _feedbackController.clear();
     await cubit.updateSessionComments(_comments, widget.sessionID);
     _scrollToBottom();
-  }
-
-  Future<void> _editComment(int index, DoctorSessionListCubit cubit) async {
-    final controller = TextEditingController(text: _comments[index]);
-    final edited = await showDialog<String>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Edit Feedback'),
-        content: TextField(
-          controller: controller,
-          decoration: const InputDecoration(border: OutlineInputBorder()),
+  }Future<void> _editComment(int index, DoctorSessionListCubit cubit) async {
+  final controller = TextEditingController(text: _comments[index]);
+  final edited = await showDialog<String>(
+    context: context,
+    builder: (context) => AlertDialog(
+      // Keep some margin from the screen edges
+      insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+      title: const Text('Edit Feedback'),
+      content: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            // Never exceed 40% of screen height
+            maxHeight: MediaQuery.of(context).size.height * 0.4,
+          ),
+          child: TextField(
+            controller: controller,
+            maxLines: null,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+            ),
+          ),
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(context, controller.text.trim()),
-            child: const Text('Save'),
-          ),
-        ],
       ),
-    );
-    if (edited != null && edited.isNotEmpty) {
-      setState(() => _comments[index] = edited);
-      await cubit.updateSessionComments(_comments, widget.sessionID);
-    }
-  }
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, controller.text.trim()),
+          child: const Text('Save'),
+        ),
+      ],
+    ),
+  );
 
+  if (edited != null && edited.isNotEmpty) {
+    setState(() => _comments[index] = edited);
+    await cubit.updateSessionComments(_comments, widget.sessionID);
+  }
+}
   Future<void> _deleteComment(int index, DoctorSessionListCubit cubit) async {
     final removed = _comments[index];
     setState(() => _comments.removeAt(index));
@@ -192,7 +203,7 @@ class _SessionManagementState extends State<SessionManagement> {
                       
                             return Card(
                               color: Theme.of(context).primaryColor,
-                              elevation: 2,
+                              elevation: 1,
                               margin: const EdgeInsets.symmetric(vertical: 6),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),

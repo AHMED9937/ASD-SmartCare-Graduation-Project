@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Controller/cubit/available_medicine_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Controller/cubit/available_medicine_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/AvailableMedicine/Screen/MedicenInfo.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Controller/cubit/available_medicine_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Controller/cubit/available_medicine_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Screen/MedicenInfo.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

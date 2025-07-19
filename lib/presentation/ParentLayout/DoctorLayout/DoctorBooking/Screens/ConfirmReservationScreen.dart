@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:flutter/cupertino.dart';
@@ -78,7 +78,7 @@ class Confirmreservationscreen extends StatelessWidget {
                     // Star Rating
                   Row(
   children: List.generate(5, (index) => Icon(
-    index < DoctorData.ratingQuantity! ? Icons.star : Icons.star_border,
+    index <( DoctorData.ratingsAverage??0) ? Icons.star : Icons.star_border,
     color: Colors.amber,
     size: 12.0,
   )),

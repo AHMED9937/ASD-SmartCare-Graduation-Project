@@ -1,7 +1,7 @@
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/controller/childProgress/child_progress_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/controller/childProgress/child_progress_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/model/GetAllSession.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/screens/SessionDeatile.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/controller/childProgress/child_progress_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/controller/childProgress/child_progress_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/model/GetAllSession.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/SessionDeatile.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -333,7 +333,7 @@ Widget _buildCommentCard(
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
     child: GestureDetector(
-      onTap: () => NavgatTO(context, SessionDeatile(session: session ,)),
+      onTap: () => NavgatTO(context, SessionDetail(session: session ,)),
       child: Container(
         height: 93,
         padding: const EdgeInsets.all(12),

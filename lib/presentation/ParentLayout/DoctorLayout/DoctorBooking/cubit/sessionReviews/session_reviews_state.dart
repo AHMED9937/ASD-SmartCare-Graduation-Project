@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Model/GetSessionReviewsList.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/GetSessionReviewsList.dart';
 
 abstract class GetSessionReviewsListStates {}
 

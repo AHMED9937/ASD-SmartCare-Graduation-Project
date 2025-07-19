@@ -1,8 +1,8 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/controller/Test2/autism_cheker_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/apphome/autsiumTest/model/PredictionMessage.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/controller/Test2/autism_cheker_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/model/PredictionMessage.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/StlsAppTextFormField.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
@@ -41,22 +41,31 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
     "How does your child react to various sensory stimuli? Please elaborate.",
     "Apart from Autism, are there any other challenges your child faces? (For example, ADHD, Epilepsy, Specific Learning Difficulties, Speech Delay, or none.)"
 ];
+Widget QSType1(int index, String Qs) => Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Center(
+      child: Text(
+        Qs,
+        style: TextStyle(color: Colors.black, fontSize: 15),
+        overflow: TextOverflow.clip,
+      ),
+    ),
+    const SizedBox(height: 16),
 
-  /// Free-text question widget, now tied to its own controller
-  Widget QSType1(int index, String Qs) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-         Center(child: Text( Qs,style:TextStyle( color: Colors.black,  fontSize: 15,) ,overflow: TextOverflow.clip)),
-        const SizedBox(height: 16),
-        
-          const SizedBox(height: 16),
-          StlsAppTextFormField(
-            hintText: 'Answer here',
-            controller: ansControllers[index],
-          ),
-        ],
-      );
-
+    // <-- built‑in TextFormField instead of StlsAppTextFormField
+    Expanded(
+      child: TextFormField(
+        controller: ansControllers[index],
+        decoration: InputDecoration(
+          hintText: 'Answer here',
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(33)),
+        ),
+        maxLines:7, // allows the field to grow up to 3 lines
+      ),
+    ),
+  ],
+);
   Widget QSType2(String Qs,int QSIndex) => Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

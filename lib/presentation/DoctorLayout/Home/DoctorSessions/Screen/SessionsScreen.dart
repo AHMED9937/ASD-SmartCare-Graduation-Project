@@ -1,10 +1,10 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/Screen/SesstionManagement.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
-import 'package:asdsmartcare/presentation/Doctor/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/Screen/SesstionManagement.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
+import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/DoctorLayout/DoctorBooking/Widgets/doctorReviews.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/progressLayout/screens/SessionDeatile.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Widgets/doctorReviews.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/SessionDeatile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';

@@ -1,16 +1,16 @@
 import 'dart:io';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/EditProfile/edit_profile_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/screen/AddchildEditProfile.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/screen/ChangePasswordScreen.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/EditProfile/edit_profile_cubit.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/AddchildEditProfile.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/ChangePasswordScreen.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/Model/GetLoggedParentData.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/widgets/ParentsChilds.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/Model/GetLoggedParentData.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/widgets/ParentsChilds.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/EditProfile/edit_profile_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/EditProfile/edit_profile_state.dart';
 
 class EditParentProfileScreen extends StatelessWidget {
   final GetLoggedParentData parentD;

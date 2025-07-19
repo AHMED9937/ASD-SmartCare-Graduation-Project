@@ -3,20 +3,25 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/Components/myblockob.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/DoctorNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/screens/DoctorNavgationScreen.dart';
 import 'package:asdsmartcare/presentation/SignUp/screen/DoctorSignUpScreen.dart';
 import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
 import 'package:asdsmartcare/presentation/onBoarding/onboardingNavgationaScreens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'presentation/AsdAppLayouts/cubit/asd_cubit.dart';
+import 'presentation/AppStartScreen/cubit/asd_cubit.dart';
 
 void main() async {
+  
+
+
+  
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   Diohelper.init();
+  
 
   // Read persisted values
   final bool? onBoarding  = CacheHelper.getData(key: "loginSingUp");

@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
-import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/DoctorNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/AsdAppLayouts/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/screens/DoctorNavgationScreen.dart';
+import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';

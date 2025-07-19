@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/networking/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/Model/ParentChildsModel.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/GetParentData/parent_data_state.dart';
-import 'package:asdsmartcare/presentation/ParentScreens/profileLayout/controller/cubit/GetParentChildsCubit/parentchild_list_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/Model/ParentChildsModel.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/GetParentData/parent_data_state.dart';
+import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/GetParentChildsCubit/parentchild_list_state.dart';
 import 'package:asdsmartcare/presentation/SignUp/Model/AddParent.dart';
 import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
 import 'package:dio/dio.dart';
