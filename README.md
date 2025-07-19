@@ -59,8 +59,6 @@
 │   ├─ temp_code_runner_file.dart
 │   ├─ assets/
 │   │   └─ images/
-│   ├─ design/
-│   │   └─ weak1_part1_design_fixed_widgets_onboarding.txt
 │   ├─ shared/
 │   │   ├─ cache/
 │   │   │   └─ cache_helper.dart
