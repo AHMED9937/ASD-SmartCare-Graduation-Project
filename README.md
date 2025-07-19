@@ -47,6 +47,9 @@
 - **CI/CD**: GitHub Actions (configured under `ci/`).
 
 ## 5. Directory Structure
+## 5. Directory Structure
+
+```plaintext
 / (root)
 ├── android/                                  # Android platform code and Gradle scripts
 ├── ios/                                      # iOS platform code and Xcode configurations
@@ -58,6 +61,8 @@
     ├── temp_code_runner_file.dart
     ├── assets/
     │   └── images/
+    ├── design/
+    │   └── weak1_part1_design_fixed_widgets_onboarding.txt
     ├── shared/
     │   ├── cache/
     │   │   └── cache_helper.dart
@@ -166,6 +171,7 @@
                 ├── doctor_sign_up_form.dart
                 ├── parent_sign_up_form.dart
                 └── signup_form.dart
+
 
 
 ## 6. Setup & Installation
