@@ -24,7 +24,7 @@
   Bloc/Cubit covering error, loading, and null states.
 
 - **Media Integration**  
-  Audio recording/playback, file & image upload, AI‑powered image analysis.
+  Audio recording/playback, file & image upload
 
 - **AI Tools**  
   NLP‑based Q&A system and hybrid classification models for autism screening.
