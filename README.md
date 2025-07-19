@@ -47,127 +47,121 @@
 - **CI/CD**: GitHub Actions (configured under `ci/`).
 
 ## 5. Directory Structure
-```
-/ (root)
-├─ android/                                  # Android platform code and Gradle scripts
-├─ ios/                                      # iOS platform code and Xcode configurations
-├─ macos/                                    # macOS platform code
-├─ windows/                                  # Windows platform code
-├─ web/                                      # Web build support
-├─ lib/                                      # Main Flutter application code
-│   ├─ main.dart
-│   ├─ temp_code_runner_file.dart
-│   ├─ assets/
-│   │   └─ images/
-│   ├─ shared/
-│   │   ├─ cache/
-│   │   │   └─ cache_helper.dart
-│   │   ├─ components/
-│   │   │   ├─ my_block_ob.dart
-│   │   │   └─ shared_components.dart
-│   │   └─ remote/
-│   │       └─ dio_helper.dart
-│   ├─ networking/
-│   │   ├─ api_constants.dart
-│   │   ├─ api_error_handler.dart
-│   │   ├─ api_error_model.dart
-│   │   ├─ api_error_model.g.dart
-│   │   ├─ api_result.dart
-│   │   ├─ api_result.freezed.dart
-│   │   └─ dio_factory.dart
-│   └─ presentation/
-│       ├─ after_login_routes/
-│       │   ├─ app_home/
-│       │   │   ├─ app_home.dart
-│       │   │   └─ education/
-│       │   │       ├─ articles.dart
-│       │   │       └─ show_article.dart
-│       │   ├─ asd_app_layouts/
-│       │   │   ├─ cubit/
-│       │   │   │   ├─ asd_cubit.dart
-│       │   │   │   └─ asd_state.dart
-│       │   │   └─ screens/
-│       │   │       └─ bottom_navigation_screen.dart
-│       │   ├─ chat_layout/
-│       │   │   └─ screens/
-│       │   │       └─ chat_screen.dart
-│       │   ├─ doctor_layout/
-│       │   │   ├─ doctor_booking/
-│       │   │   │   └─ screens/
-│       │   │   │       ├─ confirm_reservation_screen.dart
-│       │   │   │       ├─ payments_check_screen.dart
-│       │   │   │       └─ reservation_screen.dart
-│       │   │   └─ doctors_list/
-│       │   │       ├─ cubit/
-│       │   │       │   ├─ doctors_list_cubit.dart
-│       │   │       │   └─ doctors_list_state.dart
-│       │   │       ├─ model/
-│       │   │       │   └─ get_doctors_list_model.dart
-│       │   │       └─ pages/
-│       │   │           └─ doctors_list_page.dart
-│       │   ├─ evaluate_layout/
-│       │   │   └─ screens/
-│       │   │       └─ evaluate.dart
-│       │   ├─ profile_layout/
-│       │   │   └─ screens/
-│       │   │       └─ profile_screen.dart
-│       │   └─ progress_layout/
-│       │       └─ screens/
-│       │           └─ progress.dart
-│       ├─ fixed_widgets/
-│       │   ├─ app_buttons.dart
-│       │   ├─ app_form_text_field.dart
-│       │   ├─ app_images.dart
-│       │   ├─ color_utils.dart
-│       │   ├─ fixed_widgets.dart
-│       │   ├─ phone_screen_utils.dart
-│       │   └─ text_utils.dart
-│       ├─ login/
-│       │   ├─ cubits/
-│       │   │   └─ user_cubit/
-│       │   │       ├─ login_cubit.dart
-│       │   │       └─ login_state.dart
-│       │   ├─ models/
-│       │   │   ├─ login_doctor_model.dart
-│       │   │   ├─ login_model.dart
-│       │   │   └─ login_parent_model.dart
-│       │   ├─ screens/
-│       │   │   ├─ create_new_password_screen.dart
-│       │   │   ├─ forget_password_screen.dart
-│       │   │   ├─ login_screen.dart
-│       │   │   ├─ otp_verification_screen.dart
-│       │   │   ├─ password_changed_screen.dart
-│       │   │   ├─ select_login_or_sign_up_screen.dart
-│       │   │   └─ select_user_type_screen.dart
-│       │   └─ widgets/
-│       │       ├─ login_form.dart
-│       │       └─ rich_text.dart
-│       ├─ onboarding/
-│       │   ├─ onboarding_navigation_screens.dart
-│       │   └─ onboarding_widget.dart
-│       └─ signup/
-│           ├─ cubits/
-│           │   ├─ doctor_cubit/
-│           │   │   ├─ doctor_cubit.dart
-│           │   │   └─ doctor_state.dart
-│           │   └─ parent_cubit/
-│           │       ├─ parent_sign_up_cubit.dart
-│           │       └─ parent_sign_up_state.dart
-│           ├─ models/
-│           │   ├─ error_model.dart
-│           │   ├─ signup_model.dart
-│           │   ├─ sign_up_parent_model.dart
-│           │   ├─ signup_req_doctor_model.dart
-│           │   └─ signup_res_doctor_model.dart
-│           ├─ screens/
-│           │   ├─ doctor_sign_up_screen.dart
-│           │   ├─ email_verification_screen.dart
-│           │   └─ parent_sign_up_screen.dart
-│           └─ widgets/
-│               ├─ doctor_sign_up_form.dart
-│               ├─ parent_sign_up_form.dart
-│               └─ signup_form.dart
-```
+   ├── lib/
+    │   ├── main.dart
+    │   ├── tempCodeRunnerFile.dart
+    │   ├── appassets/
+    │   │   └── images/
+    │   ├── appDesign/
+    │   │   └── weak1_part1 design(fixed_widgets+onboarding).txt
+    │   ├── appShared/
+    │   │   ├── cacheHelper/
+    │   │   │   └── cahcheHelper.dart
+    │   │   ├── Components/
+    │   │   │   ├── myblockob.dart
+    │   │   │   └── SharedComponents.dart
+    │   │   └── remote/
+    │   │       └── diohelper.dart
+    │   ├── networking/
+    │   │   ├── api_constants.dart
+    │   │   ├── api_error_handler.dart
+    │   │   ├── api_error_model.dart
+    │   │   ├── api_error_model.g.dart
+    │   │   ├── api_result.dart
+    │   │   ├── api_result.freezed.dart
+    │   │   └── dio_factory.dart
+    │   └── presentation/
+    │       ├── AfterLoginRootes/
+    │       │   ├── apphome/
+    │       │   │   ├── appHome.dart
+    │       │   │   └── Education/
+    │       │   │       ├── Articles.dart
+    │       │   │       └── ShowArticle.dart
+    │       │   ├── AsdAppLayouts/
+    │       │   │   ├── cubit/
+    │       │   │   │   ├── asd_cubit.dart
+    │       │   │   │   └── asd_state.dart
+    │       │   │   └── screens/
+    │       │   │       └── BottomNavgationScreen.dart
+    │       │   ├── chatLayout/
+    │       │   │   └── screen/
+    │       │   │       └── chatScreen.dart
+    │       │   ├── DoctorLayout/
+    │       │   │   ├── DoctorBooking/
+    │       │   │   │   └── Screens/
+    │       │   │   │       ├── ConfirmReservationScreen.dart
+    │       │   │   │       ├── PaymentsCheckScreen.dart
+    │       │   │   │       └── reservationScreen.dart
+    │       │   │   └── DoctorsList/
+    │       │   │       ├── cubit/
+    │       │   │       │   ├── doctors_list_cubit.dart
+    │       │   │       │   └── doctors_list_state.dart
+    │       │   │       ├── model/
+    │       │   │       │   └── GetDoctorsListModel.dart
+    │       │   │       └── screen/
+    │       │   │           └── DoctorsListPage.dart
+    │       │   ├── EvaluateLayout/
+    │       │   │   └── screens/
+    │       │   │       └── Evaluate.dart
+    │       │   ├── profileLayout/
+    │       │   │   └── screen/
+    │       │   │       └── profileScreen.dart
+    │       │   └── progressLayout/
+    │       │       └── screens/
+    │       │           └── progress.dart
+    │       ├── Fixed_Widgets/
+    │       │   ├── app_Buttons.dart
+    │       │   ├── AppFormTextField.dart
+    │       │   ├── appImages.dart
+    │       │   ├── colorUtils.dart
+    │       │   ├── FixedWidgets.dart
+    │       │   ├── phoneScreenUtils.dart
+    │       │   └── TextUtils.dart
+    │       ├── login/
+    │       │   ├── LoginCubits/
+    │       │   │   └── Usercubit/
+    │       │   │       ├── login_cubit.dart
+    │       │   │       └── login_state.dart
+    │       │   ├── model/
+    │       │   │   ├── LoginDoctorModel.dart
+    │       │   │   ├── loginModel.dart
+    │       │   │   └── loginParentModel.dart
+    │       │   ├── screen/
+    │       │   │   ├── CreatenewpasswordScreen.dart
+    │       │   │   ├── ForgetPasswordScreen.dart
+    │       │   │   ├── loginscreen.dart
+    │       │   │   ├── OTPVerificationScreen.dart
+    │       │   │   ├── PasswordChangedscreen.dart
+    │       │   │   ├── select_Login_or_SignUpScreen.dart
+    │       │   │   └── SelectUserTypeScreen.dart
+    │       │   └── widgets/
+    │       │       ├── loginform.dart
+    │       │       └── my_RichText.dart
+    │       ├── onBoarding/
+    │       │   ├── onboardingNavgationaScreens.dart
+    │       │   └── onBoardingWidget.dart
+    │       └── SignUp/
+    │           ├── cubit/
+    │           │   ├── DoctorCubit/
+    │           │   │   ├── doctor_cubit.dart
+    │           │   │   └── doctor_state.dart
+    │           │   └── Parentcubit/
+    │           │       ├── parent_sign_up_cubit.dart
+    │           │       └── parent_sign_up_state.dart
+    │           ├── Model/
+    │           │   ├── ErrorModel.dart
+    │           │   ├── SignupModel .dart
+    │           │   ├── SignUpParentModel.dart
+    │           │   ├── SignupreqDoctorModel.dart
+    │           │   └── SignupresDoctorModel.dart
+    │           ├── screen/
+    │           │   ├── DoctorSignUpScreen.dart
+    │           │   ├── EmailVerfcationScreen.dart
+    │           │   └── ParentSignUpScreen.dart
+    │           └── Widgets/
+    │               ├── DoctorSignUpForm.dart
+    │               ├── ParentSignUpForm.dart
+    │               └── signupform.dart
 
 ## 6. Setup & Installation
 
