@@ -168,7 +168,6 @@
                 └── signup_form.dart
 
 
-
 ## 6. Setup & Installation
 
 1. **Prerequisites**: Flutter SDK (>=2.0), Dart SDK, Android Studio, Xcode, etc.
