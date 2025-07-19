@@ -47,7 +47,6 @@
 - **CI/CD**: GitHub Actions (configured under `ci/`).
 
 ## 5. Directory Structure
-## 5. Directory Structure
 
 ```plaintext
 / (root)
