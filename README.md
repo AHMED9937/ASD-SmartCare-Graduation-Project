@@ -2,17 +2,9 @@
 # ASD Smart Care Flutter Project Overview           
 
 
-## Project Summary
+## 1. Project Summary
 
-ASD SmartCare integrates multiple modules to support specialists and caregivers in monitoring, guiding, and managing autism-related activities for children:
-
-- **Autism Screening**: Structured assessment forms and score tracking
-- **Q&A Chatbot**: AI-driven conversational support (text & voice)
-- **Doctor Recommendations**: Personalized specialist referrals and booking
-- **Session Tracking**: Child progress logger updated by specialists
-- **Educational Resources**: Parenting guides and interactive exercises
-
-## Download
+**ASD SmartCare** is a cross‑platform Flutter application designed to support autism assessment and care. It integrates multiple modules for autism screening, Q&A chatbot interactions, doctor recommendations, session tracking, and more. The app aims to facilitate specialists and caregivers in monitoring, guiding, and managing autism-related activities for children.      iwant to add this link downlowd the app 
 
 📥 [Download the APK](https://drive.google.com/file/d/1cRxrZ3s-ED3sZGo-PKvzXYpOMsQg_nf3/view)
 ## 2. Goals and Scope
