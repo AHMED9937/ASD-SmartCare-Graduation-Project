@@ -36,7 +36,7 @@
   Integration for subscriptions or one‑off service fees.
 
 - **Platform Support**  
-  Builds for Android, iOS, Web, Windows, and macOS.
+  Builds for Android, iOS
 
 ## 4. Architecture & Technologies
 
