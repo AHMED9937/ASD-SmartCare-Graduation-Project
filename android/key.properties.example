@@ -1,0 +1,71 @@
+# =============================================================================
+# Android Release Keystore Configuration
+# =============================================================================
+# 
+# This file contains the keystore credentials for signing release builds.
+# 
+# SECURITY WARNINGS:
+# - NEVER commit this file to version control (it's in .gitignore)
+# - Store passwords securely, not in plain text files on shared systems
+# - Keep your keystore file backed up securely - if lost, you cannot update your app
+#
+# SETUP INSTRUCTIONS:
+# 1. Copy this file to 'key.properties' (in the same directory)
+# 2. Generate a keystore if you don't have one (see commands below)
+# 3. Fill in your actual values below
+# 4. Place your keystore file in the location specified by storeFile
+#
+# =============================================================================
+
+# Password used to protect the entire keystore file
+storePassword=YOUR_KEYSTORE_PASSWORD
+
+# Password used to protect the specific key (can be same as storePassword)
+keyPassword=YOUR_KEY_PASSWORD
+
+# Alias name for your key (typically 'upload' for Play Store uploads)
+keyAlias=upload
+
+# Path to the keystore file, relative to android/app/ directory
+# Example: if keystore is at android/upload-keystore.jks, use ../upload-keystore.jks
+# Example: if keystore is at android/app/upload-keystore.jks, use upload-keystore.jks
+storeFile=../upload-keystore.jks
+
+# =============================================================================
+# How to Generate a New Keystore
+# =============================================================================
+#
+# Run this command in the android/ directory:
+#
+# keytool -genkey -v \
+#   -keystore upload-keystore.jks \
+#   -storetype JKS \
+#   -keyalg RSA \
+#   -keysize 2048 \
+#   -validity 10000 \
+#   -alias upload
+#
+# You will be prompted for:
+# - Keystore password (use a strong password, save it securely!)
+# - Key password (can be same as keystore password)
+# - Your name, organization, location info (for the certificate)
+#
+# IMPORTANT: Save your passwords somewhere secure - you cannot recover them!
+#
+# =============================================================================
+# For GitHub Actions CI/CD
+# =============================================================================
+#
+# The CI/CD workflow automatically creates this file from GitHub Secrets.
+# You need to add these secrets to your repository:
+#
+# 1. KEYSTORE_BASE64   - Base64-encoded keystore file
+# 2. KEYSTORE_PASSWORD - Keystore password
+# 3. KEY_ALIAS         - Key alias (e.g., 'upload')
+# 4. KEY_PASSWORD      - Key password
+#
+# To encode your keystore for GitHub Secrets:
+#   - Linux/macOS: base64 -i upload-keystore.jks | tr -d '\n'
+#   - PowerShell:  [Convert]::ToBase64String([IO.File]::ReadAllBytes("upload-keystore.jks"))
+#
+# =============================================================================
