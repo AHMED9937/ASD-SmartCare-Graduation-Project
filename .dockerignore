@@ -1,0 +1,195 @@
+# ==============================================================================
+# Docker Ignore File - ASD SmartCare
+# ==============================================================================
+# Generated based on project analysis
+#
+# INCLUDED (not ignored):
+#   ✅ lib/                    - Dart source code
+#   ✅ lib/appassets/images/   - 51 image assets (required for build)
+#   ✅ test/                   - 58+ test files
+#   ✅ android/                - Gradle config, manifests, Kotlin code
+#   ✅ pubspec.yaml/lock       - Dependency definitions
+#   ✅ analysis_options.yaml   - Lint configuration
+#
+# EXCLUDED (ignored):
+#   ❌ Build outputs, caches, IDE files, secrets, docs
+# ==============================================================================
+
+# ==============================================================================
+# BUILD OUTPUTS (Generated files - never include)
+# ==============================================================================
+build/
+.dart_tool/
+.pub-cache/
+.pub/
+
+# Android build outputs (regenerated during build)
+android/app/build/
+android/.gradle/
+android/local.properties
+
+# iOS/macOS/Windows/Linux/Web (not needed for Android APK builds)
+ios/
+macos/
+windows/
+linux/
+web/
+
+# Compiled artifacts
+*.apk
+*.aab
+*.ipa
+*.dex
+*.class
+
+# ==============================================================================
+# IDE AND EDITOR CONFIGURATION
+# ==============================================================================
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.atom/
+*.sublime-project
+*.sublime-workspace
+.fleet/
+
+# ==============================================================================
+# OPERATING SYSTEM FILES
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==============================================================================
+# VERSION CONTROL
+# ==============================================================================
+.git/
+.gitignore
+.gitattributes
+.github/
+
+# ==============================================================================
+# ENVIRONMENT AND SECRETS (NEVER INCLUDE IN IMAGE)
+# ==============================================================================
+.env
+.env.local
+.env.development
+.env.production
+.env.*
+!.env.example
+
+# Android signing (sensitive)
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+key.properties
+
+# Firebase (if added later)
+google-services.json
+GoogleService-Info.plist
+
+# ==============================================================================
+# DOCUMENTATION (Not needed for build)
+# ==============================================================================
+docs/
+*.md
+LICENSE
+CHANGELOG*
+
+# ==============================================================================
+# LOG AND ANALYSIS FILES
+# ==============================================================================
+*.log
+*.txt
+coverage/
+test_results/
+.test_coverage/
+lcov.info
+
+# Analysis output files (project-specific)
+analysis*.txt
+analyze*.txt
+error*.txt
+*_fail*.txt
+*_output*.txt
+*_log*.txt
+*_results*.txt
+*_expanded*.txt
+*_verbose*.txt
+
+# ==============================================================================
+# DEVELOPMENT SCRIPTS
+# ==============================================================================
+*.ps1
+*.sh
+*.bat
+!scripts/*.sh
+
+# ==============================================================================
+# BACKUP AND TEMPORARY FILES
+# ==============================================================================
+.backup/
+.swm/
+.specify/
+specs/
+*.bak
+*.tmp
+*.temp
+*~
+
+# ==============================================================================
+# DOCKER FILES (Prevent recursive inclusion)
+# ==============================================================================
+Dockerfile
+Dockerfile.*
+docker-compose*.yml
+docker-compose*.yaml
+.dockerignore
+
+# ==============================================================================
+# FLUTTER-SPECIFIC (Regenerated during build)
+# ==============================================================================
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.metadata
+devtools_options.yaml
+pubspec.overrides.yaml
+
+# FVM (Flutter Version Management)
+.fvm/
+
+# ==============================================================================
+# CACHE DIRECTORIES
+# ==============================================================================
+node_modules/
+__pycache__/
+*.pyc
+.gradle/
+
+# ==============================================================================
+# PR AND CONTRIBUTION FILES
+# ==============================================================================
+PR_*.md
+CONTRIBUTING.md
+
+# ==============================================================================
+# NOTE: The following are KEPT (not ignored) for build:
+# ==============================================================================
+# - lib/              → All Dart source code
+# - lib/appassets/    → Image assets (51 files)
+# - test/             → Test files (58+ files)
+# - android/          → Android configuration (except build/)
+# - pubspec.yaml      → Package definition
+# - pubspec.lock      → Locked versions
+# - analysis_options.yaml → Lint rules
+# ==============================================================================

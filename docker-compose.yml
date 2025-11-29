@@ -1,0 +1,287 @@
+# ==============================================================================
+# ASD SmartCare - Docker Compose Configuration
+# ==============================================================================
+#
+# Based on project analysis:
+#   - Flutter 3.32.2, Dart ^3.5.4
+#   - 58+ tests using mocktail/bloc_test
+#   - 10+ native plugins (Stripe, audio, permissions)
+#   - Build requires 4GB+ JVM heap
+#
+# USAGE:
+#   docker compose build              # Build all images
+#   docker compose up test            # Run all tests
+#   docker compose up build-apk       # Build release APK
+#   docker compose run --rm dev bash  # Interactive shell
+#
+# ==============================================================================
+
+services:
+  # ============================================================================
+  # DEVELOPMENT SERVICE
+  # ============================================================================
+  # Interactive development environment with volume mounting
+  # Usage: docker compose run --rm dev bash
+  # ============================================================================
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: source
+    image: asd-smartcare:dev
+    container_name: asd-smartcare-dev
+    working_dir: /app
+
+    # Mount source code for live development
+    volumes:
+      # Source code (read-only for safety)
+      - ./lib:/app/lib:ro
+      - ./test:/app/test:ro
+      - ./pubspec.yaml:/app/pubspec.yaml:ro
+      - ./pubspec.lock:/app/pubspec.lock:ro
+      - ./analysis_options.yaml:/app/analysis_options.yaml:ro
+
+      # Android config (read-only)
+      - ./android:/app/android:ro
+
+      # Build output (read-write)
+      - ./build:/app/build
+      - ./coverage:/app/coverage
+
+      # Cache volumes for faster rebuilds
+      - pub-cache:/opt/pub-cache
+      - gradle-cache:/root/.gradle
+
+    environment:
+      - CI=true
+      - FLUTTER_SUPPRESS_ANALYTICS=true
+      - PUB_CACHE=/opt/pub-cache
+      - GRADLE_OPTS=-Xmx4G -XX:MaxMetaspaceSize=2G
+
+    stdin_open: true
+    tty: true
+    command: [ "bash" ]
+
+  # ============================================================================
+  # TEST SERVICE
+  # ============================================================================
+  # Run all 58+ tests with coverage
+  # Usage: docker compose up test
+  # ============================================================================
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+    image: asd-smartcare:test
+    container_name: asd-smartcare-test
+
+    volumes:
+      - ./coverage:/app/coverage
+
+    environment:
+      - CI=true
+      - FLUTTER_SUPPRESS_ANALYTICS=true
+
+    command: [ "flutter", "test", "--no-pub", "--coverage", "--reporter=expanded" ]
+
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+  # ============================================================================
+  # STATIC ANALYSIS SERVICE
+  # ============================================================================
+  # Run flutter analyze
+  # Usage: docker compose up analyze
+  # ============================================================================
+  analyze:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: analyze
+    image: asd-smartcare:analyze
+    container_name: asd-smartcare-analyze
+
+    environment:
+      - CI=true
+      - FLUTTER_SUPPRESS_ANALYTICS=true
+
+    command: [ "flutter", "analyze", "--no-pub" ]
+
+  # ============================================================================
+  # FORMAT CHECK SERVICE
+  # ============================================================================
+  # Check code formatting
+  # Usage: docker compose up format-check
+  # ============================================================================
+  format-check:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: source
+    image: asd-smartcare:format
+    container_name: asd-smartcare-format
+
+    environment:
+      - CI=true
+
+    command: [ "dart", "format", "--set-exit-if-changed", "." ]
+
+  # ============================================================================
+  # APK BUILDER SERVICE
+  # ============================================================================
+  # Build release APK
+  # Usage: docker compose up build-apk
+  # Output: ./build/app/outputs/flutter-apk/app-release.apk
+  # ============================================================================
+  build-apk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build-apk
+      args:
+        - API_BASE_URL=${API_BASE_URL:-}
+        - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY:-}
+    image: asd-smartcare:apk
+    container_name: asd-smartcare-build-apk
+
+    volumes:
+      - ./build:/app/build
+
+    environment:
+      - CI=true
+      - FLUTTER_SUPPRESS_ANALYTICS=true
+      - GRADLE_OPTS=-Xmx4G -XX:MaxMetaspaceSize=2G
+
+    # If APK was already built in Dockerfile, just copy
+    # Otherwise, build it now
+    command: >
+      sh -c "
+        if [ -f /app/build/app/outputs/flutter-apk/app-release.apk ]; then
+          echo '✅ APK already built'
+          ls -la /app/build/app/outputs/flutter-apk/
+        else
+          flutter build apk --release --no-pub
+        fi
+      "
+
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+
+  # ============================================================================
+  # APP BUNDLE BUILDER SERVICE
+  # ============================================================================
+  # Build release App Bundle for Play Store
+  # Usage: docker compose up build-aab
+  # Output: ./build/app/outputs/bundle/release/app-release.aab
+  # ============================================================================
+  build-aab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: build-aab
+      args:
+        - API_BASE_URL=${API_BASE_URL:-}
+        - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY:-}
+    image: asd-smartcare:aab
+    container_name: asd-smartcare-build-aab
+
+    volumes:
+      - ./build:/app/build
+
+    environment:
+      - CI=true
+      - FLUTTER_SUPPRESS_ANALYTICS=true
+      - GRADLE_OPTS=-Xmx4G -XX:MaxMetaspaceSize=2G
+
+    command: >
+      sh -c "
+        if [ -f /app/build/app/outputs/bundle/release/app-release.aab ]; then
+          echo '✅ AAB already built'
+          ls -la /app/build/app/outputs/bundle/release/
+        else
+          flutter build appbundle --release --no-pub
+        fi
+      "
+
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+
+  # ============================================================================
+  # FULL CI PIPELINE SERVICE
+  # ============================================================================
+  # Run complete CI: format → analyze → test
+  # Usage: docker compose up ci
+  # ============================================================================
+  ci:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: source
+    image: asd-smartcare:ci
+    container_name: asd-smartcare-ci
+
+    volumes:
+      - ./coverage:/app/coverage
+
+    environment:
+      - CI=true
+      - FLUTTER_SUPPRESS_ANALYTICS=true
+
+    command: >
+      sh -c "
+        echo '📝 Checking code format...' &&
+        dart format --set-exit-if-changed . &&
+        echo '🔍 Running static analysis...' &&
+        flutter analyze --no-pub &&
+        echo '🧪 Running tests...' &&
+        flutter test --no-pub --coverage --reporter=expanded &&
+        echo '✅ CI pipeline completed successfully!'
+      "
+
+    deploy:
+      resources:
+        limits:
+          memory: 6G
+
+# ==============================================================================
+# NAMED VOLUMES
+# ==============================================================================
+# Persist caches between container runs for faster builds
+# ==============================================================================
+volumes:
+  pub-cache:
+    name: asd-smartcare-pub-cache
+  gradle-cache:
+    name: asd-smartcare-gradle-cache
+
+# ==============================================================================
+# QUICK REFERENCE
+# ==============================================================================
+#
+# Build all images:
+#   docker compose build
+#
+# Run tests:
+#   docker compose up test
+#
+# Build APK with environment variables:
+#   API_BASE_URL=https://api.example.com STRIPE_PUBLISHABLE_KEY=pk_xxx \
+#     docker compose up build-apk
+#
+# Run full CI pipeline:
+#   docker compose up ci
+#
+# Interactive development:
+#   docker compose run --rm dev bash
+#
+# Clean up:
+#   docker compose down -v
+#
+# ==============================================================================
