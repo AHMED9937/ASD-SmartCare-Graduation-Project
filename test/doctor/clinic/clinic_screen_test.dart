@@ -23,26 +23,27 @@ void main() {
   });
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: ClinicDoctorScreen(cubit: mockCubit),
-    );
+    return MaterialApp(home: ClinicDoctorScreen(cubit: mockCubit));
   }
 
   group('ClinicDoctorScreen Widget Tests', () {
     testWidgets(
-        'renders LoadingView when state is GetDoctorAvailabilityLoading',
-        (tester) async {
-      when(() => mockCubit.state).thenReturn(GetDoctorAvailabilityLoading());
+      'renders LoadingView when state is GetDoctorAvailabilityLoading',
+      (tester) async {
+        when(() => mockCubit.state).thenReturn(GetDoctorAvailabilityLoading());
 
-      await tester.pumpWidget(createWidgetUnderTest());
+        await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.byType(LoadingView), findsOneWidget);
-    });
+        expect(find.byType(LoadingView), findsOneWidget);
+      },
+    );
 
-    testWidgets('renders ErrorView when state is GetDoctorAvailabilityError',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(const GetDoctorAvailabilityError('Failed'));
+    testWidgets('renders ErrorView when state is GetDoctorAvailabilityError', (
+      tester,
+    ) async {
+      when(
+        () => mockCubit.state,
+      ).thenReturn(const GetDoctorAvailabilityError('Failed'));
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -51,10 +52,14 @@ void main() {
     });
 
     testWidgets('renders ClinicOverviewBody on success', (tester) async {
-      when(() => mockCubit.state).thenReturn(GetDoctorAvailabilitySuccess(
-          model: MockAvailabilityData.sampleResponse));
-      when(() => mockCubit.availabilityDays)
-          .thenReturn(MockAvailabilityData.sampleResponse);
+      when(() => mockCubit.state).thenReturn(
+        GetDoctorAvailabilitySuccess(
+          model: MockAvailabilityData.sampleResponse,
+        ),
+      );
+      when(
+        () => mockCubit.availabilityDays,
+      ).thenReturn(MockAvailabilityData.sampleResponse);
 
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pump();

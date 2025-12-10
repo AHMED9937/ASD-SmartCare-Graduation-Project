@@ -24,22 +24,23 @@ void main() {
 
   /// Helper to create a Future that completes immediately with the response
   Future<Response<dynamic>> successResponse(Map<String, dynamic> data) {
-    return Future.value(Response(
-      data: data,
-      statusCode: 200,
-      requestOptions: RequestOptions(path: '/'),
-    ));
+    return Future.value(
+      Response(
+        data: data,
+        statusCode: 200,
+        requestOptions: RequestOptions(path: '/'),
+      ),
+    );
   }
 
   group('AuthRepository', () {
     group('login', () {
-      test('returns AuthSuccess with parent model on successful parent login',
-          () async {
-        // Arrange
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenAnswer((_) => successResponse({
+      test(
+        'returns AuthSuccess with parent model on successful parent login',
+        () async {
+          // Arrange
+          when(() => mockDio.post(any(), data: any(named: 'data'))).thenAnswer(
+            (_) => successResponse({
               'token': 'test_token',
               'data': {
                 '_id': '123abc',
@@ -48,25 +49,26 @@ void main() {
                 'email': 'parent@example.com',
                 'userName': 'testparent',
               },
-            }));
+            }),
+          );
 
-        // Act
-        final result = await repository.login(
-          email: 'parent@example.com',
-          password: 'password123',
-        );
+          // Act
+          final result = await repository.login(
+            email: 'parent@example.com',
+            password: 'password123',
+          );
 
-        // Assert
-        expect(result, isA<AuthSuccess>());
-      });
+          // Assert
+          expect(result, isA<AuthSuccess>());
+        },
+      );
 
-      test('returns AuthSuccess with doctor model on successful doctor login',
-          () async {
-        // Arrange
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenAnswer((_) => successResponse({
+      test(
+        'returns AuthSuccess with doctor model on successful doctor login',
+        () async {
+          // Arrange
+          when(() => mockDio.post(any(), data: any(named: 'data'))).thenAnswer(
+            (_) => successResponse({
               'token': 'test_token',
               'data': {
                 '_id': '456def',
@@ -75,77 +77,81 @@ void main() {
                 'email': 'doctor@example.com',
                 'userName': 'testdoctor',
               },
-            }));
+            }),
+          );
 
-        // Act
-        final result = await repository.login(
-          email: 'doctor@example.com',
-          password: 'password123',
-        );
+          // Act
+          final result = await repository.login(
+            email: 'doctor@example.com',
+            password: 'password123',
+          );
 
-        // Assert
-        expect(result, isA<AuthSuccess>());
-      });
+          // Assert
+          expect(result, isA<AuthSuccess>());
+        },
+      );
 
-      test('returns AuthFailure with 401 error message on invalid credentials',
-          () async {
-        // Arrange
-        final dioError = DioException(
-          response: Response(
-            statusCode: 401,
+      test(
+        'returns AuthFailure with 401 error message on invalid credentials',
+        () async {
+          // Arrange
+          final dioError = DioException(
+            response: Response(
+              statusCode: 401,
+              requestOptions: RequestOptions(path: '/login'),
+            ),
+            type: DioExceptionType.badResponse,
             requestOptions: RequestOptions(path: '/login'),
-          ),
-          type: DioExceptionType.badResponse,
-          requestOptions: RequestOptions(path: '/login'),
-        );
+          );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+          when(
+            () => mockDio.post(any(), data: any(named: 'data')),
+          ).thenThrow(dioError);
 
-        // Act
-        final result = await repository.login(
-          email: 'test@example.com',
-          password: 'wrongpassword',
-        );
+          // Act
+          final result = await repository.login(
+            email: 'test@example.com',
+            password: 'wrongpassword',
+          );
 
-        // Assert
-        expect(result, isA<AuthFailure>());
-        final failure = result as AuthFailure;
-        expect(failure.message, 'Invalid email or password.');
-        expect(failure.statusCode, 401);
-      });
+          // Assert
+          expect(result, isA<AuthFailure>());
+          final failure = result as AuthFailure;
+          expect(failure.message, 'Invalid email or password.');
+          expect(failure.statusCode, 401);
+        },
+      );
 
-      test('returns AuthFailure with 404 error message when account not found',
-          () async {
-        // Arrange
-        final dioError = DioException(
-          response: Response(
-            statusCode: 404,
+      test(
+        'returns AuthFailure with 404 error message when account not found',
+        () async {
+          // Arrange
+          final dioError = DioException(
+            response: Response(
+              statusCode: 404,
+              requestOptions: RequestOptions(path: '/login'),
+            ),
+            type: DioExceptionType.badResponse,
             requestOptions: RequestOptions(path: '/login'),
-          ),
-          type: DioExceptionType.badResponse,
-          requestOptions: RequestOptions(path: '/login'),
-        );
+          );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+          when(
+            () => mockDio.post(any(), data: any(named: 'data')),
+          ).thenThrow(dioError);
 
-        // Act
-        final result = await repository.login(
-          email: 'nonexistent@example.com',
-          password: 'password123',
-        );
+          // Act
+          final result = await repository.login(
+            email: 'nonexistent@example.com',
+            password: 'password123',
+          );
 
-        // Assert
-        expect(result, isA<AuthFailure>());
-        final failure = result as AuthFailure;
-        expect(failure.message, 'Account not found.');
-        expect(failure.statusCode, 404);
-      });
+          // Assert
+          expect(result, isA<AuthFailure>());
+          final failure = result as AuthFailure;
+          expect(failure.message, 'Account not found.');
+          expect(failure.statusCode, 404);
+        },
+      );
 
       test('returns AuthFailure on connection timeout', () async {
         // Arrange
@@ -154,10 +160,9 @@ void main() {
           requestOptions: RequestOptions(path: '/login'),
         );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+        when(
+          () => mockDio.post(any(), data: any(named: 'data')),
+        ).thenThrow(dioError);
 
         // Act
         final result = await repository.login(
@@ -178,10 +183,9 @@ void main() {
           requestOptions: RequestOptions(path: '/login'),
         );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+        when(
+          () => mockDio.post(any(), data: any(named: 'data')),
+        ).thenThrow(dioError);
 
         // Act
         final result = await repository.login(
@@ -206,10 +210,9 @@ void main() {
           requestOptions: RequestOptions(path: '/login'),
         );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+        when(
+          () => mockDio.post(any(), data: any(named: 'data')),
+        ).thenThrow(dioError);
 
         // Act
         final result = await repository.login(
@@ -236,10 +239,9 @@ void main() {
           requestOptions: RequestOptions(path: '/login'),
         );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+        when(
+          () => mockDio.post(any(), data: any(named: 'data')),
+        ).thenThrow(dioError);
 
         // Act
         final result = await repository.login(
@@ -255,22 +257,23 @@ void main() {
     });
 
     group('requestPasswordReset', () {
-      test('returns AuthSuccess on successful password reset request',
-          () async {
-        // Arrange
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenAnswer((_) => successResponse({'message': 'Email sent'}));
+      test(
+        'returns AuthSuccess on successful password reset request',
+        () async {
+          // Arrange
+          when(
+            () => mockDio.post(any(), data: any(named: 'data')),
+          ).thenAnswer((_) => successResponse({'message': 'Email sent'}));
 
-        // Act
-        final result = await repository.requestPasswordReset(
-          email: 'test@example.com',
-        );
+          // Act
+          final result = await repository.requestPasswordReset(
+            email: 'test@example.com',
+          );
 
-        // Assert
-        expect(result, isA<AuthSuccess>());
-      });
+          // Assert
+          expect(result, isA<AuthSuccess>());
+        },
+      );
 
       test('returns AuthFailure when email not found', () async {
         // Arrange
@@ -283,10 +286,9 @@ void main() {
           requestOptions: RequestOptions(path: '/forgot-password'),
         );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+        when(
+          () => mockDio.post(any(), data: any(named: 'data')),
+        ).thenThrow(dioError);
 
         // Act
         final result = await repository.requestPasswordReset(
@@ -301,12 +303,9 @@ void main() {
     group('resetPassword', () {
       test('returns AuthSuccess on successful password reset', () async {
         // Arrange
-        when(() => mockDio.post(
-                  any(),
-                  data: any(named: 'data'),
-                ))
-            .thenAnswer((_) =>
-                successResponse({'message': 'Password reset successful'}));
+        when(() => mockDio.post(any(), data: any(named: 'data'))).thenAnswer(
+          (_) => successResponse({'message': 'Password reset successful'}),
+        );
 
         // Act
         final result = await repository.resetPassword(
@@ -331,10 +330,9 @@ void main() {
           requestOptions: RequestOptions(path: '/reset-password'),
         );
 
-        when(() => mockDio.post(
-              any(),
-              data: any(named: 'data'),
-            )).thenThrow(dioError);
+        when(
+          () => mockDio.post(any(), data: any(named: 'data')),
+        ).thenThrow(dioError);
 
         // Act
         final result = await repository.resetPassword(

@@ -9,8 +9,11 @@ class ReviewListView extends StatelessWidget {
   final String ID;
   final bool showAllReviews;
 
-  const ReviewListView(
-      {super.key, required this.ID, required this.showAllReviews});
+  const ReviewListView({
+    super.key,
+    required this.ID,
+    required this.showAllReviews,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +75,11 @@ class ReviewListView extends StatelessWidget {
                             const CircleAvatar(
                               radius: 14,
                               backgroundColor: AppColors.disabled,
-                              child: Icon(Icons.person,
-                                  size: 14, color: AppColors.surface),
+                              child: Icon(
+                                Icons.person,
+                                size: 14,
+                                color: AppColors.surface,
+                              ),
                             ),
                             const SizedBox(width: AppSpacing.xs),
                             Expanded(
@@ -100,10 +106,7 @@ class ReviewListView extends StatelessWidget {
                         ),
                         if ((review.title ?? '').isNotEmpty) ...[
                           const SizedBox(height: AppSpacing.xs),
-                          Text(
-                            review.title!,
-                            style: AppTypography.bodySmall,
-                          ),
+                          Text(review.title!, style: AppTypography.bodySmall),
                         ],
                       ],
                     ),
@@ -117,9 +120,7 @@ class ReviewListView extends StatelessWidget {
           return Center(
             child: Text(
               'Error loading reviews',
-              style: AppTypography.bodySmall.copyWith(
-                color: AppColors.error,
-              ),
+              style: AppTypography.bodySmall.copyWith(color: AppColors.error),
             ),
           );
         },

@@ -28,21 +28,23 @@ class ChangePasswordCubit extends Cubit<ChangePasswordStates> {
     emit(ChangePasswordLoadingStates());
 
     Diohelper.putData(
-      url: isParent
-          ? ApiConstants.updateLoggedInParentPassword
-          : ApiConstants.updateLoggedInDoctorPassword,
-      token: CacheHelper.getData(key: 'token'),
-      data: {
-        'currentPassword': currentPassword,
-        'password': newPassword,
-        'confirmPassword': confirmPassword,
-      },
-    ).then((value) {
-      debugPrint(value.data.toString());
-      emit(ChangePasswordSuccessStates());
-    }).catchError((error) {
-      debugPrint('Error changing password: $error');
-      emit(ChangePasswordFailedStates());
-    });
+          url: isParent
+              ? ApiConstants.updateLoggedInParentPassword
+              : ApiConstants.updateLoggedInDoctorPassword,
+          token: CacheHelper.getData(key: 'token'),
+          data: {
+            'currentPassword': currentPassword,
+            'password': newPassword,
+            'confirmPassword': confirmPassword,
+          },
+        )
+        .then((value) {
+          debugPrint(value.data.toString());
+          emit(ChangePasswordSuccessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error changing password: $error');
+          emit(ChangePasswordFailedStates());
+        });
   }
 }

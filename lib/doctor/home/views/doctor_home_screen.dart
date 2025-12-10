@@ -43,8 +43,9 @@ class DoctorHomeBody extends StatelessWidget {
                   ),
                   const SizedBox(height: AppSpacing.xl),
                   Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSpacing.lg,
+                    ),
                     child: Text(
                       'Quick Actions',
                       style: AppTypography.titleLarge.copyWith(
@@ -64,8 +65,11 @@ class DoctorHomeBody extends StatelessWidget {
     );
   }
 
-  Widget _buildActionsGrid(BuildContext context,
-      List<Map<String, Object>> items, DeviceBreakpoint breakpoint) {
+  Widget _buildActionsGrid(
+    BuildContext context,
+    List<Map<String, Object>> items,
+    DeviceBreakpoint breakpoint,
+  ) {
     final crossAxisCount = breakpoint == DeviceBreakpoint.mobile
         ? 1
         : (breakpoint == DeviceBreakpoint.tablet ? 2 : 3);
@@ -100,44 +104,40 @@ class DoctorHomeBody extends StatelessWidget {
         'title': 'Upcoming Sessions',
         'subtitle': 'Manage today and tomorrow\'s schedule',
         'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const SessionsScreen(status: 'coming'),
-              ),
-            ),
+          context,
+          MaterialPageRoute(
+            builder: (_) => const SessionsScreen(status: 'coming'),
+          ),
+        ),
       },
       {
         'icon': Icons.task_alt_rounded,
         'title': 'Completed Sessions',
         'subtitle': 'Review past sessions and progress',
         'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const SessionsScreen(status: 'done'),
-              ),
-            ),
+          context,
+          MaterialPageRoute(
+            builder: (_) => const SessionsScreen(status: 'done'),
+          ),
+        ),
       },
       {
         'icon': Icons.person_add_alt_1_outlined,
         'title': 'New Session',
         'subtitle': 'Create a session for a registered child',
         'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const RegisteredChildrenScreen(),
-              ),
-            ),
+          context,
+          MaterialPageRoute(builder: (_) => const RegisteredChildrenScreen()),
+        ),
       },
       {
         'icon': Icons.event_note_rounded,
         'title': 'Appointment List',
         'subtitle': 'View and manage all appointments',
         'onTap': () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => const AppointmentListScreen(),
-              ),
-            ),
+          context,
+          MaterialPageRoute(builder: (_) => const AppointmentListScreen()),
+        ),
       },
     ];
   }

@@ -25,9 +25,11 @@ class _CharityMedicanBodyState extends State<CharityMedicanBody> {
   void _filter(String query) {
     setState(() {
       displayed = widget.medicines
-          .where((med) => (med.medicanName ?? '')
-              .toLowerCase()
-              .contains(query.toLowerCase()))
+          .where(
+            (med) => (med.medicanName ?? '').toLowerCase().contains(
+              query.toLowerCase(),
+            ),
+          )
           .toList();
     });
   }
@@ -40,9 +42,7 @@ class _CharityMedicanBodyState extends State<CharityMedicanBody> {
         _buildHeader(),
 
         // Content
-        Expanded(
-          child: _buildContent(),
-        ),
+        Expanded(child: _buildContent()),
       ],
     );
   }
@@ -55,16 +55,15 @@ class _CharityMedicanBodyState extends State<CharityMedicanBody> {
         AppSpacing.lg,
         AppSpacing.lg,
       ),
-      decoration: const BoxDecoration(
-        color: AppColors.transparent,
-      ),
+      decoration: const BoxDecoration(color: AppColors.transparent),
       child: Column(
         children: [
           Text(
             'Explore available medicines from this charity',
             textAlign: TextAlign.center,
-            style: AppTypography.bodySmall
-                .copyWith(color: AppColors.textSecondary),
+            style: AppTypography.bodySmall.copyWith(
+              color: AppColors.textSecondary,
+            ),
           ),
           const AppSpacer.md(),
           AppSearchField(

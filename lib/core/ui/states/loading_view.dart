@@ -40,12 +40,8 @@ class LoadingView extends StatelessWidget {
   }) : size = 24.0;
 
   /// Create a full-screen loading overlay
-  LoadingView.overlay({
-    super.key,
-    this.message,
-    this.size = 40.0,
-    this.color,
-  }) : backgroundColor = Colors.black.withValues(alpha: 0.5);
+  LoadingView.overlay({super.key, this.message, this.size = 40.0, this.color})
+    : backgroundColor = Colors.black.withValues(alpha: 0.5);
 
   @override
   Widget build(BuildContext context) {

@@ -31,23 +31,30 @@ void main() {
   }
 
   group('DoctorProfileScreen', () {
-    testWidgets('displays LoadingView when state is GetDoctorDataLoadingStates',
-        (tester) async {
-      when(() => mockProfileCubit.state)
-          .thenReturn(GetDoctorDataLoadingStates());
+    testWidgets(
+      'displays LoadingView when state is GetDoctorDataLoadingStates',
+      (tester) async {
+        when(
+          () => mockProfileCubit.state,
+        ).thenReturn(GetDoctorDataLoadingStates());
 
-      await tester.pumpWidget(createWidgetUnderTest());
+        await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.byType(LoadingView), findsOneWidget);
-    });
+        expect(find.byType(LoadingView), findsOneWidget);
+      },
+    );
 
-    testWidgets('displays Stat Bar and Details in Success state',
-        (tester) async {
+    testWidgets('displays Stat Bar and Details in Success state', (
+      tester,
+    ) async {
       final mockData = GetLoggedDoctorData(
         data: Doctor(
           id: '1',
-          parent:
-              Parent(userName: 'Dr. Smith', age: 40, email: 'smith@doc.com'),
+          parent: Parent(
+            userName: 'Dr. Smith',
+            age: 40,
+            email: 'smith@doc.com',
+          ),
           speciailization: 'Pediatrician',
           ratingsAverage: 4,
           sessionPrice: 100,
@@ -56,8 +63,9 @@ void main() {
         ),
       );
 
-      when(() => mockProfileCubit.state)
-          .thenReturn(GetDoctorDataSuccsessStates());
+      when(
+        () => mockProfileCubit.state,
+      ).thenReturn(GetDoctorDataSuccsessStates());
       when(() => mockProfileCubit.currentDoctor).thenReturn(mockData);
 
       await tester.pumpWidget(createWidgetUnderTest());

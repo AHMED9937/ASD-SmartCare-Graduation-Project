@@ -23,8 +23,11 @@ class BookingDetailRow extends StatelessWidget {
       child: Row(
         children: [
           if (icon != null) ...[
-            Icon(icon,
-                size: 18, color: AppColors.primary.withValues(alpha: 0.6)),
+            Icon(
+              icon,
+              size: 18,
+              color: AppColors.primary.withValues(alpha: 0.6),
+            ),
             const SizedBox(width: AppSpacing.sm),
           ],
           Text(

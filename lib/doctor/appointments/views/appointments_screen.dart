@@ -40,8 +40,10 @@ class _AppointmentsOverviewBodyState extends State<AppointmentsOverviewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DoctorAppointmentListCubit,
-        GetDoctorAppointmentListStates>(
+    return BlocConsumer<
+      DoctorAppointmentListCubit,
+      GetDoctorAppointmentListStates
+    >(
       listener: (context, state) {},
       builder: (context, state) {
         final cubit = DoctorAppointmentListCubit.get(context);
@@ -75,7 +77,9 @@ class _AppointmentsOverviewBodyState extends State<AppointmentsOverviewBody> {
   }
 
   Widget _buildStateContent(
-      BuildContext context, GetDoctorAppointmentListStates state) {
+    BuildContext context,
+    GetDoctorAppointmentListStates state,
+  ) {
     if (state is GetDoctorAppointmentListLoadingStates) {
       return const LoadingView();
     }
@@ -83,8 +87,9 @@ class _AppointmentsOverviewBodyState extends State<AppointmentsOverviewBody> {
     if (state is GetDoctorAppointmentListFailedStates) {
       return ErrorView(
         message: 'Failed to load appointments',
-        onRetry: () => DoctorAppointmentListCubit.get(context)
-            .fetchAppointments(status: _selectedStatus.toLowerCase()),
+        onRetry: () => DoctorAppointmentListCubit.get(
+          context,
+        ).fetchAppointments(status: _selectedStatus.toLowerCase()),
       );
     }
 
@@ -102,8 +107,9 @@ class _AppointmentsOverviewBodyState extends State<AppointmentsOverviewBody> {
     // Grouping logic (simplified)
     final grouped = <String, List<dynamic>>{};
     for (final appt in appointments) {
-      final date =
-          DateTime.parse(appt.date ?? DateTime.now().toIso8601String());
+      final date = DateTime.parse(
+        appt.date ?? DateTime.now().toIso8601String(),
+      );
       final key = DateFormat('EEEE, MMM d, yyyy').format(date);
       grouped.putIfAbsent(key, () => []).add(appt);
     }

@@ -21,7 +21,9 @@ class AutismTestCubit extends Cubit<AutismTestStates> {
   AutismTestCubit() : super(AutismTestInitialState()) {
     // initialize one controller per question
     ansControllers = List.generate(
-        questionsCheckAutism.length, (index) => TextEditingController());
+      questionsCheckAutism.length,
+      (index) => TextEditingController(),
+    );
     _pages = buildQuestionWidgets();
   }
 
@@ -61,69 +63,67 @@ class AutismTestCubit extends Cubit<AutismTestStates> {
     "What is your child's age in months?",
     'What is the sex of your child (Male/Female)?',
     'Has your child ever had jaundice?',
-    'Is there a family member with ASD (Autism Spectrum Disorder)?'
+    'Is there a family member with ASD (Autism Spectrum Disorder)?',
   ];
 
   /// Free-text question widget, now tied to its own controller
-  Widget QSType1(int index, String Qs) => MyAudioRecorder(
-        question: Qs,
-        controller: ansControllers[index],
-      );
+  Widget QSType1(int index, String Qs) =>
+      MyAudioRecorder(question: Qs, controller: ansControllers[index]);
 
   Widget QSType2(String Qs, int QSIndex) => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          TextUtils.textHeader(Qs, headerTextColor: Colors.black, fontSize: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  if (_currentAge > 0) {
-                    _currentAge--;
-                    ansControllers[QSIndex].text = '$_currentAge';
-                    emit(AutismTestChangeState());
-                  }
-                },
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-              ),
-              TextUtils.textHeader('$_currentAge m', fontSize: 20),
-              IconButton(
-                onPressed: () {
-                  if (_currentAge < 100) {
-                    _currentAge++;
-                    ansControllers[QSIndex].text = '$_currentAge';
-                    emit(AutismTestChangeState());
-                  }
-                },
-                icon: const Icon(Icons.arrow_forward_ios, color: Colors.black),
-              ),
-            ],
-          ),
-        ],
-      );
-
-  Widget QSType3(String Qs, int QSIndex) => Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      TextUtils.textHeader(Qs, headerTextColor: Colors.black, fontSize: 20),
+      Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextUtils.textHeader(Qs, headerTextColor: Colors.black),
-          AppButton(
-            label: 'male',
+          IconButton(
             onPressed: () {
-              ansControllers[QSIndex].text = 'male';
-              emit(AutismTestChangeState());
+              if (_currentAge > 0) {
+                _currentAge--;
+                ansControllers[QSIndex].text = '$_currentAge';
+                emit(AutismTestChangeState());
+              }
             },
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           ),
-          const SizedBox(height: 8),
-          AppButton.secondary(
-            label: 'female',
+          TextUtils.textHeader('$_currentAge m', fontSize: 20),
+          IconButton(
             onPressed: () {
-              ansControllers[QSIndex].text = 'female';
-              emit(AutismTestChangeState());
+              if (_currentAge < 100) {
+                _currentAge++;
+                ansControllers[QSIndex].text = '$_currentAge';
+                emit(AutismTestChangeState());
+              }
             },
+            icon: const Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),
         ],
-      );
+      ),
+    ],
+  );
+
+  Widget QSType3(String Qs, int QSIndex) => Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      TextUtils.textHeader(Qs, headerTextColor: Colors.black),
+      AppButton(
+        label: 'male',
+        onPressed: () {
+          ansControllers[QSIndex].text = 'male';
+          emit(AutismTestChangeState());
+        },
+      ),
+      const SizedBox(height: 8),
+      AppButton.secondary(
+        label: 'female',
+        onPressed: () {
+          ansControllers[QSIndex].text = 'female';
+          emit(AutismTestChangeState());
+        },
+      ),
+    ],
+  );
 
   List<Widget> buildQuestionWidgets() {
     return List.generate(questionsCheckAutism.length, (i) {
@@ -215,8 +215,11 @@ class AutismTestCubit extends Cubit<AutismTestStates> {
     final hasAudio = fileP.isNotEmpty;
 
     if (!hasText && !hasAudio) {
-      emit(GetQsFinalPredictionErrorState(
-          err: 'Please enter text or pick an audio file'));
+      emit(
+        GetQsFinalPredictionErrorState(
+          err: 'Please enter text or pick an audio file',
+        ),
+      );
       return;
     }
 
@@ -234,7 +237,8 @@ class AutismTestCubit extends Cubit<AutismTestStates> {
     };
     final formData = FormData.fromMap(map);
     debugPrint(
-        'Sending prediction request with ${formData.files.length} files');
+      'Sending prediction request with ${formData.files.length} files',
+    );
     try {
       final response = await Diohelper.postData(
         url: ApiConstants.QSfinalPredication,
@@ -243,11 +247,15 @@ class AutismTestCubit extends Cubit<AutismTestStates> {
       );
       final prediction = PredictionMessage.fromJson(response.data);
       if (_currentIndex == 13) {
-        final result = prediction.autismPrediction ??
+        final result =
+            prediction.autismPrediction ??
             CacheHelper.getData(key: 'autism_prediction') ??
             0;
-        emit(GetQsFinalPredictionSuccessState(
-            result is int ? result : int.tryParse(result.toString()) ?? 0));
+        emit(
+          GetQsFinalPredictionSuccessState(
+            result is int ? result : int.tryParse(result.toString()) ?? 0,
+          ),
+        );
       } else {
         emit(GetOneQsPredictionSuccessState());
       }

@@ -43,8 +43,8 @@ class _OtpverificationscreenState extends State<Otpverificationscreen> {
                 errorMessage: (state is ForgetPasswordError)
                     ? 'Something went wrong. Please try again.'
                     : (state is ResetPasswordCodeError
-                        ? 'Invalid verification code. Please check and try again.'
-                        : null),
+                          ? 'Invalid verification code. Please check and try again.'
+                          : null),
                 onSubmit: (code) {
                   cubit.verificationCode = code;
                   // Optional: Auto-verify on submit? The original code had a button.

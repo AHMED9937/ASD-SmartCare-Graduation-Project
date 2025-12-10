@@ -90,10 +90,7 @@ class _ChatBotBodyState extends State<ChatBotBody> {
                   // Manually add user message before cubit logic if needed,
                   // but following original logic it adds in listener or before call.
                   // Original: _sendMessage added it to list.
-                  cubit.messages.add({
-                    'message': text,
-                    'isUser': true,
-                  });
+                  cubit.messages.add({'message': text, 'isUser': true});
                   cubit.sendMessage();
                   cubit.questionController.clear();
                   _scrollToBottom();

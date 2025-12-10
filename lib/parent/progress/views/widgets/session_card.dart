@@ -7,10 +7,7 @@ import 'package:asdsmartcare/parent/progress/views/session_details_screen.dart';
 class SessionCard extends StatelessWidget {
   final SessionData session;
 
-  const SessionCard({
-    super.key,
-    required this.session,
-  });
+  const SessionCard({super.key, required this.session});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +19,7 @@ class SessionCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (_) => SessionDetail(session: session),
-          ),
+          MaterialPageRoute(builder: (_) => SessionDetail(session: session)),
         );
       },
       child: Column(
@@ -64,9 +59,7 @@ class SessionCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           Text(
             comments,
-            style: AppTypography.bodySmall.copyWith(
-              color: AppColors.onSurface,
-            ),
+            style: AppTypography.bodySmall.copyWith(color: AppColors.onSurface),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

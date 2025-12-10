@@ -21,20 +21,20 @@ void main() {
     mockCubit = MockDoctorAppointmentListCubit();
     // Default behaviors
     when(() => mockCubit.appointments).thenReturn(null);
-    when(() => mockCubit.fetchAppointments(status: any(named: 'status')))
-        .thenAnswer((_) async {});
+    when(
+      () => mockCubit.fetchAppointments(status: any(named: 'status')),
+    ).thenAnswer((_) async {});
   });
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: AppointmentListScreen(cubit: mockCubit),
-    );
+    return MaterialApp(home: AppointmentListScreen(cubit: mockCubit));
   }
 
   group('AppointmentListScreen Widget Tests', () {
     testWidgets('renders LoadingView when state is Loading', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorAppointmentListLoadingStates());
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorAppointmentListLoadingStates());
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -42,8 +42,9 @@ void main() {
     });
 
     testWidgets('renders ErrorView when state is Failed', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorAppointmentListFailedStates());
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorAppointmentListFailedStates());
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -52,10 +53,12 @@ void main() {
     });
 
     testWidgets('renders EmptyView when no appointments found', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorAppointmentListSuccessStates());
-      when(() => mockCubit.appointments)
-          .thenReturn(MockAppointmentData.emptyResponse);
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorAppointmentListSuccessStates());
+      when(
+        () => mockCubit.appointments,
+      ).thenReturn(MockAppointmentData.emptyResponse);
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -64,10 +67,12 @@ void main() {
     });
 
     testWidgets('renders list of appointments on success', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorAppointmentListSuccessStates());
-      when(() => mockCubit.appointments)
-          .thenReturn(MockAppointmentData.sampleResponse);
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorAppointmentListSuccessStates());
+      when(
+        () => mockCubit.appointments,
+      ).thenReturn(MockAppointmentData.sampleResponse);
 
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pump();
@@ -77,12 +82,15 @@ void main() {
       expect(find.text('BOOKED'), findsOneWidget);
     });
 
-    testWidgets('StatusFilterRow interaction triggers fetchAppointments',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorAppointmentListSuccessStates());
-      when(() => mockCubit.appointments)
-          .thenReturn(MockAppointmentData.sampleResponse);
+    testWidgets('StatusFilterRow interaction triggers fetchAppointments', (
+      tester,
+    ) async {
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorAppointmentListSuccessStates());
+      when(
+        () => mockCubit.appointments,
+      ).thenReturn(MockAppointmentData.sampleResponse);
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -92,12 +100,15 @@ void main() {
       verify(() => mockCubit.fetchAppointments(status: 'cancelled')).called(1);
     });
 
-    testWidgets('ResponsiveContainer uses mobile layout on small screens',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorAppointmentListSuccessStates());
-      when(() => mockCubit.appointments)
-          .thenReturn(MockAppointmentData.sampleResponse);
+    testWidgets('ResponsiveContainer uses mobile layout on small screens', (
+      tester,
+    ) async {
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorAppointmentListSuccessStates());
+      when(
+        () => mockCubit.appointments,
+      ).thenReturn(MockAppointmentData.sampleResponse);
 
       tester.view.physicalSize = const Size(400 * 3, 800 * 3);
       tester.view.devicePixelRatio = 3.0;

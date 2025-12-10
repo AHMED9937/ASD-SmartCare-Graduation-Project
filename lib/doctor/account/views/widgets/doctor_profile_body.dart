@@ -69,7 +69,10 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       color: AppColors.scaffoldBackground.withValues(alpha: 0.8),
       child: _tabBar,
@@ -104,10 +107,7 @@ class _ImmersiveHeader extends StatelessWidget {
             const AppSpacer.xl(),
             Semantics(
               label: 'Doctor profile photo',
-              child: ProfileAvatar(
-                imageUrl: doctor.image,
-                radius: 54,
-              ),
+              child: ProfileAvatar(imageUrl: doctor.image, radius: 54),
             ),
             const AppSpacer.md(),
             Text(
@@ -189,7 +189,8 @@ class _ProfessionalTab extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => FileFetchAndOpenScreen(
-                          rawUrl: doctor.medicalLicense!),
+                        rawUrl: doctor.medicalLicense!,
+                      ),
                     ),
                   );
                 }
@@ -305,9 +306,8 @@ class _ActionButtons extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => EditDoctorProfileScreen(
-                    doctorData: cubit.currentDoctor!,
-                  ),
+                  builder: (_) =>
+                      EditDoctorProfileScreen(doctorData: cubit.currentDoctor!),
                 ),
               ).then((_) => cubit.getDoctorData());
             },
@@ -341,7 +341,10 @@ class _ActionButtons extends StatelessWidget {
             textColor: AppColors.error,
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(
-                  context, '/login', (route) => false);
+                context,
+                '/login',
+                (route) => false,
+              );
             },
           ),
         ),

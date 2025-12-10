@@ -40,29 +40,30 @@ void main() {
     blocTest<ChatBotCubit, ChatBotState>(
       'emits [ChatBotLoading, ChatBotSuccess] when sendMessage is successful',
       setUp: () {
-        when(() => mockDio.post(
-              any(),
-              queryParameters: any(named: 'queryParameters'),
-              data: any(named: 'data'),
-              options: any(named: 'options'),
-            )).thenAnswer((_) async => Response(
-              data: {
-                'response': 'Hello, I am fine!',
-                'session_id': 'test_session_id',
-              },
-              statusCode: 200,
-              requestOptions: RequestOptions(path: ''),
-            ));
+        when(
+          () => mockDio.post(
+            any(),
+            queryParameters: any(named: 'queryParameters'),
+            data: any(named: 'data'),
+            options: any(named: 'options'),
+          ),
+        ).thenAnswer(
+          (_) async => Response(
+            data: {
+              'response': 'Hello, I am fine!',
+              'session_id': 'test_session_id',
+            },
+            statusCode: 200,
+            requestOptions: RequestOptions(path: ''),
+          ),
+        );
       },
       build: () => cubit,
       act: (cubit) {
         cubit.questionController.text = 'How are you?';
         cubit.sendMessage();
       },
-      expect: () => [
-        isA<ChatBotLoading>(),
-        isA<ChatBotSuccess>(),
-      ],
+      expect: () => [isA<ChatBotLoading>(), isA<ChatBotSuccess>()],
       verify: (cubit) {
         expect(cubit.chatRes.response, 'Hello, I am fine!');
       },
@@ -71,23 +72,21 @@ void main() {
     blocTest<ChatBotCubit, ChatBotState>(
       'emits [ChatBotLoading, ChatBotError] when sendMessage fails',
       setUp: () {
-        when(() => mockDio.post(
-                  any(),
-                  queryParameters: any(named: 'queryParameters'),
-                  data: any(named: 'data'),
-                  options: any(named: 'options'),
-                ))
-            .thenThrow(DioException(requestOptions: RequestOptions(path: '')));
+        when(
+          () => mockDio.post(
+            any(),
+            queryParameters: any(named: 'queryParameters'),
+            data: any(named: 'data'),
+            options: any(named: 'options'),
+          ),
+        ).thenThrow(DioException(requestOptions: RequestOptions(path: '')));
       },
       build: () => cubit,
       act: (cubit) {
         cubit.questionController.text = 'Error message';
         cubit.sendMessage();
       },
-      expect: () => [
-        isA<ChatBotLoading>(),
-        isA<ChatBotError>(),
-      ],
+      expect: () => [isA<ChatBotLoading>(), isA<ChatBotError>()],
     );
 
     test('does not emit anything if question is empty', () async {

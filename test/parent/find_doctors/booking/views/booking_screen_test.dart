@@ -38,8 +38,9 @@ void main() {
     // Default mock behavior
     when(() => mockCubit.selectableDates).thenReturn({});
     when(() => mockCubit.getSlotsForDate(any())).thenReturn([]);
-    when(() => mockCubit.getDoctorsAppointments(any()))
-        .thenAnswer((_) async {});
+    when(
+      () => mockCubit.getDoctorsAppointments(any()),
+    ).thenAnswer((_) async {});
   });
 
   Widget createWidgetUnderTest() {
@@ -47,17 +48,15 @@ void main() {
       home: SizedBox(
         width: 400,
         height: 800,
-        child: Reservationscreen(
-          myDoctor: mockDoctor,
-          cubit: mockCubit,
-        ),
+        child: Reservationscreen(myDoctor: mockDoctor, cubit: mockCubit),
       ),
     );
   }
 
   group('Reservationscreen Widget Tests', () {
-    testWidgets('renders LoadingView when state is SlotsLoading',
-        (tester) async {
+    testWidgets('renders LoadingView when state is SlotsLoading', (
+      tester,
+    ) async {
       when(() => mockCubit.state).thenReturn(const SlotsLoading());
 
       await tester.pumpWidget(createWidgetUnderTest());
@@ -66,16 +65,18 @@ void main() {
     });
 
     testWidgets('renders ErrorView when state is SlotsError', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(const SlotsError(message: 'Something went wrong'));
+      when(
+        () => mockCubit.state,
+      ).thenReturn(const SlotsError(message: 'Something went wrong'));
 
       await tester.pumpWidget(createWidgetUnderTest());
 
       expect(find.byType(ErrorView), findsOneWidget);
     });
 
-    testWidgets('renders EmptyView when state is NoSlotsAvailable',
-        (tester) async {
+    testWidgets('renders EmptyView when state is NoSlotsAvailable', (
+      tester,
+    ) async {
       when(() => mockCubit.state).thenReturn(const NoSlotsAvailable());
 
       await tester.pumpWidget(createWidgetUnderTest());
@@ -85,8 +86,9 @@ void main() {
 
     testWidgets('renders BookingBody in success state', (tester) async {
       // Mocking SlotsLoaded with an empty AvailableSlots object (assuming map is the arg)
-      when(() => mockCubit.state)
-          .thenReturn(const SlotsLoaded(repo.AvailableSlots({})));
+      when(
+        () => mockCubit.state,
+      ).thenReturn(const SlotsLoaded(repo.AvailableSlots({})));
       when(() => mockCubit.selectableDates).thenReturn({mockDate});
       when(() => mockCubit.getSlotsForDate(any())).thenReturn([]);
 
@@ -100,10 +102,12 @@ void main() {
       expect(find.byType(ReviewCarousel), findsOneWidget);
     });
 
-    testWidgets('Hero animation tag is correctly applied to avatar',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(const SlotsLoaded(repo.AvailableSlots({})));
+    testWidgets('Hero animation tag is correctly applied to avatar', (
+      tester,
+    ) async {
+      when(
+        () => mockCubit.state,
+      ).thenReturn(const SlotsLoaded(repo.AvailableSlots({})));
       when(() => mockCubit.selectableDates).thenReturn({mockDate});
 
       await tester.pumpWidget(createWidgetUnderTest());
@@ -116,10 +120,12 @@ void main() {
       expect(heroWidget.tag, equals('doctor_avatar_doc-123'));
     });
 
-    testWidgets('Book Now button has correct accessibility labels',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(const SlotsLoaded(repo.AvailableSlots({})));
+    testWidgets('Book Now button has correct accessibility labels', (
+      tester,
+    ) async {
+      when(
+        () => mockCubit.state,
+      ).thenReturn(const SlotsLoaded(repo.AvailableSlots({})));
       when(() => mockCubit.selectableDates).thenReturn({mockDate});
 
       await tester.pumpWidget(createWidgetUnderTest());

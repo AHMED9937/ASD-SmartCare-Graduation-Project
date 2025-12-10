@@ -78,8 +78,9 @@ class AppDropdownField<T> extends StatelessWidget {
           // ignore: deprecated_member_use
           value: value,
           items: items.map((item) {
-            final displayText =
-                itemLabel != null ? itemLabel!(item) : item.toString();
+            final displayText = itemLabel != null
+                ? itemLabel!(item)
+                : item.toString();
             return DropdownMenuItem<T>(
               value: item,
               child: Text(displayText, style: AppTypography.bodyMedium),
@@ -118,8 +119,9 @@ class AppDropdownField<T> extends StatelessWidget {
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: AppRadius.xlRadius,
-              borderSide:
-                  BorderSide(color: AppColors.border.withValues(alpha: 0.5)),
+              borderSide: BorderSide(
+                color: AppColors.border.withValues(alpha: 0.5),
+              ),
             ),
           ),
           style: AppTypography.bodyMedium,

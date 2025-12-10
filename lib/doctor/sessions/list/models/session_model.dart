@@ -15,9 +15,8 @@ class SessionsResponse {
   }
 
   Map<String, dynamic> toJson() => {
-        if (data != null)
-          'data': data!.map((session) => session.toJson()).toList(),
-      };
+    if (data != null) 'data': data!.map((session) => session.toJson()).toList(),
+  };
 }
 
 /// Represents a single session between a doctor and a parent.
@@ -129,11 +128,11 @@ class DoctorData {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
-        'id': id,
-        if (parent != null) 'parent': parent!.toJson(),
-        'image': image,
-      };
+    '_id': id,
+    'id': id,
+    if (parent != null) 'parent': parent!.toJson(),
+    'image': image,
+  };
 }
 
 /// Parent info for a doctor inside a session.
@@ -157,12 +156,12 @@ class DoctorParent {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
-        'id': id,
-        'userName': userName,
-        'email': email,
-        if (childs != null) 'childs': childs,
-      };
+    '_id': id,
+    'id': id,
+    'userName': userName,
+    'email': email,
+    if (childs != null) 'childs': childs,
+  };
 }
 
 /// Parent who booked the session.
@@ -188,13 +187,13 @@ class ParentData {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
-        'id': id,
-        'userName': userName,
-        'email': email,
-        'role': role,
-        if (childs != null) 'childs': childs!.map((c) => c.toJson()).toList(),
-      };
+    '_id': id,
+    'id': id,
+    'userName': userName,
+    'email': email,
+    'role': role,
+    if (childs != null) 'childs': childs!.map((c) => c.toJson()).toList(),
+  };
 }
 
 /// A child record under a parent.
@@ -216,10 +215,10 @@ class Child {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
-        'id': id,
-        'childName': childName,
-        'age': age,
-        'gender': gender,
-      };
+    '_id': id,
+    'id': id,
+    'childName': childName,
+    'age': age,
+    'gender': gender,
+  };
 }

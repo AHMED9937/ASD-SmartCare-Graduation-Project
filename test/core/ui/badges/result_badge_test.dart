@@ -7,11 +7,7 @@ void main() {
     testWidgets('renders positive badge correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.positive(),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.positive())),
         ),
       );
 
@@ -22,11 +18,7 @@ void main() {
     testWidgets('renders negative badge correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.negative(),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.negative())),
         ),
       );
 
@@ -37,11 +29,7 @@ void main() {
     testWidgets('renders level badge with level 1', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.level(level: 1),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.level(level: 1))),
         ),
       );
 
@@ -52,11 +40,7 @@ void main() {
     testWidgets('renders level badge with level 2', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.level(level: 2),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.level(level: 2))),
         ),
       );
 
@@ -66,11 +50,7 @@ void main() {
     testWidgets('renders level badge with level 3', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.level(level: 3),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.level(level: 3))),
         ),
       );
 
@@ -99,11 +79,7 @@ void main() {
     testWidgets('positive badge shows check icon', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.positive(),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.positive())),
         ),
       );
 
@@ -113,11 +89,7 @@ void main() {
     testWidgets('negative badge shows warning icon', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.negative(),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.negative())),
         ),
       );
 
@@ -127,11 +99,7 @@ void main() {
     testWidgets('level badge shows analytics icon', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ResultBadge.level(level: 1),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ResultBadge.level(level: 1))),
         ),
       );
 
@@ -142,9 +110,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: ResultBadge.positive(label: 'All Clear'),
-            ),
+            body: Center(child: ResultBadge.positive(label: 'All Clear')),
           ),
         ),
       );
@@ -160,11 +126,7 @@ void main() {
 
         await tester.pumpWidget(
           const MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: ResultBadge.positive(),
-              ),
-            ),
+            home: Scaffold(body: Center(child: ResultBadge.positive())),
           ),
         );
 
@@ -178,11 +140,7 @@ void main() {
 
         await tester.pumpWidget(
           const MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: ResultBadge.positive(),
-              ),
-            ),
+            home: Scaffold(body: Center(child: ResultBadge.positive())),
           ),
         );
 

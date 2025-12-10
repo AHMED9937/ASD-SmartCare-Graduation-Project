@@ -39,18 +39,18 @@ class ResultBadge extends StatelessWidget {
     super.key,
     this.label = 'No Signs Detected',
     this.size = ResultBadgeSize.medium,
-  })  : icon = Icons.check_circle_rounded,
-        color = AppColors.success,
-        backgroundColor = null;
+  }) : icon = Icons.check_circle_rounded,
+       color = AppColors.success,
+       backgroundColor = null;
 
   /// Create a negative result badge (signs detected)
   const ResultBadge.negative({
     super.key,
     this.label = 'Signs Detected',
     this.size = ResultBadgeSize.medium,
-  })  : icon = Icons.warning_rounded,
-        color = AppColors.warning,
-        backgroundColor = null;
+  }) : icon = Icons.warning_rounded,
+       color = AppColors.warning,
+       backgroundColor = null;
 
   /// Create a level indicator badge
   factory ResultBadge.level({
@@ -99,19 +99,12 @@ class ResultBadge extends StatelessWidget {
       decoration: BoxDecoration(
         color: effectiveBackgroundColor,
         borderRadius: BorderRadius.circular(dimensions.borderRadius),
-        border: Border.all(
-          color: color.withValues(alpha: 0.3),
-          width: 1,
-        ),
+        border: Border.all(color: color.withValues(alpha: 0.3), width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            size: dimensions.iconSize,
-            color: color,
-          ),
+          Icon(icon, size: dimensions.iconSize, color: color),
           SizedBox(width: dimensions.spacing),
           Flexible(
             child: Text(

@@ -75,9 +75,7 @@ class TestSelectionBody extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.info.withValues(alpha: 0.08),
         borderRadius: AppRadius.card,
-        border: Border.all(
-          color: AppColors.info.withValues(alpha: 0.2),
-        ),
+        border: Border.all(color: AppColors.info.withValues(alpha: 0.2)),
       ),
       child: Row(
         children: [
@@ -192,11 +190,7 @@ class TestSelectionBody extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            icon,
-            size: 20,
-            color: AppColors.textSecondary,
-          ),
+          Icon(icon, size: 20, color: AppColors.textSecondary),
           const SizedBox(width: AppSpacing.sm),
           Expanded(
             child: Text(

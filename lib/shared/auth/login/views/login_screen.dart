@@ -60,9 +60,9 @@ class _LoginScreenContentState extends State<_LoginScreenContent> {
   void _handleLogin() {
     if (_formKey.currentState?.validate() ?? false) {
       context.read<UserLoginCubit>().login(
-            email: _emailController.text.trim(),
-            password: _passwordController.text,
-          );
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
     }
   }
 
@@ -92,13 +92,10 @@ class _LoginScreenContentState extends State<_LoginScreenContent> {
     CacheHelper.saveData(key: 'token', value: token).then((_) {
       if (!mounted) return;
       // Navigate using centralized routes
-      final targetRoute =
-          role == 'parent' ? AppRoutes.parentHome : AppRoutes.doctorHome;
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        targetRoute,
-        (route) => false,
-      );
+      final targetRoute = role == 'parent'
+          ? AppRoutes.parentHome
+          : AppRoutes.doctorHome;
+      Navigator.pushNamedAndRemoveUntil(context, targetRoute, (route) => false);
     });
   }
 
@@ -109,9 +106,7 @@ class _LoginScreenContentState extends State<_LoginScreenContent> {
         backgroundColor: AppColors.error,
         content: Text(
           state.error,
-          style: AppTypography.bodyMedium.copyWith(
-            color: AppColors.onError,
-          ),
+          style: AppTypography.bodyMedium.copyWith(color: AppColors.onError),
         ),
         action: SnackBarAction(
           label: 'Dismiss',
@@ -137,7 +132,8 @@ class _LoginScreenContentState extends State<_LoginScreenContent> {
       builder: (context, state) {
         // Check if we can actually pop - this handles edge cases where
         // canPop might return true but there's no meaningful route to go back to
-        final canGoBack = Navigator.canPop(context) &&
+        final canGoBack =
+            Navigator.canPop(context) &&
             ModalRoute.of(context)?.isFirst != true;
 
         return Scaffold(
@@ -157,10 +153,7 @@ class _LoginScreenContentState extends State<_LoginScreenContent> {
                 setState(() {
                   _rememberMe = value ?? false;
                 });
-                CacheHelper.saveData(
-                  key: 'rememberMe',
-                  value: _rememberMe,
-                );
+                CacheHelper.saveData(key: 'rememberMe', value: _rememberMe);
               },
               emailValidator: _validateEmail,
               passwordValidator: _validatePassword,

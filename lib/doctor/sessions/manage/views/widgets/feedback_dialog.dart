@@ -60,8 +60,9 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
           onPressed: () => Navigator.pop(context),
           child: Text(
             'Cancel',
-            style: AppTypography.labelLarge
-                .copyWith(color: AppColors.textSecondary),
+            style: AppTypography.labelLarge.copyWith(
+              color: AppColors.textSecondary,
+            ),
           ),
         ),
         AppButton(

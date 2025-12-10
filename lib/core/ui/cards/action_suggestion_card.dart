@@ -111,11 +111,7 @@ class _ActionSuggestionCardState extends State<ActionSuggestionCard> {
         color: _priorityColor.withValues(alpha: 0.15),
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Icon(
-        widget.icon,
-        color: _priorityColor,
-        size: 24,
-      ),
+      child: Icon(widget.icon, color: _priorityColor, size: 24),
     );
   }
 

@@ -160,23 +160,28 @@ class StripePaymentData {
 
   factory StripePaymentData.fromJson(Map<String, dynamic> json) {
     // Handle both flat response and nested 'data' field
-    final Map<String, dynamic> data =
-        json.containsKey('data') ? json['data'] as Map<String, dynamic> : json;
+    final Map<String, dynamic> data = json.containsKey('data')
+        ? json['data'] as Map<String, dynamic>
+        : json;
 
     return StripePaymentData(
-      paymentIntent: data['paymentIntent'] as String? ??
+      paymentIntent:
+          data['paymentIntent'] as String? ??
           data['client_secret'] as String? ??
           data['payment_intent'] as String? ??
           data['clientSecret'] as String? ??
           '',
-      ephemeralKey: data['ephemeralKey'] as String? ??
+      ephemeralKey:
+          data['ephemeralKey'] as String? ??
           data['ephemeral_key'] as String? ??
           data['ephemeralSecret'] as String? ??
           data['ephemeral_secret'] as String?,
-      customerId: data['customer'] as String? ??
+      customerId:
+          data['customer'] as String? ??
           data['customerId'] as String? ??
           data['customer_id'] as String?,
-      publishableKey: data['publishableKey'] as String? ??
+      publishableKey:
+          data['publishableKey'] as String? ??
           data['publishable_key'] as String? ??
           data['publishable_Key'] as String?,
     );
@@ -243,10 +248,9 @@ class BookingRepositoryImpl implements BookingRepository {
     } on DioException catch (e) {
       // Check for slot unavailable error
       if (e.response?.statusCode == 409 ||
-          (e.response?.data?['message']
-                  ?.toString()
-                  .toLowerCase()
-                  .contains('unavailable') ??
+          (e.response?.data?['message']?.toString().toLowerCase().contains(
+                'unavailable',
+              ) ??
               false)) {
         return const BookingFailure(
           message:
@@ -298,8 +302,9 @@ class BookingRepositoryImpl implements BookingRepository {
       );
 
       if (response.statusCode != 200) {
-        final serverMessage =
-            (response.data is Map) ? response.data['message'] : null;
+        final serverMessage = (response.data is Map)
+            ? response.data['message']
+            : null;
         return BookingFailure(
           message: serverMessage ?? 'Failed to generate payment sheet.',
           type: BookingErrorType.payment,

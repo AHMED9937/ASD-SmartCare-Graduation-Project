@@ -204,10 +204,9 @@ class _PaymentTypeState extends State<PaymentType> {
       final doctorId =
           widget.sessionData.data?.doctorId ?? widget.doctor.id ?? '';
       final appointmentId = widget.sessionData.data?.sId ?? '';
-      BookingCubit.get(context).processCashPayment(
-        doctorId: doctorId,
-        appointmentId: appointmentId,
-      );
+      BookingCubit.get(
+        context,
+      ).processCashPayment(doctorId: doctorId, appointmentId: appointmentId);
     }
   }
 }
@@ -299,8 +298,9 @@ class _SummaryRow extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           label,
-          style:
-              AppTypography.bodyMedium.copyWith(color: AppColors.textSecondary),
+          style: AppTypography.bodyMedium.copyWith(
+            color: AppColors.textSecondary,
+          ),
         ),
         const Spacer(),
         Text(
@@ -405,8 +405,9 @@ class _PremiumPaymentTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: AppColors.primary.withValues(alpha: 0.2),
-                      width: 2),
+                    color: AppColors.primary.withValues(alpha: 0.2),
+                    width: 2,
+                  ),
                 ),
               ),
           ],

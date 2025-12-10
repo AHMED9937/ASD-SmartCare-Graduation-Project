@@ -52,26 +52,27 @@ abstract final class AppTheme {
       // Typography
       // ─────────────────────────────────────────────────────────────────────────
       fontFamily: AppTypography.fontFamily,
-      textTheme: const TextTheme(
-        displayLarge: AppTypography.displayLarge,
-        displayMedium: AppTypography.displayMedium,
-        displaySmall: AppTypography.displaySmall,
-        headlineLarge: AppTypography.headlineLarge,
-        headlineMedium: AppTypography.headlineMedium,
-        headlineSmall: AppTypography.headlineSmall,
-        titleLarge: AppTypography.titleLarge,
-        titleMedium: AppTypography.titleMedium,
-        titleSmall: AppTypography.titleSmall,
-        bodyLarge: AppTypography.bodyLarge,
-        bodyMedium: AppTypography.bodyMedium,
-        bodySmall: AppTypography.bodySmall,
-        labelLarge: AppTypography.labelLarge,
-        labelMedium: AppTypography.labelMedium,
-        labelSmall: AppTypography.labelSmall,
-      ).apply(
-        bodyColor: AppColors.onSurface,
-        displayColor: AppColors.onSurface,
-      ),
+      textTheme:
+          const TextTheme(
+            displayLarge: AppTypography.displayLarge,
+            displayMedium: AppTypography.displayMedium,
+            displaySmall: AppTypography.displaySmall,
+            headlineLarge: AppTypography.headlineLarge,
+            headlineMedium: AppTypography.headlineMedium,
+            headlineSmall: AppTypography.headlineSmall,
+            titleLarge: AppTypography.titleLarge,
+            titleMedium: AppTypography.titleMedium,
+            titleSmall: AppTypography.titleSmall,
+            bodyLarge: AppTypography.bodyLarge,
+            bodyMedium: AppTypography.bodyMedium,
+            bodySmall: AppTypography.bodySmall,
+            labelLarge: AppTypography.labelLarge,
+            labelMedium: AppTypography.labelMedium,
+            labelSmall: AppTypography.labelSmall,
+          ).apply(
+            bodyColor: AppColors.onSurface,
+            displayColor: AppColors.onSurface,
+          ),
 
       // ─────────────────────────────────────────────────────────────────────────
       // App Bar
@@ -121,9 +122,7 @@ abstract final class AppTheme {
             vertical: AppSpacing.buttonPaddingV,
           ),
           minimumSize: const Size(0, AppSpacing.buttonHeight),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadius.button,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadius.button),
           textStyle: AppTypography.button,
         ),
       ),
@@ -140,9 +139,7 @@ abstract final class AppTheme {
             vertical: AppSpacing.buttonPaddingV,
           ),
           minimumSize: const Size(0, AppSpacing.buttonHeight),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadius.button,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadius.button),
           side: const BorderSide(color: AppColors.primary),
           textStyle: AppTypography.button,
         ),
@@ -160,9 +157,7 @@ abstract final class AppTheme {
             vertical: AppSpacing.buttonPaddingV,
           ),
           minimumSize: const Size(0, AppSpacing.buttonHeight),
-          shape: RoundedRectangleBorder(
-            borderRadius: AppRadius.button,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: AppRadius.button),
           textStyle: AppTypography.button,
         ),
       ),
@@ -174,9 +169,7 @@ abstract final class AppTheme {
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.onPrimary,
         elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.lgRadius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.lgRadius),
       ),
 
       // ─────────────────────────────────────────────────────────────────────────
@@ -213,15 +206,11 @@ abstract final class AppTheme {
           borderRadius: AppRadius.textField,
           borderSide: const BorderSide(color: AppColors.disabled),
         ),
-        hintStyle: AppTypography.bodyMedium.copyWith(
-          color: AppColors.textHint,
-        ),
+        hintStyle: AppTypography.bodyMedium.copyWith(color: AppColors.textHint),
         labelStyle: AppTypography.bodyMedium.copyWith(
           color: AppColors.textSecondary,
         ),
-        errorStyle: AppTypography.caption.copyWith(
-          color: AppColors.error,
-        ),
+        errorStyle: AppTypography.caption.copyWith(color: AppColors.error),
       ),
 
       // ─────────────────────────────────────────────────────────────────────────
@@ -231,9 +220,7 @@ abstract final class AppTheme {
         color: AppColors.surface,
         elevation: 1,
         margin: const EdgeInsets.all(AppSpacing.sm),
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.card,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.card),
       ),
 
       // ─────────────────────────────────────────────────────────────────────────
@@ -242,9 +229,7 @@ abstract final class AppTheme {
       dialogTheme: DialogThemeData(
         backgroundColor: AppColors.surface,
         elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.dialog,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.dialog),
         titleTextStyle: AppTypography.headlineSmall.copyWith(
           color: AppColors.onSurface,
         ),
@@ -260,9 +245,7 @@ abstract final class AppTheme {
         backgroundColor: AppColors.surface,
         modalBackgroundColor: AppColors.surface,
         elevation: 8,
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.bottomSheet,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.bottomSheet),
       ),
 
       // ─────────────────────────────────────────────────────────────────────────
@@ -273,9 +256,7 @@ abstract final class AppTheme {
         contentTextStyle: AppTypography.bodyMedium.copyWith(
           color: AppColors.surface,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.snackbar,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.snackbar),
         behavior: SnackBarBehavior.floating,
       ),
 
@@ -333,9 +314,7 @@ abstract final class AppTheme {
         subtitleTextStyle: AppTypography.bodySmall.copyWith(
           color: AppColors.textSecondary,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.smRadius,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.smRadius),
       ),
 
       // ─────────────────────────────────────────────────────────────────────────

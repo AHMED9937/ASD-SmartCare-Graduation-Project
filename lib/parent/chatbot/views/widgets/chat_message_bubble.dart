@@ -18,15 +18,14 @@ class ChatMessageBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
       child: Row(
-        mainAxisAlignment:
-            isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: isUser
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (!isUser) _buildBotAvatar(),
           const SizedBox(width: AppSpacing.sm),
-          Flexible(
-            child: _buildBubble(context),
-          ),
+          Flexible(child: _buildBubble(context)),
           const SizedBox(width: AppSpacing.md),
         ],
       ),

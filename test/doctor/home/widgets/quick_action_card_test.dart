@@ -9,16 +9,18 @@ void main() {
       const subtitle = 'Test Subtitle';
       const icon = Icons.add;
 
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: QuickActionCard(
-            icon: icon,
-            title: title,
-            subtitle: subtitle,
-            onTap: () {},
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: QuickActionCard(
+              icon: icon,
+              title: title,
+              subtitle: subtitle,
+              onTap: () {},
+            ),
           ),
         ),
-      ));
+      );
 
       expect(find.text(title), findsOneWidget);
       expect(find.text(subtitle), findsOneWidget);
@@ -28,16 +30,18 @@ void main() {
 
     testWidgets('triggers onTap callback', (tester) async {
       bool tapped = false;
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: QuickActionCard(
-            icon: Icons.add,
-            title: 'Title',
-            subtitle: 'Subtitle',
-            onTap: () => tapped = true,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: QuickActionCard(
+              icon: Icons.add,
+              title: 'Title',
+              subtitle: 'Subtitle',
+              onTap: () => tapped = true,
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.byType(QuickActionCard));
       expect(tapped, isTrue);

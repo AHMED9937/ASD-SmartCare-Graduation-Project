@@ -112,11 +112,7 @@ class _TestCardState extends State<TestCard> {
         ),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Icon(
-        widget.icon,
-        size: 28,
-        color: AppColors.primary,
-      ),
+      child: Icon(widget.icon, size: 28, color: AppColors.primary),
     );
   }
 

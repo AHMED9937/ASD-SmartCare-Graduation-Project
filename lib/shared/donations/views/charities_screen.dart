@@ -23,9 +23,7 @@ class CharityMedicine extends StatelessWidget {
               title: 'Charity Support',
               subtitle: 'Find organizations that can help',
             ),
-            Expanded(
-              child: CharityMedicineBody(),
-            ),
+            Expanded(child: CharityMedicineBody()),
           ],
         ),
       ),

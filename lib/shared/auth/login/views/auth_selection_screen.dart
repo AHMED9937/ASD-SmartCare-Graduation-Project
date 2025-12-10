@@ -26,7 +26,8 @@ class _AuthSelectionScreenState extends State<AuthSelectionScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const Selectusertypescreen()),
+                builder: (context) => const Selectusertypescreen(),
+              ),
             );
           },
         ),

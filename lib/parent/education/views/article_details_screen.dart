@@ -39,7 +39,8 @@ class Showarticle extends StatelessWidget {
                       Image.network(imageUrl, fit: BoxFit.cover)
                     else
                       Container(
-                          color: AppColors.primary.withValues(alpha: 0.2)),
+                        color: AppColors.primary.withValues(alpha: 0.2),
+                      ),
 
                     // Gradient Overlay for readability
                     const DecoratedBox(
@@ -47,10 +48,7 @@ class Showarticle extends StatelessWidget {
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.black26,
-                          ],
+                          colors: [Colors.transparent, Colors.black26],
                         ),
                       ),
                     ),
@@ -162,10 +160,7 @@ class Showarticle extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        AppIconButton(
-          icon: Icons.share_rounded,
-          onPressed: () {},
-        ),
+        AppIconButton(icon: Icons.share_rounded, onPressed: () {}),
       ],
     );
   }
@@ -181,8 +176,11 @@ class _CircularBackButton extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: Colors.white,
         child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              size: 18, color: AppColors.primary),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 18,
+            color: AppColors.primary,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),

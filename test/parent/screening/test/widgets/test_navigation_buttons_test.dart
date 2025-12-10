@@ -7,11 +7,7 @@ void main() {
     testWidgets('renders next button', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-            ),
-          ),
+          home: Scaffold(body: TestNavigationButtons(onNext: () {})),
         ),
       );
 
@@ -24,9 +20,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () => nextPressed = true,
-            ),
+            body: TestNavigationButtons(onNext: () => nextPressed = true),
           ),
         ),
       );
@@ -37,8 +31,9 @@ void main() {
       expect(nextPressed, isTrue);
     });
 
-    testWidgets('shows previous button when showPrevious is true',
-        (tester) async {
+    testWidgets('shows previous button when showPrevious is true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -54,15 +49,13 @@ void main() {
       expect(find.text('Previous'), findsOneWidget);
     });
 
-    testWidgets('hides previous button when showPrevious is false',
-        (tester) async {
+    testWidgets('hides previous button when showPrevious is false', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-              showPrevious: false,
-            ),
+            body: TestNavigationButtons(onNext: () {}, showPrevious: false),
           ),
         ),
       );
@@ -70,8 +63,9 @@ void main() {
       expect(find.text('Previous'), findsNothing);
     });
 
-    testWidgets('triggers onPrevious when previous button is pressed',
-        (tester) async {
+    testWidgets('triggers onPrevious when previous button is pressed', (
+      tester,
+    ) async {
       var prevPressed = false;
 
       await tester.pumpWidget(
@@ -96,10 +90,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-              isLastQuestion: true,
-            ),
+            body: TestNavigationButtons(onNext: () {}, isLastQuestion: true),
           ),
         ),
       );
@@ -107,15 +98,13 @@ void main() {
       expect(find.text('Complete Test'), findsOneWidget);
     });
 
-    testWidgets('shows loading indicator when isLoading is true',
-        (tester) async {
+    testWidgets('shows loading indicator when isLoading is true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-              isLoading: true,
-            ),
+            body: TestNavigationButtons(onNext: () {}, isLoading: true),
           ),
         ),
       );
@@ -127,10 +116,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-              nextLabel: 'Continue',
-            ),
+            body: TestNavigationButtons(onNext: () {}, nextLabel: 'Continue'),
           ),
         ),
       );
@@ -158,11 +144,7 @@ void main() {
     testWidgets('has accessibility semantics for next button', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-            ),
-          ),
+          home: Scaffold(body: TestNavigationButtons(onNext: () {})),
         ),
       );
 
@@ -178,15 +160,13 @@ void main() {
       expect(semantics.label.toLowerCase(), contains('next'));
     });
 
-    testWidgets('has accessibility semantics for complete button',
-        (tester) async {
+    testWidgets('has accessibility semantics for complete button', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: TestNavigationButtons(
-              onNext: () {},
-              isLastQuestion: true,
-            ),
+            body: TestNavigationButtons(onNext: () {}, isLastQuestion: true),
           ),
         ),
       );
@@ -259,10 +239,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
-              body: TestNavigationButtons(
-                onNext: () {},
-                isLoading: true,
-              ),
+              body: TestNavigationButtons(onNext: () {}, isLoading: true),
             ),
           ),
         );

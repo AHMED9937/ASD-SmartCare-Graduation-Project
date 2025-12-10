@@ -23,9 +23,7 @@ class ChangePasswordScreen extends StatelessWidget {
       filled: true,
       fillColor: Colors.white,
       contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(24),
-      ),
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
     );
   }
 
@@ -45,8 +43,8 @@ class ChangePasswordScreen extends StatelessWidget {
           if (state is ChangePasswordFailedStates) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                  content:
-                      Text('Failed to change password. Please try again.')),
+                content: Text('Failed to change password. Please try again.'),
+              ),
             );
           }
         },
@@ -77,11 +75,14 @@ class ChangePasswordScreen extends StatelessWidget {
                           const SizedBox(height: AppSpacing.xl),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 24, vertical: 32),
+                              horizontal: 24,
+                              vertical: 32,
+                            ),
                             decoration: const BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(24)),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(24),
+                              ),
                             ),
                             child: Form(
                               key: cubit.formKey,
@@ -96,8 +97,9 @@ class ChangePasswordScreen extends StatelessWidget {
                                         decoration: _decoration(
                                           hint: 'Enter your current password',
                                           obscure: obscure,
-                                          toggle: () => cubit
-                                              .obscureCurrent.value = !obscure,
+                                          toggle: () =>
+                                              cubit.obscureCurrent.value =
+                                                  !obscure,
                                         ),
                                         validator: (v) => (v ?? '').isEmpty
                                             ? 'Please enter your current password'
@@ -140,8 +142,9 @@ class ChangePasswordScreen extends StatelessWidget {
                                         decoration: _decoration(
                                           hint: 'Confirm your new password',
                                           obscure: obscure,
-                                          toggle: () => cubit
-                                              .obscureConfirm.value = !obscure,
+                                          toggle: () =>
+                                              cubit.obscureConfirm.value =
+                                                  !obscure,
                                         ),
                                         validator: (v) {
                                           if ((v ?? '').isEmpty) {
@@ -160,8 +163,8 @@ class ChangePasswordScreen extends StatelessWidget {
                                     width: double.infinity,
                                     height: 57,
                                     child: ElevatedButton(
-                                      onPressed: state
-                                              is ChangePasswordLoadingStates
+                                      onPressed:
+                                          state is ChangePasswordLoadingStates
                                           ? null
                                           : () {
                                               if (cubit.formKey.currentState!
@@ -169,24 +172,28 @@ class ChangePasswordScreen extends StatelessWidget {
                                                 cubit.changePassword(
                                                   isParent: isParent,
                                                   currentPassword: cubit
-                                                      .currentController.text,
+                                                      .currentController
+                                                      .text,
                                                   newPassword:
                                                       cubit.newController.text,
                                                   confirmPassword: cubit
-                                                      .confirmController.text,
+                                                      .confirmController
+                                                      .text,
                                                 );
                                               }
                                             },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            const Color(0xFF133E87),
+                                        backgroundColor: const Color(
+                                          0xFF133E87,
+                                        ),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                         ),
                                       ),
-                                      child: state
-                                              is ChangePasswordLoadingStates
+                                      child:
+                                          state is ChangePasswordLoadingStates
                                           ? const SizedBox(
                                               width: 20,
                                               height: 20,
@@ -198,8 +205,9 @@ class ChangePasswordScreen extends StatelessWidget {
                                           : const Text(
                                               'Change Password',
                                               style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: Colors.white),
+                                                fontSize: 16,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                     ),
                                   ),

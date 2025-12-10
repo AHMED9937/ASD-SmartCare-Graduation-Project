@@ -18,34 +18,38 @@ class TestHistoryCubit extends Cubit<GetTestHistoryStates> {
     emit(GetAutisumTestHistoryLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants
-          .GetAutismTestHistory, // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Fetched autism test history');
-      His_autisumTest = HistoryAutisumTest.fromJson(value.data);
-      emit(GetAutisumTestHistorySuccsessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching autism test history: $error');
-      emit(GetAutisumTestHistoryFailedStates());
-    });
+          url: ApiConstants
+              .GetAutismTestHistory, // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Fetched autism test history');
+          His_autisumTest = HistoryAutisumTest.fromJson(value.data);
+          emit(GetAutisumTestHistorySuccsessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching autism test history: $error');
+          emit(GetAutisumTestHistoryFailedStates());
+        });
   }
 
   void GetAutismLevelTestHistory() {
     emit(GetAutisumLevelTestHistoryLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants
-          .GetAutismLevelTestHistory, // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Fetched autism level test history');
-      His_autisumLevelTest = HistoryAustisumLevelTest.fromJson(value.data);
+          url: ApiConstants
+              .GetAutismLevelTestHistory, // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Fetched autism level test history');
+          His_autisumLevelTest = HistoryAustisumLevelTest.fromJson(value.data);
 
-      emit(GetAutisumLevelTestHistorySuccsessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching autism level test history: $error');
-      emit(GetAutisumLevelTestHistoryFailedStates());
-    });
+          emit(GetAutisumLevelTestHistorySuccsessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching autism level test history: $error');
+          emit(GetAutisumLevelTestHistoryFailedStates());
+        });
   }
 }

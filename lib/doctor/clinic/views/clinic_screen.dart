@@ -21,7 +21,7 @@ class _ClinicDoctorScreenState extends State<ClinicDoctorScreen> {
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday'
+    'Sunday',
   ];
 
   final Map<String, bool> _availableDays = {};
@@ -87,9 +87,9 @@ class _ClinicDoctorScreenState extends State<ClinicDoctorScreen> {
 
   Future<void> _pickTime(String day) async {
     if (_selectedDates[day] == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Select date first')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Select date first')));
       return;
     }
     final t = await showTimePicker(
@@ -163,7 +163,8 @@ class _ClinicDoctorScreenState extends State<ClinicDoctorScreen> {
           if (state is AvailabilitySuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
-                  content: Text('Availability updated successfully')),
+                content: Text('Availability updated successfully'),
+              ),
             );
           }
           if (state is AvailabilityError) {
@@ -234,10 +235,12 @@ class _ClinicDoctorScreenState extends State<ClinicDoctorScreen> {
             '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
 
         final serverSlots = cubit.availabilityDays!.data!
-            .where((s) =>
-                s.day == day.toLowerCase() &&
-                s.time == tod &&
-                s.date == dateStr)
+            .where(
+              (s) =>
+                  s.day == day.toLowerCase() &&
+                  s.time == tod &&
+                  s.date == dateStr,
+            )
             .toList();
 
         if (serverSlots.isNotEmpty) {
@@ -246,17 +249,19 @@ class _ClinicDoctorScreenState extends State<ClinicDoctorScreen> {
 
         setState(() {
           _selectedTimes[day]!.removeAt(index);
-          _newSlots.removeWhere((s) =>
-              s['day'] == day.toLowerCase() &&
-              s['date'] == dateStr &&
-              s['time'] == tod);
+          _newSlots.removeWhere(
+            (s) =>
+                s['day'] == day.toLowerCase() &&
+                s['date'] == dateStr &&
+                s['time'] == tod,
+          );
         });
       },
       onSave: () {
         if (_newSlots.isEmpty) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No new slots to save')),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(const SnackBar(content: Text('No new slots to save')));
           return;
         }
         AvailabilityCubit.get(context).submitAvailability(_newSlots);

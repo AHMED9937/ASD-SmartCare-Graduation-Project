@@ -18,7 +18,10 @@ class ServiceDock extends StatelessWidget {
   static const List<ServiceItem> _services = [
     ServiceItem(Icons.auto_awesome, 'AI Test', AppRoutes.autismTest),
     ServiceItem(
-        Icons.stacked_bar_chart_rounded, 'Progress', AppRoutes.childProgress),
+      Icons.stacked_bar_chart_rounded,
+      'Progress',
+      AppRoutes.childProgress,
+    ),
     ServiceItem(Icons.menu_book_rounded, 'Education', AppRoutes.education),
     ServiceItem(Icons.medication_rounded, 'Medicines', AppRoutes.medicines),
     ServiceItem(Icons.volunteer_activism_rounded, 'Charity', AppRoutes.charity),

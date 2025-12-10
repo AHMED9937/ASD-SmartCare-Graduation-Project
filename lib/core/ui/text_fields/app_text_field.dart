@@ -127,16 +127,16 @@ class AppTextField extends StatelessWidget {
     this.autofocus = false,
     this.focusNode,
     this.autovalidateMode,
-  })  : obscureText = false,
-        keyboardType = TextInputType.emailAddress,
-        textInputAction = TextInputAction.next,
-        inputFormatters = null,
-        maxLines = 1,
-        minLines = null,
-        maxLength = null,
-        prefixIcon = Icons.email_outlined,
-        suffixIcon = null,
-        onSuffixIconPressed = null;
+  }) : obscureText = false,
+       keyboardType = TextInputType.emailAddress,
+       textInputAction = TextInputAction.next,
+       inputFormatters = null,
+       maxLines = 1,
+       minLines = null,
+       maxLength = null,
+       prefixIcon = Icons.email_outlined,
+       suffixIcon = null,
+       onSuffixIconPressed = null;
 
   /// Create a password text field
   factory AppTextField.password({
@@ -241,11 +241,11 @@ class _PasswordTextField extends AppTextField {
     super.focusNode,
     super.autovalidateMode,
   }) : super(
-          obscureText: true,
-          keyboardType: TextInputType.visiblePassword,
-          textInputAction: TextInputAction.done,
-          prefixIcon: Icons.lock_outline,
-        );
+         obscureText: true,
+         keyboardType: TextInputType.visiblePassword,
+         textInputAction: TextInputAction.done,
+         prefixIcon: Icons.lock_outline,
+       );
 
   @override
   Widget build(BuildContext context) {

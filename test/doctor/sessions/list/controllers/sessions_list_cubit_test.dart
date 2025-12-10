@@ -30,17 +30,21 @@ void main() {
     blocTest<DoctorSessionListCubit, GetDoctorSessionListStates>(
       'emits [Loading, Success] when fetchSessions succeeds',
       build: () {
-        when(() => mockDio.get(
-              any(),
-              queryParameters: any(named: 'queryParameters'),
-              options: any(named: 'options'),
-              data: any(named: 'data'),
-              cancelToken: any(named: 'cancelToken'),
-              onReceiveProgress: any(named: 'onReceiveProgress'),
-            )).thenAnswer((_) async => Response(
-              data: {'data': []},
-              requestOptions: RequestOptions(path: ''),
-            ));
+        when(
+          () => mockDio.get(
+            any(),
+            queryParameters: any(named: 'queryParameters'),
+            options: any(named: 'options'),
+            data: any(named: 'data'),
+            cancelToken: any(named: 'cancelToken'),
+            onReceiveProgress: any(named: 'onReceiveProgress'),
+          ),
+        ).thenAnswer(
+          (_) async => Response(
+            data: {'data': []},
+            requestOptions: RequestOptions(path: ''),
+          ),
+        );
         return cubit;
       },
       act: (cubit) => cubit.fetchSessions(status: 'upcoming'),
@@ -53,15 +57,16 @@ void main() {
     blocTest<DoctorSessionListCubit, GetDoctorSessionListStates>(
       'emits [Loading, Failed] when fetchSessions fails',
       build: () {
-        when(() => mockDio.get(
-                  any(),
-                  queryParameters: any(named: 'queryParameters'),
-                  options: any(named: 'options'),
-                  data: any(named: 'data'),
-                  cancelToken: any(named: 'cancelToken'),
-                  onReceiveProgress: any(named: 'onReceiveProgress'),
-                ))
-            .thenThrow(DioException(requestOptions: RequestOptions(path: '')));
+        when(
+          () => mockDio.get(
+            any(),
+            queryParameters: any(named: 'queryParameters'),
+            options: any(named: 'options'),
+            data: any(named: 'data'),
+            cancelToken: any(named: 'cancelToken'),
+            onReceiveProgress: any(named: 'onReceiveProgress'),
+          ),
+        ).thenThrow(DioException(requestOptions: RequestOptions(path: '')));
         return cubit;
       },
       act: (cubit) => cubit.fetchSessions(status: 'upcoming'),

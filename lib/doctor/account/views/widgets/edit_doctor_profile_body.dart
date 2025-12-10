@@ -26,10 +26,7 @@ class EditDoctorProfileBody extends StatelessWidget {
           Stack(
             alignment: Alignment.center,
             children: [
-              const SizedBox(
-                height: 220,
-                width: double.infinity,
-              ),
+              const SizedBox(height: 220, width: double.infinity),
               EditableProfileAvatar(
                 imageUrl: originalImageUrl,
                 pickedImage: cubit.pickedImage,
@@ -134,17 +131,21 @@ class EditDoctorProfileBody extends StatelessWidget {
         prefixIcon: Icon(icon, color: AppColors.primary),
         filled: true,
         fillColor: AppColors.surface,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
-          borderSide:
-              BorderSide(color: AppColors.disabled.withValues(alpha: 0.5)),
+          borderSide: BorderSide(
+            color: AppColors.disabled.withValues(alpha: 0.5),
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),
-          borderSide:
-              BorderSide(color: AppColors.disabled.withValues(alpha: 0.5)),
+          borderSide: BorderSide(
+            color: AppColors.disabled.withValues(alpha: 0.5),
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppRadius.md),

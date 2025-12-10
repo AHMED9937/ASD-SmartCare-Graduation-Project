@@ -34,14 +34,13 @@ void main() {
   });
 
   Widget createWidget() {
-    return MaterialApp(
-      home: LoginScreen(cubit: mockCubit),
-    );
+    return MaterialApp(home: LoginScreen(cubit: mockCubit));
   }
 
   group('LoginScreen Redesign Tests', () {
-    testWidgets('renders all main sections (Header, Form, Actions)',
-        (tester) async {
+    testWidgets('renders all main sections (Header, Form, Actions)', (
+      tester,
+    ) async {
       await tester.pumpWidget(createWidget());
 
       expect(find.byType(LoginHeader), findsOneWidget);
@@ -51,8 +50,9 @@ void main() {
       expect(find.text('Log In'), findsWidgets);
     });
 
-    testWidgets('shows loading indicator when state is LoginLoading',
-        (tester) async {
+    testWidgets('shows loading indicator when state is LoginLoading', (
+      tester,
+    ) async {
       when(() => mockCubit.state).thenReturn(LoginLoading());
       await tester.pumpWidget(createWidget());
 

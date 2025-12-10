@@ -30,16 +30,14 @@ class Charitiymedicaninfo extends StatelessWidget {
                       Image.network(medicen.medicanImage!, fit: BoxFit.cover)
                     else
                       Container(
-                          color: AppColors.primary.withValues(alpha: 0.2)),
+                        color: AppColors.primary.withValues(alpha: 0.2),
+                      ),
                     const DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.black38,
-                          ],
+                          colors: [Colors.transparent, Colors.black38],
                         ),
                       ),
                     ),
@@ -208,8 +206,11 @@ class _CircularBackButton extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: Colors.white.withValues(alpha: 0.9),
         child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              size: 18, color: AppColors.primary),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 18,
+            color: AppColors.primary,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),

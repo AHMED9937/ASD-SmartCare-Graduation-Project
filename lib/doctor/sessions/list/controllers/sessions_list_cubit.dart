@@ -25,8 +25,9 @@ class DoctorSessionListCubit extends Cubit<GetDoctorSessionListStates> {
         url: ApiConstants.getDoctorSessionList(status),
         token: CacheHelper.getData(key: 'token'),
       );
-      sessions =
-          SessionsResponse.fromJson(response.data as Map<String, dynamic>);
+      sessions = SessionsResponse.fromJson(
+        response.data as Map<String, dynamic>,
+      );
       emit(GetDoctorSessionListSuccessStates());
     } catch (error) {
       debugPrint('Error fetching sessions: $error');
@@ -50,8 +51,9 @@ class DoctorSessionListCubit extends Cubit<GetDoctorSessionListStates> {
       }
       // If the API wraps it in { data: { ... } }
       else if (json['data'] is Map<String, dynamic>) {
-        selectedSession =
-            Session.fromJson(json['data'] as Map<String, dynamic>);
+        selectedSession = Session.fromJson(
+          json['data'] as Map<String, dynamic>,
+        );
       }
       // Or if it returns the session object directly
       else {
@@ -67,7 +69,9 @@ class DoctorSessionListCubit extends Cubit<GetDoctorSessionListStates> {
 
   /// Updates the comments of session with [sid] to [newComments].
   Future<void> updateSessionComments(
-      List<String> newComments, String sessionId) async {
+    List<String> newComments,
+    String sessionId,
+  ) async {
     emit(UpdateDoctorSessionLoadingStates());
     try {
       await Diohelper.putData(

@@ -48,9 +48,7 @@ class _AutismCheckerView extends StatelessWidget {
             if (!didPop) _showExitConfirmation(context);
           },
           child: Scaffold(
-            appBar: const AppHeader(
-              showBackButton: true,
-            ),
+            appBar: const AppHeader(showBackButton: true),
             body: SafeArea(
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -122,9 +120,8 @@ class _AutismCheckerView extends StatelessWidget {
       );
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (_) => Testresult(
-            degreePrediction: state.degree_prediction.toString(),
-          ),
+          builder: (_) =>
+              Testresult(degreePrediction: state.degree_prediction.toString()),
         ),
         (_) => false,
       );
@@ -132,7 +129,9 @@ class _AutismCheckerView extends StatelessWidget {
 
     if (state is Test2GetQsfinalPredicationErrorState) {
       _showErrorSnackBar(
-          context, 'The answer is not relevant. Please try again.');
+        context,
+        'The answer is not relevant. Please try again.',
+      );
     }
   }
 
@@ -198,9 +197,7 @@ class _AutismCheckerView extends StatelessWidget {
             onPressed: () => Navigator.pop(context, true),
             child: Text(
               'Exit',
-              style: AppTypography.labelLarge.copyWith(
-                color: AppColors.error,
-              ),
+              style: AppTypography.labelLarge.copyWith(color: AppColors.error),
             ),
           ),
         ],
@@ -218,11 +215,7 @@ class _AutismCheckerView extends StatelessWidget {
       label: 'Exit assessment and discard progress',
       child: TextButton.icon(
         onPressed: () => _showExitConfirmation(context),
-        icon: const Icon(
-          Icons.close,
-          size: 18,
-          color: AppColors.textSecondary,
-        ),
+        icon: const Icon(Icons.close, size: 18, color: AppColors.textSecondary),
         label: Text(
           'Exit Assessment',
           style: AppTypography.bodySmall.copyWith(

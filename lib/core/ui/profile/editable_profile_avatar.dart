@@ -28,10 +28,7 @@ class EditableProfileAvatar extends StatelessWidget {
           // Reuse the premium ProfileAvatar base
           pickedImage != null
               ? _FileProfileAvatar(radius: radius, file: pickedImage!)
-              : ProfileAvatar(
-                  imageUrl: imageUrl,
-                  radius: radius,
-                ),
+              : ProfileAvatar(imageUrl: imageUrl, radius: radius),
           // Floating Camera Action Button
           Positioned(
             bottom: 0,
@@ -100,10 +97,7 @@ class _FileProfileAvatar extends StatelessWidget {
               ),
             ],
           ),
-          child: CircleAvatar(
-            radius: radius,
-            backgroundImage: FileImage(file),
-          ),
+          child: CircleAvatar(radius: radius, backgroundImage: FileImage(file)),
         ),
       ],
     );

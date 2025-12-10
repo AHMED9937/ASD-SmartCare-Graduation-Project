@@ -61,10 +61,7 @@ class OnboardingNavBar extends StatelessWidget {
             ),
             child: Text(
               isLastPage ? 'Get Started' : 'Next',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
         ],

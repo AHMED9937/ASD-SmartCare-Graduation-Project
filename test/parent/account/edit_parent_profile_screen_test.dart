@@ -29,24 +29,25 @@ void main() {
     );
 
     // Default mock behavior
-    when(() => mockCubit.nameCtrl)
-        .thenReturn(TextEditingController(text: 'John Doe'));
-    when(() => mockCubit.phoneCtrl)
-        .thenReturn(TextEditingController(text: '123456789'));
-    when(() => mockCubit.emailCtrl)
-        .thenReturn(TextEditingController(text: 'john@example.com'));
+    when(
+      () => mockCubit.nameCtrl,
+    ).thenReturn(TextEditingController(text: 'John Doe'));
+    when(
+      () => mockCubit.phoneCtrl,
+    ).thenReturn(TextEditingController(text: '123456789'));
+    when(
+      () => mockCubit.emailCtrl,
+    ).thenReturn(TextEditingController(text: 'john@example.com'));
     when(() => mockCubit.ageCtrl).thenReturn(TextEditingController(text: '30'));
-    when(() => mockCubit.addressCtrl)
-        .thenReturn(TextEditingController(text: '123 St'));
+    when(
+      () => mockCubit.addressCtrl,
+    ).thenReturn(TextEditingController(text: '123 St'));
     when(() => mockCubit.pickedImage).thenReturn(null);
   });
 
   Widget createWidgetUnderTest() {
     return MaterialApp(
-      home: EditParentProfileScreen(
-        parentD: mockParentData,
-        cubit: mockCubit,
-      ),
+      home: EditParentProfileScreen(parentD: mockParentData, cubit: mockCubit),
     );
   }
 

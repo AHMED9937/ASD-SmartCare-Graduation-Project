@@ -5,15 +5,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('EditableProfileAvatar', () {
-    testWidgets('renders base ProfileAvatar when no pickedImage is provided',
-        (tester) async {
+    testWidgets('renders base ProfileAvatar when no pickedImage is provided', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: EditableProfileAvatar(
-              onTap: () {},
-            ),
-          ),
+          home: Scaffold(body: EditableProfileAvatar(onTap: () {})),
         ),
       );
 
@@ -26,9 +23,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: EditableProfileAvatar(
-              onTap: () => tapped = true,
-            ),
+            body: EditableProfileAvatar(onTap: () => tapped = true),
           ),
         ),
       );

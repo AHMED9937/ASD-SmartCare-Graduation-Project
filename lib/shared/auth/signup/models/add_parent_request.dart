@@ -4,9 +4,7 @@
 class ChildResponse {
   final ChildData data;
 
-  ChildResponse({
-    required this.data,
-  });
+  ChildResponse({required this.data});
 
   /// Creates a new [ChildResponse] from a JSON map.
   factory ChildResponse.fromJson(Map<String, dynamic> json) {
@@ -17,9 +15,7 @@ class ChildResponse {
 
   /// Converts this [ChildResponse] into a JSON map.
   Map<String, dynamic> toJson() {
-    return {
-      'data': data.toJson(),
-    };
+    return {'data': data.toJson()};
   }
 }
 

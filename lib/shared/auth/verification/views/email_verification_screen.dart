@@ -13,12 +13,13 @@ class Emailverfcationscreen extends StatefulWidget {
   final String parentUserName;
   final String parentEmail;
   final ParentSignUpCubit? cubit;
-  const Emailverfcationscreen(
-      {super.key,
-      required this.parentID,
-      required this.parentUserName,
-      required this.parentEmail,
-      this.cubit});
+  const Emailverfcationscreen({
+    super.key,
+    required this.parentID,
+    required this.parentUserName,
+    required this.parentEmail,
+    this.cubit,
+  });
 
   @override
   State<Emailverfcationscreen> createState() => _EmailverfcationscreenState();
@@ -81,8 +82,9 @@ class _EmailverfcationscreenState extends State<Emailverfcationscreen> {
 
               // Delete Parent on Back Press
               cubit.DeleteParent(
-                  ParentId: widget.parentID,
-                  ParentUserName: widget.parentUserName);
+                ParentId: widget.parentID,
+                ParentUserName: widget.parentUserName,
+              );
               // Note: Navigation pop will happen in BlocListener success state
             },
             child: Scaffold(
@@ -91,8 +93,9 @@ class _EmailverfcationscreenState extends State<Emailverfcationscreen> {
                   onTap: () {
                     // Delete parent before navigating back
                     cubit.DeleteParent(
-                        ParentId: widget.parentID,
-                        ParentUserName: widget.parentUserName);
+                      ParentId: widget.parentID,
+                      ParentUserName: widget.parentUserName,
+                    );
                   },
                   child: Container(
                     width: 44,
@@ -124,7 +127,8 @@ class _EmailverfcationscreenState extends State<Emailverfcationscreen> {
               body: SafeArea(
                 child: EmailVerificationBody(
                   email: widget.parentEmail,
-                  isLoading: state is ParentSignUpresetCodeLoadingState ||
+                  isLoading:
+                      state is ParentSignUpresetCodeLoadingState ||
                       state is ResendCodeLoadingState,
                   errorMessage: _errorMessage,
                   onSubmit: (code) {
@@ -147,8 +151,9 @@ class _EmailverfcationscreenState extends State<Emailverfcationscreen> {
                   },
                   onChangeEmail: () {
                     cubit.DeleteParent(
-                        ParentId: widget.parentID,
-                        ParentUserName: widget.parentUserName);
+                      ParentId: widget.parentID,
+                      ParentUserName: widget.parentUserName,
+                    );
                   },
                 ),
               ),
@@ -166,23 +171,32 @@ class _EmailverfcationscreenState extends State<Emailverfcationscreen> {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.check_circle_outline,
-                  color: AppColors.success, size: 64),
+              const Icon(
+                Icons.check_circle_outline,
+                color: AppColors.success,
+                size: 64,
+              ),
               const SizedBox(height: 16),
-              const Text('Verified!',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primaryDark)),
+              const Text(
+                'Verified!',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primaryDark,
+                ),
+              ),
               const SizedBox(height: 8),
-              const Text('Your account has been successfully verified.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14, color: Colors.grey)),
+              const Text(
+                'Your account has been successfully verified.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
               const SizedBox(height: 24),
               AppButton(
                 label: 'Continue',
@@ -192,9 +206,9 @@ class _EmailverfcationscreenState extends State<Emailverfcationscreen> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AddChildScreen(
-                                parentId: widget.parentID,
-                              )),
+                        builder: (context) =>
+                            AddChildScreen(parentId: widget.parentID),
+                      ),
                     );
                   } else {
                     Navigator.pushReplacement(

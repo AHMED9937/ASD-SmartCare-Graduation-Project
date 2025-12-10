@@ -56,7 +56,9 @@ class DoctorReviewDialog extends StatelessWidget {
 
                 if (state is DoctorReviewStateLoaded) {
                   return _buildSuccessContent(
-                      context, 'Your doctor rating has been submitted.');
+                    context,
+                    'Your doctor rating has been submitted.',
+                  );
                 }
                 if (state is DoctorReviewStateError) {
                   return _buildErrorContent(context, () {
@@ -80,7 +82,9 @@ class DoctorReviewDialog extends StatelessWidget {
                         'Rate this Doctor',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -126,7 +130,8 @@ class DoctorReviewDialog extends StatelessWidget {
                           child: AppButton(
                             label: 'Submit Rating',
                             onPressed: () => cubit.submitDoctorReview(
-                                session.doctorId?.sId ?? ''),
+                              session.doctorId?.sId ?? '',
+                            ),
                           ),
                         ),
                         fallback: (_) =>
@@ -153,8 +158,10 @@ Widget _buildSuccessContent(BuildContext context, String message) {
       children: [
         const Icon(Icons.check_circle, color: Colors.green, size: 64),
         const SizedBox(height: 16),
-        const Text('Thank you!',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text(
+          'Thank you!',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 8),
         Text(message, textAlign: TextAlign.center),
         const SizedBox(height: 24),
@@ -180,18 +187,17 @@ Widget _buildErrorContent(BuildContext context, VoidCallback onRetry) {
       children: [
         const Icon(Icons.error, color: Colors.red, size: 64),
         const SizedBox(height: 16),
-        const Text('Submission Failed',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text(
+          'Submission Failed',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 8),
         const Text('Please try again.', textAlign: TextAlign.center),
         const SizedBox(height: 24),
         SizedBox(
           width: double.infinity,
           height: 48,
-          child: AppButton(
-            label: 'Retry',
-            onPressed: onRetry,
-          ),
+          child: AppButton(label: 'Retry', onPressed: onRetry),
         ),
       ],
     ),

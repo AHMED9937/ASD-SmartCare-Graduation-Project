@@ -31,22 +31,23 @@ void main() {
           final slots = repo.AvailableSlots({
             DateTime(2024, 1, 15): ['9:00 AM', '10:00 AM'],
           });
-          when(() => mockRepository.getAvailableSlots(
-                doctorId: any(named: 'doctorId'),
-                date: any(named: 'date'),
-              )).thenAnswer((_) async => repo.BookingSuccess(slots));
+          when(
+            () => mockRepository.getAvailableSlots(
+              doctorId: any(named: 'doctorId'),
+              date: any(named: 'date'),
+            ),
+          ).thenAnswer((_) async => repo.BookingSuccess(slots));
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.loadAvailableSlots('doc-123'),
-        expect: () => [
-          isA<SlotsLoading>(),
-          isA<SlotsLoaded>(),
-        ],
+        expect: () => [isA<SlotsLoading>(), isA<SlotsLoaded>()],
         verify: (_) {
-          verify(() => mockRepository.getAvailableSlots(
-                doctorId: 'doc-123',
-                date: null,
-              )).called(1);
+          verify(
+            () => mockRepository.getAvailableSlots(
+              doctorId: 'doc-123',
+              date: null,
+            ),
+          ).called(1);
         },
       );
 
@@ -54,29 +55,32 @@ void main() {
         'emits [SlotsLoading, NoSlotsAvailable] when no slots available',
         build: () {
           const slots = repo.AvailableSlots({});
-          when(() => mockRepository.getAvailableSlots(
-                doctorId: any(named: 'doctorId'),
-                date: any(named: 'date'),
-              )).thenAnswer((_) async => const repo.BookingSuccess(slots));
+          when(
+            () => mockRepository.getAvailableSlots(
+              doctorId: any(named: 'doctorId'),
+              date: any(named: 'date'),
+            ),
+          ).thenAnswer((_) async => const repo.BookingSuccess(slots));
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.loadAvailableSlots('doc-123'),
-        expect: () => [
-          isA<SlotsLoading>(),
-          isA<NoSlotsAvailable>(),
-        ],
+        expect: () => [isA<SlotsLoading>(), isA<NoSlotsAvailable>()],
       );
 
       blocTest<BookingCubit, BookingState>(
         'emits [SlotsLoading, SlotsError] on network failure',
         build: () {
-          when(() => mockRepository.getAvailableSlots(
-                doctorId: any(named: 'doctorId'),
-                date: any(named: 'date'),
-              )).thenAnswer((_) async => const repo.BookingFailure(
-                message: 'Network error',
-                type: repo.BookingErrorType.network,
-              ));
+          when(
+            () => mockRepository.getAvailableSlots(
+              doctorId: any(named: 'doctorId'),
+              date: any(named: 'date'),
+            ),
+          ).thenAnswer(
+            (_) async => const repo.BookingFailure(
+              message: 'Network error',
+              type: repo.BookingErrorType.network,
+            ),
+          );
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.loadAvailableSlots('doc-123'),
@@ -93,20 +97,21 @@ void main() {
       blocTest<BookingCubit, BookingState>(
         'emits [SlotsLoading, NoSlotsAvailable] on noSlots failure type',
         build: () {
-          when(() => mockRepository.getAvailableSlots(
-                doctorId: any(named: 'doctorId'),
-                date: any(named: 'date'),
-              )).thenAnswer((_) async => const repo.BookingFailure(
-                message: 'No slots',
-                type: repo.BookingErrorType.noSlots,
-              ));
+          when(
+            () => mockRepository.getAvailableSlots(
+              doctorId: any(named: 'doctorId'),
+              date: any(named: 'date'),
+            ),
+          ).thenAnswer(
+            (_) async => const repo.BookingFailure(
+              message: 'No slots',
+              type: repo.BookingErrorType.noSlots,
+            ),
+          );
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.loadAvailableSlots('doc-123'),
-        expect: () => [
-          isA<SlotsLoading>(),
-          isA<NoSlotsAvailable>(),
-        ],
+        expect: () => [isA<SlotsLoading>(), isA<NoSlotsAvailable>()],
       );
     });
 
@@ -122,8 +127,9 @@ void main() {
               ..date = '2024-01-15'
               ..time = '9:00 AM');
 
-          when(() => mockRepository.bookAppointment(any()))
-              .thenAnswer((_) async => repo.BookingSuccess(session));
+          when(
+            () => mockRepository.bookAppointment(any()),
+          ).thenAnswer((_) async => repo.BookingSuccess(session));
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.bookAppointment(
@@ -131,19 +137,18 @@ void main() {
           date: DateTime(2024, 1, 15),
           timeSlot: '9:00 AM',
         ),
-        expect: () => [
-          isA<BookingComplete>(),
-        ],
+        expect: () => [isA<BookingComplete>()],
       );
 
       blocTest<BookingCubit, BookingState>(
         'emits [BookingInProgress, BookingError] on slot unavailable',
         build: () {
-          when(() => mockRepository.bookAppointment(any()))
-              .thenAnswer((_) async => const repo.BookingFailure(
-                    message: 'Slot unavailable',
-                    type: repo.BookingErrorType.slotUnavailable,
-                  ));
+          when(() => mockRepository.bookAppointment(any())).thenAnswer(
+            (_) async => const repo.BookingFailure(
+              message: 'Slot unavailable',
+              type: repo.BookingErrorType.slotUnavailable,
+            ),
+          );
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.bookAppointment(
@@ -165,32 +170,28 @@ void main() {
       blocTest<BookingCubit, BookingState>(
         'emits [CancelInProgress, CancelComplete] on successful cancel',
         build: () {
-          when(() => mockRepository.cancelBooking(any()))
-              .thenAnswer((_) async => const repo.BookingSuccess(null));
+          when(
+            () => mockRepository.cancelBooking(any()),
+          ).thenAnswer((_) async => const repo.BookingSuccess(null));
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.cancelBooking('booking-123'),
-        expect: () => [
-          isA<CancelInProgress>(),
-          isA<CancelComplete>(),
-        ],
+        expect: () => [isA<CancelInProgress>(), isA<CancelComplete>()],
       );
 
       blocTest<BookingCubit, BookingState>(
         'emits [CancelInProgress, CancelError] on failure',
         build: () {
-          when(() => mockRepository.cancelBooking(any()))
-              .thenAnswer((_) async => const repo.BookingFailure(
-                    message: 'Server error',
-                    type: repo.BookingErrorType.server,
-                  ));
+          when(() => mockRepository.cancelBooking(any())).thenAnswer(
+            (_) async => const repo.BookingFailure(
+              message: 'Server error',
+              type: repo.BookingErrorType.server,
+            ),
+          );
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.cancelBooking('booking-123'),
-        expect: () => [
-          isA<CancelInProgress>(),
-          isA<CancelError>(),
-        ],
+        expect: () => [isA<CancelInProgress>(), isA<CancelError>()],
       );
     });
 
@@ -198,36 +199,36 @@ void main() {
       blocTest<BookingCubit, BookingState>(
         'emits [PaymentLoading, PaymentComplete] on success',
         build: () {
-          when(() => mockRepository.processCashPayment(
-                doctorId: any(named: 'doctorId'),
-                appointmentId: any(named: 'appointmentId'),
-              )).thenAnswer((_) async => const repo.BookingSuccess(null));
+          when(
+            () => mockRepository.processCashPayment(
+              doctorId: any(named: 'doctorId'),
+              appointmentId: any(named: 'appointmentId'),
+            ),
+          ).thenAnswer((_) async => const repo.BookingSuccess(null));
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.processCashPayment(doctorId: 'doc-123'),
-        expect: () => [
-          isA<PaymentLoading>(),
-          isA<PaymentComplete>(),
-        ],
+        expect: () => [isA<PaymentLoading>(), isA<PaymentComplete>()],
       );
 
       blocTest<BookingCubit, BookingState>(
         'emits [PaymentLoading, PaymentError] on failure',
         build: () {
-          when(() => mockRepository.processCashPayment(
-                doctorId: any(named: 'doctorId'),
-                appointmentId: any(named: 'appointmentId'),
-              )).thenAnswer((_) async => const repo.BookingFailure(
-                message: 'Payment failed',
-                type: repo.BookingErrorType.payment,
-              ));
+          when(
+            () => mockRepository.processCashPayment(
+              doctorId: any(named: 'doctorId'),
+              appointmentId: any(named: 'appointmentId'),
+            ),
+          ).thenAnswer(
+            (_) async => const repo.BookingFailure(
+              message: 'Payment failed',
+              type: repo.BookingErrorType.payment,
+            ),
+          );
           return BookingCubit(repository: mockRepository);
         },
         act: (cubit) => cubit.processCashPayment(doctorId: 'doc-123'),
-        expect: () => [
-          isA<PaymentLoading>(),
-          isA<PaymentError>(),
-        ],
+        expect: () => [isA<PaymentLoading>(), isA<PaymentError>()],
       );
     });
 

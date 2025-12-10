@@ -75,21 +75,22 @@ class DoctorsListBody extends StatelessWidget {
                     ),
                     sliver: ResponsiveContainer.sliverBuilder(
                       sliverBuilder: (context, breakpoint) {
-                        final isGrid = breakpoint == DeviceBreakpoint.desktop ||
+                        final isGrid =
+                            breakpoint == DeviceBreakpoint.desktop ||
                             breakpoint == DeviceBreakpoint.tablet;
 
                         if (isGrid) {
                           return SliverGrid(
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount:
-                                  breakpoint == DeviceBreakpoint.desktop
+                                  crossAxisCount:
+                                      breakpoint == DeviceBreakpoint.desktop
                                       ? 3
                                       : 2,
-                              mainAxisSpacing: AppSpacing.md,
-                              crossAxisSpacing: AppSpacing.md,
-                              childAspectRatio: 2.2,
-                            ),
+                                  mainAxisSpacing: AppSpacing.md,
+                                  crossAxisSpacing: AppSpacing.md,
+                                  childAspectRatio: 2.2,
+                                ),
                             delegate: SliverChildBuilderDelegate(
                               (context, index) =>
                                   DoctorCard(doctor: doctors[index]),
@@ -126,10 +127,7 @@ class _SliverHeader extends StatelessWidget {
     return const SliverToBoxAdapter(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppHeader(showBackButton: false),
-          DoctorsListHeader(),
-        ],
+        children: [AppHeader(showBackButton: false), DoctorsListHeader()],
       ),
     );
   }
@@ -150,7 +148,10 @@ class _SliverSearch extends StatelessWidget {
 class _FloatingSearchDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.lg,
@@ -159,12 +160,10 @@ class _FloatingSearchDelegate extends SliverPersistentHeaderDelegate {
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor.withValues(
-              alpha: overlapsContent ? 0.95 : 0.0,
-            ),
+          alpha: overlapsContent ? 0.95 : 0.0,
+        ),
       ),
-      child: const AppSearchField(
-        hint: 'Search by specialty or name...',
-      ),
+      child: const AppSearchField(hint: 'Search by specialty or name...'),
     );
   }
 

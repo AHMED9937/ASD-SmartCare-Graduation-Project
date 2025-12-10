@@ -137,21 +137,21 @@ abstract final class AppColors {
 
   /// Premium mesh-like gradient used across the app
   static Gradient get premiumGradient => LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          scaffoldBackground,
-          secondary.withValues(alpha: 0.05),
-          primary.withValues(alpha: 0.03),
-          scaffoldBackground,
-        ],
-        stops: const [0.0, 0.3, 0.7, 1.0],
-      );
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      scaffoldBackground,
+      secondary.withValues(alpha: 0.05),
+      primary.withValues(alpha: 0.03),
+      scaffoldBackground,
+    ],
+    stops: const [0.0, 0.3, 0.7, 1.0],
+  );
 
   /// Primary branding gradient for icons and highlights
   static Gradient get primaryGradient => const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [primary, secondary],
-      );
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [primary, secondary],
+  );
 }

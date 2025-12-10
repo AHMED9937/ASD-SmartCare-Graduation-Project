@@ -11,8 +11,9 @@ class TestParentSignUpCubit extends ParentSignUpCubit {
 }
 
 void main() {
-  testWidgets('ParentSignUpScreen renders correctly',
-      (WidgetTester tester) async {
+  testWidgets('ParentSignUpScreen renders correctly', (
+    WidgetTester tester,
+  ) async {
     tester.view.physicalSize = const Size(400, 900);
     tester.view.devicePixelRatio = 1.0;
 
@@ -20,9 +21,7 @@ void main() {
     final cubit = TestParentSignUpCubit();
 
     await tester.pumpWidget(
-      MaterialApp(
-        home: ParentSignUpScreen(cubit: cubit),
-      ),
+      MaterialApp(home: ParentSignUpScreen(cubit: cubit)),
     );
 
     // Let animations complete naturally

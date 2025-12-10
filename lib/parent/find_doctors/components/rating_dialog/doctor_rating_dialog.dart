@@ -18,9 +18,7 @@ Future<void> showDoctorRatingDialog(BuildContext context) async {
     builder: (ctx) {
       return Dialog(
         backgroundColor: AppColors.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: AppRadius.dialog,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.dialog),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: StatefulBuilder(
@@ -78,7 +76,8 @@ Future<void> showDoctorRatingDialog(BuildContext context) async {
                       // Submit rating to backend, then close dialog
                       // Rating: $rating, Comment: ${commentController.text}
                       debugPrint(
-                          'Rating submitted: $rating stars, comment: ${commentController.text}');
+                        'Rating submitted: $rating stars, comment: ${commentController.text}',
+                      );
                       Navigator.of(context).pop();
                     },
                   ),

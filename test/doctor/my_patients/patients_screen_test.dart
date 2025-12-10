@@ -29,10 +29,12 @@ void main() {
     );
   }
 
-  testWidgets('renders loading indicator when state is loading',
-      (tester) async {
-    when(() => mockCubit.state)
-        .thenReturn(GetRegisteredChildrenListLoadingStates());
+  testWidgets('renders loading indicator when state is loading', (
+    tester,
+  ) async {
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetRegisteredChildrenListLoadingStates());
 
     await tester.pumpWidget(createWidgetUnderTest());
 
@@ -40,8 +42,9 @@ void main() {
   });
 
   testWidgets('renders error message when state is failed', (tester) async {
-    when(() => mockCubit.state)
-        .thenReturn(GetRegisteredChildrenListFailedStates());
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetRegisteredChildrenListFailedStates());
 
     await tester.pumpWidget(createWidgetUnderTest());
 
@@ -49,10 +52,12 @@ void main() {
   });
 
   testWidgets('renders empty message when no patients found', (tester) async {
-    when(() => mockCubit.state)
-        .thenReturn(GetRegisteredChildrenListSuccsessStates());
-    when(() => mockCubit.registeredchildren)
-        .thenReturn(RegisteredChildren(parents: []));
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetRegisteredChildrenListSuccsessStates());
+    when(
+      () => mockCubit.registeredchildren,
+    ).thenReturn(RegisteredChildren(parents: []));
 
     await tester.pumpWidget(createWidgetUnderTest());
 
@@ -75,8 +80,9 @@ void main() {
       ],
     );
 
-    when(() => mockCubit.state)
-        .thenReturn(GetRegisteredChildrenListSuccsessStates());
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetRegisteredChildrenListSuccsessStates());
     when(() => mockCubit.registeredchildren).thenReturn(mockData);
 
     await tester.pumpWidget(createWidgetUnderTest());

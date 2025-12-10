@@ -19,17 +19,19 @@ class ParentChildrenList extends StatelessWidget {
     return BlocConsumer<ParentChildrenListCubit, ParentChildrenListStates>(
       listener: (context, state) {
         if (state is DeleteChildSuccessStates) {
-          context
-              .read<ParentChildrenListCubit>()
-              .getParentChildrenList(parentId);
+          context.read<ParentChildrenListCubit>().getParentChildrenList(
+            parentId,
+          );
         }
         if (state is GetParentChildrenListFailedStates ||
             state is DeleteChildFailedStates) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state is GetParentChildrenListFailedStates
-                  ? 'Failed to load children'
-                  : 'Failed to delete child'),
+              content: Text(
+                state is GetParentChildrenListFailedStates
+                    ? 'Failed to load children'
+                    : 'Failed to delete child',
+              ),
               backgroundColor: AppColors.error,
             ),
           );
@@ -52,12 +54,13 @@ class ParentChildrenList extends StatelessWidget {
 
         if (list.isEmpty) {
           return Center(
-              child: Text(
-            'No children found.',
-            style: AppTypography.bodyLarge.copyWith(
-              color: AppColors.textSecondary,
+            child: Text(
+              'No children found.',
+              style: AppTypography.bodyLarge.copyWith(
+                color: AppColors.textSecondary,
+              ),
             ),
-          ));
+          );
         }
 
         return ListView.separated(

@@ -27,11 +27,12 @@ class ParentSignUpScreen extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => Emailverfcationscreen(
-                        parentID: state.lum.data.id,
-                        parentUserName: state.lum.data.userName,
-                        parentEmail: state.lum.data.email,
-                      )),
+                builder: (context) => Emailverfcationscreen(
+                  parentID: state.lum.data.id,
+                  parentUserName: state.lum.data.userName,
+                  parentEmail: state.lum.data.email,
+                ),
+              ),
             );
           } else if (state is ParentSignUpErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -46,9 +47,7 @@ class ParentSignUpScreen extends StatelessWidget {
         builder: (context, state) {
           return const Scaffold(
             appBar: AppHeader.transparent(),
-            body: SafeArea(
-              child: ParentSignupBody(),
-            ),
+            body: SafeArea(child: ParentSignupBody()),
           );
         },
       ),

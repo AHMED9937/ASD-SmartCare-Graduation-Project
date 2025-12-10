@@ -6,14 +6,16 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('StatusFilterRow Widget Tests', () {
     testWidgets('renders all status pills', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: StatusFilterRow(
-            selectedStatus: 'All',
-            onStatusChanged: (_) {},
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: StatusFilterRow(
+              selectedStatus: 'All',
+              onStatusChanged: (_) {},
+            ),
           ),
         ),
-      ));
+      );
 
       expect(find.byType(FilterPill), findsNWidgets(3));
       expect(find.text('All'), findsOneWidget);
@@ -23,14 +25,16 @@ void main() {
 
     testWidgets('tapping a pill triggers callback', (tester) async {
       String? result;
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: StatusFilterRow(
-            selectedStatus: 'All',
-            onStatusChanged: (val) => result = val,
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: StatusFilterRow(
+              selectedStatus: 'All',
+              onStatusChanged: (val) => result = val,
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.text('Booked'));
       expect(result, equals('Booked'));

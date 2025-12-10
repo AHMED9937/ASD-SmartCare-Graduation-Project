@@ -34,16 +34,20 @@ class _AppOtpFieldState extends State<AppOtpField>
     super.initState();
     _controller = TextEditingController();
     _shakeController = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this);
+      duration: const Duration(milliseconds: 500),
+      vsync: this,
+    );
 
-    _shakeAnimation = Tween<double>(begin: 0.0, end: 10.0)
-        .chain(CurveTween(curve: Curves.elasticIn))
-        .animate(_shakeController)
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _shakeController.reset();
-        }
-      });
+    _shakeAnimation =
+        Tween<double>(
+            begin: 0.0,
+            end: 10.0,
+          ).chain(CurveTween(curve: Curves.elasticIn)).animate(_shakeController)
+          ..addStatusListener((status) {
+            if (status == AnimationStatus.completed) {
+              _shakeController.reset();
+            }
+          });
 
     // Auto-focus after build
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -71,8 +75,9 @@ class _AppOtpFieldState extends State<AppOtpField>
     if (value.length > widget.numberOfFields) {
       value = value.substring(0, widget.numberOfFields);
       _controller.text = value;
-      _controller.selection =
-          TextSelection.fromPosition(TextPosition(offset: value.length));
+      _controller.selection = TextSelection.fromPosition(
+        TextPosition(offset: value.length),
+      );
     }
 
     // Trigger rebuild to update visual boxes
@@ -92,14 +97,15 @@ class _AppOtpFieldState extends State<AppOtpField>
       builder: (context, child) {
         return Transform.translate(
           offset: Offset(
-              _shakeAnimation.value *
-                  (3 *
-                      (0.5 -
-                              (0.5 *
-                                  (_shakeController.value * 20 -
-                                      (_shakeController.value * 20).floor())))
-                          .abs()),
-              0), // Simple shake math or standard sine
+            _shakeAnimation.value *
+                (3 *
+                    (0.5 -
+                            (0.5 *
+                                (_shakeController.value * 20 -
+                                    (_shakeController.value * 20).floor())))
+                        .abs()),
+            0,
+          ), // Simple shake math or standard sine
           // Cleaner shake using sine:
           // offset: Offset(sin(_shakeController.value * pi * 4) * 10, 0),
           child: child,
@@ -153,8 +159,8 @@ class _AppOtpFieldState extends State<AppOtpField>
     final borderColor = widget.hasError
         ? AppColors.error
         : (isFocused || isFilled
-            ? AppColors.primary
-            : AppColors.primaryDark.withValues(alpha: 0.2));
+              ? AppColors.primary
+              : AppColors.primaryDark.withValues(alpha: 0.2));
 
     final borderWidth = isFocused || widget.hasError ? 2.0 : 1.5;
 
@@ -173,7 +179,7 @@ class _AppOtpFieldState extends State<AppOtpField>
                       .withValues(alpha: 0.2),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
-                )
+                ),
               ]
             : null,
       ),

@@ -8,8 +8,9 @@ import 'package:flutter_test/flutter_test.dart';
 class TestParentSignUpCubit extends ParentSignUpCubit {}
 
 void main() {
-  testWidgets('Emailverfcationscreen renders correctly',
-      (WidgetTester tester) async {
+  testWidgets('Emailverfcationscreen renders correctly', (
+    WidgetTester tester,
+  ) async {
     tester.view.physicalSize = const Size(400, 900);
     tester.view.devicePixelRatio = 1.0;
 

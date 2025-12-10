@@ -83,13 +83,17 @@ class FeedbackCard extends StatelessWidget {
           value: 'delete',
           child: Row(
             children: [
-              const Icon(Icons.delete_outline_rounded,
-                  size: 18, color: AppColors.error),
+              const Icon(
+                Icons.delete_outline_rounded,
+                size: 18,
+                color: AppColors.error,
+              ),
               const SizedBox(width: AppSpacing.sm),
               Text(
                 'Delete',
-                style:
-                    AppTypography.bodyMedium.copyWith(color: AppColors.error),
+                style: AppTypography.bodyMedium.copyWith(
+                  color: AppColors.error,
+                ),
               ),
             ],
           ),

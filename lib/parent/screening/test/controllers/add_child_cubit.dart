@@ -12,12 +12,7 @@ class AddNewChildCubit extends Cubit<AddNewChildStates> {
 
   /// List of children, each entry contains name, birthday, gender, and age
   final List<Map<String, String>> children = [
-    {
-      'name': 'Ahmed',
-      'birthday': '11/11/11',
-      'gender': 'Male',
-      'age': '11',
-    },
+    {'name': 'Ahmed', 'birthday': '11/11/11', 'gender': 'Male', 'age': '11'},
   ];
 
   /// Index of the currently selected child, or -1 if none

@@ -20,20 +20,21 @@ class _AddChildScreenState extends State<AddChildScreen> {
       child: BlocConsumer<ParentSignUpCubit, ParentSignUpState>(
         listener: (context, state) {
           if (state is AddChildSuccessState) {
-            ParentSignUpCubit.get(context).ParentChilds.add(buildChildInfoCard(
-                  age: ParentSignUpCubit.get(context)
-                      .ChildAgetextcontroller
-                      .text,
-                  name: ParentSignUpCubit.get(context)
-                      .ChildNametextcontroller
-                      .text,
-                  gender: ParentSignUpCubit.get(context)
-                      .ChildGendertextcontroller
-                      .text,
-                ));
+            ParentSignUpCubit.get(context).ParentChilds.add(
+              buildChildInfoCard(
+                age: ParentSignUpCubit.get(context).ChildAgetextcontroller.text,
+                name: ParentSignUpCubit.get(
+                  context,
+                ).ChildNametextcontroller.text,
+                gender: ParentSignUpCubit.get(
+                  context,
+                ).ChildGendertextcontroller.text,
+              ),
+            );
           } else if (state is AddChildErrorState) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('')));
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('')));
           }
         },
         builder: (context, state) {
@@ -44,8 +45,9 @@ class _AddChildScreenState extends State<AddChildScreen> {
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -54,25 +56,27 @@ class _AddChildScreenState extends State<AddChildScreen> {
                         subtitle:
                             'Register your child to start tracking their progress.',
                       ),
-                      if (ParentSignUpCubit.get(context)
-                          .ParentChilds
-                          .isNotEmpty) ...[
+                      if (ParentSignUpCubit.get(
+                        context,
+                      ).ParentChilds.isNotEmpty) ...[
                         SizedBox(
                           height: 100,
                           width: double.infinity,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: ParentSignUpCubit.get(context)
-                                .ParentChilds
-                                .length,
+                            itemCount: ParentSignUpCubit.get(
+                              context,
+                            ).ParentChilds.length,
                             itemBuilder: (context, index) {
                               return Padding(
-                                padding:
-                                    const EdgeInsets.only(right: AppSpacing.sm),
+                                padding: const EdgeInsets.only(
+                                  right: AppSpacing.sm,
+                                ),
                                 child: SizedBox(
                                   width: 300,
-                                  child: ParentSignUpCubit.get(context)
-                                      .ParentChilds[index],
+                                  child: ParentSignUpCubit.get(
+                                    context,
+                                  ).ParentChilds[index],
                                 ),
                               );
                             },
@@ -88,19 +92,19 @@ class _AddChildScreenState extends State<AddChildScreen> {
                           label: 'Add Child',
                           isLoading: state is AddChildLoadingState,
                           onPressed: () {
-                            if (ParentSignUpCubit.get(context)
-                                .addParentFormKey
-                                .currentState!
-                                .validate()) {
-                              ParentSignUpCubit.get(context)
-                                  .addChild(parentId: widget.parentId);
+                            if (ParentSignUpCubit.get(
+                              context,
+                            ).addParentFormKey.currentState!.validate()) {
+                              ParentSignUpCubit.get(
+                                context,
+                              ).addChild(parentId: widget.parentId);
                             }
                           },
                         ),
                       // Provide spacing or conditional rendering for the Next Step button
-                      if (ParentSignUpCubit.get(context)
-                          .ParentChilds
-                          .isNotEmpty)
+                      if (ParentSignUpCubit.get(
+                        context,
+                      ).ParentChilds.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: AppSpacing.lg),
                           child: AppButton(
@@ -137,10 +141,7 @@ Widget buildChildInfoCard({
   final Color textColor = isMale ? AppColors.onPrimary : AppColors.primary;
 
   return DecoratedBox(
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: AppRadius.xlRadius,
-    ),
+    decoration: BoxDecoration(color: bgColor, borderRadius: AppRadius.xlRadius),
     child: Padding(
       padding: const EdgeInsets.all(AppSpacing.sm),
       child: ListTile(
@@ -160,9 +161,7 @@ Widget buildChildInfoCard({
                 ),
                 Text(
                   '${age}yo',
-                  style: AppTypography.bodyMedium.copyWith(
-                    color: textColor,
-                  ),
+                  style: AppTypography.bodyMedium.copyWith(color: textColor),
                 ),
               ],
             ),
@@ -172,9 +171,7 @@ Widget buildChildInfoCard({
               children: [
                 Text(
                   gender,
-                  style: AppTypography.bodyMedium.copyWith(
-                    color: textColor,
-                  ),
+                  style: AppTypography.bodyMedium.copyWith(color: textColor),
                 ),
               ],
             ),

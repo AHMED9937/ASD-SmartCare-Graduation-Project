@@ -15,8 +15,9 @@ class AvailabilityLoading extends AvailabilityState {}
 
 class AvailabilitySuccess extends AvailabilityState {
   final String message;
-  const AvailabilitySuccess(
-      {this.message = 'Availability saved successfully.'});
+  const AvailabilitySuccess({
+    this.message = 'Availability saved successfully.',
+  });
 
   @override
   List<Object?> get props => [message];

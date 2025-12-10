@@ -4,10 +4,7 @@ class ChatResponse {
   final String sessionId;
   final String response;
 
-  ChatResponse({
-    required this.sessionId,
-    required this.response,
-  });
+  ChatResponse({required this.sessionId, required this.response});
 
   factory ChatResponse.fromJson(Map<String, dynamic> json) {
     return ChatResponse(
@@ -17,10 +14,7 @@ class ChatResponse {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'session_id': sessionId,
-      'response': response,
-    };
+    return {'session_id': sessionId, 'response': response};
   }
 
   @override

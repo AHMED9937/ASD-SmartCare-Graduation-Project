@@ -25,15 +25,17 @@ class Forgetpasswordscreen extends StatelessWidget {
                     backgroundColor: Colors.green,
                     content: const Text('Success'),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 );
 
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Otpverificationscreen(),
-                    ));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Otpverificationscreen(),
+                  ),
+                );
               }
               if (state is CheckEmailError) {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -42,7 +44,8 @@ class Forgetpasswordscreen extends StatelessWidget {
                     backgroundColor: Colors.red,
                     content: const Text('Error: Please check your email'),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 );
               }

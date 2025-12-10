@@ -40,17 +40,17 @@ class ParentSignUpCubit extends Cubit<ParentSignUpState> {
     emit(ParentSignUpresetCodeLoadingState());
 
     Diohelper.postData(
-      url: ApiConstants.verifyemail,
-      data: {
-        'resetCode': verificationCode,
-      },
-    ).then((value) {
-      debugPrint('Email verification successful');
-      emit(ParentSignUpresetCodeSuccessState());
-    }).catchError((onError) {
-      debugPrint('Email verification error: $onError');
-      emit(ParentSignUpresetCodeErrorState());
-    });
+          url: ApiConstants.verifyemail,
+          data: {'resetCode': verificationCode},
+        )
+        .then((value) {
+          debugPrint('Email verification successful');
+          emit(ParentSignUpresetCodeSuccessState());
+        })
+        .catchError((onError) {
+          debugPrint('Email verification error: $onError');
+          emit(ParentSignUpresetCodeErrorState());
+        });
   }
 
   /// Resend verification code to user's email
@@ -58,78 +58,85 @@ class ParentSignUpCubit extends Cubit<ParentSignUpState> {
     emit(ResendCodeLoadingState());
 
     Diohelper.postData(
-      url: ApiConstants.forgotPasswordEmail,
-      data: {'email': email},
-    ).then((value) {
-      debugPrint('Resend code success');
-      emit(ResendCodeSuccessState());
-    }).catchError((onError) {
-      debugPrint('Resend code error: $onError');
-      emit(ResendCodeErrorState(onError.toString()));
-    });
+          url: ApiConstants.forgotPasswordEmail,
+          data: {'email': email},
+        )
+        .then((value) {
+          debugPrint('Resend code success');
+          emit(ResendCodeSuccessState());
+        })
+        .catchError((onError) {
+          debugPrint('Resend code error: $onError');
+          emit(ResendCodeErrorState(onError.toString()));
+        });
   }
 
   void ParentSignUp() {
     emit(ParentSignUpLoadingState());
 
     Diohelper.postData(
-      url: ApiConstants.singupForParent,
-      data: {
-        'userName': userNametextcontroller.text,
-        'email': emailtextcontroller.text,
-        'phone': phonetextcontroller.text,
-        'password': passwordtextcontroller.text,
-        'confirmPassword': confirmPasswordtextcontroller.text,
-        'age': int.parse(Agetextcontroller.text),
-        'address': addresstextcontroller.text,
-      },
-      token: CacheHelper.getData(key: 'token'),
-    ).then((response) {
-      final data = response.data as Map<String, dynamic>;
+          url: ApiConstants.singupForParent,
+          data: {
+            'userName': userNametextcontroller.text,
+            'email': emailtextcontroller.text,
+            'phone': phonetextcontroller.text,
+            'password': passwordtextcontroller.text,
+            'confirmPassword': confirmPasswordtextcontroller.text,
+            'age': int.parse(Agetextcontroller.text),
+            'address': addresstextcontroller.text,
+          },
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((response) {
+          final data = response.data as Map<String, dynamic>;
 
-      // If there's an errors array, pull out only the msg fields
-      if (data['errors'] != null) {
-        final errors = data['errors'] as List<dynamic>;
-        final msg = errors
-            .map((e) => e['msg'] as String)
-            .join('\n'); // join multiple messages with newline
-        emit(ParentSignUpErrorState(msg));
-        return;
-      }
+          // If there's an errors array, pull out only the msg fields
+          if (data['errors'] != null) {
+            final errors = data['errors'] as List<dynamic>;
+            final msg = errors
+                .map((e) => e['msg'] as String)
+                .join('\n'); // join multiple messages with newline
+            emit(ParentSignUpErrorState(msg));
+            return;
+          }
 
-      // Otherwise success
-      signUpResponseModel = SignupParentResponseModel.fromJson(data);
-      CacheHelper.saveData(key: 'token', value: signUpResponseModel.token);
-      emit(ParentSignUpSuccessState(signUpResponseModel));
-    }).catchError((err) {
-      if (err is DioException &&
-          err.response?.data is Map<String, dynamic> &&
-          (err.response!.data as Map<String, dynamic>)['errors'] != null) {
-        final errors = (err.response!.data as Map<String, dynamic>)['errors']
-            as List<dynamic>;
-        final msg = errors.map((e) => e['msg'] as String).join('\n');
-        emit(ParentSignUpErrorState(msg));
-      } else {
-        emit(ParentSignUpErrorState(err.toString()));
-      }
-    });
+          // Otherwise success
+          signUpResponseModel = SignupParentResponseModel.fromJson(data);
+          CacheHelper.saveData(key: 'token', value: signUpResponseModel.token);
+          emit(ParentSignUpSuccessState(signUpResponseModel));
+        })
+        .catchError((err) {
+          if (err is DioException &&
+              err.response?.data is Map<String, dynamic> &&
+              (err.response!.data as Map<String, dynamic>)['errors'] != null) {
+            final errors =
+                (err.response!.data as Map<String, dynamic>)['errors']
+                    as List<dynamic>;
+            final msg = errors.map((e) => e['msg'] as String).join('\n');
+            emit(ParentSignUpErrorState(msg));
+          } else {
+            emit(ParentSignUpErrorState(err.toString()));
+          }
+        });
   }
 
-  void DeleteParent(
-      {required final String ParentId, required final String ParentUserName}) {
+  void DeleteParent({
+    required final String ParentId,
+    required final String ParentUserName,
+  }) {
     emit(DeleteParentLoadingState());
 
     Diohelper.deleteData(
-      url: '${ApiConstants.DeleteSpecificParent}$ParentId',
-      query: {
-        'userName': ParentUserName,
-      },
-    ).then((value) {
-      debugPrint('Parent deleted successfully');
-      emit(DeleteParentSuccessState());
-    }).catchError((error) {
-      emit(DeleteParentErrorState());
-    });
+          url: '${ApiConstants.DeleteSpecificParent}$ParentId',
+          query: {'userName': ParentUserName},
+        )
+        .then((value) {
+          debugPrint('Parent deleted successfully');
+          emit(DeleteParentSuccessState());
+        })
+        .catchError((error) {
+          emit(DeleteParentErrorState());
+        });
   }
 
   Future<void> addChild({required String parentId}) async {

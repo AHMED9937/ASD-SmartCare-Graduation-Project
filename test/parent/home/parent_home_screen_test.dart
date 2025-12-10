@@ -38,14 +38,20 @@ void main() {
     // Default Stubs
     when(() => mockProgressCubit.state).thenReturn(ChildProgressInitial());
     when(() => mockProgressCubit.sessions).thenReturn([]);
-    when(() => mockProgressCubit.getAllUpcomingSessionsForParent(
-        any<String>(), any<bool>())).thenReturn(null);
+    when(
+      () => mockProgressCubit.getAllUpcomingSessionsForParent(
+        any<String>(),
+        any<bool>(),
+      ),
+    ).thenReturn(null);
 
     when(() => mockDoctorsCubit.state).thenReturn(GetDoctorsListInitialState());
     when(() => mockDoctorsCubit.myDoctorList).thenReturn([]);
-    when(() => mockDoctorsCubit.getDoctorsList(
-            recommendedDoctor: any<bool>(named: 'recommendedDoctor')))
-        .thenAnswer((_) async {});
+    when(
+      () => mockDoctorsCubit.getDoctorsList(
+        recommendedDoctor: any<bool>(named: 'recommendedDoctor'),
+      ),
+    ).thenAnswer((_) async {});
   });
 
   Widget createWidgetUnderTest() {
@@ -93,8 +99,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('Responsive check: no overflows on tablet screen',
-      (tester) async {
+  testWidgets('Responsive check: no overflows on tablet screen', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(1200, 1600);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);

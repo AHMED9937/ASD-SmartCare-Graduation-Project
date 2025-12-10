@@ -14,11 +14,7 @@ class Reservationscreen extends StatelessWidget {
   final Doctor myDoctor;
   final BookingCubit? cubit;
 
-  const Reservationscreen({
-    super.key,
-    required this.myDoctor,
-    this.cubit,
-  });
+  const Reservationscreen({super.key, required this.myDoctor, this.cubit});
 
   @override
   Widget build(BuildContext context) {
@@ -104,8 +100,12 @@ class _BookingBodyState extends State<BookingBody> {
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: const AppHeader(title: 'Specialist Detail'),
-            bottomNavigationBar:
-                _buildBottomCTA(context, isBooking, effectiveDate, cubit),
+            bottomNavigationBar: _buildBottomCTA(
+              context,
+              isBooking,
+              effectiveDate,
+              cubit,
+            ),
             body: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
@@ -115,7 +115,8 @@ class _BookingBodyState extends State<BookingBody> {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.screenPaddingH),
+                      horizontal: AppSpacing.screenPaddingH,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -138,8 +139,11 @@ class _BookingBodyState extends State<BookingBody> {
                           sortedDates: sortedDates,
                           effectiveDate: effectiveDate,
                           onDateSelected: (date) => setState(() {
-                            _selectedDate =
-                                DateTime(date.year, date.month, date.day);
+                            _selectedDate = DateTime(
+                              date.year,
+                              date.month,
+                              date.day,
+                            );
                             _selectedTimeSlot = null;
                           }),
                           slots: slotsForDate,
@@ -161,8 +165,12 @@ class _BookingBodyState extends State<BookingBody> {
     );
   }
 
-  Widget _buildBottomCTA(BuildContext context, bool isLoading,
-      DateTime effectiveDate, BookingCubit cubit) {
+  Widget _buildBottomCTA(
+    BuildContext context,
+    bool isLoading,
+    DateTime effectiveDate,
+    BookingCubit cubit,
+  ) {
     return Container(
       padding: EdgeInsets.fromLTRB(
         AppSpacing.xl,
@@ -185,10 +193,10 @@ class _BookingBodyState extends State<BookingBody> {
           onPressed: _selectedTimeSlot == null
               ? () => _showError(context, 'Please select a time slot.')
               : () => cubit.bookAppointment(
-                    doctorId: widget.doctor.id!,
-                    date: effectiveDate,
-                    timeSlot: _selectedTimeSlot!,
-                  ),
+                  doctorId: widget.doctor.id!,
+                  date: effectiveDate,
+                  timeSlot: _selectedTimeSlot!,
+                ),
         ),
       ),
     );
@@ -401,8 +409,9 @@ class BookingCard extends StatelessWidget {
           const AppSpacer.md(),
           CalendarTimeline(
             initialDate: effectiveDate,
-            firstDate:
-                sortedDates.isNotEmpty ? sortedDates.first : DateTime.now(),
+            firstDate: sortedDates.isNotEmpty
+                ? sortedDates.first
+                : DateTime.now(),
             lastDate: DateTime.now().add(const Duration(days: 365)),
             onDateSelected: onDateSelected,
             monthColor: AppColors.primary,

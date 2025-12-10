@@ -30,9 +30,7 @@ void main() {
   );
 
   Widget createWidget() {
-    return MaterialApp(
-      home: MedicenInfo(medicen: mockMedicine),
-    );
+    return MaterialApp(home: MedicenInfo(medicen: mockMedicine));
   }
 
   group('Medicine Details Screen Tests', () {

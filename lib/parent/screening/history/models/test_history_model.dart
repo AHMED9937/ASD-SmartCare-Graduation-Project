@@ -34,15 +34,16 @@ class AutisumTest {
   String? updatedAt;
   int? iV;
 
-  AutisumTest(
-      {this.sId,
-      this.parentId,
-      this.type,
-      this.inputs,
-      this.output,
-      this.createdAt,
-      this.updatedAt,
-      this.iV});
+  AutisumTest({
+    this.sId,
+    this.parentId,
+    this.type,
+    this.inputs,
+    this.output,
+    this.createdAt,
+    this.updatedAt,
+    this.iV,
+  });
 
   AutisumTest.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

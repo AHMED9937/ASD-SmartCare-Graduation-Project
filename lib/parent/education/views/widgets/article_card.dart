@@ -17,10 +17,7 @@ class ArticleCard extends StatelessWidget {
       child: Row(
         children: [
           // Visual: Clipped Image
-          Expanded(
-            flex: 3,
-            child: _buildImage(),
-          ),
+          Expanded(flex: 3, child: _buildImage()),
 
           // Content
           Expanded(

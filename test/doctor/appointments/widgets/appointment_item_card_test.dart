@@ -10,11 +10,11 @@ void main() {
     testWidgets('renders appointment details correctly', (tester) async {
       final appt = MockAppointmentData.sampleAppointment;
 
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: AppointmentItemCard(appointment: appt),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: AppointmentItemCard(appointment: appt)),
         ),
-      ));
+      );
 
       expect(find.text('10:00 AM'), findsOneWidget);
       expect(find.text('Monday'), findsOneWidget);
@@ -24,11 +24,11 @@ void main() {
     testWidgets('applies correct status color for booked', (tester) async {
       final appt = MockAppointmentData.sampleAppointment; // status: booked
 
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: AppointmentItemCard(appointment: appt),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: AppointmentItemCard(appointment: appt)),
         ),
-      ));
+      );
 
       final badge = tester.widget<StatusBadge>(find.byType(StatusBadge));
       expect(badge.color, equals(AppColors.success));
@@ -38,11 +38,11 @@ void main() {
       final appt = MockAppointmentData.sampleAppointment;
       appt.status = 'cancelled';
 
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: AppointmentItemCard(appointment: appt),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: AppointmentItemCard(appointment: appt)),
         ),
-      ));
+      );
 
       final badge = tester.widget<StatusBadge>(find.byType(StatusBadge));
       expect(badge.color, equals(AppColors.error));

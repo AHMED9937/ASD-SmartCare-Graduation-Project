@@ -17,8 +17,9 @@ void main() {
 
   setUp(() {
     mockCubit = MockRegisteredChildrenListCubit();
-    when(() => mockCubit.state)
-        .thenReturn(GetRegisteredChildrenListinitialStates());
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetRegisteredChildrenListinitialStates());
   });
 
   Widget createWidgetUnderTest() {
@@ -42,17 +43,18 @@ void main() {
     expect(find.text('Create Session'), findsOneWidget);
   });
 
-  testWidgets('shows validation errors when submitting empty form',
-      (tester) async {
+  testWidgets('shows validation errors when submitting empty form', (
+    tester,
+  ) async {
     await tester.pumpWidget(createWidgetUnderTest());
 
     await tester.tap(find.text('Create Session'));
     await tester.pump();
 
     expect(
-        find.text('Required'),
-        findsNWidgets(
-            2)); // Number, Status (Date is not a TextFormField so it doesn't show 'Required' the same way)
+      find.text('Required'),
+      findsNWidgets(2),
+    ); // Number, Status (Date is not a TextFormField so it doesn't show 'Required' the same way)
   });
 
   testWidgets('calls CreateSession when form is valid', (tester) async {
@@ -62,7 +64,9 @@ void main() {
 
     // Fill Session Number
     await tester.enterText(
-        find.widgetWithText(AppTextField, 'Session Number'), '1');
+      find.widgetWithText(AppTextField, 'Session Number'),
+      '1',
+    );
 
     // Select Date
     await tester.tap(find.text('Select Date'));

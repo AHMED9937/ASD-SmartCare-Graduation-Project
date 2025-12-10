@@ -20,52 +20,57 @@ class ChildProgressCubit extends Cubit<ChildProgressState> {
     emit(GetParentBookedDoctorsLoading());
 
     Diohelper.getData(
-      url: ApiConstants
-          .GetParentBookedDoctors, // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      myDoctorList = ParentBookedDoctors.fromJson(value.data).doctors;
-      debugPrint('Loaded ${myDoctorList?.length ?? 0} booked doctors');
-      //print(myDoctorList.data[0]);
-      emit(GetParentBookedDoctorsLoaded());
-    }).catchError((error) {
-      debugPrint('Error fetching booked doctors: $error');
-      emit(GetParentBookedDoctorsError());
-    });
+          url: ApiConstants
+              .GetParentBookedDoctors, // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          myDoctorList = ParentBookedDoctors.fromJson(value.data).doctors;
+          debugPrint('Loaded ${myDoctorList?.length ?? 0} booked doctors');
+          //print(myDoctorList.data[0]);
+          emit(GetParentBookedDoctorsLoaded());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching booked doctors: $error');
+          emit(GetParentBookedDoctorsError());
+        });
   }
 
   void getAllUpcomingSessionsForParent(String id, bool isComming) {
     emit(GetAllBookedSessionsByStatusLoading());
 
     Diohelper.getData(
-      url: ApiConstants.GetAllSessionForSpecificParentAndDoctorByStatus(
-          id,
-          isComming
-              ? 'coming'
-              : 'done'), // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Loaded ${sessions.length} sessions');
-      emit(GetAllBookedSessionsByStatusLoaded());
-    }).catchError((error) {
-      debugPrint('Error fetching sessions: $error');
-      emit(GetAllBookedSessionsByStatusError());
-    });
+          url: ApiConstants.GetAllSessionForSpecificParentAndDoctorByStatus(
+            id,
+            isComming ? 'coming' : 'done',
+          ), // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Loaded ${sessions.length} sessions');
+          emit(GetAllBookedSessionsByStatusLoaded());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching sessions: $error');
+          emit(GetAllBookedSessionsByStatusError());
+        });
   }
 
   void getAutismLevelTestHistory() {
     emit(GetAutisumLevelTestHistoryLoading());
 
     Diohelper.getData(
-      url: ApiConstants.GetAutismLevelTestHistory,
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      autismLevelHistory = HistoryAustisumLevelTest.fromJson(value.data);
-      emit(GetAutisumLevelTestHistoryLoaded());
-    }).catchError((error) {
-      debugPrint('Error fetching autism level history: $error');
-      emit(GetAutisumLevelTestHistoryError());
-    });
+          url: ApiConstants.GetAutismLevelTestHistory,
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          autismLevelHistory = HistoryAustisumLevelTest.fromJson(value.data);
+          emit(GetAutisumLevelTestHistoryLoaded());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching autism level history: $error');
+          emit(GetAutisumLevelTestHistoryError());
+        });
   }
 
   /// Unified initial fetch that waits for all 3 data sources

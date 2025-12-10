@@ -7,9 +7,7 @@ void main() {
     testWidgets('renders title correctly', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: SectionHeader(title: 'Test Section'),
-          ),
+          home: Scaffold(body: SectionHeader(title: 'Test Section')),
         ),
       );
 
@@ -17,8 +15,9 @@ void main() {
       expect(find.byType(TextButton), findsNothing);
     });
 
-    testWidgets('renders action button when actionLabel is provided',
-        (tester) async {
+    testWidgets('renders action button when actionLabel is provided', (
+      tester,
+    ) async {
       bool pressed = false;
       await tester.pumpWidget(
         MaterialApp(
@@ -42,10 +41,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: SectionHeader(
-              title: 'Test Section',
-              padding: customPadding,
-            ),
+            body: SectionHeader(title: 'Test Section', padding: customPadding),
           ),
         ),
       );

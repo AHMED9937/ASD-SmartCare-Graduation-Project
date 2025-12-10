@@ -46,10 +46,7 @@ class _ParentSignupBodyState extends State<ParentSignupBody> {
                 SizedBox(height: 8),
                 Text(
                   'Join as a Parent to track progress',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ],
             ),
@@ -83,8 +80,9 @@ class _ParentSignupBodyState extends State<ParentSignupBody> {
                     if (value == null || value.isEmpty) {
                       return 'Email is required';
                     }
-                    final emailRegex =
-                        RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                    final emailRegex = RegExp(
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                    );
                     if (!emailRegex.hasMatch(value)) {
                       return 'Please enter a valid email address';
                     }
@@ -208,9 +206,8 @@ class _ParentSignupBodyState extends State<ParentSignupBody> {
                       }
                     },
                   ),
-                  fallback: (context) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  fallback: (context) =>
+                      const Center(child: CircularProgressIndicator()),
                 );
               },
             ),

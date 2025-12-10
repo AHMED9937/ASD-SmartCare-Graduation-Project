@@ -8,9 +8,7 @@ import 'package:asdsmartcare/core/design_system/tokens/tokens.dart';
 /// This class is kept for backward compatibility during migration.
 class ColorUtils {
   /// @deprecated Use [AppColors.primary] instead.
-  static const List<Color> colors = [
-    AppColors.primary,
-  ];
+  static const List<Color> colors = [AppColors.primary];
 
   /// @deprecated Use [AppColors.primary] instead.
   static Color get primaryBlue => AppColors.primary;

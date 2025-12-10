@@ -21,9 +21,7 @@ class DoctorCard extends StatelessWidget {
       elevation: 0,
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (_) => Reservationscreen(myDoctor: doctor),
-        ),
+        MaterialPageRoute(builder: (_) => Reservationscreen(myDoctor: doctor)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,7 +80,7 @@ class DoctorCard extends StatelessWidget {
                       strokeWidth: 2,
                       value: loadingProgress.expectedTotalBytes != null
                           ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
+                                loadingProgress.expectedTotalBytes!
                           : null,
                     ),
                   );
@@ -95,11 +93,7 @@ class DoctorCard extends StatelessWidget {
 
   Widget _buildPlaceholder() {
     return const Center(
-      child: Icon(
-        Icons.person_rounded,
-        color: AppColors.primary,
-        size: 40,
-      ),
+      child: Icon(Icons.person_rounded, color: AppColors.primary, size: 40),
     );
   }
 
@@ -152,10 +146,8 @@ class DoctorCard extends StatelessWidget {
       children: [
         RatingBarIndicator(
           rating: (doctor.ratingsAverage ?? 0).toDouble(),
-          itemBuilder: (context, index) => const Icon(
-            Icons.star_rounded,
-            color: AppColors.warning,
-          ),
+          itemBuilder: (context, index) =>
+              const Icon(Icons.star_rounded, color: AppColors.warning),
           itemCount: 5,
           itemSize: 16.0,
         ),

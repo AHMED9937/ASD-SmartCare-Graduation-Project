@@ -47,16 +47,20 @@ class _OnboardingNavigationScreensState
   }
 
   void _navigateToLogin() {
-    CacheHelper.saveData(key: 'loginSingUp', value: true).then((value) {
-      if (value != null && mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const AuthSelectionScreen()),
-        );
-      }
-    }).catchError((error) {
-      debugPrint(error.toString());
-    });
+    CacheHelper.saveData(key: 'loginSingUp', value: true)
+        .then((value) {
+          if (value != null && mounted) {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const AuthSelectionScreen(),
+              ),
+            );
+          }
+        })
+        .catchError((error) {
+          debugPrint(error.toString());
+        });
   }
 
   @override

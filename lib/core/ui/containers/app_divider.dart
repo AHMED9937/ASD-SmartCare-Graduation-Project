@@ -72,8 +72,8 @@ class AppDivider extends StatelessWidget {
     this.thickness = 1.0,
     this.color,
     this.height,
-  })  : indent = AppSpacing.screenPaddingH,
-        endIndent = AppSpacing.screenPaddingH;
+  }) : indent = AppSpacing.screenPaddingH,
+       endIndent = AppSpacing.screenPaddingH;
 
   @override
   Widget build(BuildContext context) {

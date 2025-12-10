@@ -7,16 +7,18 @@ void main() {
     final weekDays = ['Monday', 'Tuesday', 'Wednesday'];
 
     testWidgets('renders all days and highlights selected', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: DaySelectorStrip(
-            weekDays: weekDays,
-            selectedDay: 'Monday',
-            onDaySelected: (_) {},
-            activeDays: const {'Tuesday': true},
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DaySelectorStrip(
+              weekDays: weekDays,
+              selectedDay: 'Monday',
+              onDaySelected: (_) {},
+              activeDays: const {'Tuesday': true},
+            ),
           ),
         ),
-      ));
+      );
 
       expect(find.text('Monday'), findsOneWidget);
       expect(find.text('Tuesday'), findsOneWidget);
@@ -28,16 +30,18 @@ void main() {
 
     testWidgets('triggers callback on tap', (tester) async {
       String? result;
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: DaySelectorStrip(
-            weekDays: weekDays,
-            selectedDay: 'Monday',
-            onDaySelected: (day) => result = day,
-            activeDays: const {},
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: DaySelectorStrip(
+              weekDays: weekDays,
+              selectedDay: 'Monday',
+              onDaySelected: (day) => result = day,
+              activeDays: const {},
+            ),
           ),
         ),
-      ));
+      );
 
       await tester.tap(find.text('Tuesday'));
       expect(result, equals('Tuesday'));

@@ -7,11 +7,7 @@ void main() {
     testWidgets('renders child widget', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: QuestionCard(
-              child: Text('Question content'),
-            ),
-          ),
+          home: Scaffold(body: QuestionCard(child: Text('Question content'))),
         ),
       );
 
@@ -44,15 +40,13 @@ void main() {
       expect(container.constraints?.minHeight, equals(testMinHeight));
     });
 
-    testWidgets('animates on initial render when animate is true',
-        (tester) async {
+    testWidgets('animates on initial render when animate is true', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: QuestionCard(
-              animate: true,
-              child: Text('Animated'),
-            ),
+            body: QuestionCard(animate: true, child: Text('Animated')),
           ),
         ),
       );
@@ -72,10 +66,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: QuestionCard(
-              animate: false,
-              child: Text('Not animated'),
-            ),
+            body: QuestionCard(animate: false, child: Text('Not animated')),
           ),
         ),
       );
@@ -121,11 +112,7 @@ void main() {
     testWidgets('has rounded corners', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: QuestionCard(
-              child: Text('Content'),
-            ),
-          ),
+          home: Scaffold(body: QuestionCard(child: Text('Content'))),
         ),
       );
 
@@ -145,11 +132,7 @@ void main() {
     testWidgets('has shadow decoration', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: QuestionCard(
-              child: Text('Content'),
-            ),
-          ),
+          home: Scaffold(body: QuestionCard(child: Text('Content'))),
         ),
       );
 
@@ -206,9 +189,7 @@ void main() {
           const MaterialApp(
             home: Scaffold(
               body: SingleChildScrollView(
-                child: QuestionCard(
-                  child: Text('Small screen'),
-                ),
+                child: QuestionCard(child: Text('Small screen')),
               ),
             ),
           ),
@@ -224,11 +205,7 @@ void main() {
 
         await tester.pumpWidget(
           const MaterialApp(
-            home: Scaffold(
-              body: QuestionCard(
-                child: Text('Large screen'),
-              ),
-            ),
+            home: Scaffold(body: QuestionCard(child: Text('Large screen'))),
           ),
         );
 
@@ -241,10 +218,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: QuestionCard(
-                animate: true,
-                child: Text('Content'),
-              ),
+              body: QuestionCard(animate: true, child: Text('Content')),
             ),
           ),
         );
@@ -253,11 +227,7 @@ void main() {
 
         // Remove widget - should dispose without error
         await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: SizedBox.shrink(),
-            ),
-          ),
+          const MaterialApp(home: Scaffold(body: SizedBox.shrink())),
         );
 
         // No error means dispose worked correctly

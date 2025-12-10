@@ -32,9 +32,7 @@ void main() {
     testWidgets('displays placeholder when image is null', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: DoctorCard(doctor: mockDoctor),
-          ),
+          home: Scaffold(body: DoctorCard(doctor: mockDoctor)),
         ),
       );
 

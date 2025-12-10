@@ -47,9 +47,7 @@ class _AutismTestView extends StatelessWidget {
             if (!didPop) _showExitConfirmation(context);
           },
           child: Scaffold(
-            appBar: const AppHeader(
-              showBackButton: true,
-            ),
+            appBar: const AppHeader(showBackButton: true),
             body: SafeArea(
               child: LayoutBuilder(
                 builder: (context, constraints) {
@@ -118,17 +116,18 @@ class _AutismTestView extends StatelessWidget {
     if (state is GetQsFinalPredictionSuccessState) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(
-          builder: (_) => Testresult(
-            autismPrediction: state.prediction.toString(),
-          ),
+          builder: (_) =>
+              Testresult(autismPrediction: state.prediction.toString()),
         ),
         (_) => false,
       );
     }
 
     if (state is GetQsFinalPredictionErrorState) {
-      _showErrorSnackBar(context,
-          state.err ?? 'The answer is not relevant. Please try again.');
+      _showErrorSnackBar(
+        context,
+        state.err ?? 'The answer is not relevant. Please try again.',
+      );
     }
   }
 
@@ -194,9 +193,7 @@ class _AutismTestView extends StatelessWidget {
             onPressed: () => Navigator.pop(context, true),
             child: Text(
               'Exit',
-              style: AppTypography.labelLarge.copyWith(
-                color: AppColors.error,
-              ),
+              style: AppTypography.labelLarge.copyWith(color: AppColors.error),
             ),
           ),
         ],
@@ -214,11 +211,7 @@ class _AutismTestView extends StatelessWidget {
       label: 'Exit test and discard progress',
       child: TextButton.icon(
         onPressed: () => _showExitConfirmation(context),
-        icon: const Icon(
-          Icons.close,
-          size: 18,
-          color: AppColors.textSecondary,
-        ),
+        icon: const Icon(Icons.close, size: 18, color: AppColors.textSecondary),
         label: Text(
           'Exit Test',
           style: AppTypography.bodySmall.copyWith(

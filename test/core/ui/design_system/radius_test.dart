@@ -79,9 +79,13 @@ void main() {
 
       test('bottomSheet has only top corners rounded', () {
         expect(
-            AppRadius.bottomSheet.topLeft, const Radius.circular(AppRadius.xl));
-        expect(AppRadius.bottomSheet.topRight,
-            const Radius.circular(AppRadius.xl));
+          AppRadius.bottomSheet.topLeft,
+          const Radius.circular(AppRadius.xl),
+        );
+        expect(
+          AppRadius.bottomSheet.topRight,
+          const Radius.circular(AppRadius.xl),
+        );
         expect(AppRadius.bottomSheet.bottomLeft, Radius.zero);
         expect(AppRadius.bottomSheet.bottomRight, Radius.zero);
       });

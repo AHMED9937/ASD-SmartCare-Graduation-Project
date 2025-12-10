@@ -5,11 +5,7 @@ class DoctorList {
   final PaginationResult? pagination;
   final List<Doctor>? data;
 
-  DoctorList({
-    this.results,
-    this.pagination,
-    this.data,
-  });
+  DoctorList({this.results, this.pagination, this.data});
 
   factory DoctorList.fromJson(Map<String, dynamic> json) {
     return DoctorList(
@@ -37,11 +33,7 @@ class PaginationResult {
   final int? limit;
   final int? numOfPage;
 
-  PaginationResult({
-    this.currentPage,
-    this.limit,
-    this.numOfPage,
-  });
+  PaginationResult({this.currentPage, this.limit, this.numOfPage});
 
   factory PaginationResult.fromJson(Map<String, dynamic> json) {
     return PaginationResult(
@@ -96,8 +88,8 @@ class Doctor {
       id: (json['_id'] ?? json['id']) as String?,
       parent: json['parent'] != null
           ? (json['parent'] is Map<String, dynamic>
-              ? Parent.fromJson(json['parent'] as Map<String, dynamic>)
-              : Parent(id: json['parent'] as String))
+                ? Parent.fromJson(json['parent'] as Map<String, dynamic>)
+                : Parent(id: json['parent'] as String))
           : null,
       speciailization: json['speciailization'] as String?,
       qualifications: json['qualifications'] as String?,
@@ -166,8 +158,9 @@ class Parent {
       age: json['age'] as int?,
       phone: json['phone'] as String?,
       address: json['address'] as String?,
-      childIds:
-          (json['childs'] as List<dynamic>?)?.map((c) => c as String).toList(),
+      childIds: (json['childs'] as List<dynamic>?)
+          ?.map((c) => c as String)
+          .toList(),
     );
   }
 

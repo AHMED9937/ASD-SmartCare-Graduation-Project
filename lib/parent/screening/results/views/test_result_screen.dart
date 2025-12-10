@@ -18,19 +18,12 @@ class Testresult extends StatelessWidget {
   /// Result from level assessment (severity level).
   final String? degreePrediction;
 
-  const Testresult({
-    super.key,
-    this.autismPrediction,
-    this.degreePrediction,
-  });
+  const Testresult({super.key, this.autismPrediction, this.degreePrediction});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppHeader(
-        title: 'Your Results',
-        showBackButton: false,
-      ),
+      appBar: const AppHeader(title: 'Your Results', showBackButton: false),
       body: SafeArea(
         child: Column(
           children: [
@@ -275,10 +268,7 @@ class _ResultCardContainer extends StatelessWidget {
   final Widget child;
   final bool isPositive;
 
-  const _ResultCardContainer({
-    required this.child,
-    required this.isPositive,
-  });
+  const _ResultCardContainer({required this.child, required this.isPositive});
 
   @override
   Widget build(BuildContext context) {

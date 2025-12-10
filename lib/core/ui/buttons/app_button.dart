@@ -165,10 +165,7 @@ class AppButton extends StatelessWidget {
       );
     }
 
-    return SizedBox(
-      height: buttonHeight,
-      child: button,
-    );
+    return SizedBox(height: buttonHeight, child: button);
   }
 
   double _getButtonHeight() {

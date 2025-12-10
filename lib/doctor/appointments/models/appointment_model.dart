@@ -36,17 +36,18 @@ class Appointment {
   int? iV;
   String? parentId;
 
-  Appointment(
-      {this.sId,
-      this.doctorId,
-      this.date,
-      this.day,
-      this.time,
-      this.status,
-      this.createdAt,
-      this.updatedAt,
-      this.iV,
-      this.parentId});
+  Appointment({
+    this.sId,
+    this.doctorId,
+    this.date,
+    this.day,
+    this.time,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.iV,
+    this.parentId,
+  });
 
   Appointment.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

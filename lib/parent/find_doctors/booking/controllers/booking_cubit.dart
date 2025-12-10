@@ -19,10 +19,9 @@ class BookingCubit extends Cubit<BookingState> {
   /// Current available slots (cached for UI access).
   repo.AvailableSlots? _currentSlots;
 
-  BookingCubit({
-    repo.BookingRepository? repository,
-  })  : _repository = repository ?? repo.BookingRepositoryImpl(),
-        super(const BookingInitial()) {
+  BookingCubit({repo.BookingRepository? repository})
+    : _repository = repository ?? repo.BookingRepositoryImpl(),
+      super(const BookingInitial()) {
     debugPrint('onCreate -- BookingCubit');
   }
 
@@ -62,9 +61,9 @@ class BookingCubit extends Cubit<BookingState> {
         }
 
       case repo.BookingFailure<repo.AvailableSlots>(
-          :final message,
-          :final type
-        ):
+        :final message,
+        :final type,
+      ):
         if (type == repo.BookingErrorType.noSlots) {
           emit(const NoSlotsAvailable());
         } else {
@@ -106,11 +105,9 @@ class BookingCubit extends Cubit<BookingState> {
         emit(BookingComplete(data));
 
       case repo.BookingFailure(:final message, :final type):
-        emit(BookingError(
-          message: message,
-          errorType: type,
-          slots: _currentSlots,
-        ));
+        emit(
+          BookingError(message: message, errorType: type, slots: _currentSlots),
+        );
     }
   }
 
@@ -184,9 +181,11 @@ class BookingCubit extends Cubit<BookingState> {
           await Stripe.instance.presentPaymentSheet();
           emit(const PaymentComplete());
         } on StripeException catch (e) {
-          emit(PaymentError(
-            e.error.localizedMessage ?? 'Payment failed. Please try again.',
-          ));
+          emit(
+            PaymentError(
+              e.error.localizedMessage ?? 'Payment failed. Please try again.',
+            ),
+          );
         } catch (e) {
           emit(PaymentError('An unexpected error occurred: $e'));
         }

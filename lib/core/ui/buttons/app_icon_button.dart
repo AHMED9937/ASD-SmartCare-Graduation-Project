@@ -75,9 +75,9 @@ class AppIconButton extends StatelessWidget {
     this.size = AppIconButtonSize.medium,
     this.iconColor,
     this.tooltip = 'Back',
-  })  : icon = Icons.arrow_back_ios_new_rounded,
-        backgroundColor = null,
-        filled = false;
+  }) : icon = Icons.arrow_back_ios_new_rounded,
+       backgroundColor = null,
+       filled = false;
 
   /// Create a close button (close icon).
   const AppIconButton.close({
@@ -86,9 +86,9 @@ class AppIconButton extends StatelessWidget {
     this.size = AppIconButtonSize.medium,
     this.iconColor,
     this.tooltip = 'Close',
-  })  : icon = Icons.close,
-        backgroundColor = null,
-        filled = false;
+  }) : icon = Icons.close,
+       backgroundColor = null,
+       filled = false;
 
   /// Create a filled icon button.
   const AppIconButton.filled({
@@ -133,10 +133,7 @@ class AppIconButton extends StatelessWidget {
     }
 
     if (tooltip != null) {
-      return Tooltip(
-        message: tooltip!,
-        child: button,
-      );
+      return Tooltip(message: tooltip!, child: button);
     }
 
     return button;

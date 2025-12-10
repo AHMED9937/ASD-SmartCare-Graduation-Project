@@ -71,8 +71,8 @@ class AppCard extends StatelessWidget {
     this.color,
     this.gradient,
     this.border,
-  })  : elevation = 0,
-        hasShadow = false;
+  }) : elevation = 0,
+       hasShadow = false;
 
   /// Create a card with outline border
   const AppCard.outlined({
@@ -84,11 +84,11 @@ class AppCard extends StatelessWidget {
     this.borderRadius,
     this.color,
     this.gradient,
-  })  : elevation = 0,
-        hasShadow = false,
-        border = const Border.fromBorderSide(
-          BorderSide(color: AppColors.border),
-        );
+  }) : elevation = 0,
+       hasShadow = false,
+       border = const Border.fromBorderSide(
+         BorderSide(color: AppColors.border),
+       );
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +118,7 @@ class AppCard extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: effectiveBorderRadius,
-        child: Padding(
-          padding: effectivePadding,
-          child: child,
-        ),
+        child: Padding(padding: effectivePadding, child: child),
       ),
     );
 

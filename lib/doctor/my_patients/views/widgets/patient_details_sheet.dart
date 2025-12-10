@@ -31,10 +31,7 @@ class PatientDetailsSheet extends StatelessWidget {
             _buildTabBar(),
             Expanded(
               child: TabBarView(
-                children: [
-                  _buildInfoTab(),
-                  _buildSessionTab(),
-                ],
+                children: [_buildInfoTab(), _buildSessionTab()],
               ),
             ),
           ],

@@ -17,10 +17,7 @@ class FeaturedArticleCard extends StatelessWidget {
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
-        colors: [
-          Colors.white,
-          AppColors.primary.withValues(alpha: 0.05),
-        ],
+        colors: [Colors.white, AppColors.primary.withValues(alpha: 0.05)],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -80,8 +77,11 @@ class FeaturedArticleCard extends StatelessWidget {
                     CircleAvatar(
                       radius: 12,
                       backgroundColor: AppColors.primary.withValues(alpha: 0.2),
-                      child: const Icon(Icons.person,
-                          size: 14, color: AppColors.primary),
+                      child: const Icon(
+                        Icons.person,
+                        size: 14,
+                        color: AppColors.primary,
+                      ),
                     ),
                     const AppSpacer.sm(),
                     Text(
@@ -93,8 +93,10 @@ class FeaturedArticleCard extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const Icon(Icons.arrow_forward_rounded,
-                        color: AppColors.primary),
+                    const Icon(
+                      Icons.arrow_forward_rounded,
+                      color: AppColors.primary,
+                    ),
                   ],
                 ),
               ],

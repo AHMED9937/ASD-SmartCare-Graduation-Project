@@ -15,10 +15,7 @@ class ChatBotCubit extends Cubit<ChatBotState> {
 
   final TextEditingController questionController = TextEditingController();
   final List<Map<String, dynamic>> messages = [
-    {
-      'message': 'Hello, How can i help?',
-      'isUser': false,
-    }
+    {'message': 'Hello, How can i help?', 'isUser': false},
   ];
 
   void sendMessage() {
@@ -29,19 +26,21 @@ class ChatBotCubit extends Cubit<ChatBotState> {
     final token = CacheHelper.getData(key: 'token');
 
     Diohelper.postData(
-      url: ApiConstants.ChatBotReasoning,
-      token: token,
-      data: {
-        'messages': [
-          {'content': text}
-        ],
-      },
-    ).then((response) {
-      chatRes = ChatResponse.fromJson(response.data);
-      emit(ChatBotSuccess());
-    }).catchError((error) {
-      emit(ChatBotError());
-    });
+          url: ApiConstants.ChatBotReasoning,
+          token: token,
+          data: {
+            'messages': [
+              {'content': text},
+            ],
+          },
+        )
+        .then((response) {
+          chatRes = ChatResponse.fromJson(response.data);
+          emit(ChatBotSuccess());
+        })
+        .catchError((error) {
+          emit(ChatBotError());
+        });
   }
 
   @override

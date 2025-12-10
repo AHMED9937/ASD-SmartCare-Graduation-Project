@@ -39,17 +39,11 @@ class DoctorCard extends StatelessWidget {
               offset: const Offset(0, 8),
             ),
           ],
-          border: Border.all(
-            color: AppColors.border,
-            width: 1,
-          ),
+          border: Border.all(color: AppColors.border, width: 1),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildImageSection(),
-            _buildInfoSection(),
-          ],
+          children: [_buildImageSection(), _buildInfoSection()],
         ),
       ),
     );
@@ -89,8 +83,11 @@ class DoctorCard extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.star_rounded,
-                    color: AppColors.warning, size: 14),
+                const Icon(
+                  Icons.star_rounded,
+                  color: AppColors.warning,
+                  size: 14,
+                ),
                 const SizedBox(width: 2),
                 Text(
                   rating.toStringAsFixed(1),

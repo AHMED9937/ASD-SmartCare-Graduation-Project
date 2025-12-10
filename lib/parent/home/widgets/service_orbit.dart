@@ -19,17 +19,41 @@ class ServiceOrbit extends StatelessWidget {
 
   static const List<OrbitServiceItem> _services = [
     OrbitServiceItem(
-        Icons.auto_awesome, 'AI Test', AppRoutes.autismTest, Color(0xFFE3F2FD)),
-    OrbitServiceItem(Icons.stacked_bar_chart_rounded, 'Progress',
-        AppRoutes.childProgress, Color(0xFFF1F8E9)),
-    OrbitServiceItem(Icons.menu_book_rounded, 'Education', AppRoutes.education,
-        Color(0xFFFFF3E0)),
-    OrbitServiceItem(Icons.medication_rounded, 'Medicines', AppRoutes.medicines,
-        Color(0xFFFCE4EC)),
-    OrbitServiceItem(Icons.volunteer_activism_rounded, 'Charity',
-        AppRoutes.charity, Color(0xFFF3E5F5)),
-    OrbitServiceItem(Icons.smart_toy_rounded, 'Chatbot', AppRoutes.chatbot,
-        Color(0xFFE0F2F1)),
+      Icons.auto_awesome,
+      'AI Test',
+      AppRoutes.autismTest,
+      Color(0xFFE3F2FD),
+    ),
+    OrbitServiceItem(
+      Icons.stacked_bar_chart_rounded,
+      'Progress',
+      AppRoutes.childProgress,
+      Color(0xFFF1F8E9),
+    ),
+    OrbitServiceItem(
+      Icons.menu_book_rounded,
+      'Education',
+      AppRoutes.education,
+      Color(0xFFFFF3E0),
+    ),
+    OrbitServiceItem(
+      Icons.medication_rounded,
+      'Medicines',
+      AppRoutes.medicines,
+      Color(0xFFFCE4EC),
+    ),
+    OrbitServiceItem(
+      Icons.volunteer_activism_rounded,
+      'Charity',
+      AppRoutes.charity,
+      Color(0xFFF3E5F5),
+    ),
+    OrbitServiceItem(
+      Icons.smart_toy_rounded,
+      'Chatbot',
+      AppRoutes.chatbot,
+      Color(0xFFE0F2F1),
+    ),
   ];
 
   @override

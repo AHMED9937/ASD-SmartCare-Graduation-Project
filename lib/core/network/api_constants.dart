@@ -47,8 +47,9 @@ class ApiConstants {
   static const String getAvailableMedicine = 'api/v1/medican';
   static const String getParentBookedDoctors = 'api/v1/appointment/my_doctor';
   static String getAllSessionsForParentAndDoctorByStatus(
-          String id, String status) =>
-      'api/v1/sessions/ForParentToOneDoctor/$id/status/$status';
+    String id,
+    String status,
+  ) => 'api/v1/sessions/ForParentToOneDoctor/$id/status/$status';
   static String getAvailableEducationArticle = 'api/v1/articles';
   static String getAvailableCharity = 'api/v1/charities';
   static String getAvailableAppointmentForSpecificDoctor(String id) =>
@@ -147,8 +148,9 @@ class ApiConstants {
   static String get GetParentBookedDoctors => getParentBookedDoctors;
   @Deprecated('Use getAllSessionsForParentAndDoctorByStatus instead')
   static String GetAllSessionForSpecificParentAndDoctorByStatus(
-          String id, String status) =>
-      getAllSessionsForParentAndDoctorByStatus(id, status);
+    String id,
+    String status,
+  ) => getAllSessionsForParentAndDoctorByStatus(id, status);
   @Deprecated('Use getAvailableEducationArticle instead')
   static String get GetAvailableEducationArticale =>
       getAvailableEducationArticle;

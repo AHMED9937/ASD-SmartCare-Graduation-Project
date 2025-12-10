@@ -10,10 +10,7 @@ class TestSelectionHeader extends StatelessWidget {
   /// Optional child name for personalization
   final String? childName;
 
-  const TestSelectionHeader({
-    super.key,
-    this.childName,
-  });
+  const TestSelectionHeader({super.key, this.childName});
 
   @override
   Widget build(BuildContext context) {

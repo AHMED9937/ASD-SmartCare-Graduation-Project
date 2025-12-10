@@ -63,10 +63,7 @@ class _ImmersiveCardState extends State<ImmersiveCard> {
               children: [
                 // Image Background
                 if (widget.assetPath != null)
-                  Image.asset(
-                    widget.assetPath!,
-                    fit: BoxFit.cover,
-                  )
+                  Image.asset(widget.assetPath!, fit: BoxFit.cover)
                 else if (widget.imageUrl != null)
                   Image.network(
                     widget.imageUrl!,
@@ -74,8 +71,11 @@ class _ImmersiveCardState extends State<ImmersiveCard> {
                     errorBuilder: (_, __, ___) => Container(
                       color: Colors.grey[200],
                       child: const Center(
-                        child: Icon(Icons.image_not_supported,
-                            color: Colors.grey, size: 50),
+                        child: Icon(
+                          Icons.image_not_supported,
+                          color: Colors.grey,
+                          size: 50,
+                        ),
                       ),
                     ),
                   )
@@ -111,11 +111,7 @@ class _ImmersiveCardState extends State<ImmersiveCard> {
 
                 // Badge
                 if (widget.badge != null)
-                  Positioned(
-                    top: 20,
-                    right: 20,
-                    child: widget.badge!,
-                  ),
+                  Positioned(top: 20, right: 20, child: widget.badge!),
 
                 // Content
                 Positioned(
@@ -151,7 +147,9 @@ class _ImmersiveCardState extends State<ImmersiveCard> {
                       // Faux Button (Visual indicator)
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 12),
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(16),
@@ -172,8 +170,11 @@ class _ImmersiveCardState extends State<ImmersiveCard> {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            const Icon(Icons.arrow_forward_rounded,
-                                color: Colors.white, size: 18),
+                            const Icon(
+                              Icons.arrow_forward_rounded,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ],
                         ),
                       ),

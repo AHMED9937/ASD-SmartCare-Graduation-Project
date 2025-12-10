@@ -48,37 +48,31 @@ class ResponsiveContainer extends StatelessWidget {
 
   /// Builder function that receives the current breakpoint
   final Widget Function(BuildContext context, DeviceBreakpoint breakpoint)?
-      builder;
+  builder;
 
   /// Builder function for sliver layouts
   final Widget Function(BuildContext context, DeviceBreakpoint breakpoint)?
-      sliverBuilder;
+  sliverBuilder;
 
-  const ResponsiveContainer({
-    super.key,
-    this.mobile,
-    this.tablet,
-    this.desktop,
-  })  : builder = null,
-        sliverBuilder = null;
+  const ResponsiveContainer({super.key, this.mobile, this.tablet, this.desktop})
+    : builder = null,
+      sliverBuilder = null;
 
   /// Create a responsive container with a builder function.
-  const ResponsiveContainer.builder({
-    super.key,
-    required this.builder,
-  })  : mobile = null,
-        tablet = null,
-        desktop = null,
-        sliverBuilder = null;
+  const ResponsiveContainer.builder({super.key, required this.builder})
+    : mobile = null,
+      tablet = null,
+      desktop = null,
+      sliverBuilder = null;
 
   /// Create a responsive container for sliver layouts.
   const ResponsiveContainer.sliverBuilder({
     super.key,
     required this.sliverBuilder,
-  })  : mobile = null,
-        tablet = null,
-        desktop = null,
-        builder = null;
+  }) : mobile = null,
+       tablet = null,
+       desktop = null,
+       builder = null;
 
   /// Get the current device breakpoint from context.
   static DeviceBreakpoint of(BuildContext context) {
@@ -186,10 +180,7 @@ class ResponsivePadding extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: horizontal,
-        vertical: vertical,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: horizontal, vertical: vertical),
       child: child,
     );
   }

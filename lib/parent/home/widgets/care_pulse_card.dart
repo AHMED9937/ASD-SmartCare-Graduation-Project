@@ -45,10 +45,7 @@ class CarePulseCard extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           gradient: const LinearGradient(
-            colors: [
-              AppColors.secondary,
-              AppColors.secondaryDark,
-            ],
+            colors: [AppColors.secondary, AppColors.secondaryDark],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -163,10 +160,7 @@ class CarePulseCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: AppRadius.xlRadius,
           gradient: const LinearGradient(
-            colors: [
-              AppColors.primary,
-              AppColors.primaryDark,
-            ],
+            colors: [AppColors.primary, AppColors.primaryDark],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -249,7 +243,9 @@ class CarePulseCard extends StatelessWidget {
                           child: AppButton(
                             label: 'Book Now',
                             onPressed: () => Navigator.pushNamed(
-                                context, AppRoutes.findDoctors),
+                              context,
+                              AppRoutes.findDoctors,
+                            ),
                             backgroundColor: Colors.white,
                             textColor: AppColors.primary,
                             size: AppButtonSize.small,

@@ -48,23 +48,18 @@ class UserLoginCubit extends Cubit<UserLoginState> {
   /// - [LoginLoading] immediately
   /// - [LoginSuccess] with user model on success
   /// - [LoginError] with error message on failure
-  Future<void> login({
-    required String email,
-    required String password,
-  }) async {
+  Future<void> login({required String email, required String password}) async {
     emit(LoginLoading());
 
     try {
-      final response = await Diohelper.postData(
-        url: ApiConstants.login,
-        data: {
-          'email': email,
-          'password': password,
-        },
-      ).timeout(
-        _requestTimeout,
-        onTimeout: () => throw Exception('Login request timed out'),
-      );
+      final response =
+          await Diohelper.postData(
+            url: ApiConstants.login,
+            data: {'email': email, 'password': password},
+          ).timeout(
+            _requestTimeout,
+            onTimeout: () => throw Exception('Login request timed out'),
+          );
 
       final data = response.data;
       if (data == null) {

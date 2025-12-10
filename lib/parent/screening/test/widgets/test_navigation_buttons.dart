@@ -67,9 +67,7 @@ class TestNavigationButtons extends StatelessWidget {
     return Row(
       children: [
         if (showPrevious) ...[
-          Expanded(
-            child: _buildPreviousButton(previousLabel),
-          ),
+          Expanded(child: _buildPreviousButton(previousLabel)),
           const SizedBox(width: AppSpacing.md),
         ],
         Expanded(

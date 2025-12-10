@@ -62,8 +62,9 @@ class ProgressOverviewCard extends StatelessWidget {
                         value: progress,
                         strokeWidth: 4,
                         color: AppColors.primary,
-                        backgroundColor:
-                            AppColors.primary.withValues(alpha: 0.1),
+                        backgroundColor: AppColors.primary.withValues(
+                          alpha: 0.1,
+                        ),
                       ),
                       Text(
                         label!,

@@ -20,10 +20,7 @@ class SignupParentResponseModel {
   /// JWT token returned upon successful sign-up.
   final String token;
 
-  SignupParentResponseModel({
-    required this.data,
-    required this.token,
-  });
+  SignupParentResponseModel({required this.data, required this.token});
 
   /// Creates an instance from a JSON map.
   factory SignupParentResponseModel.fromJson(Map<String, dynamic> json) {
@@ -35,16 +32,14 @@ class SignupParentResponseModel {
 
   /// Converts this instance to a JSON map.
   Map<String, dynamic> toJson() {
-    return {
-      'parent': data.toJson(),
-      'token': token,
-    };
+    return {'parent': data.toJson(), 'token': token};
   }
 
   /// Parses a raw JSON string into an instance.
   factory SignupParentResponseModel.fromRawJson(String str) =>
       SignupParentResponseModel.fromJson(
-          json.decode(str) as Map<String, dynamic>);
+        json.decode(str) as Map<String, dynamic>,
+      );
 
   /// Converts this instance to a raw JSON string.
   String toRawJson() => json.encode(toJson());

@@ -35,52 +35,56 @@ void main() {
   });
 
   Widget createWidget() {
-    return MaterialApp(
-      home: Articles(cubit: mockCubit),
-    );
+    return MaterialApp(home: Articles(cubit: mockCubit));
   }
 
   group('Education Articles Screen Tests', () {
     testWidgets(
-        'renders LoadingView when items list is empty and state is loading',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetAvailableEducationArticaleLoading());
-      when(() => mockCubit.items).thenReturn([]);
+      'renders LoadingView when items list is empty and state is loading',
+      (tester) async {
+        when(
+          () => mockCubit.state,
+        ).thenReturn(GetAvailableEducationArticaleLoading());
+        when(() => mockCubit.items).thenReturn([]);
 
-      await tester.pumpWidget(createWidget());
-      expect(find.byType(LoadingView), findsOneWidget);
-    });
+        await tester.pumpWidget(createWidget());
+        expect(find.byType(LoadingView), findsOneWidget);
+      },
+    );
 
     testWidgets('renders EmptyView when no articles are found', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetAvailableEducationArticaleSuccess(
-        EducationArticaleModel(data: []),
-      ));
+      when(() => mockCubit.state).thenReturn(
+        GetAvailableEducationArticaleSuccess(EducationArticaleModel(data: [])),
+      );
       when(() => mockCubit.items).thenReturn([]);
 
       await tester.pumpWidget(createWidget());
       expect(find.byType(EmptyView), findsOneWidget);
-      expect(find.text('No articles found matching your criteria.'),
-          findsOneWidget);
+      expect(
+        find.text('No articles found matching your criteria.'),
+        findsOneWidget,
+      );
     });
 
-    testWidgets('renders Success state with Featured Article and List items',
-        (tester) async {
+    testWidgets('renders Success state with Featured Article and List items', (
+      tester,
+    ) async {
       final mockData = [
         Data(
-            title: 'Featured Post',
-            info: 'Info 1',
-            creator: 'Dev 1',
-            image: ''),
+          title: 'Featured Post',
+          info: 'Info 1',
+          creator: 'Dev 1',
+          image: '',
+        ),
         Data(title: 'List Item 1', info: 'Info 2', creator: 'Dev 2', image: ''),
         Data(title: 'List Item 2', info: 'Info 3', creator: 'Dev 3', image: ''),
       ];
 
-      when(() => mockCubit.state)
-          .thenReturn(GetAvailableEducationArticaleSuccess(
-        EducationArticaleModel(data: mockData),
-      ));
+      when(() => mockCubit.state).thenReturn(
+        GetAvailableEducationArticaleSuccess(
+          EducationArticaleModel(data: mockData),
+        ),
+      );
       when(() => mockCubit.items).thenReturn(mockData);
 
       await tester.pumpWidget(createWidget());
@@ -99,8 +103,9 @@ void main() {
     });
 
     testWidgets('renders ErrorView when loading fails', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetAvailableEducationArticaleError('Server Error'));
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetAvailableEducationArticaleError('Server Error'));
       when(() => mockCubit.items).thenReturn([]);
 
       await tester.pumpWidget(createWidget());

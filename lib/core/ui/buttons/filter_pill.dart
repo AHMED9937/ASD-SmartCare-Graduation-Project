@@ -43,7 +43,7 @@ class FilterPill extends StatelessWidget {
                       color: AppColors.primary.withValues(alpha: 0.3),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
-                    )
+                    ),
                   ]
                 : null,
           ),

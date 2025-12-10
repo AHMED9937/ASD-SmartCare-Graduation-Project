@@ -53,9 +53,9 @@ class ErrorView extends StatelessWidget {
     this.title = 'No Connection',
     this.onRetry,
     this.retryText = 'Try Again',
-  })  : icon = Icons.wifi_off_rounded,
-        iconColor = null,
-        iconSize = 64.0;
+  }) : icon = Icons.wifi_off_rounded,
+       iconColor = null,
+       iconSize = 64.0;
 
   /// Create an error view for server errors
   const ErrorView.server({
@@ -64,9 +64,9 @@ class ErrorView extends StatelessWidget {
     this.title = 'Server Error',
     this.onRetry,
     this.retryText = 'Try Again',
-  })  : icon = Icons.cloud_off_rounded,
-        iconColor = null,
-        iconSize = 64.0;
+  }) : icon = Icons.cloud_off_rounded,
+       iconColor = null,
+       iconSize = 64.0;
 
   /// Create a compact error view (inline)
   const ErrorView.compact({
@@ -74,10 +74,10 @@ class ErrorView extends StatelessWidget {
     required this.message,
     this.onRetry,
     this.retryText = 'Retry',
-  })  : title = null,
-        icon = Icons.error_outline_rounded,
-        iconColor = null,
-        iconSize = 32.0;
+  }) : title = null,
+       icon = Icons.error_outline_rounded,
+       iconColor = null,
+       iconSize = 32.0;
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +88,7 @@ class ErrorView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: iconSize,
-              color: iconColor ?? AppColors.error,
-            ),
+            Icon(icon, size: iconSize, color: iconColor ?? AppColors.error),
             if (title != null) ...[
               const SizedBox(height: AppSpacing.md),
               Text(
@@ -120,9 +116,7 @@ class ErrorView extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.primary,
                   side: const BorderSide(color: AppColors.primary),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: AppRadius.button,
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: AppRadius.button),
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.lg,
                     vertical: AppSpacing.sm,

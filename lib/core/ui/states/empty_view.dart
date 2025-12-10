@@ -55,9 +55,9 @@ class EmptyView extends StatelessWidget {
     this.message = 'Try adjusting your search or filters.',
     this.actionText,
     this.onAction,
-  })  : icon = Icons.search_off_rounded,
-        imagePath = null,
-        iconSize = 80.0;
+  }) : icon = Icons.search_off_rounded,
+       imagePath = null,
+       iconSize = 80.0;
 
   /// Create an empty view for lists
   const EmptyView.list({
@@ -66,9 +66,9 @@ class EmptyView extends StatelessWidget {
     required this.message,
     this.actionText,
     this.onAction,
-  })  : icon = Icons.list_alt_rounded,
-        imagePath = null,
-        iconSize = 80.0;
+  }) : icon = Icons.list_alt_rounded,
+       imagePath = null,
+       iconSize = 80.0;
 
   /// Create an empty view for favorites
   const EmptyView.favorites({
@@ -77,9 +77,9 @@ class EmptyView extends StatelessWidget {
     this.message = 'Items you favorite will appear here.',
     this.actionText,
     this.onAction,
-  })  : icon = Icons.favorite_border_rounded,
-        imagePath = null,
-        iconSize = 80.0;
+  }) : icon = Icons.favorite_border_rounded,
+       imagePath = null,
+       iconSize = 80.0;
 
   /// Create an empty view for notifications
   const EmptyView.notifications({
@@ -88,9 +88,9 @@ class EmptyView extends StatelessWidget {
     this.message = 'You\'re all caught up!',
     this.actionText,
     this.onAction,
-  })  : icon = Icons.notifications_none_rounded,
-        imagePath = null,
-        iconSize = 80.0;
+  }) : icon = Icons.notifications_none_rounded,
+       imagePath = null,
+       iconSize = 80.0;
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +102,9 @@ class EmptyView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (imagePath != null)
-              Image.asset(
-                imagePath!,
-                width: iconSize,
-                height: iconSize,
-              )
+              Image.asset(imagePath!, width: iconSize, height: iconSize)
             else
-              Icon(
-                icon,
-                size: iconSize,
-                color: AppColors.textHint,
-              ),
+              Icon(icon, size: iconSize, color: AppColors.textHint),
             if (title != null) ...[
               const SizedBox(height: AppSpacing.md),
               Text(
@@ -138,9 +130,7 @@ class EmptyView extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: AppColors.onPrimary,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: AppRadius.button,
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: AppRadius.button),
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.lg,
                     vertical: AppSpacing.sm,

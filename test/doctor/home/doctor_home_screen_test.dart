@@ -6,14 +6,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DoctorHomeScreen Widget Tests', () {
-    testWidgets('renders PageHeader, DailyOverview, and QuickActionCards',
-        (tester) async {
+    testWidgets('renders PageHeader, DailyOverview, and QuickActionCards', (
+      tester,
+    ) async {
       tester.view.physicalSize = const Size(1200, 1200);
       tester.view.devicePixelRatio = 1.0;
 
-      await tester.pumpWidget(const MaterialApp(
-        home: DoctorHomeScreen(),
-      ));
+      await tester.pumpWidget(const MaterialApp(home: DoctorHomeScreen()));
       await tester.pumpAndSettle();
 
       try {
@@ -38,9 +37,7 @@ void main() {
       tester.view.physicalSize = const Size(1200, 1200);
       tester.view.devicePixelRatio = 1.0;
 
-      await tester.pumpWidget(const MaterialApp(
-        home: DoctorHomeScreen(),
-      ));
+      await tester.pumpWidget(const MaterialApp(home: DoctorHomeScreen()));
       await tester.pumpAndSettle();
 
       expect(find.text('Upcoming Sessions'), findsOneWidget);

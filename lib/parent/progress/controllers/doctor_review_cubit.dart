@@ -18,18 +18,21 @@ class DoctorReviewCubit extends Cubit<DoctorReviewStates> {
     emit(DoctorReviewStateLoading());
 
     Diohelper.postData(
-      url: ApiConstants.AddDoctorReview(
-          doctorId), // Ensure this matches your API endpoint key
-      data: {'comment': controller.text, 'rating': rating},
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Doctor review submitted successfully');
+          url: ApiConstants.AddDoctorReview(
+            doctorId,
+          ), // Ensure this matches your API endpoint key
+          data: {'comment': controller.text, 'rating': rating},
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Doctor review submitted successfully');
 
-      emit(DoctorReviewStateLoaded());
-    }).catchError((error) {
-      debugPrint('Error submitting doctor review: $error');
-      emit(DoctorReviewStateError());
-    });
+          emit(DoctorReviewStateLoaded());
+        })
+        .catchError((error) {
+          debugPrint('Error submitting doctor review: $error');
+          emit(DoctorReviewStateError());
+        });
   }
 
   void updateRating(int r) {

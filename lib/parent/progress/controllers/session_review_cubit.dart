@@ -18,17 +18,20 @@ class SessionReviewCubit extends Cubit<SessionReviewState> {
     emit(SessionReviewStateLoading());
 
     Diohelper.postData(
-      url: ApiConstants.SessionReview(
-          id), // Ensure this matches your API endpoint key
-      data: {'title': controller.text, 'ratings': rating},
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Session review submitted successfully');
-      emit(SessionReviewStateLoaded());
-    }).catchError((error) {
-      debugPrint('Error submitting session review: $error');
-      emit(SessionReviewStateError());
-    });
+          url: ApiConstants.SessionReview(
+            id,
+          ), // Ensure this matches your API endpoint key
+          data: {'title': controller.text, 'ratings': rating},
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Session review submitted successfully');
+          emit(SessionReviewStateLoaded());
+        })
+        .catchError((error) {
+          debugPrint('Error submitting session review: $error');
+          emit(SessionReviewStateError());
+        });
   }
 
   void updateRating(int r) {

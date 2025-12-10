@@ -88,17 +88,13 @@ class AddChildProfileForm extends StatelessWidget {
               ),
             ),
             dropdownColor: AppColors.surface,
-            icon: const Icon(Icons.keyboard_arrow_down_rounded,
-                color: AppColors.textSecondary),
+            icon: const Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: AppColors.textSecondary,
+            ),
             items: const [
-              DropdownMenuItem(
-                value: 'male',
-                child: Text('Male'),
-              ),
-              DropdownMenuItem(
-                value: 'female',
-                child: Text('Female'),
-              ),
+              DropdownMenuItem(value: 'male', child: Text('Male')),
+              DropdownMenuItem(value: 'female', child: Text('Female')),
             ],
             onChanged: (val) {
               if (val != null) {

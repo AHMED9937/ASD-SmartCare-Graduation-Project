@@ -33,9 +33,10 @@ class _AppBackButtonState extends State<AppBackButton>
       duration: const Duration(milliseconds: 150),
       vsync: this,
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.9).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.9,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -65,11 +66,7 @@ class _AppBackButtonState extends State<AppBackButton>
                 color: AppColors.primary.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(
-                widget.icon,
-                size: 18,
-                color: AppColors.primary,
-              ),
+              child: Icon(widget.icon, size: 18, color: AppColors.primary),
             ),
           );
         },

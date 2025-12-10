@@ -18,8 +18,9 @@ void main() {
   setUp(() {
     mockCubit = MockDoctorSessionListCubit();
     // Default behavior
-    when(() => mockCubit.fetchSessions(status: any(named: 'status')))
-        .thenAnswer((_) async {});
+    when(
+      () => mockCubit.fetchSessions(status: any(named: 'status')),
+    ).thenAnswer((_) async {});
     when(() => mockCubit.sessions).thenReturn(SessionsResponse(data: []));
   });
 
@@ -34,8 +35,9 @@ void main() {
 
   group('SessionsScreen', () {
     testWidgets('renders LoadingView when state is loading', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorSessionListLoadingStates());
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorSessionListLoadingStates());
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -43,18 +45,21 @@ void main() {
     });
 
     testWidgets('renders ErrorView when state is failed', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorSessionListFailedStates());
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorSessionListFailedStates());
 
       await tester.pumpWidget(createWidgetUnderTest());
 
       expect(find.byType(ErrorView), findsOneWidget);
     });
 
-    testWidgets('renders EmptyView when sessions list is empty',
-        (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorSessionListSuccessStates());
+    testWidgets('renders EmptyView when sessions list is empty', (
+      tester,
+    ) async {
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorSessionListSuccessStates());
       when(() => mockCubit.sessions).thenReturn(SessionsResponse(data: []));
 
       await tester.pumpWidget(createWidgetUnderTest());
@@ -63,8 +68,9 @@ void main() {
       expect(find.text('No upcoming sessions'), findsOneWidget);
     });
 
-    testWidgets('renders list of sessions when data is present',
-        (tester) async {
+    testWidgets('renders list of sessions when data is present', (
+      tester,
+    ) async {
       final sessions = [
         Session(
           id: '1',
@@ -75,10 +81,12 @@ void main() {
           createdAt: DateTime.now(),
         ),
       ];
-      when(() => mockCubit.state)
-          .thenReturn(GetDoctorSessionListSuccessStates());
-      when(() => mockCubit.sessions)
-          .thenReturn(SessionsResponse(data: sessions));
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetDoctorSessionListSuccessStates());
+      when(
+        () => mockCubit.sessions,
+      ).thenReturn(SessionsResponse(data: sessions));
 
       await tester.pumpWidget(createWidgetUnderTest());
 

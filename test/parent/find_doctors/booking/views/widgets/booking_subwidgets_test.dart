@@ -26,18 +26,16 @@ void main() {
   });
 
   Widget wrapInScaffold(Widget widget) {
-    return MaterialApp(
-      home: Scaffold(body: widget),
-    );
+    return MaterialApp(home: Scaffold(body: widget));
   }
 
   group('Booking Subwidgets Isolated Tests', () {
     testWidgets('DoctorProfileHeader renders doctor identity', (tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: DoctorProfileHeader(doctor: mockDoctor),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: DoctorProfileHeader(doctor: mockDoctor)),
         ),
-      ));
+      );
 
       expect(find.text('Dr. Sarah'), findsOneWidget);
       expect(find.text('Communication Specialist'), findsOneWidget);
@@ -55,55 +53,63 @@ void main() {
     });
 
     testWidgets('AboutSection renders qualifications content', (tester) async {
-      await tester.pumpWidget(wrapInScaffold(
-        const AboutSection(content: 'Specialized in ABA therapy'),
-      ));
+      await tester.pumpWidget(
+        wrapInScaffold(
+          const AboutSection(content: 'Specialized in ABA therapy'),
+        ),
+      );
 
       expect(find.text('Specialized in ABA therapy'), findsOneWidget);
     });
 
-    testWidgets('BookingCard renders Calendar and TimeSlotGrid',
-        (tester) async {
+    testWidgets('BookingCard renders Calendar and TimeSlotGrid', (
+      tester,
+    ) async {
       final date = DateTime(2024, 1, 15);
 
-      await tester.pumpWidget(wrapInScaffold(
-        BookingCard(
-          sortedDates: [date],
-          effectiveDate: date,
-          onDateSelected: (_) {},
-          slots: const ['10:00 AM'],
-          selectedSlot: null,
-          onSlotSelected: (_) {},
-          isBooking: false,
+      await tester.pumpWidget(
+        wrapInScaffold(
+          BookingCard(
+            sortedDates: [date],
+            effectiveDate: date,
+            onDateSelected: (_) {},
+            slots: const ['10:00 AM'],
+            selectedSlot: null,
+            onSlotSelected: (_) {},
+            isBooking: false,
+          ),
         ),
-      ));
+      );
 
       expect(find.byType(TimeSlotGrid), findsOneWidget);
       expect(find.text('10:00 AM'), findsOneWidget);
     });
 
     testWidgets('ReviewCarousel renders loading state', (tester) async {
-      await tester.pumpWidget(wrapInScaffold(
-        const ReviewCarousel(doctorId: 'doc-123'),
-      ));
+      await tester.pumpWidget(
+        wrapInScaffold(const ReviewCarousel(doctorId: 'doc-123')),
+      );
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
   });
 
   group('Core Reusable Components (Booking specific)', () {
-    testWidgets('TimeSlotGrid renders all slots and handles selection',
-        (tester) async {
+    testWidgets('TimeSlotGrid renders all slots and handles selection', (
+      tester,
+    ) async {
       final slots = ['9:00 AM', '10:00 AM', '11:00 AM'];
       String? selected;
 
-      await tester.pumpWidget(wrapInScaffold(
-        TimeSlotGrid(
-          slots: slots,
-          selectedSlot: null,
-          onSlotSelected: (val) => selected = val,
+      await tester.pumpWidget(
+        wrapInScaffold(
+          TimeSlotGrid(
+            slots: slots,
+            selectedSlot: null,
+            onSlotSelected: (val) => selected = val,
+          ),
         ),
-      ));
+      );
 
       expect(find.text('9:00 AM'), findsOneWidget);
       expect(find.text('11:00 AM'), findsOneWidget);

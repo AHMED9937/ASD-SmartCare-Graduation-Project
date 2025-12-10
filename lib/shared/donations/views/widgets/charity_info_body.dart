@@ -30,9 +30,7 @@ class _CharityInfoBodyState extends State<CharityInfoBody> {
             _buildSliverAppBar(),
 
             // 2. Content Sections
-            SliverToBoxAdapter(
-              child: _buildContent(context, state),
-            ),
+            SliverToBoxAdapter(child: _buildContent(context, state)),
           ],
         );
       },
@@ -101,11 +99,15 @@ class _CharityInfoBodyState extends State<CharityInfoBody> {
             ),
             const AppSpacer.sm(),
 
-            _buildInfoRow(Icons.location_on_outlined,
-                widget.charityData.charityAddress ?? 'No address'),
+            _buildInfoRow(
+              Icons.location_on_outlined,
+              widget.charityData.charityAddress ?? 'No address',
+            ),
             const AppSpacer.xs(),
-            _buildInfoRow(Icons.phone_outlined,
-                widget.charityData.charityPhone ?? 'No phone'),
+            _buildInfoRow(
+              Icons.phone_outlined,
+              widget.charityData.charityPhone ?? 'No phone',
+            ),
 
             const AppSpacer.xl(),
 
@@ -142,8 +144,9 @@ class _CharityInfoBodyState extends State<CharityInfoBody> {
             const AppSpacer.sm(),
             Text(
               'Your support helps us provide essential medicines to those in need.',
-              style: AppTypography.bodyMedium
-                  .copyWith(color: AppColors.textSecondary),
+              style: AppTypography.bodyMedium.copyWith(
+                color: AppColors.textSecondary,
+              ),
             ),
             const AppSpacer.lg(),
 
@@ -185,8 +188,9 @@ class _CharityInfoBodyState extends State<CharityInfoBody> {
         Expanded(
           child: Text(
             text,
-            style: AppTypography.bodySmall
-                .copyWith(color: AppColors.textSecondary),
+            style: AppTypography.bodySmall.copyWith(
+              color: AppColors.textSecondary,
+            ),
           ),
         ),
       ],
@@ -201,8 +205,9 @@ class _CharityInfoBodyState extends State<CharityInfoBody> {
     final isSelected = _selectedMethod == value;
     return AppCard(
       onTap: () => setState(() => _selectedMethod = value),
-      color:
-          isSelected ? AppColors.primary.withValues(alpha: 0.05) : Colors.white,
+      color: isSelected
+          ? AppColors.primary.withValues(alpha: 0.05)
+          : Colors.white,
       padding: const EdgeInsets.all(AppSpacing.md),
       border: Border.all(
         color: isSelected ? AppColors.primary : AppColors.border,
@@ -210,8 +215,10 @@ class _CharityInfoBodyState extends State<CharityInfoBody> {
       ),
       child: Row(
         children: [
-          Icon(icon,
-              color: isSelected ? AppColors.primary : AppColors.textSecondary),
+          Icon(
+            icon,
+            color: isSelected ? AppColors.primary : AppColors.textSecondary,
+          ),
           const AppSpacer.md(),
           Expanded(
             child: Text(
@@ -281,8 +288,11 @@ class _CircularBackButton extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: Colors.white.withValues(alpha: 0.9),
         child: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded,
-              size: 18, color: AppColors.primary),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            size: 18,
+            color: AppColors.primary,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
       ),

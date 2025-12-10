@@ -69,16 +69,14 @@ class SessionDetailBody extends StatelessWidget {
               AppSpacing.sm,
             ),
           ),
-          ...comments.map((comment) => _CommentCard(
-                comment: comment,
-                date: session.sessionDate ?? '',
-              )),
+          ...comments.map(
+            (comment) =>
+                _CommentCard(comment: comment, date: session.sessionDate ?? ''),
+          ),
         ] else
           const Padding(
             padding: EdgeInsets.all(AppSpacing.xl),
-            child: EmptyView(
-              message: 'No notes available for this session.',
-            ),
+            child: EmptyView(message: 'No notes available for this session.'),
           ),
       ],
     );
@@ -157,10 +155,7 @@ class _CommentCard extends StatelessWidget {
   final String comment;
   final String date;
 
-  const _CommentCard({
-    required this.comment,
-    required this.date,
-  });
+  const _CommentCard({required this.comment, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -283,7 +278,9 @@ class _RatingDialog extends StatelessWidget {
           builder: (context, state) {
             if (state is SessionReviewStateLoaded) {
               return _buildSuccessContent(
-                  context, 'Your rating has been submitted successfully.');
+                context,
+                'Your rating has been submitted successfully.',
+              );
             }
             if (state is SessionReviewStateError) {
               return _buildErrorContent(context, () {
@@ -317,15 +314,20 @@ Widget _buildSuccessContent(BuildContext context, String message) {
             color: AppColors.success.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.check_circle_outline,
-              color: AppColors.success, size: 48),
+          child: const Icon(
+            Icons.check_circle_outline,
+            color: AppColors.success,
+            size: 48,
+          ),
         ),
         const SizedBox(height: AppSpacing.lg),
-        Text('Thank you!',
-            style: AppTypography.headlineSmall.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryDark,
-            )),
+        Text(
+          'Thank you!',
+          style: AppTypography.headlineSmall.copyWith(
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryDark,
+          ),
+        ),
         const SizedBox(height: AppSpacing.sm),
         Text(
           message,
@@ -359,15 +361,20 @@ Widget _buildErrorContent(BuildContext context, VoidCallback onRetry) {
             color: AppColors.error.withValues(alpha: 0.1),
             shape: BoxShape.circle,
           ),
-          child:
-              const Icon(Icons.error_outline, color: AppColors.error, size: 48),
+          child: const Icon(
+            Icons.error_outline,
+            color: AppColors.error,
+            size: 48,
+          ),
         ),
         const SizedBox(height: AppSpacing.lg),
-        Text('Submission Failed',
-            style: AppTypography.headlineSmall.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.error,
-            )),
+        Text(
+          'Submission Failed',
+          style: AppTypography.headlineSmall.copyWith(
+            fontWeight: FontWeight.bold,
+            color: AppColors.error,
+          ),
+        ),
         const SizedBox(height: AppSpacing.sm),
         Text(
           'Something went wrong. Please try again.',
@@ -379,10 +386,7 @@ Widget _buildErrorContent(BuildContext context, VoidCallback onRetry) {
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
           width: double.infinity,
-          child: AppButton(
-            label: 'Retry',
-            onPressed: onRetry,
-          ),
+          child: AppButton(label: 'Retry', onPressed: onRetry),
         ),
       ],
     ),
@@ -401,12 +405,14 @@ Widget _buildFormContent(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(title,
-            textAlign: TextAlign.center,
-            style: AppTypography.headlineSmall.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryDark,
-            )),
+        Text(
+          title,
+          textAlign: TextAlign.center,
+          style: AppTypography.headlineSmall.copyWith(
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryDark,
+          ),
+        ),
         const SizedBox(height: AppSpacing.md),
         Text(
           'How was your experience with this session?',
@@ -453,10 +459,7 @@ Widget _buildFormContent(
         const SizedBox(height: AppSpacing.xl),
         ConditionalBuilder(
           condition: cubit.state is! SessionReviewStateLoading,
-          builder: (_) => AppButton(
-            label: buttonText,
-            onPressed: onSubmit,
-          ),
+          builder: (_) => AppButton(label: buttonText, onPressed: onSubmit),
           fallback: (_) => const Center(
             child: Padding(
               padding: EdgeInsets.all(AppSpacing.md),

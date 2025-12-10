@@ -69,10 +69,7 @@ class _ProgressRingState extends State<ProgressRing>
     _animation = Tween<double>(
       begin: 0,
       end: widget.progress,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOutCubic,
-    ));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
     if (widget.animate) {
       _controller.forward();
     }
@@ -83,13 +80,10 @@ class _ProgressRingState extends State<ProgressRing>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.progress != widget.progress) {
       _oldProgress = oldWidget.progress;
-      _animation = Tween<double>(
-        begin: _oldProgress,
-        end: widget.progress,
-      ).animate(CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOutCubic,
-      ));
+      _animation = Tween<double>(begin: _oldProgress, end: widget.progress)
+          .animate(
+            CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
+          );
       _controller.forward(from: 0);
     }
   }

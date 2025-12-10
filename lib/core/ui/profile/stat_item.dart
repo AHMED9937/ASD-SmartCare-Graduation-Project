@@ -20,11 +20,7 @@ class StatItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (icon != null) ...[
-          Icon(
-            icon,
-            size: AppSpacing.iconSm,
-            color: AppColors.primary,
-          ),
+          Icon(icon, size: AppSpacing.iconSm, color: AppColors.primary),
           const SizedBox(height: AppSpacing.xxs),
         ],
         Text(

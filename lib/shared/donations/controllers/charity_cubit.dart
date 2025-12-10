@@ -21,18 +21,20 @@ class AvailableCharityCubit extends Cubit<AvailableCharityState> {
     emit(GetAvailableCharityLoading());
 
     Diohelper.getData(
-      url: ApiConstants.GetAvailableCharity,
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      availableCharityList = CharityResponse.fromJson(value.data);
+          url: ApiConstants.GetAvailableCharity,
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          availableCharityList = CharityResponse.fromJson(value.data);
 
-      // 2) Populate your items list:
-      items = availableCharityList.data ?? [];
+          // 2) Populate your items list:
+          items = availableCharityList.data ?? [];
 
-      emit(GetAvailableCharitySuccess(availableCharityList));
-    }).catchError((error) {
-      emit(GetAvailableCharityError('Failed to load Charitys'));
-    });
+          emit(GetAvailableCharitySuccess(availableCharityList));
+        })
+        .catchError((error) {
+          emit(GetAvailableCharityError('Failed to load Charitys'));
+        });
   }
 
   void searchCharity(String medName) async {
@@ -43,9 +45,7 @@ class AvailableCharityCubit extends Cubit<AvailableCharityState> {
         url: ApiConstants.GetAvailableCharity,
         token: CacheHelper.getData(key: 'token'),
         // <-- add this:
-        query: {
-          'keyword': medName,
-        },
+        query: {'keyword': medName},
       );
 
       availableCharityList = CharityResponse.fromJson(response.data);

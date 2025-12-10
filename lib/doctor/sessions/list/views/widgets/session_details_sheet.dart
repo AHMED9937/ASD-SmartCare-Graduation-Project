@@ -113,10 +113,7 @@ class SessionDetailsSheet extends StatelessWidget {
         horizontal: AppSpacing.md,
         vertical: AppSpacing.sm,
       ),
-      child: ReviewListView(
-        ID: session.id ?? '',
-        showAllReviews: false,
-      ),
+      child: ReviewListView(ID: session.id ?? '', showAllReviews: false),
     );
   }
 

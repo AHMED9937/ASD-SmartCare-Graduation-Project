@@ -46,11 +46,7 @@ class QuickActionCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Icon(
-                    icon,
-                    size: 28,
-                    color: Colors.white,
-                  ),
+                  child: Icon(icon, size: 28, color: Colors.white),
                 ),
                 const SizedBox(height: AppSpacing.lg),
                 Text(

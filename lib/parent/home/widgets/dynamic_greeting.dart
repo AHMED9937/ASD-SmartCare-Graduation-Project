@@ -86,10 +86,7 @@ class DynamicGreeting extends StatelessWidget {
           const SizedBox(width: AppSpacing.md),
           GestureDetector(
             onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
-            child: ProfileAvatar(
-              imageUrl: userImage,
-              radius: 24,
-            ),
+            child: ProfileAvatar(imageUrl: userImage, radius: 24),
           ),
         ],
       ),

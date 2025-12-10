@@ -72,13 +72,14 @@ class DoctorInfoCard extends StatelessWidget {
             children: [
               Text(
                 name,
-                style: (compact
-                        ? AppTypography.titleMedium
-                        : AppTypography.titleLarge)
-                    .copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.onPrimary,
-                ),
+                style:
+                    (compact
+                            ? AppTypography.titleMedium
+                            : AppTypography.titleLarge)
+                        .copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.onPrimary,
+                        ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -97,10 +98,8 @@ class DoctorInfoCard extends StatelessWidget {
                 SizedBox(height: compact ? AppSpacing.xs : AppSpacing.sm),
                 RatingBarIndicator(
                   rating: rating!,
-                  itemBuilder: (context, index) => const Icon(
-                    Icons.star_rounded,
-                    color: AppColors.warning,
-                  ),
+                  itemBuilder: (context, index) =>
+                      const Icon(Icons.star_rounded, color: AppColors.warning),
                   itemCount: 5,
                   itemSize: compact ? 14.0 : 18.0,
                   unratedColor: AppColors.onPrimary.withValues(alpha: 0.3),

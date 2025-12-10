@@ -38,27 +38,28 @@ class Parent {
   List<Childs>? childs;
   String? id;
 
-  Parent(
-      {this.sId,
-      this.userName,
-      this.email,
-      this.password,
-      this.age,
-      this.phone,
-      this.address,
-      this.active,
-      this.role,
-      this.numOfChild,
-      this.createdAt,
-      this.updatedAt,
-      this.sessionId,
-      this.iV,
-      this.emailResetCode,
-      this.emailResetExpire,
-      this.emailResetVerfied,
-      this.image,
-      this.childs,
-      this.id});
+  Parent({
+    this.sId,
+    this.userName,
+    this.email,
+    this.password,
+    this.age,
+    this.phone,
+    this.address,
+    this.active,
+    this.role,
+    this.numOfChild,
+    this.createdAt,
+    this.updatedAt,
+    this.sessionId,
+    this.iV,
+    this.emailResetCode,
+    this.emailResetExpire,
+    this.emailResetVerfied,
+    this.image,
+    this.childs,
+    this.id,
+  });
 
   Parent.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

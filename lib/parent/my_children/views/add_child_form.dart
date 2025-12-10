@@ -24,8 +24,9 @@ class AddChildForm extends StatelessWidget {
                 return null;
               },
               hint: 'Enter your Child Name',
-              controller:
-                  ParentSignUpCubit.get(context).ChildNametextcontroller,
+              controller: ParentSignUpCubit.get(
+                context,
+              ).ChildNametextcontroller,
               prefixIcon: Icons.person_rounded,
             ),
             const SizedBox(height: 20),
@@ -91,23 +92,19 @@ class AddChildForm extends StatelessWidget {
                 ),
               ),
               dropdownColor: AppColors.surface,
-              icon: const Icon(Icons.keyboard_arrow_down_rounded,
-                  color: AppColors.textSecondary),
+              icon: const Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: AppColors.textSecondary,
+              ),
               items: const [
-                DropdownMenuItem(
-                  value: 'male',
-                  child: Text('Male'),
-                ),
-                DropdownMenuItem(
-                  value: 'female',
-                  child: Text('Female'),
-                ),
+                DropdownMenuItem(value: 'male', child: Text('Male')),
+                DropdownMenuItem(value: 'female', child: Text('Female')),
               ],
               onChanged: (val) {
                 if (val != null) {
-                  ParentSignUpCubit.get(context)
-                      .ChildGendertextcontroller
-                      .text = val;
+                  ParentSignUpCubit.get(
+                    context,
+                  ).ChildGendertextcontroller.text = val;
                 }
               },
             ),

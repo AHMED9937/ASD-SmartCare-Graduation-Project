@@ -32,7 +32,8 @@ class ChildProgressBody extends StatelessWidget {
   Widget build(BuildContext context) {
     // Show full-page loader ONLY on the very first load (when doctors list hasn't been initialized)
     // Subsequent reloads or tab switches will use local section loaders instead.
-    final isInitialLoading = state is UnifiedProgressDataLoading &&
+    final isInitialLoading =
+        state is UnifiedProgressDataLoading &&
         (cubit.myDoctorList == null || cubit.myDoctorList!.isEmpty);
 
     if (isInitialLoading) {
@@ -74,7 +75,7 @@ class ChildProgressBody extends StatelessWidget {
                 DoctorNavigation(
                   doctorName:
                       cubit.myDoctorList![cubit.current].parent?.userName ??
-                          'Unknown Doctor',
+                      'Unknown Doctor',
                   onPrevious: onPreviousDoctor,
                   onNext: onNextDoctor,
                   hasPrevious: cubit.current > 0,
@@ -126,7 +127,9 @@ class ChildProgressBody extends StatelessWidget {
           final doctorId = cubit.myDoctorList?[cubit.current].id;
           if (doctorId != null) {
             cubit.getAllUpcomingSessionsForParent(
-                doctorId, selectedTabIndex == 1);
+              doctorId,
+              selectedTabIndex == 1,
+            );
           }
         },
       );
@@ -167,10 +170,7 @@ class ChildProgressBody extends StatelessWidget {
       final double progress = degree / 3.0;
       final String label = 'L$degree';
 
-      return ProgressOverviewCard(
-        progress: progress,
-        label: label,
-      );
+      return ProgressOverviewCard(progress: progress, label: label);
     }
 
     // No tests taken yet or error fetching history (silent fallback to CTA)

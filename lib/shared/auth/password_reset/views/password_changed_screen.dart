@@ -27,9 +27,10 @@ class Passwordchangedscreen extends StatelessWidget {
                 const Text(
                   'Password Changed!',
                   style: TextStyle(
-                      fontSize: 28,
-                      fontFamily: 'Roboto',
-                      fontWeight: FontWeight.bold),
+                    fontSize: 28,
+                    fontFamily: 'Roboto',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 16),
 

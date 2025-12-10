@@ -68,9 +68,7 @@ class ResetPasswordBody extends StatelessWidget {
               expanded: true,
               size: AppButtonSize.large,
             ),
-            fallback: (_) => const Center(
-              child: CircularProgressIndicator(),
-            ),
+            fallback: (_) => const Center(child: CircularProgressIndicator()),
           ),
         ],
       ),

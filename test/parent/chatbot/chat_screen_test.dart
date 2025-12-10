@@ -19,15 +19,14 @@ void main() {
     when(() => mockCubit.messages).thenReturn([
       {'message': 'Hello!', 'isUser': false},
     ]);
-    when(() => mockCubit.questionController)
-        .thenReturn(TextEditingController());
+    when(
+      () => mockCubit.questionController,
+    ).thenReturn(TextEditingController());
     when(() => mockCubit.close()).thenAnswer((_) async {});
   });
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: ChatBotscreen(cubit: mockCubit),
-    );
+    return MaterialApp(home: ChatBotscreen(cubit: mockCubit));
   }
 
   group('ChatBotscreen Widget Tests', () {

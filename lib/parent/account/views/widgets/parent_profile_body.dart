@@ -52,10 +52,7 @@ class ParentProfileBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(height: AppSpacing.xl),
-                    ProfileAvatar(
-                      imageUrl: parent.image,
-                      radius: 54,
-                    ),
+                    ProfileAvatar(imageUrl: parent.image, radius: 54),
                     const SizedBox(height: AppSpacing.md),
                     Text(
                       parent.userName ?? '',
@@ -80,20 +77,17 @@ class ParentProfileBody extends StatelessWidget {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.screenPaddingH),
+              horizontal: AppSpacing.screenPaddingH,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: AppSpacing.lg),
-                const SectionHeader(
-                  title: 'Your Children',
-                ),
+                const SectionHeader(title: 'Your Children'),
                 const SizedBox(height: AppSpacing.sm),
                 _buildChildrenSection(parent.id!),
                 const SizedBox(height: AppSpacing.xl),
-                const SectionHeader(
-                  title: 'Personal Details',
-                ),
+                const SectionHeader(title: 'Personal Details'),
                 const SizedBox(height: AppSpacing.sm),
                 AppCard(
                   padding: EdgeInsets.zero,
@@ -146,7 +140,10 @@ class ParentProfileBody extends StatelessWidget {
                   textColor: AppColors.error,
                   onPressed: () {
                     Navigator.pushNamedAndRemoveUntil(
-                        context, '/login', (route) => false);
+                      context,
+                      '/login',
+                      (route) => false,
+                    );
                   },
                 ),
                 const SizedBox(height: AppSpacing.xxl),
@@ -182,13 +179,17 @@ class ParentProfileBody extends StatelessWidget {
                   padding: const EdgeInsets.all(AppSpacing.md),
                   child: Column(
                     children: [
-                      const Icon(Icons.child_care_rounded,
-                          color: AppColors.textDisabled, size: 40),
+                      const Icon(
+                        Icons.child_care_rounded,
+                        color: AppColors.textDisabled,
+                        size: 40,
+                      ),
                       const SizedBox(height: AppSpacing.xs),
                       Text(
                         'No children added yet',
-                        style: AppTypography.bodyMedium
-                            .copyWith(color: AppColors.textSecondary),
+                        style: AppTypography.bodyMedium.copyWith(
+                          color: AppColors.textSecondary,
+                        ),
                       ),
                     ],
                   ),
@@ -236,13 +237,15 @@ class ParentProfileBody extends StatelessWidget {
                         children: [
                           Text(
                             child.childName ?? '',
-                            style: AppTypography.titleSmall
-                                .copyWith(fontWeight: FontWeight.bold),
+                            style: AppTypography.titleSmall.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             '${child.age} Years',
-                            style: AppTypography.labelSmall
-                                .copyWith(color: AppColors.textSecondary),
+                            style: AppTypography.labelSmall.copyWith(
+                              color: AppColors.textSecondary,
+                            ),
                           ),
                         ],
                       ),

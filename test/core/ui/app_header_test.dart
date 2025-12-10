@@ -46,8 +46,9 @@ void main() {
       expect(textWidget.style?.color, AppColors.primary);
     });
 
-    testWidgets('shows back button when showBackButton is true and can pop',
-        (tester) async {
+    testWidgets('shows back button when showBackButton is true and can pop', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -58,9 +59,7 @@ void main() {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => Scaffold(
-                          appBar: const AppHeader(
-                            title: 'Nested Screen',
-                          ),
+                          appBar: const AppHeader(title: 'Nested Screen'),
                           body: Container(),
                         ),
                       ),
@@ -82,8 +81,9 @@ void main() {
       expect(find.byIcon(Icons.arrow_back_ios_new_rounded), findsOneWidget);
     });
 
-    testWidgets('hides back button when showBackButton is false',
-        (tester) async {
+    testWidgets('hides back button when showBackButton is false', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -126,10 +126,7 @@ void main() {
             appBar: AppHeader(
               title: 'With Actions',
               actions: [
-                IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {},
-                ),
+                IconButton(icon: const Icon(Icons.settings), onPressed: () {}),
               ],
             ),
             body: Container(),
@@ -158,8 +155,9 @@ void main() {
       expect(centerFinder, findsOneWidget);
     });
 
-    testWidgets('does not center title when centerTitle is false',
-        (tester) async {
+    testWidgets('does not center title when centerTitle is false', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -177,8 +175,9 @@ void main() {
       expect(centerFinder, findsNothing);
     });
 
-    testWidgets('transparent variant has transparent background',
-        (tester) async {
+    testWidgets('transparent variant has transparent background', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -192,8 +191,9 @@ void main() {
       expect(find.text('Transparent'), findsOneWidget);
     });
 
-    testWidgets('renders titleWidget when provided instead of title',
-        (tester) async {
+    testWidgets('renders titleWidget when provided instead of title', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(

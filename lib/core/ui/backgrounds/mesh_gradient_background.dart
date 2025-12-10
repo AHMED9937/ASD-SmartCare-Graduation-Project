@@ -7,11 +7,7 @@ class MeshGradientBackground extends StatelessWidget {
   final Widget? child;
   final bool animated; // Kept for API compatibility, but not used
 
-  const MeshGradientBackground({
-    super.key,
-    this.child,
-    this.animated = true,
-  });
+  const MeshGradientBackground({super.key, this.child, this.animated = true});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +20,7 @@ class MeshGradientBackground extends StatelessWidget {
 
         // 2. Simple gradient background - much faster than BackdropFilter
         Container(
-          decoration: BoxDecoration(
-            gradient: AppColors.premiumGradient,
-          ),
+          decoration: BoxDecoration(gradient: AppColors.premiumGradient),
         ),
 
         // Content

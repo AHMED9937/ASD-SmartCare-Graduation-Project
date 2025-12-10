@@ -41,9 +41,7 @@ class _ChatBotscreenState extends State<ChatBotscreen> {
         backgroundColor: AppColors.scaffoldBackground,
         appBar: AppHeader(
           title: 'AI Companion',
-          actions: [
-            _buildCompanionAvatar(),
-          ],
+          actions: [_buildCompanionAvatar()],
         ),
         body: MeshGradientBackground(
           child: BlocListener<ChatBotCubit, ChatBotState>(

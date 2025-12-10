@@ -8,10 +8,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(
-              currentIndex: 2,
-              totalQuestions: 10,
-            ),
+            body: TestProgressHeader(currentIndex: 2, totalQuestions: 10),
           ),
         ),
       );
@@ -90,10 +87,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(
-              currentIndex: 4,
-              totalQuestions: 10,
-            ),
+            body: TestProgressHeader(currentIndex: 4, totalQuestions: 10),
           ),
         ),
       );
@@ -105,10 +99,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(
-              currentIndex: 0,
-              totalQuestions: 0,
-            ),
+            body: TestProgressHeader(currentIndex: 0, totalQuestions: 0),
           ),
         ),
       );
@@ -121,10 +112,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(
-              currentIndex: 2,
-              totalQuestions: 10,
-            ),
+            body: TestProgressHeader(currentIndex: 2, totalQuestions: 10),
           ),
         ),
       );
@@ -137,10 +125,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(
-              currentIndex: 0,
-              totalQuestions: 5,
-            ),
+            body: TestProgressHeader(currentIndex: 0, totalQuestions: 5),
           ),
         ),
       );
@@ -151,10 +136,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(
-              currentIndex: 1,
-              totalQuestions: 5,
-            ),
+            body: TestProgressHeader(currentIndex: 1, totalQuestions: 5),
           ),
         ),
       );

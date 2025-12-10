@@ -7,11 +7,7 @@ void main() {
     testWidgets('renders with default parameters', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ProgressRing(progress: 0.5),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ProgressRing(progress: 0.5))),
         ),
       );
 
@@ -25,19 +21,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: ProgressRing(
-                progress: 0.5,
-                size: testSize,
-              ),
-            ),
+            body: Center(child: ProgressRing(progress: 0.5, size: testSize)),
           ),
         ),
       );
 
-      final container = tester.widget<SizedBox>(
-        find.byType(SizedBox).first,
-      );
+      final container = tester.widget<SizedBox>(find.byType(SizedBox).first);
       expect(container.width, equals(testSize));
       expect(container.height, equals(testSize));
     });
@@ -47,10 +36,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: Center(
-              child: ProgressRing(
-                progress: 0.75,
-                child: Text('75%'),
-              ),
+              child: ProgressRing(progress: 0.75, child: Text('75%')),
             ),
           ),
         ),
@@ -63,12 +49,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: ProgressRing(
-                progress: 0.5,
-                animate: true,
-              ),
-            ),
+            body: Center(child: ProgressRing(progress: 0.5, animate: true)),
           ),
         ),
       );
@@ -85,12 +66,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: ProgressRing(
-                progress: 0.5,
-                animate: false,
-              ),
-            ),
+            body: Center(child: ProgressRing(progress: 0.5, animate: false)),
           ),
         ),
       );
@@ -103,11 +79,7 @@ void main() {
     testWidgets('handles progress value of 0', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ProgressRing(progress: 0.0),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ProgressRing(progress: 0.0))),
         ),
       );
 
@@ -117,11 +89,7 @@ void main() {
     testWidgets('handles progress value of 1', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: Center(
-              child: ProgressRing(progress: 1.0),
-            ),
-          ),
+          home: Scaffold(body: Center(child: ProgressRing(progress: 1.0))),
         ),
       );
 
@@ -150,12 +118,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: Center(
-              child: ProgressRing(
-                progress: 0.5,
-                strokeWidth: 10.0,
-              ),
-            ),
+            body: Center(child: ProgressRing(progress: 0.5, strokeWidth: 10.0)),
           ),
         ),
       );
@@ -173,10 +136,7 @@ void main() {
                   accessibleNavigation: true,
                   disableAnimations: true,
                 ),
-                child: ProgressRing(
-                  progress: 0.5,
-                  animate: true,
-                ),
+                child: ProgressRing(progress: 0.5, animate: true),
               ),
             ),
           ),
@@ -195,9 +155,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: Center(
-                child: ProgressRing(progress: 0.5, size: 48),
-              ),
+              body: Center(child: ProgressRing(progress: 0.5, size: 48)),
             ),
           ),
         );
@@ -213,9 +171,7 @@ void main() {
         await tester.pumpWidget(
           const MaterialApp(
             home: Scaffold(
-              body: Center(
-                child: ProgressRing(progress: 0.5, size: 120),
-              ),
+              body: Center(child: ProgressRing(progress: 0.5, size: 120)),
             ),
           ),
         );

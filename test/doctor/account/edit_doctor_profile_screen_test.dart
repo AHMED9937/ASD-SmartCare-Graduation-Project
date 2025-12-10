@@ -29,17 +29,22 @@ void main() {
       ),
     );
 
-    when(() => mockCubit.nameCtrl)
-        .thenReturn(TextEditingController(text: 'Dr. Smith'));
+    when(
+      () => mockCubit.nameCtrl,
+    ).thenReturn(TextEditingController(text: 'Dr. Smith'));
     when(() => mockCubit.ageCtrl).thenReturn(TextEditingController(text: '40'));
-    when(() => mockCubit.addressCtrl)
-        .thenReturn(TextEditingController(text: 'Clinic A'));
-    when(() => mockCubit.departmentCtrl)
-        .thenReturn(TextEditingController(text: 'Pediatrician'));
-    when(() => mockCubit.qualificationsCtrl)
-        .thenReturn(TextEditingController(text: 'MD'));
-    when(() => mockCubit.sessionPriceCtrl)
-        .thenReturn(TextEditingController(text: '100'));
+    when(
+      () => mockCubit.addressCtrl,
+    ).thenReturn(TextEditingController(text: 'Clinic A'));
+    when(
+      () => mockCubit.departmentCtrl,
+    ).thenReturn(TextEditingController(text: 'Pediatrician'));
+    when(
+      () => mockCubit.qualificationsCtrl,
+    ).thenReturn(TextEditingController(text: 'MD'));
+    when(
+      () => mockCubit.sessionPriceCtrl,
+    ).thenReturn(TextEditingController(text: '100'));
     when(() => mockCubit.formKey).thenReturn(GlobalKey<FormState>());
     when(() => mockCubit.pickedImage).thenReturn(null);
   });
@@ -61,9 +66,13 @@ void main() {
 
       expect(find.text('Professional Profile'), findsOneWidget);
       expect(
-          find.widgetWithText(TextFormField, 'Specialization'), findsOneWidget);
+        find.widgetWithText(TextFormField, 'Specialization'),
+        findsOneWidget,
+      );
       expect(
-          find.widgetWithText(TextFormField, 'Qualifications'), findsOneWidget);
+        find.widgetWithText(TextFormField, 'Qualifications'),
+        findsOneWidget,
+      );
       expect(find.byType(EditableProfileAvatar), findsOneWidget);
       expect(find.byType(AppButton), findsOneWidget);
     });

@@ -7,10 +7,7 @@ import 'package:asdsmartcare/doctor/my_patients/controllers/patients_list_state.
 class SessionForm extends StatefulWidget {
   final String parentId;
 
-  const SessionForm({
-    super.key,
-    required this.parentId,
-  });
+  const SessionForm({super.key, required this.parentId});
 
   @override
   State<SessionForm> createState() => _SessionFormState();
@@ -89,8 +86,10 @@ class _SessionFormState extends State<SessionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisteredChildrenListCubit,
-        GetRegisteredChildrenListStates>(
+    return BlocBuilder<
+      RegisteredChildrenListCubit,
+      GetRegisteredChildrenListStates
+    >(
       builder: (context, state) {
         if (state is CreatSessionLoadingStates) {
           return const Center(
@@ -138,10 +137,7 @@ class _SessionFormState extends State<SessionForm> {
               const SizedBox(height: AppSpacing.lg),
               _buildCommentsSection(),
               const SizedBox(height: AppSpacing.xl),
-              AppButton(
-                label: 'Create Session',
-                onPressed: _submit,
-              ),
+              AppButton(label: 'Create Session', onPressed: _submit),
             ],
           ),
         );
@@ -155,9 +151,7 @@ class _SessionFormState extends State<SessionForm> {
       children: [
         Text(
           'Session Date',
-          style: AppTypography.labelMedium.copyWith(
-            color: AppColors.onSurface,
-          ),
+          style: AppTypography.labelMedium.copyWith(color: AppColors.onSurface),
         ),
         const SizedBox(height: AppSpacing.xs),
         InkWell(
@@ -175,8 +169,11 @@ class _SessionFormState extends State<SessionForm> {
             ),
             child: Row(
               children: [
-                const Icon(Icons.calendar_today_rounded,
-                    size: AppSpacing.iconMd, color: AppColors.textSecondary),
+                const Icon(
+                  Icons.calendar_today_rounded,
+                  size: AppSpacing.iconMd,
+                  color: AppColors.textSecondary,
+                ),
                 const SizedBox(width: AppSpacing.md),
                 Text(
                   _sessionDate == null
@@ -202,9 +199,7 @@ class _SessionFormState extends State<SessionForm> {
       children: [
         Text(
           'Comments',
-          style: AppTypography.labelMedium.copyWith(
-            color: AppColors.onSurface,
-          ),
+          style: AppTypography.labelMedium.copyWith(color: AppColors.onSurface),
         ),
         const SizedBox(height: AppSpacing.xs),
         ..._comments.map((c) => _buildCommentItem(c)),
@@ -238,10 +233,7 @@ class _SessionFormState extends State<SessionForm> {
         borderRadius: AppRadius.smRadius,
         border: Border.all(color: AppColors.border.withValues(alpha: 0.3)),
       ),
-      child: Text(
-        comment,
-        style: AppTypography.bodyMedium,
-      ),
+      child: Text(comment, style: AppTypography.bodyMedium),
     );
   }
 
@@ -252,8 +244,11 @@ class _SessionFormState extends State<SessionForm> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.check_circle_rounded,
-                size: 80, color: AppColors.success),
+            const Icon(
+              Icons.check_circle_rounded,
+              size: 80,
+              color: AppColors.success,
+            ),
             const SizedBox(height: AppSpacing.md),
             Text(
               'Session Created!',
@@ -281,8 +276,11 @@ class _SessionFormState extends State<SessionForm> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.error_outline_rounded,
-                size: 80, color: AppColors.error),
+            const Icon(
+              Icons.error_outline_rounded,
+              size: 80,
+              color: AppColors.error,
+            ),
             const SizedBox(height: AppSpacing.md),
             Text(
               'Failed to create session',

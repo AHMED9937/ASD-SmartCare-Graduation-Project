@@ -34,9 +34,10 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
   Future<void> _loadInitialData() async {
     final userId = CacheHelper.getData(key: 'id');
     if (userId != null) {
-      context
-          .read<ChildProgressCubit>()
-          .getAllUpcomingSessionsForParent(userId, true);
+      context.read<ChildProgressCubit>().getAllUpcomingSessionsForParent(
+        userId,
+        true,
+      );
     }
     context.read<DoctorsListCubit>().getDoctorsList(recommendedDoctor: true);
   }
@@ -69,13 +70,18 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
             ),
             slivers: const [
               SliverToBoxAdapter(
-                  child: SafeArea(bottom: false, child: DynamicGreeting())),
+                child: SafeArea(bottom: false, child: DynamicGreeting()),
+              ),
               SliverToBoxAdapter(child: CarePulseCard()),
               SliverToBoxAdapter(
                 child: SectionHeader(
                   title: 'Quick Services',
-                  padding: EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.lg,
-                      AppSpacing.xl, AppSpacing.md),
+                  padding: EdgeInsets.fromLTRB(
+                    AppSpacing.xl,
+                    AppSpacing.lg,
+                    AppSpacing.xl,
+                    AppSpacing.md,
+                  ),
                 ),
               ),
               SliverToBoxAdapter(child: ServiceOrbit()),
@@ -84,8 +90,12 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
                   title: 'Top Specialists',
                   actionLabel: 'View All',
                   onActionPressed: null, // Add navigation if needed
-                  padding: EdgeInsets.fromLTRB(AppSpacing.xl, AppSpacing.xl,
-                      AppSpacing.xl, AppSpacing.md),
+                  padding: EdgeInsets.fromLTRB(
+                    AppSpacing.xl,
+                    AppSpacing.xl,
+                    AppSpacing.xl,
+                    AppSpacing.md,
+                  ),
                 ),
               ),
               SliverToBoxAdapter(child: RecommendedDoctorsSection()),

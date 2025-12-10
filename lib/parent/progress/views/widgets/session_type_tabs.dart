@@ -24,37 +24,32 @@ class SessionTypeTabs extends StatelessWidget {
         border: Border.all(color: AppColors.border),
       ),
       child: Row(
-        children: List.generate(
-          tabNames.length,
-          (index) {
-            final isSelected = selectedIndex == index;
-            return Expanded(
-              child: GestureDetector(
-                onTap: () => onTabChanged(index),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
-                  decoration: BoxDecoration(
-                    color:
-                        isSelected ? AppColors.primary : AppColors.transparent,
-                    borderRadius: BorderRadius.circular(AppRadius.sm),
-                  ),
-                  child: Text(
-                    tabNames[index],
-                    textAlign: TextAlign.center,
-                    style: AppTypography.labelLarge.copyWith(
-                      fontWeight:
-                          isSelected ? FontWeight.bold : FontWeight.w500,
-                      color: isSelected
-                          ? AppColors.onPrimary
-                          : AppColors.textSecondary,
-                    ),
+        children: List.generate(tabNames.length, (index) {
+          final isSelected = selectedIndex == index;
+          return Expanded(
+            child: GestureDetector(
+              onTap: () => onTabChanged(index),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(vertical: AppSpacing.sm),
+                decoration: BoxDecoration(
+                  color: isSelected ? AppColors.primary : AppColors.transparent,
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                ),
+                child: Text(
+                  tabNames[index],
+                  textAlign: TextAlign.center,
+                  style: AppTypography.labelLarge.copyWith(
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+                    color: isSelected
+                        ? AppColors.onPrimary
+                        : AppColors.textSecondary,
                   ),
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        }),
       ),
     );
   }

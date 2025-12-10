@@ -31,17 +31,18 @@ class Data {
   int? iV;
   String? parentId;
 
-  Data(
-      {this.sId,
-      this.doctorId,
-      this.date,
-      this.day,
-      this.time,
-      this.status,
-      this.createdAt,
-      this.updatedAt,
-      this.iV,
-      this.parentId});
+  Data({
+    this.sId,
+    this.doctorId,
+    this.date,
+    this.day,
+    this.time,
+    this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.iV,
+    this.parentId,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = (json['_id'] ?? json['id']) as String?;

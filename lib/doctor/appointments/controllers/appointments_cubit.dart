@@ -9,8 +9,8 @@ class DoctorAppointmentListCubit extends Cubit<GetDoctorAppointmentListStates> {
   final DoctorAppointmentsRepository _repository;
 
   DoctorAppointmentListCubit({DoctorAppointmentsRepository? repository})
-      : _repository = repository ?? DoctorAppointmentsRepositoryImpl(),
-        super(GetDoctorAppointmentListInitialStates());
+    : _repository = repository ?? DoctorAppointmentsRepositoryImpl(),
+      super(GetDoctorAppointmentListInitialStates());
 
   static DoctorAppointmentListCubit get(BuildContext context) =>
       BlocProvider.of(context);

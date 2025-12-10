@@ -63,7 +63,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordstate> {
         url: ApiConstants.ResetPassword,
         data: {
           'newPassword': NewPasswordController.text,
-          'confirmPassword': ConfirmPasswordController.text
+          'confirmPassword': ConfirmPasswordController.text,
         },
       ).timeout(
         const Duration(seconds: 44),

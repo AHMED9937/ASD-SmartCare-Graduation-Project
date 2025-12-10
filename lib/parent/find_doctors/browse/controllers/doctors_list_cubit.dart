@@ -22,34 +22,39 @@ class DoctorsListCubit extends Cubit<GetDoctorsListStates> {
     emit(GetDoctorsListLoadingState());
 
     Diohelper.getData(
-            url: ApiConstants.GetDoctorsList,
-            token: CacheHelper.getData(key: 'token'),
-            query: recommendedDoctor ? {'sort': '-ratingsAverage'} : null)
+          url: ApiConstants.GetDoctorsList,
+          token: CacheHelper.getData(key: 'token'),
+          query: recommendedDoctor ? {'sort': '-ratingsAverage'} : null,
+        )
         .then((value) {
-      doctorListRes = DoctorList.fromJson(value.data);
-      myDoctorList = doctorListRes?.data ?? [];
-      debugPrint('Loaded ${myDoctorList.length} doctors from API');
-      emit(GetDoctorsListSuccessState());
-    }).catchError((error) {
-      debugPrint('Error fetching doctors list: $error');
-      emit(GetDoctorsListFailedState());
-    });
+          doctorListRes = DoctorList.fromJson(value.data);
+          myDoctorList = doctorListRes?.data ?? [];
+          debugPrint('Loaded ${myDoctorList.length} doctors from API');
+          emit(GetDoctorsListSuccessState());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching doctors list: $error');
+          emit(GetDoctorsListFailedState());
+        });
   }
 
   void searchDoctorsList({String? byName, bool? byRating}) {
     emit(GetDoctorsListLoadingState());
 
     Diohelper.getData(
-        url: ApiConstants.GetDoctorsList,
-        token: CacheHelper.getData(key: 'token'),
-        query: {'keyword': byName, 'sort': '-ratingsAverage'}).then((value) {
-      doctorListRes = DoctorList.fromJson(value.data);
-      myDoctorList = doctorListRes?.data ?? [];
-      debugPrint('Search returned ${myDoctorList.length} doctors');
-      emit(GetDoctorsListSuccessState());
-    }).catchError((error) {
-      debugPrint('Error fetching doctors list: $error');
-      emit(GetDoctorsListFailedState());
-    });
+          url: ApiConstants.GetDoctorsList,
+          token: CacheHelper.getData(key: 'token'),
+          query: {'keyword': byName, 'sort': '-ratingsAverage'},
+        )
+        .then((value) {
+          doctorListRes = DoctorList.fromJson(value.data);
+          myDoctorList = doctorListRes?.data ?? [];
+          debugPrint('Search returned ${myDoctorList.length} doctors');
+          emit(GetDoctorsListSuccessState());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching doctors list: $error');
+          emit(GetDoctorsListFailedState());
+        });
   }
 }

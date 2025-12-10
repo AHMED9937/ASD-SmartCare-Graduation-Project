@@ -112,52 +112,28 @@ class AppRouter {
       // Auth Routes
       // ─────────────────────────────────────────────────────────────────────────
       case AppRoutes.onboarding:
-        return _buildRoute(
-          settings,
-          const OnboardingNavigationScreens(),
-        );
+        return _buildRoute(settings, const OnboardingNavigationScreens());
 
       case AppRoutes.login:
-        return _buildRoute(
-          settings,
-          const LoginScreen(),
-        );
+        return _buildRoute(settings, const LoginScreen());
 
       case AppRoutes.selectRole:
-        return _buildRoute(
-          settings,
-          const Selectusertypescreen(),
-        );
+        return _buildRoute(settings, const Selectusertypescreen());
 
       case AppRoutes.registerParent:
-        return _buildRoute(
-          settings,
-          const ParentSignUpScreen(),
-        );
+        return _buildRoute(settings, const ParentSignUpScreen());
 
       case AppRoutes.registerDoctor:
-        return _buildRoute(
-          settings,
-          const Doctorsignupscreen(),
-        );
+        return _buildRoute(settings, const Doctorsignupscreen());
 
       case AppRoutes.forgotPassword:
-        return _buildRoute(
-          settings,
-          const Forgetpasswordscreen(),
-        );
+        return _buildRoute(settings, const Forgetpasswordscreen());
 
       case AppRoutes.newPassword:
-        return _buildRoute(
-          settings,
-          const CreatenewpasswordScreen(),
-        );
+        return _buildRoute(settings, const CreatenewpasswordScreen());
 
       case AppRoutes.otpVerification:
-        return _buildRoute(
-          settings,
-          const Otpverificationscreen(),
-        );
+        return _buildRoute(settings, const Otpverificationscreen());
 
       // ─────────────────────────────────────────────────────────────────────────
       // Parent Routes
@@ -168,9 +144,7 @@ class AppRouter {
           settings,
           MultiBlocProvider(
             providers: [
-              BlocProvider(
-                create: (context) => ChildProgressCubit(),
-              ),
+              BlocProvider(create: (context) => ChildProgressCubit()),
               BlocProvider(
                 create: (context) => AvailableEducationArticaleCubit(),
               ),
@@ -180,40 +154,22 @@ class AppRouter {
         );
 
       case AppRoutes.autismTest:
-        return _buildRoute(
-          settings,
-          const TestSelectionScreen(),
-        );
+        return _buildRoute(settings, const TestSelectionScreen());
 
       case AppRoutes.childProgress:
-        return _buildRoute(
-          settings,
-          const ChildProgressScreen(),
-        );
+        return _buildRoute(settings, const ChildProgressScreen());
 
       case AppRoutes.education:
-        return _buildRoute(
-          settings,
-          const Articles(),
-        );
+        return _buildRoute(settings, const Articles());
 
       case AppRoutes.chatbot:
-        return _buildRoute(
-          settings,
-          const ChatBotscreen(),
-        );
+        return _buildRoute(settings, const ChatBotscreen());
 
       case AppRoutes.medicines:
-        return _buildRoute(
-          settings,
-          const Availablemedicinescreen(),
-        );
+        return _buildRoute(settings, const Availablemedicinescreen());
 
       case AppRoutes.charity:
-        return _buildRoute(
-          settings,
-          const CharityMedicine(),
-        );
+        return _buildRoute(settings, const CharityMedicine());
 
       case AppRoutes.booking:
         // Requires Doctor object as argument
@@ -221,10 +177,7 @@ class AppRouter {
         if (doctor == null) {
           return _buildRoute(settings, const _NotFoundScreen());
         }
-        return _buildRoute(
-          settings,
-          Reservationscreen(myDoctor: doctor),
-        );
+        return _buildRoute(settings, Reservationscreen(myDoctor: doctor));
 
       case AppRoutes.bookingPayment:
         // Requires payment arguments
@@ -246,7 +199,9 @@ class AppRouter {
         return _buildRoute(
           settings,
           Confirmreservationscreen(
-              DoctorData: args.doctor, sessionD: args.session),
+            DoctorData: args.doctor,
+            sessionD: args.session,
+          ),
         );
 
       // ─────────────────────────────────────────────────────────────────────────
@@ -254,10 +209,7 @@ class AppRouter {
       // ─────────────────────────────────────────────────────────────────────────
       case AppRoutes.doctorHome:
       case AppRoutes.doctorDashboard:
-        return _buildRoute(
-          settings,
-          const Doctornavgationscreen(),
-        );
+        return _buildRoute(settings, const Doctornavgationscreen());
 
       // ─────────────────────────────────────────────────────────────────────────
       // Fallback
@@ -266,10 +218,7 @@ class AppRouter {
       default:
         // Log unknown route for debugging
         debugPrint('⚠️ Unknown route: $routeName');
-        return _buildRoute(
-          settings,
-          const _NotFoundScreen(),
-        );
+        return _buildRoute(settings, const _NotFoundScreen());
     }
   }
 
@@ -278,10 +227,7 @@ class AppRouter {
     RouteSettings settings,
     Widget child,
   ) {
-    return MaterialPageRoute<T>(
-      settings: settings,
-      builder: (_) => child,
-    );
+    return MaterialPageRoute<T>(settings: settings, builder: (_) => child);
   }
 
   /// Helper to navigate with named route.
@@ -290,11 +236,7 @@ class AppRouter {
     String routeName, {
     Object? arguments,
   }) {
-    return Navigator.pushNamed<T>(
-      context,
-      routeName,
-      arguments: arguments,
-    );
+    return Navigator.pushNamed<T>(context, routeName, arguments: arguments);
   }
 
   /// Helper to replace current route with named route.
@@ -332,40 +274,33 @@ class _NotFoundScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Page Not Found'),
-      ),
+      appBar: AppBar(title: const Text('Page Not Found')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(
-              Icons.error_outline,
-              size: 64,
-              color: Colors.grey,
-            ),
+            const Icon(Icons.error_outline, size: 64, color: Colors.grey),
             const SizedBox(height: 16),
             Text(
               '404',
               style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             Text(
               'Page not found',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.grey,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(color: Colors.grey),
             ),
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                  AppRoutes.login,
-                  (_) => false,
-                );
+                Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil(AppRoutes.login, (_) => false);
               },
               child: const Text('Go to Login'),
             ),
@@ -384,10 +319,7 @@ class BookingPaymentArgs {
   final Doctor doctor;
   final BookSession session;
 
-  const BookingPaymentArgs({
-    required this.doctor,
-    required this.session,
-  });
+  const BookingPaymentArgs({required this.doctor, required this.session});
 }
 
 /// Arguments for the booking confirmation route.
@@ -395,8 +327,5 @@ class BookingConfirmArgs {
   final Doctor doctor;
   final BookSession session;
 
-  const BookingConfirmArgs({
-    required this.doctor,
-    required this.session,
-  });
+  const BookingConfirmArgs({required this.doctor, required this.session});
 }

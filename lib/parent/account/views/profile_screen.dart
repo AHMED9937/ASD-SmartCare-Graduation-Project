@@ -16,9 +16,7 @@ class ParentProfileScreen extends StatelessWidget {
         builder: (context, state) {
           final cubit = GetParentDataCubit.get(context);
 
-          return Scaffold(
-            body: _buildBody(context, cubit, state),
-          );
+          return Scaffold(body: _buildBody(context, cubit, state));
         },
       ),
     );
@@ -49,9 +47,6 @@ class ParentProfileScreen extends StatelessWidget {
       );
     }
 
-    return ParentProfileBody(
-      cubit: cubit,
-      state: state,
-    );
+    return ParentProfileBody(cubit: cubit, state: state);
   }
 }

@@ -39,10 +39,12 @@ void main() {
       'emits [Loading, Success] when fetchAppointments succeeds',
       build: () {
         final sampleResponse = MockAppointmentData.sampleResponse;
-        when(() => mockRepository.getAppointments(
-              doctorId: any(named: 'doctorId'),
-              status: any(named: 'status'),
-            )).thenAnswer((_) async => sampleResponse);
+        when(
+          () => mockRepository.getAppointments(
+            doctorId: any(named: 'doctorId'),
+            status: any(named: 'status'),
+          ),
+        ).thenAnswer((_) async => sampleResponse);
         return cubit;
       },
       act: (cubit) => cubit.fetchAppointments(status: 'all'),
@@ -59,10 +61,12 @@ void main() {
     blocTest<DoctorAppointmentListCubit, GetDoctorAppointmentListStates>(
       'emits [Loading, Failed] when fetchAppointments throws',
       build: () {
-        when(() => mockRepository.getAppointments(
-              doctorId: any(named: 'doctorId'),
-              status: any(named: 'status'),
-            )).thenThrow(Exception('API Error'));
+        when(
+          () => mockRepository.getAppointments(
+            doctorId: any(named: 'doctorId'),
+            status: any(named: 'status'),
+          ),
+        ).thenThrow(Exception('API Error'));
         return cubit;
       },
       act: (cubit) => cubit.fetchAppointments(status: 'all'),

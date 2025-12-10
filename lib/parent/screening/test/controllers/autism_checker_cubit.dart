@@ -11,7 +11,9 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
   Test2AutsiumCubit() : super(Test2AutsiuminitialState()) {
     // initialize one controller per question
     ansControllers = List.generate(
-        degree_questions.length, (index) => TextEditingController());
+      degree_questions.length,
+      (index) => TextEditingController(),
+    );
     _pages = buildQuestionWidgets();
   }
   static Test2AutsiumCubit get(context) => BlocProvider.of(context);
@@ -36,97 +38,104 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
     'How does your child handle developing, maintaining, and understanding relationships?',
     'Can you describe any repetitive behaviors or patterns you have noticed in your child?',
     'How does your child react to various sensory stimuli? Please elaborate.',
-    'Apart from Autism, are there any other challenges your child faces? (For example, ADHD, Epilepsy, Specific Learning Difficulties, Speech Delay, or none.)'
+    'Apart from Autism, are there any other challenges your child faces? (For example, ADHD, Epilepsy, Specific Learning Difficulties, Speech Delay, or none.)',
   ];
   Widget QSType1(int index, String Qs) => Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Center(
+        child: Text(
+          Qs,
+          style: const TextStyle(color: Colors.black, fontSize: 15),
+          overflow: TextOverflow.clip,
+        ),
+      ),
+      const SizedBox(height: 16),
+
+      // <-- removed Expanded to avoid layout crashes in scrollable views
+      TextFormField(
+        controller: ansControllers[index],
+        decoration: InputDecoration(
+          hintText: 'Answer here',
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(33)),
+        ),
+        maxLines: 7, // allows the field to grow up to 7 lines
+      ),
+    ],
+  );
+  Widget QSType2(String Qs, int QSIndex) => Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      Text(
+        Qs,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+          fontSize: 20,
+        ),
+      ),
+      Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: Text(
-              Qs,
-              style: const TextStyle(color: Colors.black, fontSize: 15),
-              overflow: TextOverflow.clip,
-            ),
+          IconButton(
+            onPressed: () {
+              if (_currentAge > 0) {
+                _currentAge--;
+                ansControllers[QSIndex].text = '$_currentAge';
+                emit(Test2AutsiumIDXChangeState());
+              }
+            },
+            icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
           ),
-          const SizedBox(height: 16),
+          Text(
+            '${_currentAge}y',
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          ),
+          IconButton(
+            onPressed: () {
+              if (_currentAge < 100) {
+                _currentAge++;
+                ansControllers[QSIndex].text = '$_currentAge';
 
-          // <-- removed Expanded to avoid layout crashes in scrollable views
-          TextFormField(
-            controller: ansControllers[index],
-            decoration: InputDecoration(
-              hintText: 'Answer here',
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(33)),
-            ),
-            maxLines: 7, // allows the field to grow up to 7 lines
+                emit(Test2AutsiumIDXChangeState());
+              }
+            },
+            icon: const Icon(Icons.arrow_forward_ios, color: Colors.black),
           ),
         ],
-      );
-  Widget QSType2(String Qs, int QSIndex) => Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(Qs,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 20)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  if (_currentAge > 0) {
-                    _currentAge--;
-                    ansControllers[QSIndex].text = '$_currentAge';
-                    emit(Test2AutsiumIDXChangeState());
-                  }
-                },
-                icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-              ),
-              Text('${_currentAge}y',
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 20)),
-              IconButton(
-                onPressed: () {
-                  if (_currentAge < 100) {
-                    _currentAge++;
-                    ansControllers[QSIndex].text = '$_currentAge';
-
-                    emit(Test2AutsiumIDXChangeState());
-                  }
-                },
-                icon: const Icon(Icons.arrow_forward_ios, color: Colors.black),
-              ),
-            ],
-          ),
-        ],
-      );
+      ),
+    ],
+  );
 
   Widget QSType3(String Qs, int QSIndex) => Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(Qs,
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.black)),
-          AppButton(
-            label: 'male',
-            onPressed: () {
-              ansControllers[QSIndex].text = 'male';
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        Qs,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+      ),
+      AppButton(
+        label: 'male',
+        onPressed: () {
+          ansControllers[QSIndex].text = 'male';
 
-              emit(Test2AutsiumIDXChangeState());
-            },
-          ),
-          const SizedBox(height: 8),
-          AppButton(
-            label: 'female',
-            onPressed: () {
-              ansControllers[QSIndex].text = 'female';
+          emit(Test2AutsiumIDXChangeState());
+        },
+      ),
+      const SizedBox(height: 8),
+      AppButton(
+        label: 'female',
+        onPressed: () {
+          ansControllers[QSIndex].text = 'female';
 
-              emit(Test2AutsiumIDXChangeState());
-            },
-          ),
-        ],
-      );
+          emit(Test2AutsiumIDXChangeState());
+        },
+      ),
+    ],
+  );
 
   List<Widget> buildQuestionWidgets() {
     return List.generate(degree_questions.length, (i) {
@@ -168,9 +177,11 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
     final answer = ansControllers[_currentIndex].text;
 
     if (token == null || token.isEmpty) {
-      emit(Test2GetQsfinalPredicationErrorState(
-        message: 'Missing authentication token',
-      ));
+      emit(
+        Test2GetQsfinalPredicationErrorState(
+          message: 'Missing authentication token',
+        ),
+      );
       return;
     }
 
@@ -178,17 +189,16 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
       final response = await Diohelper.postData(
         url: ApiConstants.QSfinalPredicationDgree,
         token: token,
-        data: {
-          'index': _currentIndex,
-          'answer': answer,
-        },
+        data: {'index': _currentIndex, 'answer': answer},
       );
 
       // 1) Check server status
       if (response.statusCode != 200) {
-        emit(Test2GetQsfinalPredicationErrorState(
-          message: 'Server returned ${response.statusCode}',
-        ));
+        emit(
+          Test2GetQsfinalPredicationErrorState(
+            message: 'Server returned ${response.statusCode}',
+          ),
+        );
         return;
       }
 
@@ -200,9 +210,11 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
       // 3) Make sure we got a degreePrediction
       final degree = prediction.degreePrediction;
       if (degree == null && _currentIndex == 8) {
-        emit(Test2GetQsfinalPredicationErrorState(
-          message: 'No degree_prediction in response',
-        ));
+        emit(
+          Test2GetQsfinalPredicationErrorState(
+            message: 'No degree_prediction in response',
+          ),
+        );
         return;
       }
 
@@ -215,9 +227,7 @@ class Test2AutsiumCubit extends Cubit<Test2AutsiumStates> {
       }
     } catch (e, st) {
       debugPrint('Error in reasonFinalPredictionForQs:\n$e\n$st');
-      emit(Test2GetQsfinalPredicationErrorState(
-        message: e.toString(),
-      ));
+      emit(Test2GetQsfinalPredicationErrorState(message: e.toString()));
     }
   }
 }

@@ -53,9 +53,6 @@ class DoctorProfileScreen extends StatelessWidget {
       );
     }
 
-    return DoctorProfileBody(
-      cubit: cubit,
-      state: state,
-    );
+    return DoctorProfileBody(cubit: cubit, state: state);
   }
 }

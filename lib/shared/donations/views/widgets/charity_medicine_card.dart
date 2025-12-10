@@ -84,7 +84,8 @@ class CharityMedicineCard extends StatelessWidget {
                   topRight: Radius.circular(AppRadius.md),
                   bottomRight: Radius.circular(AppRadius.md),
                 ),
-                child: (medicine.medicanImage != null &&
+                child:
+                    (medicine.medicanImage != null &&
                         medicine.medicanImage!.isNotEmpty)
                     ? Image.network(
                         medicine.medicanImage!,

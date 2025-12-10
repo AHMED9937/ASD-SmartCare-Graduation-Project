@@ -7,16 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('App smoke test - MaterialApp renders',
-      (WidgetTester tester) async {
+  testWidgets('App smoke test - MaterialApp renders', (
+    WidgetTester tester,
+  ) async {
     // Build a minimal MaterialApp to verify widget tree can be built
     await tester.pumpWidget(
       const MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: Text('ASD SmartCare'),
-          ),
-        ),
+        home: Scaffold(body: Center(child: Text('ASD SmartCare'))),
       ),
     );
 
@@ -33,11 +30,7 @@ void main() {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const Scaffold(
-          body: Center(
-            child: Text('Themed App'),
-          ),
-        ),
+        home: const Scaffold(body: Center(child: Text('Themed App'))),
       ),
     );
 

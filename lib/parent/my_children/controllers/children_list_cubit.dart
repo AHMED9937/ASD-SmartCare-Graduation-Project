@@ -25,16 +25,20 @@ class ParentChildrenListCubit extends Cubit<ParentChildrenListStates> {
     emit(GetParentChildrenListLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants.getParentChildrenList(id),
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Loaded ${(value.data as Map)['data']?.length ?? 0} children');
-      children = ParentChildsModel.fromJson(value.data);
-      emit(GetParentChildrenListSuccessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching children list: $error');
-      emit(GetParentChildrenListFailedStates());
-    });
+          url: ApiConstants.getParentChildrenList(id),
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint(
+            'Loaded ${(value.data as Map)['data']?.length ?? 0} children',
+          );
+          children = ParentChildsModel.fromJson(value.data);
+          emit(GetParentChildrenListSuccessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching children list: $error');
+          emit(GetParentChildrenListFailedStates());
+        });
   }
 
   Future<void> addChild({required String parentId}) async {
@@ -81,15 +85,17 @@ class ParentChildrenListCubit extends Cubit<ParentChildrenListStates> {
     emit(DeleteChildLoadingStates());
 
     Diohelper.deleteData(
-      query: {},
-      url: ApiConstants.deleteSpecificChild(id),
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Child deleted successfully');
-      emit(DeleteChildSuccessStates());
-    }).catchError((error) {
-      debugPrint('Error deleting child: $error');
-      emit(DeleteChildFailedStates());
-    });
+          query: {},
+          url: ApiConstants.deleteSpecificChild(id),
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Child deleted successfully');
+          emit(DeleteChildSuccessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error deleting child: $error');
+          emit(DeleteChildFailedStates());
+        });
   }
 }

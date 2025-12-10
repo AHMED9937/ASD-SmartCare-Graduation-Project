@@ -34,9 +34,7 @@ class RegisteredChildrenView extends StatelessWidget {
               title: 'Registered Children',
               subtitle: 'Manage and view details of children under your care.',
             ),
-            Expanded(
-              child: _PatientsBody(),
-            ),
+            Expanded(child: _PatientsBody()),
           ],
         ),
       ),
@@ -73,8 +71,10 @@ class _PatientsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegisteredChildrenListCubit,
-        GetRegisteredChildrenListStates>(
+    return BlocBuilder<
+      RegisteredChildrenListCubit,
+      GetRegisteredChildrenListStates
+    >(
       builder: (context, state) {
         final cubit = RegisteredChildrenListCubit.get(context);
 
@@ -92,8 +92,8 @@ class _PatientsBody extends StatelessWidget {
         final parents = cubit.registeredchildren?.parents;
         final validParents = (parents != null && parents.isNotEmpty)
             ? parents
-                .where((p) => p.childs != null && p.childs!.isNotEmpty)
-                .toList()
+                  .where((p) => p.childs != null && p.childs!.isNotEmpty)
+                  .toList()
             : [];
 
         if (validParents.isEmpty) {

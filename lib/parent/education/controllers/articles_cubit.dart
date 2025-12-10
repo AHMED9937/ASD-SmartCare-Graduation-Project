@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AvailableEducationArticaleCubit
     extends Cubit<AvailableEducationArticaleState> {
   AvailableEducationArticaleCubit()
-      : super(GetAvailableEducationArticaleStateInitial());
+    : super(GetAvailableEducationArticaleStateInitial());
 
   late EducationArticaleModel AvailableEducationArticaleList;
 
@@ -23,21 +23,30 @@ class AvailableEducationArticaleCubit
 
     final token = CacheHelper.getData(key: 'token');
     Diohelper.getData(
-      url: ApiConstants.GetAvailableEducationArticale,
-      token: token,
-    ).then((value) {
-      AvailableEducationArticaleList =
-          EducationArticaleModel.fromJson(value.data);
+          url: ApiConstants.GetAvailableEducationArticale,
+          token: token,
+        )
+        .then((value) {
+          AvailableEducationArticaleList = EducationArticaleModel.fromJson(
+            value.data,
+          );
 
-      // 2) Populate your items list:
-      items = AvailableEducationArticaleList.data ?? [];
+          // 2) Populate your items list:
+          items = AvailableEducationArticaleList.data ?? [];
 
-      emit(
-          GetAvailableEducationArticaleSuccess(AvailableEducationArticaleList));
-    }).catchError((error) {
-      emit(GetAvailableEducationArticaleError(
-          'Failed to load EducationArticales'));
-    });
+          emit(
+            GetAvailableEducationArticaleSuccess(
+              AvailableEducationArticaleList,
+            ),
+          );
+        })
+        .catchError((error) {
+          emit(
+            GetAvailableEducationArticaleError(
+              'Failed to load EducationArticales',
+            ),
+          );
+        });
   }
 
   void searchEducationArticale(String medName) async {
@@ -48,20 +57,21 @@ class AvailableEducationArticaleCubit
         url: ApiConstants.GetAvailableEducationArticale,
         token: CacheHelper.getData(key: 'token'),
         // <-- add this:
-        query: {
-          'keyword': medName,
-        },
+        query: {'keyword': medName},
       );
 
-      AvailableEducationArticaleList =
-          EducationArticaleModel.fromJson(response.data);
+      AvailableEducationArticaleList = EducationArticaleModel.fromJson(
+        response.data,
+      );
       items = AvailableEducationArticaleList.data ?? [];
 
       emit(
-          GetAvailableEducationArticaleSuccess(AvailableEducationArticaleList));
+        GetAvailableEducationArticaleSuccess(AvailableEducationArticaleList),
+      );
     } catch (error) {
-      emit(GetAvailableEducationArticaleError(
-          'Failed to load EducationArticales'));
+      emit(
+        GetAvailableEducationArticaleError('Failed to load EducationArticales'),
+      );
     }
   }
 }

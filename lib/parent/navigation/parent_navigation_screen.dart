@@ -14,57 +14,58 @@ class ParentBottomNavgationScreen extends StatelessWidget {
       builder: (context, state) {
         final cubit = AsdCubit.get(context);
         return Scaffold(
-            bottomNavigationBar: NavigationBar(
-              backgroundColor: AppColors.surface,
-              indicatorColor: AppColors.surface,
-              selectedIndex: cubit.currentIndex,
-              destinations: [
-                _buildNavDestination(
-                  index: 0,
-                  currentIndex: cubit.currentIndex,
-                  imagePath: 'lib/appassets/images/homeOnboarding.png',
-                  label: 'home',
-                ),
-                _buildNavDestination(
-                  index: 1,
-                  currentIndex: cubit.currentIndex,
-                  imagePath: 'lib/appassets/images/doctorOnboarding.png',
-                  label: 'doctors',
-                ),
-                _buildNavDestination(
-                  index: 2,
-                  currentIndex: cubit.currentIndex,
-                  imagePath: 'lib/appassets/images/evaluate.png',
-                  label: 'Evaluate',
-                ),
-                _buildNavDestination(
-                  index: 3,
-                  currentIndex: cubit.currentIndex,
-                  imagePath: 'lib/appassets/images/progressonboardin.png',
-                  label: 'progress',
-                ),
-                _buildNavDestination(
-                  index: 4,
-                  currentIndex: cubit.currentIndex,
-                  imagePath: 'lib/appassets/images/profile.png',
-                  label: 'profile',
-                  width: 30,
-                  height: 30,
-                ),
-              ],
-              onDestinationSelected: (index) {
-                cubit.changeIndex(index);
-              },
-            ),
-            body: Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpacing.md, // 15 -> ~12
-                AppSpacing.md,
-                AppSpacing.md,
-                0,
+          bottomNavigationBar: NavigationBar(
+            backgroundColor: AppColors.surface,
+            indicatorColor: AppColors.surface,
+            selectedIndex: cubit.currentIndex,
+            destinations: [
+              _buildNavDestination(
+                index: 0,
+                currentIndex: cubit.currentIndex,
+                imagePath: 'lib/appassets/images/homeOnboarding.png',
+                label: 'home',
               ),
-              child: cubit.parentBottomNavigation[cubit.currentIndex],
-            ));
+              _buildNavDestination(
+                index: 1,
+                currentIndex: cubit.currentIndex,
+                imagePath: 'lib/appassets/images/doctorOnboarding.png',
+                label: 'doctors',
+              ),
+              _buildNavDestination(
+                index: 2,
+                currentIndex: cubit.currentIndex,
+                imagePath: 'lib/appassets/images/evaluate.png',
+                label: 'Evaluate',
+              ),
+              _buildNavDestination(
+                index: 3,
+                currentIndex: cubit.currentIndex,
+                imagePath: 'lib/appassets/images/progressonboardin.png',
+                label: 'progress',
+              ),
+              _buildNavDestination(
+                index: 4,
+                currentIndex: cubit.currentIndex,
+                imagePath: 'lib/appassets/images/profile.png',
+                label: 'profile',
+                width: 30,
+                height: 30,
+              ),
+            ],
+            onDestinationSelected: (index) {
+              cubit.changeIndex(index);
+            },
+          ),
+          body: Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.md, // 15 -> ~12
+              AppSpacing.md,
+              AppSpacing.md,
+              0,
+            ),
+            child: cubit.parentBottomNavigation[cubit.currentIndex],
+          ),
+        );
       },
     );
   }

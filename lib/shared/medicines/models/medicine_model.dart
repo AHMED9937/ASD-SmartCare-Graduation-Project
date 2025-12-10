@@ -22,9 +22,9 @@ class MedicineResponse {
     final dataList = json['data'];
     final items = (dataList is List)
         ? dataList
-            .whereType<Map<String, dynamic>>()
-            .map((e) => MedicineData.fromJson(e))
-            .toList()
+              .whereType<Map<String, dynamic>>()
+              .map((e) => MedicineData.fromJson(e))
+              .toList()
         : <MedicineData>[];
 
     return MedicineResponse(
@@ -35,10 +35,10 @@ class MedicineResponse {
   }
 
   Map<String, dynamic> toJson() => {
-        'results': results,
-        'pagenationResult': pagenationResult.toJson(),
-        'data': data.map((m) => m.toJson()).toList(),
-      };
+    'results': results,
+    'pagenationResult': pagenationResult.toJson(),
+    'data': data.map((m) => m.toJson()).toList(),
+  };
 }
 
 class PaginationResult {
@@ -61,10 +61,10 @@ class PaginationResult {
   }
 
   Map<String, dynamic> toJson() => {
-        'currentPage': currentPage,
-        'limit': limit,
-        'numOfPage': numOfPage,
-      };
+    'currentPage': currentPage,
+    'limit': limit,
+    'numOfPage': numOfPage,
+  };
 }
 
 class MedicineData {
@@ -109,14 +109,14 @@ class MedicineData {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
-        'medican_name': medicanName,
-        'medican_info': medicanInfo,
-        'medican_image': medicanImage,
-        'pharmacy': pharmacy.toJson(),
-        'createdAt': createdAt?.toIso8601String(),
-        'updatedAt': updatedAt?.toIso8601String(),
-      };
+    '_id': id,
+    'medican_name': medicanName,
+    'medican_info': medicanInfo,
+    'medican_image': medicanImage,
+    'pharmacy': pharmacy.toJson(),
+    'createdAt': createdAt?.toIso8601String(),
+    'updatedAt': updatedAt?.toIso8601String(),
+  };
 }
 
 class Pharmacy {
@@ -147,9 +147,9 @@ class Pharmacy {
   }
 
   Map<String, dynamic> toJson() => {
-        '_id': id,
-        'p_name': name,
-        'p_location': location,
-        'p_phone': phone,
-      };
+    '_id': id,
+    'p_name': name,
+    'p_location': location,
+    'p_phone': phone,
+  };
 }

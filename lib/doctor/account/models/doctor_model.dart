@@ -10,9 +10,7 @@ class GetLoggedDoctorData {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      if (data != null) 'data': data!.toJson(),
-    };
+    return {if (data != null) 'data': data!.toJson()};
   }
 }
 

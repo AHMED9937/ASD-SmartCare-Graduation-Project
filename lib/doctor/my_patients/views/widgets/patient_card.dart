@@ -83,11 +83,7 @@ class PatientCard extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: const Center(
-        child: Icon(
-          Icons.person_rounded,
-          color: AppColors.primary,
-          size: 32,
-        ),
+        child: Icon(Icons.person_rounded, color: AppColors.primary, size: 32),
       ),
     );
   }

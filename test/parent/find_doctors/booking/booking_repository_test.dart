@@ -20,22 +20,21 @@ void main() {
 
     test('returns success with slots when API returns valid data', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 200,
-            data: {
-              'data': [
-                {
-                  'date': '2024-01-15',
-                  'time': ['9:00 AM', '10:00 AM']
-                },
-                {'date': '2024-01-16', 'time': '11:00 AM'},
-              ],
-            },
-          ));
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 200,
+          data: {
+            'data': [
+              {
+                'date': '2024-01-15',
+                'time': ['9:00 AM', '10:00 AM'],
+              },
+              {'date': '2024-01-16', 'time': '11:00 AM'},
+            ],
+          },
+        ),
+      );
 
       // Act
       final result = await repository.getAvailableSlots(doctorId: doctorId);
@@ -49,16 +48,15 @@ void main() {
 
     test('returns success with slots for simple time list format', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 200,
-            data: {
-              'data': ['9:00 AM', '10:00 AM', '11:00 AM'],
-            },
-          ));
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 200,
+          data: {
+            'data': ['9:00 AM', '10:00 AM', '11:00 AM'],
+          },
+        ),
+      );
 
       // Act
       final result = await repository.getAvailableSlots(doctorId: doctorId);
@@ -71,14 +69,13 @@ void main() {
 
     test('returns noSlots failure when no slots available', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 200,
-            data: {'data': []},
-          ));
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 200,
+          data: {'data': []},
+        ),
+      );
 
       // Act
       final result = await repository.getAvailableSlots(doctorId: doctorId);
@@ -91,13 +88,12 @@ void main() {
 
     test('returns network failure on connection error', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenThrow(DioException(
-        type: DioExceptionType.connectionError,
-        requestOptions: RequestOptions(path: ''),
-      ));
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenThrow(
+        DioException(
+          type: DioExceptionType.connectionError,
+          requestOptions: RequestOptions(path: ''),
+        ),
+      );
 
       // Act
       final result = await repository.getAvailableSlots(doctorId: doctorId);
@@ -110,17 +106,16 @@ void main() {
 
     test('returns unauthorized failure on 401', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenThrow(DioException(
-        type: DioExceptionType.badResponse,
-        response: Response(
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenThrow(
+        DioException(
+          type: DioExceptionType.badResponse,
+          response: Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 401,
+          ),
           requestOptions: RequestOptions(path: ''),
-          statusCode: 401,
         ),
-        requestOptions: RequestOptions(path: ''),
-      ));
+      );
 
       // Act
       final result = await repository.getAvailableSlots(doctorId: doctorId);
@@ -142,25 +137,29 @@ void main() {
 
     test('returns success when booking succeeds', () async {
       // Arrange
-      when(() => mockDio.post(
-            any(),
-            data: any(named: 'data'),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 201,
-            data: {
-              'message': 'Booking created',
-              'data': {
-                '_id': 'booking-123',
-                'doctorId': 'doc-123',
-                'date': '2024-01-15',
-                'day': 'monday',
-                'time': '9:00 AM',
-                'status': 'pending',
-              },
+      when(
+        () => mockDio.post(
+          any(),
+          data: any(named: 'data'),
+          options: any(named: 'options'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 201,
+          data: {
+            'message': 'Booking created',
+            'data': {
+              '_id': 'booking-123',
+              'doctorId': 'doc-123',
+              'date': '2024-01-15',
+              'day': 'monday',
+              'time': '9:00 AM',
+              'status': 'pending',
             },
-          ));
+          },
+        ),
+      );
 
       // Act
       final result = await repository.bookAppointment(request);
@@ -171,19 +170,23 @@ void main() {
 
     test('returns slotUnavailable failure on 409', () async {
       // Arrange
-      when(() => mockDio.post(
-            any(),
-            data: any(named: 'data'),
-            options: any(named: 'options'),
-          )).thenThrow(DioException(
-        type: DioExceptionType.badResponse,
-        response: Response(
-          requestOptions: RequestOptions(path: ''),
-          statusCode: 409,
-          data: {'message': 'Slot unavailable'},
+      when(
+        () => mockDio.post(
+          any(),
+          data: any(named: 'data'),
+          options: any(named: 'options'),
         ),
-        requestOptions: RequestOptions(path: ''),
-      ));
+      ).thenThrow(
+        DioException(
+          type: DioExceptionType.badResponse,
+          response: Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 409,
+            data: {'message': 'Slot unavailable'},
+          ),
+          requestOptions: RequestOptions(path: ''),
+        ),
+      );
 
       // Act
       final result = await repository.bookAppointment(request);
@@ -196,19 +199,23 @@ void main() {
 
     test('returns validation failure on 400', () async {
       // Arrange
-      when(() => mockDio.post(
-            any(),
-            data: any(named: 'data'),
-            options: any(named: 'options'),
-          )).thenThrow(DioException(
-        type: DioExceptionType.badResponse,
-        response: Response(
-          requestOptions: RequestOptions(path: ''),
-          statusCode: 400,
-          data: {'message': 'Invalid date format'},
+      when(
+        () => mockDio.post(
+          any(),
+          data: any(named: 'data'),
+          options: any(named: 'options'),
         ),
-        requestOptions: RequestOptions(path: ''),
-      ));
+      ).thenThrow(
+        DioException(
+          type: DioExceptionType.badResponse,
+          response: Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 400,
+            data: {'message': 'Invalid date format'},
+          ),
+          requestOptions: RequestOptions(path: ''),
+        ),
+      );
 
       // Act
       final result = await repository.bookAppointment(request);
@@ -226,14 +233,13 @@ void main() {
 
     test('returns success when cancellation succeeds', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 200,
-            data: {'message': 'Booking cancelled'},
-          ));
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 200,
+          data: {'message': 'Booking cancelled'},
+        ),
+      );
 
       // Act
       final result = await repository.cancelBooking(bookingId);
@@ -244,18 +250,17 @@ void main() {
 
     test('returns failure on server error', () async {
       // Arrange
-      when(() => mockDio.get(
-            any(),
-            options: any(named: 'options'),
-          )).thenThrow(DioException(
-        type: DioExceptionType.badResponse,
-        response: Response(
+      when(() => mockDio.get(any(), options: any(named: 'options'))).thenThrow(
+        DioException(
+          type: DioExceptionType.badResponse,
+          response: Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 500,
+            data: {'message': 'Internal server error'},
+          ),
           requestOptions: RequestOptions(path: ''),
-          statusCode: 500,
-          data: {'message': 'Internal server error'},
         ),
-        requestOptions: RequestOptions(path: ''),
-      ));
+      );
 
       // Act
       final result = await repository.cancelBooking(bookingId);
@@ -272,20 +277,24 @@ void main() {
 
     test('returns success with stripe data when API succeeds', () async {
       // Arrange
-      when(() => mockDio.post(
-            any(),
-            data: any(named: 'data'),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 200,
-            data: {
-              'paymentIntent': 'pi_123',
-              'ephemeralKey': 'ek_123',
-              'customer': 'cus_123',
-              'publishableKey': 'pk_test_123',
-            },
-          ));
+      when(
+        () => mockDio.post(
+          any(),
+          data: any(named: 'data'),
+          options: any(named: 'options'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 200,
+          data: {
+            'paymentIntent': 'pi_123',
+            'ephemeralKey': 'ek_123',
+            'customer': 'cus_123',
+            'publishableKey': 'pk_test_123',
+          },
+        ),
+      );
 
       // Act
       final result = await repository.generatePaymentSheet(appointmentId);
@@ -301,19 +310,23 @@ void main() {
 
     test('returns payment failure on error', () async {
       // Arrange
-      when(() => mockDio.post(
-            any(),
-            data: any(named: 'data'),
-            options: any(named: 'options'),
-          )).thenThrow(DioException(
-        type: DioExceptionType.badResponse,
-        response: Response(
-          requestOptions: RequestOptions(path: ''),
-          statusCode: 402,
-          data: {'message': 'Payment required'},
+      when(
+        () => mockDio.post(
+          any(),
+          data: any(named: 'data'),
+          options: any(named: 'options'),
         ),
-        requestOptions: RequestOptions(path: ''),
-      ));
+      ).thenThrow(
+        DioException(
+          type: DioExceptionType.badResponse,
+          response: Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 402,
+            data: {'message': 'Payment required'},
+          ),
+          requestOptions: RequestOptions(path: ''),
+        ),
+      );
 
       // Act
       final result = await repository.generatePaymentSheet(appointmentId);
@@ -328,15 +341,19 @@ void main() {
 
     test('returns success when cash payment processed', () async {
       // Arrange
-      when(() => mockDio.post(
-            any(),
-            data: any(named: 'data'),
-            options: any(named: 'options'),
-          )).thenAnswer((_) async => Response(
-            requestOptions: RequestOptions(path: ''),
-            statusCode: 200,
-            data: {'message': 'Cash order created'},
-          ));
+      when(
+        () => mockDio.post(
+          any(),
+          data: any(named: 'data'),
+          options: any(named: 'options'),
+        ),
+      ).thenAnswer(
+        (_) async => Response(
+          requestOptions: RequestOptions(path: ''),
+          statusCode: 200,
+          data: {'message': 'Cash order created'},
+        ),
+      );
 
       // Act
       final result = await repository.processCashPayment(doctorId: doctorId);

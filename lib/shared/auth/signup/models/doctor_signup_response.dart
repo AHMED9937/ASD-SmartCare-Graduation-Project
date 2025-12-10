@@ -4,10 +4,7 @@ class SignupResDoctorModel {
   final DoctorModel data;
   final String token;
 
-  SignupResDoctorModel({
-    required this.data,
-    required this.token,
-  });
+  SignupResDoctorModel({required this.data, required this.token});
 
   factory SignupResDoctorModel.fromJson(Map<String, dynamic> json) {
     return SignupResDoctorModel(
@@ -16,10 +13,7 @@ class SignupResDoctorModel {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'data': data.toJson(),
-        'token': token,
-      };
+  Map<String, dynamic> toJson() => {'data': data.toJson(), 'token': token};
 }
 
 class DoctorModel {
@@ -66,17 +60,17 @@ class DoctorModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'parent': parent,
-        'speciailization': speciailization,
-        'qualifications': qualifications,
-        'medicalLicense': medicalLicense,
-        'Session_price': sessionPrice,
-        'availableDays': availableDays,
-        'ratingQuantity': ratingQuantity,
-        '_id': id,
-        'createdAt': createdAt,
-        'updatedAt': updatedAt,
-        '__v': v,
-        'id': id,
-      };
+    'parent': parent,
+    'speciailization': speciailization,
+    'qualifications': qualifications,
+    'medicalLicense': medicalLicense,
+    'Session_price': sessionPrice,
+    'availableDays': availableDays,
+    'ratingQuantity': ratingQuantity,
+    '_id': id,
+    'createdAt': createdAt,
+    'updatedAt': updatedAt,
+    '__v': v,
+    'id': id,
+  };
 }

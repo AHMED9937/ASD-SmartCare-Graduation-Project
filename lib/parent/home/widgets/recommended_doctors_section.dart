@@ -51,9 +51,9 @@ class RecommendedDoctorsSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
       child: ErrorView(
         message: 'Failed to load specialists',
-        onRetry: () => context
-            .read<DoctorsListCubit>()
-            .getDoctorsList(recommendedDoctor: true),
+        onRetry: () => context.read<DoctorsListCubit>().getDoctorsList(
+          recommendedDoctor: true,
+        ),
       ),
     );
   }
@@ -61,9 +61,7 @@ class RecommendedDoctorsSection extends StatelessWidget {
   Widget _buildEmptyState() {
     return const Padding(
       padding: EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-      child: EmptyView(
-        message: 'No specialists found at the moment.',
-      ),
+      child: EmptyView(message: 'No specialists found at the moment.'),
     );
   }
 
@@ -87,8 +85,11 @@ class RecommendedDoctorsSection extends StatelessWidget {
             imageUrl: doctor.image,
             isTopRated: index == 0,
             onTap: () {
-              Navigator.pushNamed(context, AppRoutes.booking,
-                  arguments: doctor);
+              Navigator.pushNamed(
+                context,
+                AppRoutes.booking,
+                arguments: doctor,
+              );
             },
           );
         },

@@ -67,8 +67,9 @@ void main() {
   });
 
   group('DoctorProfileScreen Responsiveness', () {
-    testWidgets('handles small screen width (320dp) without overflow',
-        (tester) async {
+    testWidgets('handles small screen width (320dp) without overflow', (
+      tester,
+    ) async {
       tester.view.physicalSize = const Size(320, 640);
       tester.view.devicePixelRatio = 1.0;
 
@@ -84,8 +85,9 @@ void main() {
       tester.view.resetDevicePixelRatio();
     });
 
-    testWidgets('handles tablet width (768dp) without overflow',
-        (tester) async {
+    testWidgets('handles tablet width (768dp) without overflow', (
+      tester,
+    ) async {
       tester.view.physicalSize = const Size(768, 1024);
       tester.view.devicePixelRatio = 1.0;
 
@@ -101,8 +103,9 @@ void main() {
       tester.view.resetDevicePixelRatio();
     });
 
-    testWidgets('handles text scale factor 1.5 without clipping',
-        (tester) async {
+    testWidgets('handles text scale factor 1.5 without clipping', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const MediaQuery(
           data: MediaQueryData(textScaler: TextScaler.linear(1.5)),
@@ -157,9 +160,7 @@ void main() {
     testWidgets('AppCard renders child content', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AppCard(child: Text('Card Content')),
-          ),
+          home: Scaffold(body: AppCard(child: Text('Card Content'))),
         ),
       );
 
@@ -170,9 +171,7 @@ void main() {
     testWidgets('SectionHeader renders title', (tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: SectionHeader(title: 'Professional Details'),
-          ),
+          home: Scaffold(body: SectionHeader(title: 'Professional Details')),
         ),
       );
 

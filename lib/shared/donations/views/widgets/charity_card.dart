@@ -115,20 +115,22 @@ class CharityCard extends StatelessWidget {
     return Wrap(
       spacing: AppSpacing.xs,
       children: [
-        ...medNames.map((name) => Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-              decoration: BoxDecoration(
-                color: AppColors.success.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(AppRadius.full),
+        ...medNames.map(
+          (name) => Container(
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+            decoration: BoxDecoration(
+              color: AppColors.success.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(AppRadius.full),
+            ),
+            child: Text(
+              name,
+              style: AppTypography.labelSmall.copyWith(
+                color: AppColors.success,
+                fontSize: 10,
               ),
-              child: Text(
-                name,
-                style: AppTypography.labelSmall.copyWith(
-                  color: AppColors.success,
-                  fontSize: 10,
-                ),
-              ),
-            )),
+            ),
+          ),
+        ),
         if (charity.charityMedican!.length > 2)
           Text(
             '+${charity.charityMedican!.length - 2} more',

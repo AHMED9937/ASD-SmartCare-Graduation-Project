@@ -32,9 +32,7 @@ class SessionManagementView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: const AppHeader(
-        title: 'Session Feedback',
-      ),
+      appBar: const AppHeader(title: 'Session Feedback'),
       body: _SessionManagementBody(sessionID: sessionID),
     );
   }
@@ -82,10 +80,8 @@ class _SessionManagementBodyState extends State<_SessionManagementBody> {
     final cubit = context.read<DoctorSessionListCubit>();
     final text = await showDialog<String>(
       context: context,
-      builder: (_) => const FeedbackDialog(
-        title: 'New Feedback',
-        actionLabel: 'Add',
-      ),
+      builder: (_) =>
+          const FeedbackDialog(title: 'New Feedback', actionLabel: 'Add'),
     );
 
     if (text != null && text.isNotEmpty) {
@@ -134,15 +130,17 @@ class _SessionManagementBodyState extends State<_SessionManagementBody> {
     return BlocConsumer<DoctorSessionListCubit, GetDoctorSessionListStates>(
       listener: (context, state) {
         if (state is GetSpecificSessionSuccessStates) {
-          final session =
-              context.read<DoctorSessionListCubit>().selectedSession;
+          final session = context
+              .read<DoctorSessionListCubit>()
+              .selectedSession;
           setState(() {
             _comments
               ..clear()
               ..addAll(session?.comments ?? []);
           });
-          WidgetsBinding.instance
-              .addPostFrameCallback((_) => _scrollToBottom());
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => _scrollToBottom(),
+          );
         }
 
         if (state is UpdateDoctorSessionSuccessStates) {
@@ -192,8 +190,9 @@ class _SessionManagementBodyState extends State<_SessionManagementBody> {
 
         final session = context.read<DoctorSessionListCubit>().selectedSession;
         final date = session?.sessionDate;
-        final timestamp =
-            date != null ? DateFormat('MMM d, yyyy  hh:mm a').format(date) : '';
+        final timestamp = date != null
+            ? DateFormat('MMM d, yyyy  hh:mm a').format(date)
+            : '';
 
         return Column(
           children: [

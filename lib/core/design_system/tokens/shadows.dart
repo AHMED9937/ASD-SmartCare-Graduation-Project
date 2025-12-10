@@ -106,11 +106,7 @@ abstract final class AppShadows {
 
   /// Navigation bar shadow
   static const List<BoxShadow> navBar = [
-    BoxShadow(
-      color: AppColors.shadow,
-      blurRadius: 8,
-      offset: Offset(0, -2),
-    ),
+    BoxShadow(color: AppColors.shadow, blurRadius: 8, offset: Offset(0, -2)),
   ];
 
   // ─────────────────────────────────────────────────────────────────────────────
@@ -119,15 +115,15 @@ abstract final class AppShadows {
 
   /// Primary color glow - for CTA buttons, highlights
   static BoxShadow get primaryGlow => BoxShadow(
-        color: AppColors.primary.withValues(alpha: 0.3),
-        blurRadius: 12,
-        offset: const Offset(0, 4),
-      );
+    color: AppColors.primary.withValues(alpha: 0.3),
+    blurRadius: 12,
+    offset: const Offset(0, 4),
+  );
 
   /// Secondary color glow
   static BoxShadow get secondaryGlow => BoxShadow(
-        color: AppColors.secondary.withValues(alpha: 0.3),
-        blurRadius: 12,
-        offset: const Offset(0, 4),
-      );
+    color: AppColors.secondary.withValues(alpha: 0.3),
+    blurRadius: 12,
+    offset: const Offset(0, 4),
+  );
 }

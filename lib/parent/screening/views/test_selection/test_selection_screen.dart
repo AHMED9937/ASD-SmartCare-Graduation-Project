@@ -19,9 +19,7 @@ class TestSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppHeader(
-        showBackButton: false,
-      ),
+      appBar: const AppHeader(showBackButton: false),
       body: TestSelectionBody(
         onScreeningTestTap: () => _navigateToScreeningTest(context),
         onLevelAssessmentTap: () => _navigateToLevelAssessment(context),
@@ -32,18 +30,14 @@ class TestSelectionScreen extends StatelessWidget {
   void _navigateToScreeningTest(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => const AutismTestScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const AutismTestScreen()),
     );
   }
 
   void _navigateToLevelAssessment(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => const AutismChekerScreen(),
-      ),
+      MaterialPageRoute(builder: (_) => const AutismChekerScreen()),
     );
   }
 }

@@ -15,8 +15,8 @@ class AppointmentItemCard extends StatelessWidget {
     final statusColor = isBooked
         ? AppColors.success
         : isCancelled
-            ? AppColors.error
-            : AppColors.primary;
+        ? AppColors.error
+        : AppColors.primary;
 
     return AppCard(
       margin: const EdgeInsets.only(bottom: AppSpacing.md),

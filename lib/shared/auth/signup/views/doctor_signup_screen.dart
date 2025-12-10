@@ -94,8 +94,8 @@ class Doctorsignupscreen extends StatelessWidget {
                             Textheader: ' Login',
                           ),
                           const SizedBox(
-                              height:
-                                  20), // Padding at the bottom for extra space
+                            height: 20,
+                          ), // Padding at the bottom for extra space
                         ],
                       ),
                     ),

@@ -34,15 +34,16 @@ class AustisumLevelTestData {
   String? updatedAt;
   int? iV;
 
-  AustisumLevelTestData(
-      {this.sId,
-      this.parentId,
-      this.type,
-      this.inputs,
-      this.output,
-      this.createdAt,
-      this.updatedAt,
-      this.iV});
+  AustisumLevelTestData({
+    this.sId,
+    this.parentId,
+    this.type,
+    this.inputs,
+    this.output,
+    this.createdAt,
+    this.updatedAt,
+    this.iV,
+  });
 
   AustisumLevelTestData.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

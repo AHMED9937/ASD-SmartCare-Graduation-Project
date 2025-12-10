@@ -242,22 +242,23 @@ void main() {
       });
 
       test(
-          'bookingConfirm route with arguments returns Confirmreservationscreen',
-          () {
-        final doctor = Doctor(id: 'doc-123');
-        final session = BookSession()..message = 'test';
-        final args = BookingConfirmArgs(doctor: doctor, session: session);
-        final settings = RouteSettings(
-          name: AppRoutes.bookingConfirm,
-          arguments: args,
-        );
-        final route = AppRouter.onGenerateRoute(settings);
+        'bookingConfirm route with arguments returns Confirmreservationscreen',
+        () {
+          final doctor = Doctor(id: 'doc-123');
+          final session = BookSession()..message = 'test';
+          final args = BookingConfirmArgs(doctor: doctor, session: session);
+          final settings = RouteSettings(
+            name: AppRoutes.bookingConfirm,
+            arguments: args,
+          );
+          final route = AppRouter.onGenerateRoute(settings);
 
-        expect(route, isA<MaterialPageRoute>());
-        final pageRoute = route as MaterialPageRoute;
-        final widget = pageRoute.builder(MockBuildContext());
-        expect(widget, isA<Confirmreservationscreen>());
-      });
+          expect(route, isA<MaterialPageRoute>());
+          final pageRoute = route as MaterialPageRoute;
+          final widget = pageRoute.builder(MockBuildContext());
+          expect(widget, isA<Confirmreservationscreen>());
+        },
+      );
     });
 
     group('Doctor Routes', () {

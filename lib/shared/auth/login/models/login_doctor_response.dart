@@ -119,8 +119,9 @@ class Parent {
       id: json['id'] as String? ?? json['_id'] as String?,
       userName: json['userName'] as String?,
       email: json['email'] as String?,
-      childs:
-          json['childs'] != null ? List<dynamic>.from(json['childs']) : null,
+      childs: json['childs'] != null
+          ? List<dynamic>.from(json['childs'])
+          : null,
     );
   }
 

@@ -21,9 +21,10 @@ class _DoctorCardShimmerState extends State<DoctorCardShimmer>
       duration: const Duration(milliseconds: 1500),
       vsync: this,
     )..repeat();
-    _animation = Tween<double>(begin: 0.3, end: 0.7).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _animation = Tween<double>(
+      begin: 0.3,
+      end: 0.7,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -53,10 +54,7 @@ class _DoctorCardShimmerState extends State<DoctorCardShimmer>
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildImagePlaceholder(),
-              _buildInfoPlaceholder(),
-            ],
+            children: [_buildImagePlaceholder(), _buildInfoPlaceholder()],
           ),
         );
       },
@@ -102,8 +100,9 @@ class _DoctorCardShimmerState extends State<DoctorCardShimmer>
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: AppColors.primary
-            .withValues(alpha: _animation.value * 0.15 * alphaMultiplier),
+        color: AppColors.primary.withValues(
+          alpha: _animation.value * 0.15 * alphaMultiplier,
+        ),
         borderRadius: BorderRadius.circular(borderRadius),
       ),
     );

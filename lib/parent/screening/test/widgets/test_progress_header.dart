@@ -39,20 +39,20 @@ class TestProgressHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress =
-        totalQuestions > 0 ? (currentIndex + 1) / totalQuestions : 0.0;
+    final progress = totalQuestions > 0
+        ? (currentIndex + 1) / totalQuestions
+        : 0.0;
 
     return Semantics(
-      label: 'Question ${currentIndex + 1} of $totalQuestions. '
+      label:
+          'Question ${currentIndex + 1} of $totalQuestions. '
           '${(progress * 100).toInt()}% complete.',
       child: Container(
         padding: const EdgeInsets.all(AppSpacing.lg),
         decoration: BoxDecoration(
           color: AppColors.primary.withValues(alpha: 0.04),
           borderRadius: AppRadius.card,
-          border: Border.all(
-            color: AppColors.primary.withValues(alpha: 0.08),
-          ),
+          border: Border.all(color: AppColors.primary.withValues(alpha: 0.08)),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

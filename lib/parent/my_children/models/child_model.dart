@@ -63,15 +63,16 @@ class child {
   String? createdAt;
   String? updatedAt;
 
-  child(
-      {this.sId,
-      this.parent,
-      this.childName,
-      this.birthday,
-      this.age,
-      this.gender,
-      this.createdAt,
-      this.updatedAt});
+  child({
+    this.sId,
+    this.parent,
+    this.childName,
+    this.birthday,
+    this.age,
+    this.gender,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   child.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

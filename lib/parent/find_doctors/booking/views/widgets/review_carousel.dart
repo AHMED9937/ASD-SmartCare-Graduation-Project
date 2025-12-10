@@ -51,8 +51,9 @@ class _ReviewCarouselState extends State<ReviewCarousel> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SessionReviewsListCubit()
-        ..getDoctorSessionsReviewsList(widget.doctorId),
+      create: (context) =>
+          SessionReviewsListCubit()
+            ..getDoctorSessionsReviewsList(widget.doctorId),
       child: BlocBuilder<SessionReviewsListCubit, GetSessionReviewsListStates>(
         builder: (context, state) {
           if (state is GetSessionReviewsListLoadingState) {
@@ -329,8 +330,9 @@ class ReviewDetailSheet extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.04),
               borderRadius: AppRadius.mdRadius,
-              border:
-                  Border.all(color: AppColors.primary.withValues(alpha: 0.1)),
+              border: Border.all(
+                color: AppColors.primary.withValues(alpha: 0.1),
+              ),
             ),
             child: Text(
               review.title ??

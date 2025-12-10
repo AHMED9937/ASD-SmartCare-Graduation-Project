@@ -112,9 +112,7 @@ class MedicineCard extends StatelessWidget {
   void _navigateToDetails(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => MedicenInfo(medicen: medicine),
-      ),
+      MaterialPageRoute(builder: (context) => MedicenInfo(medicen: medicine)),
     );
   }
 }

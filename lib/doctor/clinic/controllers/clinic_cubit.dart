@@ -20,10 +20,11 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
     emit(AvailabilityLoading());
     try {
       Diohelper.postData(
-          url: ApiConstants
-              .doctorAvailability, // replace with your configured endpoint
-          data: {'availableSlots': slots},
-          token: CacheHelper.getData(key: 'token'));
+        url: ApiConstants
+            .doctorAvailability, // replace with your configured endpoint
+        data: {'availableSlots': slots},
+        token: CacheHelper.getData(key: 'token'),
+      );
       // Optionally inspect response, e.g. statusCode or message
       emit(const AvailabilitySuccess());
     } catch (e) {
@@ -35,16 +36,19 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
     emit(GetDoctorAvailabilityLoading());
 
     Diohelper.getData(
-      url: ApiConstants.getDoctorAvailabilityById(CacheHelper.getData(
-          key: 'id')), // replace with your configured endpoint
-    ).then((value) {
-      debugPrint('${value.data}');
-      availabilityDays = GetDoctorAvailability.fromJson(value.data);
+          url: ApiConstants.getDoctorAvailabilityById(
+            CacheHelper.getData(key: 'id'),
+          ), // replace with your configured endpoint
+        )
+        .then((value) {
+          debugPrint('${value.data}');
+          availabilityDays = GetDoctorAvailability.fromJson(value.data);
 
-      emit(GetDoctorAvailabilitySuccess(model: availabilityDays!));
-    }).catchError((e) {
-      emit(GetDoctorAvailabilityError(e.toString()));
-    });
+          emit(GetDoctorAvailabilitySuccess(model: availabilityDays!));
+        })
+        .catchError((e) {
+          emit(GetDoctorAvailabilityError(e.toString()));
+        });
 
     // Optionally inspect response, e.g. statusCode or message
   }
@@ -53,17 +57,20 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
     emit(DeleteDoctorAvailabilityLoading());
 
     Diohelper.deleteData(
-      query: {},
-      token: CacheHelper.getData(key: 'token'),
-      url: ApiConstants.deleteDoctorAvailability(CacheHelper.getData(
-          key: 'id')), // replace with your configured endpoint
-    ).then((value) {
-      debugPrint('${value.data}');
+          query: {},
+          token: CacheHelper.getData(key: 'token'),
+          url: ApiConstants.deleteDoctorAvailability(
+            CacheHelper.getData(key: 'id'),
+          ), // replace with your configured endpoint
+        )
+        .then((value) {
+          debugPrint('${value.data}');
 
-      emit(DeleteDoctorAvailabilitySuccess(slots: slots));
-    }).catchError((e) {
-      emit(DeleteDoctorAvailabilityError(e.toString()));
-    });
+          emit(DeleteDoctorAvailabilitySuccess(slots: slots));
+        })
+        .catchError((e) {
+          emit(DeleteDoctorAvailabilityError(e.toString()));
+        });
 
     // Optionally inspect response, e.g. statusCode or message
   }
@@ -73,16 +80,18 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
     emit(DeleteDocAppoimentLoading());
 
     await Diohelper.deleteData(
-      url: ApiConstants
-          .deleteSpecificDoctorAppointment, // replace with your configured endpoint
-      query: {'appointmentId': appointmentId},
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('${value.data}');
+          url: ApiConstants
+              .deleteSpecificDoctorAppointment, // replace with your configured endpoint
+          query: {'appointmentId': appointmentId},
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('${value.data}');
 
-      emit(const DeleteDocAppoimentSuccess());
-    }).catchError((e) {
-      emit(DeleteDocAppoimentError(e.toString()));
-    });
+          emit(const DeleteDocAppoimentSuccess());
+        })
+        .catchError((e) {
+          emit(DeleteDocAppoimentError(e.toString()));
+        });
   }
 }

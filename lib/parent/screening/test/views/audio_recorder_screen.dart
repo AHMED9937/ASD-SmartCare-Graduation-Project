@@ -100,8 +100,10 @@ class _MyAudioRecorderState extends State<MyAudioRecorder> {
                       isRecording = true;
                       recordedFilePath = null;
                     });
-                    await audioRecorder.start(const RecordConfig(),
-                        path: filePath);
+                    await audioRecorder.start(
+                      const RecordConfig(),
+                      path: filePath,
+                    );
                   }
                 }
               },
@@ -132,7 +134,7 @@ class _MyAudioRecorderState extends State<MyAudioRecorder> {
               }
             },
             child: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-          )
+          ),
       ],
     );
   }

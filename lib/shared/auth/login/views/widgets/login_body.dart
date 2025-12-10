@@ -38,9 +38,7 @@ class LoginBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsivePadding(
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
-          vertical: AppSpacing.md,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

@@ -50,11 +50,13 @@ class DashboardStatsCubit extends Cubit<DashboardStatsState> {
       // Sessions usually comes as { data: [...] }
       final sessionsCount = (sessionsData['data'] as List?)?.length ?? 0;
 
-      emit(DashboardStatsLoaded(
-        appointmentsCount: appointments,
-        patientsCount: patientsCount,
-        sessionsCount: sessionsCount,
-      ));
+      emit(
+        DashboardStatsLoaded(
+          appointmentsCount: appointments,
+          patientsCount: patientsCount,
+          sessionsCount: sessionsCount,
+        ),
+      );
     } catch (_) {
       emit(const DashboardStatsError('Failed to load dashboard statistics'));
     }

@@ -12,11 +12,7 @@ class ArticlesBody extends StatelessWidget {
   final AvailableEducationArticaleCubit cubit;
   final AvailableEducationArticaleState state;
 
-  const ArticlesBody({
-    super.key,
-    required this.cubit,
-    required this.state,
-  });
+  const ArticlesBody({super.key, required this.cubit, required this.state});
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +45,9 @@ class ArticlesBody extends StatelessWidget {
             if (featuredArticle != null)
               SliverToBoxAdapter(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.lg,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -81,15 +78,12 @@ class ArticlesBody extends StatelessWidget {
             SliverPadding(
               padding: const EdgeInsets.all(AppSpacing.lg),
               sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: AppSpacing.md),
-                      child: ArticleCard(article: otherArticles[index]),
-                    );
-                  },
-                  childCount: otherArticles.length,
-                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: AppSpacing.md),
+                    child: ArticleCard(article: otherArticles[index]),
+                  );
+                }, childCount: otherArticles.length),
               ),
             ),
           ],

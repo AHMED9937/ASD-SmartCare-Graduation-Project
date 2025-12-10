@@ -19,15 +19,17 @@ class AvailableMedicineCubit extends Cubit<AvailableMedicineState> {
     emit(GetAvailableMedicineLoading());
 
     Diohelper.getData(
-      url: ApiConstants.getAvailableMedicine,
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      availableMedicineList = MedicineResponse.fromJson(value.data);
-      items = availableMedicineList.data;
-      emit(GetAvailableMedicineSuccess(availableMedicineList));
-    }).catchError((error) {
-      emit(GetAvailableMedicineError('Failed to load medicines'));
-    });
+          url: ApiConstants.getAvailableMedicine,
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          availableMedicineList = MedicineResponse.fromJson(value.data);
+          items = availableMedicineList.data;
+          emit(GetAvailableMedicineSuccess(availableMedicineList));
+        })
+        .catchError((error) {
+          emit(GetAvailableMedicineError('Failed to load medicines'));
+        });
   }
 
   void searchMedicine(String medName) async {
@@ -38,9 +40,7 @@ class AvailableMedicineCubit extends Cubit<AvailableMedicineState> {
         url: ApiConstants.getAvailableMedicine,
         token: CacheHelper.getData(key: 'token'),
         // <-- add this:
-        query: {
-          'keyword': medName,
-        },
+        query: {'keyword': medName},
       );
 
       availableMedicineList = MedicineResponse.fromJson(response.data);

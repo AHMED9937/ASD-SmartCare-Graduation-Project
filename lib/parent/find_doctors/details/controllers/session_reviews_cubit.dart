@@ -15,35 +15,41 @@ class SessionReviewsListCubit extends Cubit<GetSessionReviewsListStates> {
     emit(GetSessionReviewsListLoadingState());
 
     Diohelper.getData(
-      url: ApiConstants.getDoctorSessionsReviewsList(
-          Did), // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('${value.data}');
-      DocSessionReviews = SessionReviews.fromJson(value.data);
+          url: ApiConstants.getDoctorSessionsReviewsList(
+            Did,
+          ), // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('${value.data}');
+          DocSessionReviews = SessionReviews.fromJson(value.data);
 
-      emit(GetSessionReviewsListSuccessState(DocSessionReviews!.data));
-    }).catchError((error) {
-      debugPrint('Error fetching SessionReviews list: $error');
-      emit(GetSessionReviewsListFailedState());
-    });
+          emit(GetSessionReviewsListSuccessState(DocSessionReviews!.data));
+        })
+        .catchError((error) {
+          debugPrint('Error fetching SessionReviews list: $error');
+          emit(GetSessionReviewsListFailedState());
+        });
   }
 
   void getSessionReviewsList(String Sid) {
     emit(GetSessionReviewsListLoadingState());
 
     Diohelper.getData(
-      url: ApiConstants.GetSessionReviewsList(
-          Sid), // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('${value.data}');
-      DocSessionReviews = SessionReviews.fromJson(value.data);
+          url: ApiConstants.GetSessionReviewsList(
+            Sid,
+          ), // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('${value.data}');
+          DocSessionReviews = SessionReviews.fromJson(value.data);
 
-      emit(GetSessionReviewsListSuccessState(DocSessionReviews!.data));
-    }).catchError((error) {
-      debugPrint('Error fetching SessionReviews list: $error');
-      emit(GetSessionReviewsListFailedState());
-    });
+          emit(GetSessionReviewsListSuccessState(DocSessionReviews!.data));
+        })
+        .catchError((error) {
+          debugPrint('Error fetching SessionReviews list: $error');
+          emit(GetSessionReviewsListFailedState());
+        });
   }
 }

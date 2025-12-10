@@ -11,11 +11,7 @@ class EditParentProfileScreen extends StatelessWidget {
   final GetLoggedParentData parentD;
   final EditParentProfileCubit? cubit;
 
-  const EditParentProfileScreen({
-    super.key,
-    required this.parentD,
-    this.cubit,
-  });
+  const EditParentProfileScreen({super.key, required this.parentD, this.cubit});
 
   @override
   Widget build(BuildContext context) {

@@ -83,8 +83,8 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = false,
     this.bottom,
     this.showBackButton,
-  })  : backgroundColor = AppColors.transparent,
-        elevation = 0;
+  }) : backgroundColor = AppColors.transparent,
+       elevation = 0;
 
   /// Create a header with search functionality
   factory AppHeader.search({
@@ -111,14 +111,14 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(
-        64 + (bottom?.preferredSize.height ?? 0),
-      );
+  Size get preferredSize =>
+      Size.fromHeight(64 + (bottom?.preferredSize.height ?? 0));
 
   @override
   Widget build(BuildContext context) {
     final canPop = Navigator.of(context).canPop();
-    final shouldShowBackButton = showBackButton ??
+    final shouldShowBackButton =
+        showBackButton ??
         (automaticallyImplyLeading && canPop && leading == null);
 
     return DecoratedBox(
@@ -134,7 +134,9 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
               height: 64,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                    horizontal: AppSpacing.lg, vertical: 8),
+                  horizontal: AppSpacing.lg,
+                  vertical: 8,
+                ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -159,9 +161,7 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
                     // Title
                     Expanded(
                       child: centerTitle
-                          ? Center(
-                              child: _buildTitle(),
-                            )
+                          ? Center(child: _buildTitle())
                           : _buildTitle(),
                     ),
 

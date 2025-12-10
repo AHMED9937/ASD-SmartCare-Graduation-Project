@@ -60,10 +60,7 @@ class AuthRepository {
     try {
       final response = await _dio.post(
         ApiConstants.login,
-        data: {
-          'email': email,
-          'password': password,
-        },
+        data: {'email': email, 'password': password},
       );
 
       final data = response.data;
@@ -81,31 +78,20 @@ class AuthRepository {
         return AuthSuccess(LoginDoctorModel.fromJson(data));
       }
     } on DioException catch (e) {
-      return AuthFailure(
-        _mapDioError(e),
-        statusCode: e.response?.statusCode,
-      );
+      return AuthFailure(_mapDioError(e), statusCode: e.response?.statusCode);
     } catch (e) {
       return AuthFailure('An unexpected error occurred: ${e.toString()}');
     }
   }
 
   /// Request password reset email.
-  Future<AuthResult<void>> requestPasswordReset({
-    required String email,
-  }) async {
+  Future<AuthResult<void>> requestPasswordReset({required String email}) async {
     try {
-      await _dio.post(
-        ApiConstants.forgotPasswordEmail,
-        data: {'email': email},
-      );
+      await _dio.post(ApiConstants.forgotPasswordEmail, data: {'email': email});
 
       return AuthSuccess(null);
     } on DioException catch (e) {
-      return AuthFailure(
-        _mapDioError(e),
-        statusCode: e.response?.statusCode,
-      );
+      return AuthFailure(_mapDioError(e), statusCode: e.response?.statusCode);
     } catch (e) {
       return AuthFailure('An unexpected error occurred.');
     }
@@ -129,10 +115,7 @@ class AuthRepository {
 
       return AuthSuccess(null);
     } on DioException catch (e) {
-      return AuthFailure(
-        _mapDioError(e),
-        statusCode: e.response?.statusCode,
-      );
+      return AuthFailure(_mapDioError(e), statusCode: e.response?.statusCode);
     } catch (e) {
       return AuthFailure('An unexpected error occurred.');
     }

@@ -35,12 +35,14 @@ void main() async {
   final bool? rememberMe = CacheHelper.getData(key: 'rememberMe');
   final String? role = CacheHelper.getData(key: 'role');
 
-  runApp(MyApp(
-    onBoarding: onBoarding,
-    token: token,
-    rememberMe: rememberMe,
-    role: role,
-  ));
+  runApp(
+    MyApp(
+      onBoarding: onBoarding,
+      token: token,
+      rememberMe: rememberMe,
+      role: role,
+    ),
+  );
 }
 
 /// Root application widget.

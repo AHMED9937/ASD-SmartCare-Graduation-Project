@@ -10,7 +10,8 @@ class CharityResponse {
       results: json['results'] as int?,
       pagination: json['pagenationResult'] != null
           ? PaginationResult.fromJson(
-              json['pagenationResult'] as Map<String, dynamic>)
+              json['pagenationResult'] as Map<String, dynamic>,
+            )
           : null,
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Charity.fromJson(e as Map<String, dynamic>))

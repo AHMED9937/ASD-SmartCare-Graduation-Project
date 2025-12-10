@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RegisteredChildrenListCubit
     extends Cubit<GetRegisteredChildrenListStates> {
   RegisteredChildrenListCubit()
-      : super(GetRegisteredChildrenListinitialStates());
+    : super(GetRegisteredChildrenListinitialStates());
 
   static RegisteredChildrenListCubit get(context) => BlocProvider.of(context);
   RegisteredChildren? registeredchildren;
@@ -23,34 +23,38 @@ class RegisteredChildrenListCubit
     emit(GetRegisteredChildrenListLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants
-          .GetRegisteredChildrenList, // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('${value.data}');
-      registeredchildren = RegisteredChildren.fromJson(value.data);
+          url: ApiConstants
+              .GetRegisteredChildrenList, // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('${value.data}');
+          registeredchildren = RegisteredChildren.fromJson(value.data);
 
-      emit(GetRegisteredChildrenListSuccsessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching RegisteredChildren list: $error');
-      emit(GetRegisteredChildrenListFailedStates());
-    });
+          emit(GetRegisteredChildrenListSuccsessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching RegisteredChildren list: $error');
+          emit(GetRegisteredChildrenListFailedStates());
+        });
   }
 
   void CreateSession(result) {
     emit(CreatSessionLoadingStates());
 
     Diohelper.postData(
-      url: ApiConstants.CreateSessions,
-      token: CacheHelper.getData(key: 'token'),
-      data: result,
-    ).then((value) {
-      debugPrint('${value.data}');
+          url: ApiConstants.CreateSessions,
+          token: CacheHelper.getData(key: 'token'),
+          data: result,
+        )
+        .then((value) {
+          debugPrint('${value.data}');
 
-      emit(CreatSessionSuccsessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching RegisteredChildren list: $error');
-      emit(CreatSessionFailedStates());
-    });
+          emit(CreatSessionSuccsessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching RegisteredChildren list: $error');
+          emit(CreatSessionFailedStates());
+        });
   }
 }

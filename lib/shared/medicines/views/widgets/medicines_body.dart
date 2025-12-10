@@ -22,9 +22,7 @@ class MedicinesBody extends StatelessWidget {
               _buildHeader(context, cubit),
 
               // Results Area
-              Expanded(
-                child: _buildContent(context, state, cubit),
-              ),
+              Expanded(child: _buildContent(context, state, cubit)),
             ],
           ),
         );
@@ -40,18 +38,13 @@ class MedicinesBody extends StatelessWidget {
         AppSpacing.lg,
         AppSpacing.lg,
       ),
-      decoration: const BoxDecoration(
-        color: AppColors.transparent,
-      ),
+      decoration: const BoxDecoration(color: AppColors.transparent),
       child: Column(
         children: [
           const Text(
             'Search for medicine and pharmacy to find treatment',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColors.textSecondary,
-              fontSize: 14,
-            ),
+            style: TextStyle(color: AppColors.textSecondary, fontSize: 14),
           ),
           const AppSpacer.md(),
           AppSearchField(

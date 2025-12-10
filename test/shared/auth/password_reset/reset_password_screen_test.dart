@@ -17,18 +17,21 @@ void main() {
       confirmPassController = TextEditingController();
     });
 
-    testWidgets('renders title, inputs, and button correctly',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: ResetPasswordBody(
-            newPasswordController: newPassController,
-            confirmPasswordController: confirmPassController,
-            onReset: () {},
-            isLoading: false,
+    testWidgets('renders title, inputs, and button correctly', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: ResetPasswordBody(
+              newPasswordController: newPassController,
+              confirmPasswordController: confirmPassController,
+              onReset: () {},
+              isLoading: false,
+            ),
           ),
         ),
-      ));
+      );
 
       // Verify Title
       expect(find.text('Create new password'), findsOneWidget);
@@ -43,18 +46,21 @@ void main() {
       expect(find.byType(CircularProgressIndicator), findsNothing);
     });
 
-    testWidgets('shows loading indicator when isLoading is true',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Scaffold(
-          body: ResetPasswordBody(
-            newPasswordController: newPassController,
-            confirmPasswordController: confirmPassController,
-            onReset: () {},
-            isLoading: true,
+    testWidgets('shows loading indicator when isLoading is true', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: ResetPasswordBody(
+              newPasswordController: newPassController,
+              confirmPasswordController: confirmPassController,
+              onReset: () {},
+              isLoading: true,
+            ),
           ),
         ),
-      ));
+      );
 
       expect(find.byType(CircularProgressIndicator), findsOneWidget);
       expect(find.text('Reset Password'), findsNothing);

@@ -50,11 +50,7 @@ class EmailVerificationBody extends StatelessWidget {
               SizedBox(height: 12),
               Text(
                 'Enter the code sent to your email.',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                  height: 1.5,
-                ),
+                style: TextStyle(fontSize: 16, color: Colors.grey, height: 1.5),
               ),
             ],
           ),
@@ -67,14 +63,18 @@ class EmailVerificationBody extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.primary.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(16),
-                border:
-                    Border.all(color: AppColors.primary.withValues(alpha: 0.2)),
+                border: Border.all(
+                  color: AppColors.primary.withValues(alpha: 0.2),
+                ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.email_outlined,
-                      color: AppColors.primary, size: 20),
+                  const Icon(
+                    Icons.email_outlined,
+                    color: AppColors.primary,
+                    size: 20,
+                  ),
                   const SizedBox(width: 12),
                   Flexible(
                     child: Text(
@@ -104,8 +104,11 @@ class EmailVerificationBody extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 4),
-                          Icon(Icons.edit_outlined,
-                              color: AppColors.primary, size: 14),
+                          Icon(
+                            Icons.edit_outlined,
+                            color: AppColors.primary,
+                            size: 14,
+                          ),
                         ],
                       ),
                     ),
@@ -128,8 +131,10 @@ class EmailVerificationBody extends StatelessWidget {
             const SizedBox(height: 16),
             Center(
               child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.error.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(20),
@@ -137,8 +142,11 @@ class EmailVerificationBody extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.error_outline,
-                        color: AppColors.error, size: 16),
+                    const Icon(
+                      Icons.error_outline,
+                      color: AppColors.error,
+                      size: 16,
+                    ),
                     const SizedBox(width: 8),
                     Text(
                       errorMessage!,
@@ -164,9 +172,7 @@ class EmailVerificationBody extends StatelessWidget {
               size: AppButtonSize.large,
               icon: Icons.check_circle_outline,
             ),
-            fallback: (_) => const Center(
-              child: CircularProgressIndicator(),
-            ),
+            fallback: (_) => const Center(child: CircularProgressIndicator()),
           ),
           const SizedBox(height: 24),
           // Resend Link

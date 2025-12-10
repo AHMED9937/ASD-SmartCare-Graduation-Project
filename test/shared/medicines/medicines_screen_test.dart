@@ -32,9 +32,7 @@ void main() {
   });
 
   Widget createWidget() {
-    return MaterialApp(
-      home: Availablemedicinescreen(cubit: mockCubit),
-    );
+    return MaterialApp(home: Availablemedicinescreen(cubit: mockCubit));
   }
 
   group('Medicines Screen Tests', () {
@@ -60,8 +58,12 @@ void main() {
           medicanName: 'Medicine A',
           medicanInfo: 'Info A',
           medicanImage: '',
-          pharmacy:
-              Pharmacy(id: 'p1', name: 'Pharm A', location: 'Loc A', phone: ''),
+          pharmacy: Pharmacy(
+            id: 'p1',
+            name: 'Pharm A',
+            location: 'Loc A',
+            phone: '',
+          ),
         ),
       ];
 
@@ -75,8 +77,9 @@ void main() {
     });
 
     testWidgets('renders ErrorView on failure', (tester) async {
-      when(() => mockCubit.state)
-          .thenReturn(GetAvailableMedicineError('Error occurred'));
+      when(
+        () => mockCubit.state,
+      ).thenReturn(GetAvailableMedicineError('Error occurred'));
 
       await tester.pumpWidget(createWidget());
       expect(find.byType(ErrorView), findsOneWidget);

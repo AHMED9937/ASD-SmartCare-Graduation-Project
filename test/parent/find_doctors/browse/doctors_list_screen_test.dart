@@ -20,9 +20,7 @@ void main() {
   });
 
   Widget createTestWidget() {
-    return MaterialApp(
-      home: DoctorsListPage(cubit: mockCubit),
-    );
+    return MaterialApp(home: DoctorsListPage(cubit: mockCubit));
   }
 
   group('DoctorsListPage UI States', () {
@@ -44,7 +42,10 @@ void main() {
     testWidgets('renders success state with doctors', (tester) async {
       final doctors = [
         Doctor(
-            id: '1', parent: Parent(userName: 'Dr. John'), sessionPrice: 500),
+          id: '1',
+          parent: Parent(userName: 'Dr. John'),
+          sessionPrice: 500,
+        ),
       ];
       when(() => mockCubit.myDoctorList).thenReturn(doctors);
       whenListen(
@@ -62,8 +63,9 @@ void main() {
       expect(find.byType(ErrorView), findsNothing);
     }, skip: true);
 
-    testWidgets('renders empty state message when no doctors found',
-        (tester) async {
+    testWidgets('renders empty state message when no doctors found', (
+      tester,
+    ) async {
       when(() => mockCubit.myDoctorList).thenReturn([]);
       whenListen(
         mockCubit,

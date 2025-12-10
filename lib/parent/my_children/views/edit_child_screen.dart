@@ -27,14 +27,16 @@ class _EditChildScreenState extends State<EditChildScreen> {
             cubit.getParentChildrenList(widget.parentId);
           } else if (state is AddChildFailedStates ||
               state is DeleteChildFailedStates) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Operation failed')));
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('Operation failed')));
           }
         },
         builder: (context, state) {
           final cubit = ParentChildrenListCubit.get(context);
           final hasChildren = cubit.children?.childs?.isNotEmpty ?? false;
-          final isInitialLoading = state is ParentChildrenListInitialStates ||
+          final isInitialLoading =
+              state is ParentChildrenListInitialStates ||
               state is GetParentChildrenListLoadingStates;
 
           return Scaffold(
@@ -54,7 +56,8 @@ class _EditChildScreenState extends State<EditChildScreen> {
                             physics: const BouncingScrollPhysics(),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: AppSpacing.lg),
+                                horizontal: AppSpacing.lg,
+                              ),
                               child: Column(
                                 children: [
                                   if (hasChildren ||
@@ -71,10 +74,10 @@ class _EditChildScreenState extends State<EditChildScreen> {
                                       child: Center(
                                         child: Text(
                                           'No children added yet',
-                                          style:
-                                              AppTypography.titleLarge.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                          style: AppTypography.titleLarge
+                                              .copyWith(
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -84,14 +87,15 @@ class _EditChildScreenState extends State<EditChildScreen> {
                                       const SizedBox(height: AppSpacing.lg),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            horizontal: AppSpacing.sm),
+                                          horizontal: AppSpacing.sm,
+                                        ),
                                         child: Text(
                                           'Add New Child',
                                           style: AppTypography.titleMedium
                                               .copyWith(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.textSecondary,
-                                          ),
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.textSecondary,
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -105,7 +109,8 @@ class _EditChildScreenState extends State<EditChildScreen> {
                                         if (cubit.addParentFormKey.currentState!
                                             .validate()) {
                                           cubit.addChild(
-                                              parentId: widget.parentId);
+                                            parentId: widget.parentId,
+                                          );
                                         }
                                       },
                                     ),

@@ -48,10 +48,7 @@ class SelectUserTypeBody extends StatelessWidget {
                 const SizedBox(height: 12),
                 const Text(
                   'Choose your role to get started',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                  ),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               ],
             ),
@@ -108,10 +105,7 @@ class _RoleCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(32),
-          border: Border.all(
-            color: color.withValues(alpha: 0.2),
-            width: 1.5,
-          ),
+          border: Border.all(color: color.withValues(alpha: 0.2), width: 1.5),
           boxShadow: [
             BoxShadow(
               color: color.withValues(alpha: 0.1),
@@ -155,11 +149,7 @@ class _RoleCard extends StatelessWidget {
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.white, width: 2),
                     ),
-                    child: Icon(
-                      icon,
-                      size: 48,
-                      color: color,
-                    ),
+                    child: Icon(icon, size: 48, color: color),
                   ),
                 ),
               ),

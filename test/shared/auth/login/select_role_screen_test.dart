@@ -12,11 +12,10 @@ void main() {
   // We can just verify the Widgets exist first.
 
   group('Selectusertypescreen Widget Tests', () {
-    testWidgets('renders title and cards correctly',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(const MaterialApp(
-        home: Selectusertypescreen(),
-      ));
+    testWidgets('renders title and cards correctly', (
+      WidgetTester tester,
+    ) async {
+      await tester.pumpWidget(const MaterialApp(home: Selectusertypescreen()));
 
       // Trigger standard animations
       await tester.pump(const Duration(seconds: 2));

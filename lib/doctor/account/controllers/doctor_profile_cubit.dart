@@ -17,16 +17,18 @@ class GetDoctorDataCubit extends Cubit<GetDoctorDataStates> {
     emit(GetDoctorDataLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants
-          .GetDoctorData, // Ensure this matches your API endpoint key
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('${value.data}');
-      currentDoctor = GetLoggedDoctorData.fromJson(value.data);
-      emit(GetDoctorDataSuccsessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching doctors list: $error');
-      emit(GetDoctorDataFailedStates());
-    });
+          url: ApiConstants
+              .GetDoctorData, // Ensure this matches your API endpoint key
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('${value.data}');
+          currentDoctor = GetLoggedDoctorData.fromJson(value.data);
+          emit(GetDoctorDataSuccsessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching doctors list: $error');
+          emit(GetDoctorDataFailedStates());
+        });
   }
 }

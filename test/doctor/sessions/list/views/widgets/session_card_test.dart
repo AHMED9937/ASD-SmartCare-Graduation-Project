@@ -35,11 +35,7 @@ void main() {
     testWidgets('renders fallback when childName is null', (tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: SessionCard(
-              onTap: () {},
-            ),
-          ),
+          home: Scaffold(body: SessionCard(onTap: () {})),
         ),
       );
 
@@ -50,10 +46,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: SessionCard(
-              childName: 'John Doe',
-              onTap: () {},
-            ),
+            body: SessionCard(childName: 'John Doe', onTap: () {}),
           ),
         ),
       );

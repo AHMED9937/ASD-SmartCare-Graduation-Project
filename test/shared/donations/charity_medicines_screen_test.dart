@@ -46,8 +46,12 @@ class _MockHttpClientResponse extends Mock implements HttpClientResponse {
       HttpClientResponseCompressionState.notCompressed;
 
   @override
-  StreamSubscription<List<int>> listen(void Function(List<int> event)? onData,
-      {Function? onError, void Function()? onDone, bool? cancelOnError}) {
+  StreamSubscription<List<int>> listen(
+    void Function(List<int> event)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
     return Stream<List<int>>.fromIterable([
       [
         71,
@@ -91,10 +95,14 @@ class _MockHttpClientResponse extends Mock implements HttpClientResponse {
         1,
         68,
         0,
-        59
-      ]
-    ]).listen(onData,
-        onError: onError, onDone: onDone, cancelOnError: cancelOnError);
+        59,
+      ],
+    ]).listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
   }
 }
 
@@ -110,9 +118,7 @@ void main() {
   });
 
   Widget createWidgetUnderTest() {
-    return MaterialApp(
-      home: views.CharityMedicine(cubit: mockCubit),
-    );
+    return MaterialApp(home: views.CharityMedicine(cubit: mockCubit));
   }
 
   final mockCharities = [
@@ -121,9 +127,7 @@ void main() {
       charityName: 'Helping Hands',
       charityAddress: '123 Charity St',
       logo: 'https://example.com/logo.png',
-      charityMedican: [
-        CharityMedicine(medicanName: 'Aspirin'),
-      ],
+      charityMedican: [CharityMedicine(medicanName: 'Aspirin')],
     ),
   ];
 
@@ -137,10 +141,12 @@ void main() {
     expect(find.byType(LoadingView), findsOneWidget);
   });
 
-  testWidgets('renders CharityMedicine with success state and items',
-      (tester) async {
+  testWidgets('renders CharityMedicine with success state and items', (
+    tester,
+  ) async {
     when(() => mockCubit.state).thenReturn(
-        GetAvailableCharitySuccess(CharityResponse(data: mockCharities)));
+      GetAvailableCharitySuccess(CharityResponse(data: mockCharities)),
+    );
     when(() => mockCubit.items).thenReturn(mockCharities);
     when(() => mockCubit.getAvailableCharity()).thenAnswer((_) async {});
 
@@ -153,8 +159,9 @@ void main() {
   });
 
   testWidgets('renders CharityMedicine with empty state', (tester) async {
-    when(() => mockCubit.state)
-        .thenReturn(GetAvailableCharitySuccess(CharityResponse(data: [])));
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetAvailableCharitySuccess(CharityResponse(data: [])));
     when(() => mockCubit.items).thenReturn([]);
     when(() => mockCubit.getAvailableCharity()).thenAnswer((_) async {});
 
@@ -166,8 +173,9 @@ void main() {
   });
 
   testWidgets('renders CharityMedicine with error state', (tester) async {
-    when(() => mockCubit.state)
-        .thenReturn(GetAvailableCharityError('Error message'));
+    when(
+      () => mockCubit.state,
+    ).thenReturn(GetAvailableCharityError('Error message'));
     when(() => mockCubit.items).thenReturn([]);
     when(() => mockCubit.getAvailableCharity()).thenAnswer((_) async {});
 

@@ -36,28 +36,34 @@ void main() {
   }
 
   group('ParentProfileScreen', () {
-    testWidgets('displays LoadingView when state is GetParentDataLoadingStates',
-        (tester) async {
-      when(() => mockProfileCubit.state)
-          .thenReturn(GetParentDataLoadingStates());
+    testWidgets(
+      'displays LoadingView when state is GetParentDataLoadingStates',
+      (tester) async {
+        when(
+          () => mockProfileCubit.state,
+        ).thenReturn(GetParentDataLoadingStates());
 
-      await tester.pumpWidget(createWidgetUnderTest());
+        await tester.pumpWidget(createWidgetUnderTest());
 
-      expect(find.byType(LoadingView), findsOneWidget);
-    });
+        expect(find.byType(LoadingView), findsOneWidget);
+      },
+    );
 
-    testWidgets('displays ErrorView when state is GetParentDataFailedStates',
-        (tester) async {
-      when(() => mockProfileCubit.state)
-          .thenReturn(GetParentDataFailedStates());
+    testWidgets('displays ErrorView when state is GetParentDataFailedStates', (
+      tester,
+    ) async {
+      when(
+        () => mockProfileCubit.state,
+      ).thenReturn(GetParentDataFailedStates());
 
       await tester.pumpWidget(createWidgetUnderTest());
 
       expect(find.byType(ErrorView), findsOneWidget);
     });
 
-    testWidgets('displays Success state with ParentProfileBody',
-        (tester) async {
+    testWidgets('displays Success state with ParentProfileBody', (
+      tester,
+    ) async {
       final mockData = GetLoggedParentData(
         data: Parent(
           id: '1',
@@ -68,8 +74,9 @@ void main() {
         ),
       );
 
-      when(() => mockProfileCubit.state)
-          .thenReturn(GetParentDataSuccessStates());
+      when(
+        () => mockProfileCubit.state,
+      ).thenReturn(GetParentDataSuccessStates());
       when(() => mockProfileCubit.currentParent).thenReturn(mockData);
 
       await tester.pumpWidget(createWidgetUnderTest());

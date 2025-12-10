@@ -16,15 +16,17 @@ class GetParentDataCubit extends Cubit<GetParentDataStates> {
     emit(GetParentDataLoadingStates());
 
     Diohelper.getData(
-      url: ApiConstants.getParentDataMe,
-      token: CacheHelper.getData(key: 'token'),
-    ).then((value) {
-      debugPrint('Fetched parent data');
-      currentParent = GetLoggedParentData.fromJson(value.data);
-      emit(GetParentDataSuccessStates());
-    }).catchError((error) {
-      debugPrint('Error fetching parent data: $error');
-      emit(GetParentDataFailedStates());
-    });
+          url: ApiConstants.getParentDataMe,
+          token: CacheHelper.getData(key: 'token'),
+        )
+        .then((value) {
+          debugPrint('Fetched parent data');
+          currentParent = GetLoggedParentData.fromJson(value.data);
+          emit(GetParentDataSuccessStates());
+        })
+        .catchError((error) {
+          debugPrint('Error fetching parent data: $error');
+          emit(GetParentDataFailedStates());
+        });
   }
 }

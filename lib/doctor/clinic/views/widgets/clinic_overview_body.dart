@@ -61,8 +61,10 @@ class _ClinicOverviewBodyState extends State<ClinicOverviewBody> {
                   isActive: widget.availableDays[_selectedDay] ?? false,
                   selectedDate: widget.selectedDates[_selectedDay],
                   selectedTimes: widget.selectedTimes[_selectedDay] ?? [],
-                  onToggleActive: () => widget.onToggleDay(_selectedDay,
-                      !(widget.availableDays[_selectedDay] ?? false)),
+                  onToggleActive: () => widget.onToggleDay(
+                    _selectedDay,
+                    !(widget.availableDays[_selectedDay] ?? false),
+                  ),
                   onPickDate: () => widget.onPickDate(_selectedDay),
                   onAddTime: () => widget.onPickTime(_selectedDay),
                   onDeleteTime: (index) =>

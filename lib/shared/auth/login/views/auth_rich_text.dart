@@ -9,8 +9,10 @@ class MyRichtext extends StatelessWidget {
     this.Textheader,
     this.navgaitto,
     this.routeName,
-  }) : assert(navgaitto != null || routeName != null,
-            'Either navgaitto or routeName must be provided');
+  }) : assert(
+         navgaitto != null || routeName != null,
+         'Either navgaitto or routeName must be provided',
+       );
   final String? Textdis;
   final String? Textheader;
   final Widget? navgaitto;
@@ -20,26 +22,26 @@ class MyRichtext extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-          text: Textdis ?? 'Don’t have an account? ',
-          style: TextUtils.myDisTextStyle(),
-          children: [
-            TextSpan(
-              text: Textheader ?? 'Sign Up',
-              style: TextUtils.myTextstyleHeader(),
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  if (routeName != null) {
-                    Navigator.pushNamed(context, routeName!);
-                  } else if (navgaitto != null) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => navgaitto!,
-                        ));
-                  }
-                },
-            ),
-          ]),
+        text: Textdis ?? 'Don’t have an account? ',
+        style: TextUtils.myDisTextStyle(),
+        children: [
+          TextSpan(
+            text: Textheader ?? 'Sign Up',
+            style: TextUtils.myTextstyleHeader(),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                if (routeName != null) {
+                  Navigator.pushNamed(context, routeName!);
+                } else if (navgaitto != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => navgaitto!),
+                  );
+                }
+              },
+          ),
+        ],
+      ),
     );
   }
 }

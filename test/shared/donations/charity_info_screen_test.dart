@@ -37,8 +37,12 @@ class _MockHttpClientResponse extends Mock implements HttpClientResponse {
       HttpClientResponseCompressionState.notCompressed;
 
   @override
-  StreamSubscription<List<int>> listen(void Function(List<int> event)? onData,
-      {Function? onError, void Function()? onDone, bool? cancelOnError}) {
+  StreamSubscription<List<int>> listen(
+    void Function(List<int> event)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) {
     return Stream<List<int>>.fromIterable([
       [
         71,
@@ -82,10 +86,14 @@ class _MockHttpClientResponse extends Mock implements HttpClientResponse {
         1,
         68,
         0,
-        59
-      ]
-    ]).listen(onData,
-        onError: onError, onDone: onDone, cancelOnError: cancelOnError);
+        59,
+      ],
+    ]).listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    );
   }
 }
 
@@ -100,15 +108,13 @@ void main() {
     charityAddress: '123 Charity St',
     charityPhone: '555-0199',
     logo: 'https://example.com/logo.png',
-    charityMedican: [
-      CharityMedicine(medicanName: 'Aspirin'),
-    ],
+    charityMedican: [CharityMedicine(medicanName: 'Aspirin')],
   );
 
   testWidgets('renders CharityInfo with correct data', (tester) async {
-    await tester.pumpWidget(MaterialApp(
-      home: CharityInfo(charityData: mockCharity),
-    ));
+    await tester.pumpWidget(
+      MaterialApp(home: CharityInfo(charityData: mockCharity)),
+    );
 
     expect(find.text('Helping Hands'), findsOneWidget);
     expect(find.text('123 Charity St'), findsOneWidget);
