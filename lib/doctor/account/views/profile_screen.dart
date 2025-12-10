@@ -7,10 +7,30 @@ import 'widgets/doctor_profile_body.dart';
 
 /// Redesigned Doctor Profile screen following SOLID principles.
 class DoctorProfileScreen extends StatelessWidget {
-  const DoctorProfileScreen({super.key});
+  /// Optional cubit for testing. If not provided, creates a new one.
+  final GetDoctorDataCubit? cubit;
+
+  const DoctorProfileScreen({super.key, this.cubit});
 
   @override
   Widget build(BuildContext context) {
+    // Use injected cubit or create a new one
+    if (cubit != null) {
+      return MeshGradientBackground(
+        child: BlocProvider<GetDoctorDataCubit>.value(
+          value: cubit!,
+          child: BlocBuilder<GetDoctorDataCubit, GetDoctorDataStates>(
+            builder: (context, state) {
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                body: _buildBody(context, cubit!, state),
+              );
+            },
+          ),
+        ),
+      );
+    }
+
     return MeshGradientBackground(
       child: BlocProvider(
         create: (context) => GetDoctorDataCubit()..getDoctorData(),

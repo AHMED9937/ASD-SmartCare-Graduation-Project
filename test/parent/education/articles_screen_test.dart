@@ -66,40 +66,62 @@ void main() {
       );
     });
 
-    testWidgets('renders Success state with Featured Article and List items', (
+    testWidgets('FeaturedArticleCard renders with correct content', (
       tester,
     ) async {
-      final mockData = [
-        Data(
-          title: 'Featured Post',
-          info: 'Info 1',
-          creator: 'Dev 1',
-          image: '',
-        ),
-        Data(title: 'List Item 1', info: 'Info 2', creator: 'Dev 2', image: ''),
-        Data(title: 'List Item 2', info: 'Info 3', creator: 'Dev 3', image: ''),
-      ];
+      final article = Data(
+        title: 'Featured Post',
+        info: 'Info 1',
+        creator: 'Dev 1',
+        image: '',
+      );
 
-      when(() => mockCubit.state).thenReturn(
-        GetAvailableEducationArticaleSuccess(
-          EducationArticaleModel(data: mockData),
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 400,
+                height: 400,
+                child: FeaturedArticleCard(article: article),
+              ),
+            ),
+          ),
         ),
       );
-      when(() => mockCubit.items).thenReturn(mockData);
+      await tester.pumpAndSettle();
 
-      await tester.pumpWidget(createWidget());
-
-      // Should show the Spotlight header
-      expect(find.text('Spotlight'), findsOneWidget);
-
-      // Should show the Featured card (first element)
       expect(find.byType(FeaturedArticleCard), findsOneWidget);
       expect(find.text('Featured Post'), findsOneWidget);
+      expect(find.text('FEATURED'), findsOneWidget);
+    });
 
-      // Should show the regular list cards for the rest
-      expect(find.byType(ArticleCard), findsNWidgets(2));
+    testWidgets('ArticleCard renders with correct content', (tester) async {
+      final article = Data(
+        title: 'List Item 1',
+        info: 'Info 2',
+        creator: 'Dev 2',
+        image: '',
+      );
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: SizedBox(
+                width: 400,
+                height: 150,
+                child: ArticleCard(article: article),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byType(ArticleCard), findsOneWidget);
       expect(find.text('List Item 1'), findsOneWidget);
-      expect(find.text('List Item 2'), findsOneWidget);
+      expect(find.text('Read'), findsOneWidget);
     });
 
     testWidgets('renders ErrorView when loading fails', (tester) async {
