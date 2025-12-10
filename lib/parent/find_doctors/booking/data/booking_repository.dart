@@ -246,7 +246,8 @@ class BookingRepositoryImpl implements BookingRepository {
           (e.response?.data?['message']
                   ?.toString()
                   .toLowerCase()
-                  .contains('unavailable') ?? false)) {
+                  .contains('unavailable') ??
+              false)) {
         return const BookingFailure(
           message:
               'This time slot is no longer available. Please select another.',
