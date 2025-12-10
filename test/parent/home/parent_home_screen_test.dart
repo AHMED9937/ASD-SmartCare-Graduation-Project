@@ -38,8 +38,8 @@ void main() {
     // Default Stubs
     when(() => mockProgressCubit.state).thenReturn(ChildProgressInitial());
     when(() => mockProgressCubit.sessions).thenReturn([]);
-    when(() => mockProgressCubit.GetAllCommingSessionsBookedaSpecificParent(
-        any<String>(), any<bool>())).thenAnswer((_) async {});
+    when(() => mockProgressCubit.getAllUpcomingSessionsForParent(
+        any<String>(), any<bool>())).thenReturn(null);
 
     when(() => mockDoctorsCubit.state).thenReturn(GetDoctorsListInitialState());
     when(() => mockDoctorsCubit.myDoctorList).thenReturn([]);

@@ -22,7 +22,7 @@ class DoctorSessionListCubit extends Cubit<GetDoctorSessionListStates> {
     emit(GetDoctorSessionListLoadingStates());
     try {
       final response = await Diohelper.getData(
-        url: ApiConstants.GetDoctorSesstionList(status),
+        url: ApiConstants.getDoctorSessionList(status),
         token: CacheHelper.getData(key: 'token'),
       );
       sessions =

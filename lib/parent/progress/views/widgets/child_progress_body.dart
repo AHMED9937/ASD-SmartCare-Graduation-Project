@@ -42,14 +42,14 @@ class ChildProgressBody extends StatelessWidget {
     if (state is UnifiedProgressDataError) {
       return ErrorView(
         message: 'Failed to load progress data',
-        onRetry: () => cubit.InitialFetchUnifiedData(selectedTabIndex == 1),
+        onRetry: () => cubit.initialFetchUnifiedData(selectedTabIndex == 1),
       );
     }
 
     return ResponsivePadding(
       child: RefreshIndicator(
         onRefresh: () async =>
-            cubit.InitialFetchUnifiedData(selectedTabIndex == 1),
+            cubit.initialFetchUnifiedData(selectedTabIndex == 1),
         child: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
@@ -125,7 +125,7 @@ class ChildProgressBody extends StatelessWidget {
         onRetry: () {
           final doctorId = cubit.myDoctorList?[cubit.current].id;
           if (doctorId != null) {
-            cubit.GetAllCommingSessionsBookedaSpecificParent(
+            cubit.getAllUpcomingSessionsForParent(
                 doctorId, selectedTabIndex == 1);
           }
         },

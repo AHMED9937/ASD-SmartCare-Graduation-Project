@@ -34,6 +34,7 @@
 - [Overview](#-overview)
 - [The Problem We Solve](#-the-problem-we-solve)
 - [Features](#-features)
+- [Screenshots](#-screenshots)
 - [Architecture](#-architecture)
 - [Prerequisites](#-prerequisites)
 - [Getting Started](#-getting-started)
@@ -102,6 +103,20 @@ ASD SmartCare addresses these challenges by providing accessible screening tools
 - 📝 **Session Notes** - Document and track therapy sessions
 - ⭐ **Reviews & Ratings** - Build reputation through patient feedback
 - 🏥 **Clinic Profile** - Manage practice information
+
+---
+
+## 📸 Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/home_screen.png" alt="Parent Home Screen" width="300"/>
+  &nbsp;&nbsp;&nbsp;
+  <img src="docs/screenshots/screening_test.png" alt="ASD Screening Test" width="300"/>
+</p>
+
+<p align="center">
+  <sub><b>Left:</b> Parent Home Dashboard &nbsp; | &nbsp; <b>Right:</b> ASD Screening Test</sub>
+</p>
 
 ---
 

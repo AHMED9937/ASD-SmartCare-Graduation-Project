@@ -256,7 +256,11 @@ class AutismTestCubit extends Cubit<AutismTestStates> {
     }
   }
 
+  /// Fetches autism screening history for the current child.
+  ///
+  /// This will be integrated with the backend API in a future release
+  /// to display historical test results on the progress dashboard.
   void getChildAutismHistory() {
-    // TODO: implement
+    debugPrint('getChildAutismHistory: Feature pending backend integration');
   }
 }

@@ -36,7 +36,7 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
     if (userId != null) {
       context
           .read<ChildProgressCubit>()
-          .GetAllCommingSessionsBookedaSpecificParent(userId, true);
+          .getAllUpcomingSessionsForParent(userId, true);
     }
     context.read<DoctorsListCubit>().getDoctorsList(recommendedDoctor: true);
   }

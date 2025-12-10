@@ -24,7 +24,7 @@ class _ChildProgressScreenState extends State<ChildProgressScreen> {
     super.initState();
     _cubit = widget.cubit ?? ChildProgressCubit();
     // Only fetch if we're not already loading or loaded (prevents double-fetch if cubit is reused)
-    _cubit.InitialFetchUnifiedData(_selectedTabIndex == 1);
+    _cubit.initialFetchUnifiedData(_selectedTabIndex == 1);
   }
 
   @override
@@ -85,7 +85,7 @@ class _ChildProgressScreenState extends State<ChildProgressScreen> {
     final doctors = cubit.myDoctorList;
     if (doctors != null && doctors.isNotEmpty) {
       final currentDoctorId = doctors[cubit.current].id ?? '';
-      cubit.GetAllCommingSessionsBookedaSpecificParent(
+      cubit.getAllUpcomingSessionsForParent(
         currentDoctorId,
         _selectedTabIndex == 1,
       );

@@ -39,8 +39,8 @@ void main() {
       when(() => mockCubit.current).thenReturn(0);
       when(() => mockCubit.sessions).thenReturn([]);
       when(() => mockCubit.autismLevelHistory).thenReturn(null);
-      when(() => mockCubit.GetAutismLevelTestHistory()).thenReturn(null);
-      when(() => mockCubit.InitialFetchUnifiedData(any()))
+      when(() => mockCubit.getAutismLevelTestHistory()).thenReturn(null);
+      when(() => mockCubit.initialFetchUnifiedData(any()))
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(createWidget());
@@ -54,8 +54,8 @@ void main() {
       when(() => mockCubit.current).thenReturn(0);
       when(() => mockCubit.sessions).thenReturn([]);
       when(() => mockCubit.autismLevelHistory).thenReturn(null);
-      when(() => mockCubit.GetAutismLevelTestHistory()).thenReturn(null);
-      when(() => mockCubit.InitialFetchUnifiedData(any()))
+      when(() => mockCubit.getAutismLevelTestHistory()).thenReturn(null);
+      when(() => mockCubit.initialFetchUnifiedData(any()))
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(createWidget());
@@ -76,8 +76,8 @@ void main() {
       when(() => mockCubit.myDoctorList).thenReturn(mockDoctors);
       when(() => mockCubit.current).thenReturn(0);
       when(() => mockCubit.sessions).thenReturn(mockSessions);
-      when(() => mockCubit.GetAutismLevelTestHistory()).thenReturn(null);
-      when(() => mockCubit.InitialFetchUnifiedData(any()))
+      when(() => mockCubit.getAutismLevelTestHistory()).thenReturn(null);
+      when(() => mockCubit.initialFetchUnifiedData(any()))
           .thenAnswer((_) async {});
 
       // Mock some history to avoid the CTA in this 'present data' test
@@ -102,8 +102,8 @@ void main() {
       when(() => mockCubit.current).thenReturn(0);
       when(() => mockCubit.sessions).thenReturn([]);
       when(() => mockCubit.autismLevelHistory).thenReturn(null);
-      when(() => mockCubit.GetAutismLevelTestHistory()).thenReturn(null);
-      when(() => mockCubit.InitialFetchUnifiedData(any()))
+      when(() => mockCubit.getAutismLevelTestHistory()).thenReturn(null);
+      when(() => mockCubit.initialFetchUnifiedData(any()))
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(createWidget());
@@ -118,11 +118,11 @@ void main() {
       when(() => mockCubit.myDoctorList).thenReturn(mockDoctors);
       when(() => mockCubit.current).thenReturn(0);
       when(() => mockCubit.sessions).thenReturn([]);
-      when(() => mockCubit.GetAllCommingSessionsBookedaSpecificParent(
-          any(), any())).thenAnswer((_) async {});
+      when(() => mockCubit.getAllUpcomingSessionsForParent(any(), any()))
+          .thenReturn(null);
       when(() => mockCubit.autismLevelHistory).thenReturn(null);
-      when(() => mockCubit.GetAutismLevelTestHistory()).thenReturn(null);
-      when(() => mockCubit.InitialFetchUnifiedData(any()))
+      when(() => mockCubit.getAutismLevelTestHistory()).thenReturn(null);
+      when(() => mockCubit.initialFetchUnifiedData(any()))
           .thenAnswer((_) async {});
 
       await tester.pumpWidget(createWidget());
@@ -131,8 +131,7 @@ void main() {
       await tester.tap(find.text('Upcoming Sessions'));
       await tester.pump();
 
-      verify(() =>
-              mockCubit.GetAllCommingSessionsBookedaSpecificParent('1', true))
+      verify(() => mockCubit.getAllUpcomingSessionsForParent('1', true))
           .called(1);
     });
   });

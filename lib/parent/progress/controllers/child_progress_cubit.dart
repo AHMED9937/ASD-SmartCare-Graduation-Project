@@ -16,7 +16,7 @@ class ChildProgressCubit extends Cubit<ChildProgressState> {
   List<SessionData> sessions = [];
   HistoryAustisumLevelTest? autismLevelHistory;
 
-  void GetAllDoctorsBookedaSpecificParent() {
+  void getAllBookedDoctorsForParent() {
     emit(GetParentBookedDoctorsLoading());
 
     Diohelper.getData(
@@ -34,7 +34,7 @@ class ChildProgressCubit extends Cubit<ChildProgressState> {
     });
   }
 
-  void GetAllCommingSessionsBookedaSpecificParent(String id, bool isComming) {
+  void getAllUpcomingSessionsForParent(String id, bool isComming) {
     emit(GetAllBookedSessionsByStatusLoading());
 
     Diohelper.getData(
@@ -53,7 +53,7 @@ class ChildProgressCubit extends Cubit<ChildProgressState> {
     });
   }
 
-  void GetAutismLevelTestHistory() {
+  void getAutismLevelTestHistory() {
     emit(GetAutisumLevelTestHistoryLoading());
 
     Diohelper.getData(
@@ -69,7 +69,7 @@ class ChildProgressCubit extends Cubit<ChildProgressState> {
   }
 
   /// Unified initial fetch that waits for all 3 data sources
-  Future<void> InitialFetchUnifiedData(bool isComming) async {
+  Future<void> initialFetchUnifiedData(bool isComming) async {
     emit(UnifiedProgressDataLoading());
 
     try {
