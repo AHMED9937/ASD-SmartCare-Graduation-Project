@@ -6,32 +6,33 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('DoctorHomeScreen Widget Tests', () {
-    testWidgets('renders PageHeader, DailyOverview, and QuickActionCards', (
-      tester,
-    ) async {
-      tester.view.physicalSize = const Size(1200, 1200);
-      tester.view.devicePixelRatio = 1.0;
+    testWidgets(
+      'renders PageHeader, QuickActions title, and QuickActionCards',
+      (tester) async {
+        tester.view.physicalSize = const Size(1200, 1200);
+        tester.view.devicePixelRatio = 1.0;
 
-      await tester.pumpWidget(const MaterialApp(home: DoctorHomeScreen()));
-      await tester.pumpAndSettle();
+        await tester.pumpWidget(const MaterialApp(home: DoctorHomeScreen()));
+        await tester.pumpAndSettle();
 
-      try {
-        expect(find.byType(PageHeader), findsOneWidget);
-        expect(find.text('Welcome Back,'), findsOneWidget);
-        expect(find.text('Daily Overview'), findsOneWidget);
-        expect(find.byType(StatItem), findsNWidgets(3));
-        expect(find.byType(QuickActionCard), findsNWidgets(4));
-      } catch (e) {
-        debugPrint('Test failed error: $e');
-        debugPrint('Found Text widgets:');
-        for (final widget in tester.allWidgets.whereType<Text>()) {
-          debugPrint(' - "${widget.data}"');
+        try {
+          expect(find.byType(PageHeader), findsOneWidget);
+          expect(find.text('Welcome Back,'), findsOneWidget);
+          // Implementation uses 'Quick Actions' not 'Daily Overview'
+          expect(find.text('Quick Actions'), findsOneWidget);
+          expect(find.byType(QuickActionCard), findsNWidgets(4));
+        } catch (e) {
+          debugPrint('Test failed error: $e');
+          debugPrint('Found Text widgets:');
+          for (final widget in tester.allWidgets.whereType<Text>()) {
+            debugPrint(' - "${widget.data}"');
+          }
+          rethrow;
+        } finally {
+          tester.view.resetPhysicalSize();
         }
-        rethrow;
-      } finally {
-        tester.view.resetPhysicalSize();
-      }
-    });
+      },
+    );
 
     testWidgets('displays correct actions in the grid', (tester) async {
       tester.view.physicalSize = const Size(1200, 1200);

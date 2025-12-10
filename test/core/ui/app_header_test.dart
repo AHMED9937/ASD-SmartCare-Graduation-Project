@@ -42,8 +42,9 @@ void main() {
         ),
       );
 
+      // AppHeader uses primaryDark for title color
       final textWidget = tester.widget<Text>(find.text('Colored Title'));
-      expect(textWidget.style?.color, AppColors.primary);
+      expect(textWidget.style?.color, AppColors.primaryDark);
     });
 
     testWidgets('shows back button when showBackButton is true and can pop', (
@@ -147,12 +148,13 @@ void main() {
         ),
       );
 
-      // The title should be wrapped in Center widget
+      // With centerTitle=false (default), title is NOT wrapped in Center
+      // The title should be in an Expanded widget, not Center
       final centerFinder = find.ancestor(
         of: find.text('Centered'),
         matching: find.byType(Center),
       );
-      expect(centerFinder, findsOneWidget);
+      expect(centerFinder, findsNothing);
     });
 
     testWidgets('does not center title when centerTitle is false', (

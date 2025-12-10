@@ -87,7 +87,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(currentIndex: 4, totalQuestions: 10),
+            body: TestProgressHeader(
+              currentIndex: 4,
+              totalQuestions: 10,
+              showProgressRing:
+                  false, // Need this to see 'Question X of Y' format
+            ),
           ),
         ),
       );
@@ -125,7 +130,12 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(currentIndex: 0, totalQuestions: 5),
+            body: TestProgressHeader(
+              currentIndex: 0,
+              totalQuestions: 5,
+              showProgressRing:
+                  false, // Need this to see 'Question X of Y' format
+            ),
           ),
         ),
       );
@@ -136,7 +146,11 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: TestProgressHeader(currentIndex: 1, totalQuestions: 5),
+            body: TestProgressHeader(
+              currentIndex: 1,
+              totalQuestions: 5,
+              showProgressRing: false,
+            ),
           ),
         ),
       );
