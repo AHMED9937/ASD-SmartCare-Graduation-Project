@@ -7,7 +7,6 @@ import 'package:asdsmartcare/parent/my_children/controllers/children_list_cubit.
 import 'package:asdsmartcare/parent/my_children/controllers/children_list_state.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -26,12 +25,8 @@ void main() {
 
   Widget createWidgetUnderTest() {
     return MaterialApp(
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<GetParentDataCubit>.value(value: mockProfileCubit),
-        ],
-        child: const ParentProfileScreen(),
-      ),
+      // Use injectable cubit parameter instead of BlocProvider wrapper
+      home: ParentProfileScreen(cubit: mockProfileCubit),
     );
   }
 

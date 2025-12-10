@@ -16,6 +16,8 @@ void main() {
 
   setUp(() {
     mockCubit = MockChildProgressCubit();
+    // Default state for BlocBuilder
+    when(() => mockCubit.state).thenReturn(UnifiedProgressDataLoaded());
   });
 
   Widget createWidgetUnderTest() {
@@ -31,8 +33,10 @@ void main() {
 
   testWidgets('renders booking CTA when no sessions', (tester) async {
     when(() => mockCubit.sessions).thenReturn([]);
+    when(() => mockCubit.state).thenReturn(UnifiedProgressDataLoaded());
 
     await tester.pumpWidget(createWidgetUnderTest());
+    await tester.pumpAndSettle();
 
     expect(find.text('START YOUR JOURNEY'), findsOneWidget);
     expect(find.text('Book Now'), findsOneWidget);
@@ -44,8 +48,10 @@ void main() {
       doctorId: sm.Doctor(parent: sm.ParentInfo(userName: 'Dr. Smith')),
     );
     when(() => mockCubit.sessions).thenReturn([session]);
+    when(() => mockCubit.state).thenReturn(UnifiedProgressDataLoaded());
 
     await tester.pumpWidget(createWidgetUnderTest());
+    await tester.pumpAndSettle();
 
     expect(find.text('UPCOMING SESSION'), findsOneWidget);
     expect(find.text('Session with Dr. Smith'), findsOneWidget);

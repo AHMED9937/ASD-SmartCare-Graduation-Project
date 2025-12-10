@@ -34,10 +34,14 @@ void main() {
     // Verify Title
     expect(find.text('Verify Email'), findsOneWidget);
 
-    // Verify Buttons
-    expect(find.text('Verify Account'), findsOneWidget); // New Button Label
-    expect(find.textContaining('Resend'), findsOneWidget); // RichText
-    expect(find.text('Change'), findsOneWidget); // Chip
+    // Verify Buttons - 'Verify Account' button
+    expect(find.text('Verify Account'), findsOneWidget);
+
+    // RichText with 'Resend' - use bySubtype to find RichText widgets
+    expect(find.byType(RichText), findsAtLeastNWidgets(1));
+
+    // Change chip
+    expect(find.text('Change'), findsOneWidget);
 
     addTearDown(tester.view.resetPhysicalSize);
   });

@@ -6,10 +6,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ParentProfileScreen extends StatelessWidget {
-  const ParentProfileScreen({super.key});
+  /// Optional cubit for testing. If not provided, creates a new one.
+  final GetParentDataCubit? cubit;
+
+  const ParentProfileScreen({super.key, this.cubit});
 
   @override
   Widget build(BuildContext context) {
+    // Use injected cubit or create a new one
+    if (cubit != null) {
+      return BlocProvider<GetParentDataCubit>.value(
+        value: cubit!,
+        child: BlocBuilder<GetParentDataCubit, GetParentDataStates>(
+          builder: (context, state) {
+            return Scaffold(body: _buildBody(context, cubit!, state));
+          },
+        ),
+      );
+    }
+
     return BlocProvider(
       create: (_) => GetParentDataCubit()..getParentData(),
       child: BlocBuilder<GetParentDataCubit, GetParentDataStates>(
