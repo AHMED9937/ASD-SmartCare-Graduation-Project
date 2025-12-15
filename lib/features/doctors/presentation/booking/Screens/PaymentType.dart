@@ -1,8 +1,8 @@
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Screens/ConfirmReservationScreen.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/Booking/booking_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/Booking/booking_state.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Model/Appointmentbooked.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Screens/ConfirmReservationScreen.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_cubit.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_state.dart';
+import 'package:asdsmartcare/features/doctors/presentation/doctors_list/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:flutter/material.dart';

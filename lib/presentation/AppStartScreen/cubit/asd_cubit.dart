@@ -1,7 +1,7 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/screen/DoctorsListPage.dart';
+import 'package:asdsmartcare/features/doctors/presentation/doctors_list/screen/DoctorsListPage.dart';
 import 'package:asdsmartcare/presentation/AppStartScreen/cubit/asd_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/appHome.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/AiEvaluation.dart';

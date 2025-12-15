@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Widgets/doctorReviews.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Widgets/doctorReviews.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:asdsmartcare/presentation/DoctorLayout/Home/RigesteredChild/cubit/registered_children_cubit.dart';

@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Model/Appointmentbooked.dart';
+import 'package:asdsmartcare/features/doctors/presentation/doctors_list/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:flutter/cupertino.dart';

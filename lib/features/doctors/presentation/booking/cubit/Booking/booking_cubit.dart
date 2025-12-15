@@ -3,7 +3,7 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/Appointmentbooked.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Model/Appointmentbooked.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';

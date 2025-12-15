@@ -3,7 +3,7 @@ import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/Scree
 import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
 import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Widgets/doctorReviews.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Widgets/doctorReviews.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/SessionDeatile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,8 +1,8 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Screens/reservationScreen.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/cubit/doctors_list_cubit.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/cubit/doctors_list_state.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/features/doctors/presentation/booking/Screens/reservationScreen.dart';
+import 'package:asdsmartcare/features/doctors/presentation/doctors_list/cubit/doctors_list_cubit.dart';
+import 'package:asdsmartcare/features/doctors/presentation/doctors_list/cubit/doctors_list_state.dart';
+import 'package:asdsmartcare/features/doctors/presentation/doctors_list/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Screen/AvailableMedicineScreen.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharityMedicine.dart';
 import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorHomeScreen.dart';
