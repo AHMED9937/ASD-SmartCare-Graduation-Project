@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/SignUp/screen/DoctorSignUpScreen.dart';
@@ -29,7 +29,7 @@ class Selectusertypescreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              CacheHelper.SaveData(key: "role", value:"doctor" );
+              CacheHelper.saveData(key: "role", value:"doctor" );
 
               Navigator.push(
                   context,
@@ -71,7 +71,7 @@ class Selectusertypescreen extends StatelessWidget {
                        SizedBox(height: 30,),
                        GestureDetector(
             onTap: () {
-              CacheHelper.SaveData(key: "role", value:"parent" );
+              CacheHelper.saveData(key: "role", value:"parent" );
 
               Navigator.push(
                   context,

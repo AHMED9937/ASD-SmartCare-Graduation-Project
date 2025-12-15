@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/colorUtils.dart';
@@ -21,7 +21,7 @@ class OnboardingNavigationScreens extends StatefulWidget {
 class _OnboardingNavigationScreensState
     extends State<OnboardingNavigationScreens> {
   void submit() {
-    CacheHelper.SaveData(key: 'onBoardin', value: true).then((value) {
+    CacheHelper.saveData(key: 'onBoardin', value: true).then((value) {
       if (value != null)
         pageController.jumpToPage(onboardingScreens.length - 1);
     });
@@ -117,7 +117,7 @@ Widget build(BuildContext context) {
 }
 
   void _navigateToLogin() {
-    CacheHelper.SaveData(key: 'loginSingUp', value: true).then((value) {
+    CacheHelper.saveData(key: 'loginSingUp', value: true).then((value) {
       if (value != null)
         Navigator.push(
           context,

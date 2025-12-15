@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/presentation/AppStartScreen/screens/DoctorNavgationScreen.dart';
 import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
@@ -37,9 +37,9 @@ class _LoginscreenState extends State<Loginscreen> {
             final token = state.userModel.token as String;
             CacheHelper.removeData(key:"degree_prediction" );
             CacheHelper.removeData(key: "AsdLevel");
-            CacheHelper.SaveData(key: "role", value: state.userModel.data.role);
-            CacheHelper.SaveData(key: "id", value: state.userModel.data.id);
-            CacheHelper.SaveData(key: "token", value: token).then((_) {
+            CacheHelper.saveData(key: "role", value: state.userModel.data.role);
+            CacheHelper.saveData(key: "id", value: state.userModel.data.id);
+            CacheHelper.saveData(key: "token", value: token).then((_) {
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (_) => state.userModel.data.role=="parent"? ParentBottomNavgationScreen():Doctornavgationscreen()),

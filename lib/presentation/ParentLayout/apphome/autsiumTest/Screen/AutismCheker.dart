@@ -1,6 +1,6 @@
 // lib/presentation/AfterLoginRootes/apphome/autsiumTest/Screen/autism_test_screen.dart
 
-import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/TestResult.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/controller/Test2/autism_cheker_cubit.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/controller/Test2/autism_cheker_state.dart';
@@ -29,7 +29,7 @@ class AutismChekerScreen extends StatelessWidget {
 
           if (state is Test2GetQsfinalPredicationSuccessState) {
             // on final prediction, navigate
-            CacheHelper.SaveData(key: 'degree_prediction', value: "${state.degree_prediction}");
+            CacheHelper.saveData(key: 'degree_prediction', value: "${state.degree_prediction}");
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (_) =>  Testresult(degreePrediction: state.degree_prediction.toString(),)),
               (_) => false,

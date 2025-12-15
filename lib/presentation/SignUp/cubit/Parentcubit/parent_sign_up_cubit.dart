@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
@@ -90,7 +90,7 @@ void ParentSignUp() {
 
     // Otherwise success
     signUpResponseModel = SignupParentResponseModel.fromJson(data);
-    CacheHelper.SaveData(key: "token", value: signUpResponseModel.token);
+    CacheHelper.saveData(key: "token", value: signUpResponseModel.token);
     emit(ParentSignUpSuccessState(signUpResponseModel));
   }).catchError((err) {
     if (err is DioError &&

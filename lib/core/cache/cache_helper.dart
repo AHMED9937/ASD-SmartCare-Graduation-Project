@@ -14,7 +14,7 @@ class CacheHelper {
   }
 
   /// Save a value (String, bool, int, double)
-  static Future<bool?> SaveData({
+  static Future<bool?> saveData({
     required String key,
     required dynamic value,
   }) async {

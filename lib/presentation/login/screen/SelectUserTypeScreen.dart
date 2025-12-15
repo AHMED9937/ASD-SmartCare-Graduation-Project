@@ -1,4 +1,4 @@
-// import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
+// import 'package:asdsmartcare/core/cache/cache_helper.dart';
 // import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 // import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 // import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
@@ -27,7 +27,7 @@
 //           ),
 //           GestureDetector(
 //             onTap: () {
-//               CacheHelper.SaveData(key: "role", value:"Doctor" );
+//               CacheHelper.saveData(key: "role", value:"Doctor" );
 
 //               Navigator.push(
 //                   context,
@@ -69,7 +69,7 @@
 //                        SizedBox(height: 30,),
 //                        GestureDetector(
 //             onTap: () {
-//               CacheHelper.SaveData(key: "role", value:"parent" );
+//               CacheHelper.saveData(key: "role", value:"parent" );
 
 //               Navigator.push(
 //                   context,
