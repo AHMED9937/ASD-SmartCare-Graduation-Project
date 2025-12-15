@@ -2,15 +2,15 @@
 
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/widgets/bloc_observer.dart';
-import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/features/app_start/presentation/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/features/app_start/presentation/screens/DoctorNavgationScreen.dart';
-import 'package:asdsmartcare/features/auth/presentation/signup/screen/DoctorSignUpScreen.dart';
-import 'package:asdsmartcare/features/auth/presentation/login/screen/loginscreen.dart';
-import 'package:asdsmartcare/features/auth/presentation/onboarding/onboardingNavgationaScreens.dart';
+import 'package:asdsmartcare/core/network/dio_helper.dart';
+import 'package:asdsmartcare/features/app_start/views/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/features/app_start/views/DoctorNavgationScreen.dart';
+import 'package:asdsmartcare/features/auth/views/DoctorSignUpScreen.dart';
+import 'package:asdsmartcare/features/auth/views/loginscreen.dart';
+import 'package:asdsmartcare/features/auth/views/onboardingNavgationaScreens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'presentation/AppStartScreen/cubit/asd_cubit.dart';
+import 'features/AppStartScreen/cubit/asd_cubit.dart';
 
 void main() async {
   
@@ -152,3 +152,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+

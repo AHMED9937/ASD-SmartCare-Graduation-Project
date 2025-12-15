@@ -17,3 +17,7 @@ Map<String, dynamic> _$ApiErrorModelToJson(ApiErrorModel instance) =>
       'message': instance.message,
       'code': instance.code,
     };
+
+
+
+

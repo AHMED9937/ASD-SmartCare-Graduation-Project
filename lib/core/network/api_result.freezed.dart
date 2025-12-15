@@ -373,3 +373,7 @@ abstract class Failure<T> implements ApiResult<T> {
   _$$FailureImplCopyWith<T, _$FailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+
+
+
