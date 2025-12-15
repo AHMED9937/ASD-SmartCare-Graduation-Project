@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/chatBotLayout/Controller/ChatBotcubit/chat_bot_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/chatBotLayout/Model/ChatBotModel.dart';
 import 'package:bloc/bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:dio/dio.dart';
 
 // change here from the project

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/SignUp/Model/SignupreqDoctorModel.dart';
 import 'package:asdsmartcare/presentation/SignUp/Model/SignupresDoctorModel.dart';
 import 'package:asdsmartcare/presentation/SignUp/cubit/DoctorCubit/doctor_state.dart';

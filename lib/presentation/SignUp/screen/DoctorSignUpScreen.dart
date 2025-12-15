@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/networking/api_result.dart';
+import 'package:asdsmartcare/core/network/api_result.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
 import 'package:asdsmartcare/presentation/SignUp/Widgets/DoctorSignUpForm.dart';

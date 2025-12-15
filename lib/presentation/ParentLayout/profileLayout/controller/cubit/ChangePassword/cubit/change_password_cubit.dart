@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/Model/GetLoggedParentData.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/ChangePassword/cubit/change_password_state.dart';
 import 'package:flutter/material.dart';

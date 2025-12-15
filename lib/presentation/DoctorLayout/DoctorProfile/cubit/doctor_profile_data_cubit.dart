@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/appShared/cacheHelper/cahcheHelper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/networking/api_constants.dart';
+import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/cubit/doctor_profile_data_state.dart';
 import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/model/GetLoggedDoctorData.dart';
 import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
