@@ -7,7 +7,7 @@ import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/Booking/booking_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/ChangePasswordScreen.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/model/GetAllSession.dart';
-import 'package:asdsmartcare/presentation/login/screen/loginscreen.dart';
+import 'package:asdsmartcare/features/auth/presentation/login/screen/loginscreen.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

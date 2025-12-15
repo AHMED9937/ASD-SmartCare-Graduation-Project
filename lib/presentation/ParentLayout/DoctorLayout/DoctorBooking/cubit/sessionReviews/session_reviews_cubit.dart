@@ -3,7 +3,7 @@ import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/Model/GetSessionReviewsList.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBooking/cubit/sessionReviews/session_reviews_state.dart';
-import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/login/model/LoginDoctorModel.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

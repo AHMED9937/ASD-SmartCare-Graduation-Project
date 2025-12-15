@@ -1,6 +1,6 @@
-import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
-import 'package:asdsmartcare/presentation/login/model/loginParentModel.dart';
-import 'package:asdsmartcare/presentation/SignUp/Model/SignUpParentModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/login/model/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/login/model/loginParentModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/signup/Model/SignUpParentModel.dart';
 
 abstract class EditDoctorProfileState{}
 

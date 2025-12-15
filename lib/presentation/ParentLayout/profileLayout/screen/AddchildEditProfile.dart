@@ -4,7 +4,7 @@ import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/widgets/Add
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
-import 'package:asdsmartcare/presentation/SignUp/Widgets/AddChildForm.dart';
+import 'package:asdsmartcare/features/auth/presentation/signup/Widgets/AddChildForm.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

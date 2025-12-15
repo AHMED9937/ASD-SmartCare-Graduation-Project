@@ -2,7 +2,7 @@ import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorBookin
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/cubit/doctors_list_cubit.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/cubit/doctors_list_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
-import 'package:asdsmartcare/presentation/SignUp/Model/SignupresDoctorModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/signup/Model/SignupresDoctorModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

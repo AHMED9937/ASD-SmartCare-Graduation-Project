@@ -5,7 +5,7 @@ import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/DoctorsList/model/GetDoctorsListModel.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/controller/cubit/education_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/model/EducationArticaleResponse.dart';
-import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/login/model/LoginDoctorModel.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class AvailableEducationArticaleCubit extends Cubit<AvailableEducationArticaleState> {

@@ -3,7 +3,7 @@ import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/Model/GetLoggedParentData.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/controller/cubit/GetParentData/parent_data_state.dart';
-import 'package:asdsmartcare/presentation/login/model/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/auth/presentation/login/model/LoginDoctorModel.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetParentDataCubit extends Cubit<GetParentDataStates> {
