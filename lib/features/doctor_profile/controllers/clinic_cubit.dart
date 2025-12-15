@@ -56,7 +56,7 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
     emit(DeleteDoctorAvailabilityLoading());
     
      Diohelper.deleteData(
-      data: {},
+      query: {},
       token: CacheHelper.getData(key: "token"),
         url: ApiConstants.DeleteDoctorAvailability(CacheHelper.getData(key: 'id')),  // replace with your configured endpoint
       ).then((value){
@@ -80,7 +80,7 @@ class AvailabilityCubit extends Cubit<AvailabilityState> {
     
     await Diohelper.deleteData(
       url: ApiConstants.DeleteSpacificDoctorApoiment,  // replace with your configured endpoint
-      data: {
+      query: {
         "appointmentId":appointmentId
       },
       token: CacheHelper.getData(key: "token"),

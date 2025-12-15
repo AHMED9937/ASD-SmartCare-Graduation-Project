@@ -4,7 +4,7 @@ import 'package:asdsmartcare/features/doctors/views/Widgets/doctor_reviews_widge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:asdsmartcare/features/doctor_profile/features/Home/RigesteredChild/cubit/registered_children_cubit.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/RigesteredChild/cubit/registered_children_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/registered_children_state.dart';
 
 /// Screen showing all registered children and, on tap, detailed bottom sheet.
 class RegisteredChildrenScreen extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/doctors/views/doctors_list_screen.dart';
 import 'package:asdsmartcare/features/app_start/controllers/asd_state.dart';
-import 'package:asdsmartcare/core/widgets/layouts/apphome/appHome.dart';
+import 'package:asdsmartcare/features/education/views/articles.dart';
 import 'package:asdsmartcare/features/autism_test/views/ai_evaluation.dart';
 import 'package:asdsmartcare/features/progress/views/progress.dart';
 import 'package:asdsmartcare/features/profile/views/profile_screen.dart';
@@ -16,7 +16,7 @@ class AsdCubit extends Cubit<AsdStates> {
   int current_index=0;
   
          List ParentBottomNavgation= [
-            HomePage(),
+            Articles(),
             DoctorsListPage(),
             AiEvaluationScreen(),
             ChildProgressScreen(),

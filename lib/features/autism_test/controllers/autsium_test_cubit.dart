@@ -254,7 +254,6 @@ class AutsiumTestCubit extends Cubit<AutsiumTestStates> {
         url: ApiConstants.QSfinalPredication,
         token: token,
         data: formData,
-        options: Options(contentType: 'multipart/form-data'),
       );
       final prediction = PredictionMessage.fromJson(response.data);
       if (_currentIndex == 13) {

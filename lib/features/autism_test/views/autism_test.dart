@@ -5,8 +5,8 @@ import 'package:asdsmartcare/features/autism_test/views/test_result.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../controller/AsdTestCubit/autsium_test_cubit.dart';
-import '../controller/AsdTestCubit/autsium_test_state.dart';
+import '../controllers/autsium_test_cubit.dart';
+import '../controllers/autsium_test_state.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 

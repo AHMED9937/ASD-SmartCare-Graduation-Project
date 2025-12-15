@@ -1,7 +1,6 @@
 import 'dart:ffi';
 
 import 'package:asdsmartcare/features/app_start/views/parent_navigation_screen.dart';
-import 'package:asdsmartcare/core/widgets/layouts/apphome/appHome.dart';
 import 'package:asdsmartcare/features/autism_test/views/autism_checker.dart';
 import 'package:asdsmartcare/features/autism_test/views/autism_test.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';

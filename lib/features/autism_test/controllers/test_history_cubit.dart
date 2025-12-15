@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/features/doctor_profile/views/RigesteredChild/cubit/registered_children_state.dart';
-import 'package:asdsmartcare/features/doctor_profile/views/RigesteredChild/model/registered_children.dart';
-import 'package:asdsmartcare/features/autism_test/controllers/GetChildTestResults/cubit/test_history_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/registered_children_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/models/registered_children.dart';
+import 'package:asdsmartcare/features/autism_test/controllers/test_history_state.dart';
 import 'package:asdsmartcare/features/autism_test/models/history_autism_level_test.dart';
 import 'package:asdsmartcare/features/autism_test/models/history_autism_test.dart';
 import 'package:bloc/bloc.dart';
