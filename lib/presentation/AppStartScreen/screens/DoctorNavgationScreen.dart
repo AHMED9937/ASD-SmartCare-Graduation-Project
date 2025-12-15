@@ -3,7 +3,7 @@ import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/Screen/doct
 import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorHomeScreen.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharityMedicine.dart';
+import 'package:asdsmartcare/features/donations/presentation/Screen/CharityMedicine.dart';
 import 'package:flutter/material.dart';
 
 class Doctornavgationscreen extends StatefulWidget {

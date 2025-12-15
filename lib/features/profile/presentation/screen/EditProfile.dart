@@ -1,42 +1,46 @@
 import 'dart:io';
-import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/editProfile/cubit/edit_doctor_profile_cubit.dart';
-import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/editProfile/cubit/edit_doctor_profile_state.dart';
-import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/model/GetLoggedDoctorData.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
+import 'package:asdsmartcare/features/profile/presentation/controller/cubit/EditProfile/edit_profile_cubit.dart';
+import 'package:asdsmartcare/features/profile/presentation/screen/AddchildEditProfile.dart';
 import 'package:asdsmartcare/features/profile/presentation/screen/ChangePasswordScreen.dart';
+import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:asdsmartcare/features/profile/presentation/Model/GetLoggedParentData.dart';
+import 'package:asdsmartcare/features/profile/presentation/widgets/ParentsChilds.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/features/profile/presentation/controller/cubit/EditProfile/edit_profile_state.dart';
 
-class EditDoctorProfileScreen extends StatelessWidget {
-  final GetLoggedDoctorData DoctorD;
-  const EditDoctorProfileScreen({Key? key, required this.DoctorD}) : super(key: key);
+class EditParentProfileScreen extends StatelessWidget {
+  final GetLoggedParentData parentD;
+  const EditParentProfileScreen({Key? key, required this.parentD}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) {
-        final cubit = EditDoctorProfileCubit()..initFrom(DoctorD);
+        final cubit = EditParentProfileCubit()..initFrom(parentD);
         return cubit;
       },
-      child: BlocConsumer<EditDoctorProfileCubit, EditDoctorProfileState>(
+      child: BlocConsumer<EditParentProfileCubit, EditParentProfileState>(
         listener: (ctx, state) {
-          if (state is EditDoctorProfileSuccessState) {
+          
+          if (state is EditParentProfileSuccessState) {
             ScaffoldMessenger.of(ctx).showSnackBar(
               const SnackBar(content: Text('Profile updated successfully')),
             );
             Navigator.of(ctx).pop();
           }
-          if (state is EditDoctorProfileErrorState) {
+          if (state is EditParentProfileErrorState) {
             ScaffoldMessenger.of(ctx).showSnackBar(
               SnackBar(content: Text(state.error), backgroundColor: Colors.red),
             );
           }
+          
         },
         builder: (ctx, state) {
-          final cubit = EditDoctorProfileCubit.get(ctx);
+          final cubit = EditParentProfileCubit.get(ctx);
 
           void _showImageSourceActionSheet() {
             showModalBottomSheet(
@@ -69,17 +73,19 @@ class EditDoctorProfileScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              forceMaterialTransparency: true,
               backgroundColor: Colors.white,
               elevation: 0,
               leading: IconButton(
-                icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF133E87), size: 33),
+                icon: const Icon(Icons.arrow_back_ios, color: Color(0xFF133E87),size: 33),
                 onPressed: () => Navigator.of(ctx).pop(),
               ),
               centerTitle: true,
+
               toolbarHeight: 80,
               title: TextUtils.textHeader("Edit Profile", fontSize: 24),
               actions: [
-                if (state is EditDoctorProfileLoadingState)
+                if (state is EditParentProfileLoadingState)
                   const Padding(
                     padding: EdgeInsets.all(16),
                     child: SizedBox(
@@ -90,78 +96,59 @@ class EditDoctorProfileScreen extends StatelessWidget {
                   )
                 else
                   IconButton(
-                    icon: const Icon(Icons.check, color: Color(0xFF133E87), size: 33),
-                    onPressed: cubit.editDoctorProfile,
+                    icon: const Icon(Icons.check, color: Color(0xFF133E87),size: 33),
+                    onPressed: cubit.editParentProfile,
                   ),
               ],
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Form(
-                key: cubit.formKey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 16),
-                   GestureDetector(
-  onTap: _showImageSourceActionSheet,
-  child: Container(
-    width: 120,
-    height: 120,
-    decoration: BoxDecoration(
-      shape: BoxShape.circle,
-      color: Colors.grey.shade200,
-      border: Border.all(color: Colors.white, width: 3),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withOpacity(0.1),
-          blurRadius: 8,
-          offset: Offset(0, 4),
-        ),
-      ],
-    ),
-    child: ClipOval(
-      child: cubit.pickedImage != null
-          ? Image.file(
-              cubit.pickedImage!,
-              fit: BoxFit.cover,
-              width: 120,
-              height: 120,
-            )
-          : (DoctorD.data!.image != null
-              ? Image.network(
-                  DoctorD.data!.image!,
-                  fit: BoxFit.contain,
-                  width: 120,
-                  height: 120,
-                  errorBuilder: (_, __, ___) => Center(
-                    child: Icon(Icons.camera_alt, size: 32, color: Colors.grey),
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  GestureDetector(
+                    onTap: _showImageSourceActionSheet,
+                    child: CircleAvatar(
+                      radius: 60,
+                      backgroundColor: Colors.grey.shade200,
+                      backgroundImage: cubit.pickedImage != null
+                          ? FileImage(cubit.pickedImage!)
+                          : (parentD.data!.image != null
+                              ? NetworkImage(parentD.data!.image!)
+                              : null) as ImageProvider?,
+                      child: cubit.pickedImage == null && parentD.data!.image == null
+                          ? const Icon(Icons.camera_alt, size: 32, color: Colors.grey)
+                          : null,
+                    ),
                   ),
-                )
-              : Center(
-                  child: Icon(Icons.camera_alt, size: 32, color: Colors.grey),
-                )),
-    ),
-  ),
-),
 
-                    const SizedBox(height: 32),
-                    _buildField(label: "Full Name", controller: cubit.nameCtrl),
-                    const SizedBox(height: 20),
-                    _buildField(label: "Email", controller: cubit.emailCtrl),
-                    const SizedBox(height: 20),
-                    _buildField(label: "Age", controller: cubit.ageCtrl),
-                    const SizedBox(height: 20),
-                    _buildField(label: "Address", controller: cubit.addressCtrl),
-                    const SizedBox(height: 20),
-                    _buildField(label: "Specialization", controller: cubit.DepartmentCtrl),
-                    const SizedBox(height: 20),
-                    _buildField(label: "Qualifications", controller: cubit.qualificationsCtrl),
-                    const SizedBox(height: 20),
-                    _buildField(label: "Session Price", controller: cubit.SessionPriceCtrl),
-                    const SizedBox(height: 20),
-                    
-                  ],
-                ),
+                  const SizedBox(height: 32),
+                  _buildField(label: "Full Name", controller: cubit.nameCtrl),
+                  const SizedBox(height: 20),
+                  _buildField(label: "Phone", controller: cubit.phoneCtrl),
+                  const SizedBox(height: 20),
+                  _buildField(label: "Email", controller: cubit.emailCtrl),
+                  const SizedBox(height: 20),
+                  _buildField(label: "Age", controller: cubit.ageCtrl),
+                  const SizedBox(height: 20),
+                  _buildField(label: "Address", controller: cubit.addressCtrl),
+                  const SizedBox(height: 20),
+                   _buildField(label: "Password",suffix: IconButton(onPressed: ()=>NavgatTO(context, ChangePasswordScreen(isParent: true,)), icon: Icon(Icons.arrow_forward_outlined))),
+                  const SizedBox(height: 20),
+ AppButtons.containerTextButton(
+                    TextUtils.textHeader("Childs Management",headerTextColor: Colors.white,),
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => Addchildeditprofile(
+                            ParentId: parentD.data!.id!,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           );
@@ -172,7 +159,7 @@ class EditDoctorProfileScreen extends StatelessWidget {
 
   Widget _buildField({
     required String label,
-    TextEditingController? controller,
+     TextEditingController ?controller,
     bool readOnly = false,
     bool obscure = false,
     Widget? suffix,

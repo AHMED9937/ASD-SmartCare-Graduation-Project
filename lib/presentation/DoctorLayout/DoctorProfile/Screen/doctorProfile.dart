@@ -5,8 +5,8 @@ import 'package:asdsmartcare/presentation/DoctorLayout/DoctorProfile/cubit/docto
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_state.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/ChangePasswordScreen.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/model/GetAllSession.dart';
+import 'package:asdsmartcare/features/profile/presentation/screen/ChangePasswordScreen.dart';
+import 'package:asdsmartcare/features/progress/presentation/model/GetAllSession.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/screen/loginscreen.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';

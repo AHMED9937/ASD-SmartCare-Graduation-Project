@@ -5,8 +5,8 @@ import 'package:asdsmartcare/features/doctors/presentation/doctors_list/screen/D
 import 'package:asdsmartcare/presentation/AppStartScreen/cubit/asd_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/appHome.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/Screen/AiEvaluation.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/progress.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/profileScreen.dart';
+import 'package:asdsmartcare/features/progress/presentation/screens/progress.dart';
+import 'package:asdsmartcare/features/profile/presentation/screen/profileScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AsdCubit extends Cubit<AsdStates> {
