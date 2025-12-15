@@ -1,8 +1,8 @@
 import 'package:asdsmartcare/features/doctors/presentation/booking/Screens/ConfirmReservationScreen.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_state.dart';
 import 'package:asdsmartcare/features/donations/presentation/Screen/availlableCharityMed.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

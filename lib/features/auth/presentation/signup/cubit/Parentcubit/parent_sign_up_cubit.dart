@@ -1,7 +1,7 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/Model/AddParent.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/Model/SignUpParentModel.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/Parentcubit/parent_sign_up_state.dart';

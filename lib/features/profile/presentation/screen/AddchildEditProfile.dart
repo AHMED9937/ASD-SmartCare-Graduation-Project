@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/features/profile/presentation/controller/cubit/GetParentChildsCubit/parentchild_list_cubit.dart';
 import 'package:asdsmartcare/features/profile/presentation/controller/cubit/GetParentChildsCubit/parentchild_list_state.dart';
 import 'package:asdsmartcare/features/profile/presentation/widgets/AddchildProfile.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/Widgets/AddChildForm.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';

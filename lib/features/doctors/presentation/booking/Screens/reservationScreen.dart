@@ -1,13 +1,13 @@
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/DoctorLayout/Chat/screen/Chat.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/Screens/PaymentType.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/Widgets/doctorReviews.dart';
 import 'package:asdsmartcare/features/doctors/presentation/doctors_list/model/GetDoctorsListModel.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_cubit.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_state.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';

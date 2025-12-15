@@ -5,8 +5,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:asdsmartcare/features/progress/presentation/controller/cubit/doctor_review_cubit.dart';
 import 'package:asdsmartcare/features/progress/presentation/controller/cubit/doctor_review_state.dart';
 import 'package:asdsmartcare/features/progress/presentation/model/GetAllSession.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 
 /// A responsive dialog widget for submitting a doctor review
 class DoctorReviewDialog extends StatelessWidget {

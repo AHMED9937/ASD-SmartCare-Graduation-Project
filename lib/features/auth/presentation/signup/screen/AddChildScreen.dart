@@ -1,5 +1,5 @@
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/Widgets/AddChildForm.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/Parentcubit/parent_sign_up_cubit.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/Parentcubit/parent_sign_up_state.dart';

@@ -1,5 +1,5 @@
-import 'package:asdsmartcare/presentation/Fixed_Widgets/AppFormTextField.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/AppFormTextField.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/Parentcubit/parent_sign_up_cubit.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/colorUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/colorUtils.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/screen/SelectusertypeScreen.dart';
 import 'package:asdsmartcare/features/auth/presentation/onboarding/onBoardingWidget.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/screen/select_Login_or_SignUpScreen.dart';

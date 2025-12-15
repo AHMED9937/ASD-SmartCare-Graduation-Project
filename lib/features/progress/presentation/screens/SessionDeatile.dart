@@ -8,9 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:asdsmartcare/features/progress/presentation/controller/sessionReview/session_review_cubit.dart';
 import 'package:asdsmartcare/features/progress/presentation/controller/sessionReview/session_review_state.dart';
 import 'package:asdsmartcare/features/progress/presentation/model/GetAllSession.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 
 /// Show rating dialogs
 void showRatingDialog(BuildContext outerContext, SessionData session) {

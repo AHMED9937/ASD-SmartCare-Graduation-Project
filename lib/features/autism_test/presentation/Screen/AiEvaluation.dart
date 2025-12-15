@@ -1,8 +1,8 @@
 import 'package:asdsmartcare/features/autism_test/presentation/Screen/AutismCheker.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/Screen/AutismTest.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/Screen/TestResult.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/controller/GetChildTestResults/cubit/test_history_cubit.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/controller/GetChildTestResults/cubit/test_history_state.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';

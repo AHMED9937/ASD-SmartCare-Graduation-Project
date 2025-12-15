@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/core/network/api_result.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/Widgets/DoctorSignUpForm.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/DoctorCubit/doctor_cubit.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/cubit/DoctorCubit/doctor_state.dart';

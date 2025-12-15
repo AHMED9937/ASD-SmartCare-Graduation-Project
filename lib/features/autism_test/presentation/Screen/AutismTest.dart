@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controller/AsdTestCubit/autsium_test_cubit.dart';
 import '../controller/AsdTestCubit/autsium_test_state.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 
 class AutismTestScreen extends StatelessWidget {
   const AutismTestScreen({Key? key}) : super(key: key);

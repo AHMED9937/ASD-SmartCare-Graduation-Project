@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/features/profile/presentation/controller/cubit/ChangePassword/cubit/change_password_cubit.dart';
 import 'package:asdsmartcare/features/profile/presentation/controller/cubit/ChangePassword/cubit/change_password_state.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/screen/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

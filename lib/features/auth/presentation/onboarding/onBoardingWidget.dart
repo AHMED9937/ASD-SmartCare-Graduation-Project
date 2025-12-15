@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:flutter/material.dart';
 
 class onBoardingScreen extends StatelessWidget {

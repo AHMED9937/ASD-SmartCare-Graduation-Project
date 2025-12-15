@@ -1,7 +1,7 @@
-import 'package:asdsmartcare/presentation/Fixed_Widgets/AppFormTextField.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/AppFormTextField.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/ForgetPassword/cubit/forget_password_cubit.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/ForgetPassword/cubit/forget_password_state.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/ForgetPassword/Screens/PasswordChangedscreen.dart';

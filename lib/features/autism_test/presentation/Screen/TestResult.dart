@@ -1,12 +1,12 @@
 import 'dart:ffi';
 
-import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/features/app_start/presentation/screens/ParentNavgationScreen.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/appHome.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/Screen/AutismCheker.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/Screen/AutismTest.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:flutter/material.dart';
 
 // Screen to choose AI evaluation type and show last results

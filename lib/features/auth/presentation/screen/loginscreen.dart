@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/presentation/AppStartScreen/screens/DoctorNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/features/app_start/presentation/screens/DoctorNavgationScreen.dart';
+import 'package:asdsmartcare/features/app_start/presentation/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/screen/ParentSignUpScreen.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/screen/Selectusertypescreen.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/LoginCubits/Usercubit/login_cubit.dart';

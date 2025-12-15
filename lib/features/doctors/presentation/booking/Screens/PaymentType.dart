@@ -3,8 +3,8 @@ import 'package:asdsmartcare/features/doctors/presentation/booking/Screens/Confi
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_cubit.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_state.dart';
 import 'package:asdsmartcare/features/doctors/presentation/doctors_list/model/GetDoctorsListModel.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';

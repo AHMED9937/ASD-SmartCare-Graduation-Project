@@ -9,9 +9,9 @@ import 'package:asdsmartcare/features/autism_test/presentation/controller/AsdTes
 import 'package:asdsmartcare/features/autism_test/presentation/model/PredictionMessage.dart';
 import 'package:asdsmartcare/features/autism_test/presentation/model/asdREQmodel.dart';
 import 'package:asdsmartcare/features/chatbot/presentation/Controller/ChatBotcubit/chat_bot_state.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/AppFormTextField.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/AppFormTextField.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';

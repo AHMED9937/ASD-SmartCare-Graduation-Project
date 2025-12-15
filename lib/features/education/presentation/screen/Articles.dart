@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/features/education/presentation/controller/cubit/education_cubit.dart';
 import 'package:asdsmartcare/features/education/presentation/controller/cubit/education_state.dart';
 import 'package:asdsmartcare/features/education/presentation/screen/ShowArticle.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/appImages.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/app_Buttons.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/appImages.dart';
+import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:asdsmartcare/features/medicine/presentation/model/MedicinesResponse.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 
 class MedicenInfo extends StatelessWidget {
   final MedicineData medicen;

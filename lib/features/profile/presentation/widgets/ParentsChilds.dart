@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:asdsmartcare/features/profile/presentation/controller/cubit/GetParentChildsCubit/parentchild_list_cubit.dart';
 import 'package:asdsmartcare/features/profile/presentation/controller/cubit/GetParentChildsCubit/parentchild_list_state.dart';
-import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
+import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 
 class Parentchilds extends StatelessWidget {
   final String parentId;

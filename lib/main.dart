@@ -3,8 +3,8 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/widgets/bloc_observer.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
-import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/presentation/AppStartScreen/screens/DoctorNavgationScreen.dart';
+import 'package:asdsmartcare/features/app_start/presentation/screens/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/features/app_start/presentation/screens/DoctorNavgationScreen.dart';
 import 'package:asdsmartcare/features/auth/presentation/signup/screen/DoctorSignUpScreen.dart';
 import 'package:asdsmartcare/features/auth/presentation/login/screen/loginscreen.dart';
 import 'package:asdsmartcare/features/auth/presentation/onboarding/onboardingNavgationaScreens.dart';
