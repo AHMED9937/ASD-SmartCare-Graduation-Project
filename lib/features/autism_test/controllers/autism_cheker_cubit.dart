@@ -2,7 +2,7 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/autism_test/controllers/autism_cheker_state.dart';
-import 'package:asdsmartcare/features/autism_test/models/PredictionMessage.dart';
+import 'package:asdsmartcare/features/autism_test/models/prediction_message.dart';
 import 'package:asdsmartcare/core/widgets/layouts/StlsAppTextFormField.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';

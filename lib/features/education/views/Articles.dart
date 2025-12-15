@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/features/education/controllers/education_cubit.dart';
 import 'package:asdsmartcare/features/education/controllers/education_state.dart';
-import 'package:asdsmartcare/features/education/views/ShowArticle.dart';
+import 'package:asdsmartcare/features/education/views/show_article.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/core/widgets/layouts/appImages.dart';
 import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';

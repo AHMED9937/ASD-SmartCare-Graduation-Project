@@ -3,14 +3,14 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/widgets/bloc_observer.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
-import 'package:asdsmartcare/features/app_start/views/ParentNavgationScreen.dart';
-import 'package:asdsmartcare/features/app_start/views/DoctorNavgationScreen.dart';
-import 'package:asdsmartcare/features/auth/views/DoctorSignUpScreen.dart';
+import 'package:asdsmartcare/features/app_start/views/parent_navigation_screen.dart';
+import 'package:asdsmartcare/features/app_start/views/doctor_navigation_screen.dart';
+import 'package:asdsmartcare/features/auth/views/doctor_sign_up_screen.dart';
 import 'package:asdsmartcare/features/auth/views/loginscreen.dart';
-import 'package:asdsmartcare/features/auth/views/onboardingNavgationaScreens.dart';
+import 'package:asdsmartcare/features/auth/views/onboarding_navigation_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'features/AppStartScreen/cubit/asd_cubit.dart';
+import 'features/app_start/controllers/asd_cubit.dart';
 
 void main() async {
   

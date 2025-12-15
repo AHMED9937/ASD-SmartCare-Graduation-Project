@@ -2,7 +2,7 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/doctor_profile/features/Home/appointments/cubit/appointments_state.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/appointments/model/AppointmentsResponse.dart';
+import 'package:asdsmartcare/features/doctor_profile/features/Home/appointments/model/appointments_response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/features/doctors/models/GetSessionReviewsList.dart';
+import 'package:asdsmartcare/features/doctors/models/get_session_reviews_list.dart';
 
 abstract class GetSessionReviewsListStates {}
 
@@ -9,6 +9,10 @@ class GetSessionReviewsListSuccsessStates extends GetSessionReviewsListStates{
  GetSessionReviewsListSuccsessStates(this.reviews);
 }
 class GetSessionReviewsListFailedStates extends GetSessionReviewsListStates{}
+
+
+
+
 
 
 

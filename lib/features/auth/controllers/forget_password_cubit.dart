@@ -3,9 +3,9 @@ import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/auth/controllers/login_state.dart';
 import 'package:asdsmartcare/features/auth/controllers/forget_password_state.dart';
-import 'package:asdsmartcare/features/auth/models/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/auth/models/login_doctor_model.dart';
 
-import 'package:asdsmartcare/features/auth/models/loginParentModel.dart';
+import 'package:asdsmartcare/features/auth/models/login_parent_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,12 +1,12 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/features/doctors/views/DoctorsListPage.dart';
+import 'package:asdsmartcare/features/doctors/views/doctors_list_screen.dart';
 import 'package:asdsmartcare/features/app_start/controllers/asd_state.dart';
 import 'package:asdsmartcare/core/widgets/layouts/apphome/appHome.dart';
-import 'package:asdsmartcare/features/autism_test/views/AiEvaluation.dart';
+import 'package:asdsmartcare/features/autism_test/views/ai_evaluation.dart';
 import 'package:asdsmartcare/features/progress/views/progress.dart';
-import 'package:asdsmartcare/features/profile/views/profileScreen.dart';
+import 'package:asdsmartcare/features/profile/views/profile_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AsdCubit extends Cubit<AsdStates> {

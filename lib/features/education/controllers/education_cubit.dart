@@ -2,10 +2,10 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/doctors/controllers/doctors_list_state.dart';
-import 'package:asdsmartcare/features/doctors/models/GetDoctorsListModel.dart';
+import 'package:asdsmartcare/features/doctors/models/get_doctors_list_model.dart';
 import 'package:asdsmartcare/features/education/controllers/education_state.dart';
-import 'package:asdsmartcare/features/education/models/EducationArticaleResponse.dart';
-import 'package:asdsmartcare/features/auth/models/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/education/models/education_article_response.dart';
+import 'package:asdsmartcare/features/auth/models/login_doctor_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class AvailableEducationArticaleCubit extends Cubit<AvailableEducationArticaleState> {

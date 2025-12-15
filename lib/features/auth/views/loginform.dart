@@ -3,7 +3,7 @@ import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
 import 'package:asdsmartcare/features/auth/controllers/login_cubit.dart';
 
-import 'package:asdsmartcare/features/auth/views/ForgetPasswordScreen.dart';
+import 'package:asdsmartcare/features/auth/views/forget_password_screen.dart';
 import 'package:flutter/material.dart';
 
 String? emailValdation(value) {

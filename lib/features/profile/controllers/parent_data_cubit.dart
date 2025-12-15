@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
-import 'package:asdsmartcare/features/profile/models/GetLoggedParentData.dart';
-import 'package:asdsmartcare/features/profile/controllers/GetParentData/parent_data_state.dart';
-import 'package:asdsmartcare/features/auth/models/LoginDoctorModel.dart';
+import 'package:asdsmartcare/features/profile/models/get_logged_parent_data.dart';
+import 'package:asdsmartcare/features/profile/controllers/parent_data_state.dart';
+import 'package:asdsmartcare/features/auth/models/login_doctor_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetParentDataCubit extends Cubit<GetParentDataStates> {

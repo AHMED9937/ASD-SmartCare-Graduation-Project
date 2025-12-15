@@ -1,6 +1,6 @@
 // login_state.dart
 
-import 'package:asdsmartcare/features/doctors/models/Appointmentbooked.dart';
+import 'package:asdsmartcare/features/doctors/models/appointment_booked.dart';
 
 abstract class BookingState {}
 
@@ -84,6 +84,10 @@ class LoadeDoctorAvailableDatesError extends BookingState {
   final String error;
   LoadeDoctorAvailableDatesError(this.error);
 }
+
+
+
+
 
 
 

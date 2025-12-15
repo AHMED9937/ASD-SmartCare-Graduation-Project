@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/features/doctor_profile/features/Clinic/model/GetDoctorAvailability.dart';
+import 'package:asdsmartcare/features/doctor_profile/models/get_doctor_availability.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
@@ -86,6 +86,10 @@ class DeleteDocAppoimentError extends AvailabilityState {
   @override
   List<Object?> get props => [error];
 }
+
+
+
+
 
 
 

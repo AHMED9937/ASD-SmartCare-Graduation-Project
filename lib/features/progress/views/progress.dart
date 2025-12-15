@@ -1,7 +1,7 @@
-import 'package:asdsmartcare/features/progress/controllers/childProgress/child_progress_cubit.dart';
-import 'package:asdsmartcare/features/progress/controllers/childProgress/child_progress_state.dart';
-import 'package:asdsmartcare/features/progress/models/GetAllSession.dart';
-import 'package:asdsmartcare/features/progress/views/SessionDeatile.dart';
+import 'package:asdsmartcare/features/progress/controllers/child_progress_cubit.dart';
+import 'package:asdsmartcare/features/progress/controllers/child_progress_state.dart';
+import 'package:asdsmartcare/features/progress/models/get_all_session.dart';
+import 'package:asdsmartcare/features/progress/views/session_detail.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';

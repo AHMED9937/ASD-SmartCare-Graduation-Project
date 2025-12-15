@@ -2,7 +2,7 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/chatbot/controllers/chat_bot_state.dart';
-import 'package:asdsmartcare/features/chatbot/models/ChatBotModel.dart';
+import 'package:asdsmartcare/features/chatbot/models/chat_bot_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

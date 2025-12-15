@@ -1,16 +1,16 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/features/app_start/views/DoctorNavgationScreen.dart';
-import 'package:asdsmartcare/features/app_start/views/ParentNavgationScreen.dart';
+import 'package:asdsmartcare/features/app_start/views/doctor_navigation_screen.dart';
+import 'package:asdsmartcare/features/app_start/views/parent_navigation_screen.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';
-import 'package:asdsmartcare/features/auth/views/ParentSignUpScreen.dart';
-import 'package:asdsmartcare/features/auth/views/Selectusertypescreen.dart';
+import 'package:asdsmartcare/features/auth/views/parent_sign_up_screen.dart';
+import 'package:asdsmartcare/features/auth/views/select_user_type_screen.dart';
 import 'package:asdsmartcare/features/auth/controllers/login_cubit.dart';
 import 'package:asdsmartcare/features/auth/controllers/login_state.dart';
 
 import 'package:asdsmartcare/features/auth/views/loginform.dart';
-import 'package:asdsmartcare/features/auth/views/my_RichText.dart';
+import 'package:asdsmartcare/features/auth/views/my_rich_text.dart';
 
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';

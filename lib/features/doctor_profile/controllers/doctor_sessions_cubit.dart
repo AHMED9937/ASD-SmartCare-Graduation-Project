@@ -2,7 +2,7 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/model/DoctorSessions.dart';
+import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/model/doctor_sessions.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

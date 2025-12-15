@@ -2,7 +2,7 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/medicine/controllers/available_medicine_state.dart';
-import 'package:asdsmartcare/features/medicine/models/MedicinesResponse.dart';
+import 'package:asdsmartcare/features/medicine/models/medicines_response.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 class AvailableMedicineCubit extends Cubit<AvailableMedicineState> {
