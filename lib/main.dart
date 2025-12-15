@@ -1,7 +1,7 @@
 // lib/main.dart
 
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/appShared/Components/myblockob.dart';
+import 'package:asdsmartcare/core/widgets/bloc_observer.dart';
 import 'package:asdsmartcare/appShared/remote/diohelper.dart';
 import 'package:asdsmartcare/presentation/AppStartScreen/screens/ParentNavgationScreen.dart';
 import 'package:asdsmartcare/presentation/AppStartScreen/screens/DoctorNavgationScreen.dart';
