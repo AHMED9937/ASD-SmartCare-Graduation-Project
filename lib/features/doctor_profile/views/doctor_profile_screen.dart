@@ -1,10 +1,10 @@
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/Screen/edit_doctor_profile_screen.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/Screen/pdf_viewer_screen.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/cubit/doctor_profile_data_cubit.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/cubit/doctor_profile_data_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/views/edit_doctor_profile_screen.dart';
+import 'package:asdsmartcare/features/doctor_profile/views/pdf_viewer_screen.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/doctor_profile_data_cubit.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/doctor_profile_data_state.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
-import 'package:asdsmartcare/features/doctors/views/cubit/Booking/booking_state.dart';
+import 'package:asdsmartcare/features/doctors/controllers/booking_state.dart';
 import 'package:asdsmartcare/features/profile/views/change_password_screen.dart';
 import 'package:asdsmartcare/features/progress/models/get_all_session.dart';
 import 'package:asdsmartcare/features/auth/views/loginscreen.dart';

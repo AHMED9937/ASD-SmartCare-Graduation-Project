@@ -93,7 +93,7 @@ print (ChildNametextcontroller.text+" "+ChildGendertextcontroller.text+ " "+"${ 
     emit(DeleteChildLoadingStates());
 
     Diohelper.deleteData(
-      data: {},
+      query: {},
 
       url: ApiConstants.DeleteSpacificChild(id), // Ensure this matches your API endpoint key
       token: CacheHelper.getData(key: "token"),

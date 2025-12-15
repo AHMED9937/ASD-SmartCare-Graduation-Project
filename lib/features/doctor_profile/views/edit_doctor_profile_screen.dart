@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/editProfile/cubit/edit_doctor_profile_cubit.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/editProfile/cubit/edit_doctor_profile_state.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/DoctorProfile/model/get_logged_doctor_data.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/edit_doctor_profile_cubit.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/edit_doctor_profile_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/models/get_logged_doctor_data.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/features/profile/views/change_password_screen.dart';
 import 'package:flutter/material.dart';

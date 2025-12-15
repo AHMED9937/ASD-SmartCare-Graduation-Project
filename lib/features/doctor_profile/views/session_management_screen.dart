@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/model/doctor_sessions.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/doctor_sessions_cubit.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/doctor_sessions_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/models/doctor_sessions.dart';
 
 class SessionManagement extends StatefulWidget {
   const SessionManagement({Key? key, required this.sessionID}) : super(key: key);

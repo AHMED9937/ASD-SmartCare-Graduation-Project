@@ -2,7 +2,7 @@ import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/network/dio_helper.dart';
 import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/doctor_profile/controllers/registered_children_state.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/RigesteredChild/model/registered_children.dart';
+import 'package:asdsmartcare/features/doctor_profile/models/registered_children.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

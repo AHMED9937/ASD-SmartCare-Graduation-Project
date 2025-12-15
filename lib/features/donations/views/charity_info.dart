@@ -1,5 +1,5 @@
 import 'package:asdsmartcare/features/doctors/views/confirm_reservation_screen.dart';
-import 'package:asdsmartcare/features/doctors/controllers/Booking/booking_state.dart';
+import 'package:asdsmartcare/features/doctors/controllers/booking_state.dart';
 import 'package:asdsmartcare/features/donations/views/available_charity_med.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:asdsmartcare/features/medicine/views/available_medicine_screen.dart';
 import 'package:asdsmartcare/features/donations/models/charity_response.dart';
-import 'package:asdsmartcare/features/doctors/controllers/Booking/booking_cubit.dart';
+import 'package:asdsmartcare/features/doctors/controllers/booking_cubit.dart';
 
 enum CharityPaymentMethod { cash, card }
 

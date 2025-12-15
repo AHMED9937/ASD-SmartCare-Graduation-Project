@@ -1,4 +1,4 @@
-import 'package:asdsmartcare/features/doctors/views/Model/get_session_reviews_list.dart';
+import 'package:asdsmartcare/features/doctors/models/get_session_reviews_list.dart';
 
 class GetLoggedParentData {
   Parent? data;

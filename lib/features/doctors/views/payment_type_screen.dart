@@ -1,7 +1,7 @@
 import 'package:asdsmartcare/features/doctors/models/appointment_booked.dart';
 import 'package:asdsmartcare/features/doctors/views/confirm_reservation_screen.dart';
-import 'package:asdsmartcare/features/doctors/controllers/Booking/booking_cubit.dart';
-import 'package:asdsmartcare/features/doctors/controllers/Booking/booking_state.dart';
+import 'package:asdsmartcare/features/doctors/controllers/booking_cubit.dart';
+import 'package:asdsmartcare/features/doctors/controllers/booking_state.dart';
 import 'package:asdsmartcare/features/doctors/models/get_doctors_list_model.dart';
 import 'package:asdsmartcare/core/widgets/layouts/TextUtils.dart';
 import 'package:asdsmartcare/core/widgets/layouts/app_Buttons.dart';

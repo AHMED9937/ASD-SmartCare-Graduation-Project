@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
-import 'package:asdsmartcare/features/doctors/views/Widgets/doctor_reviews_widget.dart';
+import 'package:asdsmartcare/features/doctors/views/doctor_reviews_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/RigesteredChild/cubit/registered_children_cubit.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/registered_children_cubit.dart';
 import 'package:asdsmartcare/features/doctor_profile/controllers/registered_children_state.dart';
 
 /// Screen showing all registered children and, on tap, detailed bottom sheet.

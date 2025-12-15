@@ -1,6 +1,6 @@
 import 'package:asdsmartcare/features/doctors/models/get_session_reviews_list.dart';
-import 'package:asdsmartcare/features/doctors/controllers/sessionReviews/session_reviews_cubit.dart';
-import 'package:asdsmartcare/features/doctors/controllers/sessionReviews/session_reviews_state.dart';
+import 'package:asdsmartcare/features/doctors/controllers/session_reviews_cubit.dart';
+import 'package:asdsmartcare/features/doctors/controllers/session_reviews_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

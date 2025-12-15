@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'package:asdsmartcare/features/doctor_profile/features/Home/appointments/cubit/appointments_cubit.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/appointments/cubit/appointments_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/appointments_cubit.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/appointments_state.dart';
 
 /// Model representing an appointment
 class Appointment {

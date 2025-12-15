@@ -1,9 +1,9 @@
 import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/Screen/session_management_screen.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/cubit/doctor_sessions_cubit.dart';
-import 'package:asdsmartcare/features/doctor_profile/features/Home/DoctorSessions/cubit/doctor_sessions_state.dart';
+import 'package:asdsmartcare/features/doctor_profile/views/session_management_screen.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/doctor_sessions_cubit.dart';
+import 'package:asdsmartcare/features/doctor_profile/controllers/doctor_sessions_state.dart';
 import 'package:asdsmartcare/core/widgets/layouts/FixedWidgets.dart';
-import 'package:asdsmartcare/features/doctors/views/Widgets/doctor_reviews_widget.dart';
+import 'package:asdsmartcare/features/doctors/views/doctor_reviews_widget.dart';
 import 'package:asdsmartcare/features/progress/views/session_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

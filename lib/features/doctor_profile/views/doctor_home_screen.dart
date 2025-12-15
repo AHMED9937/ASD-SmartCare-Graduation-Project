@@ -1,7 +1,7 @@
-import 'package:asdsmartcare/features/doctor_profile/views/RigesteredChild/screen/registered_children_screen.dart';
-import 'package:asdsmartcare/features/doctor_profile/views/appointments/Screen/appointments_screen.dart';
+import 'package:asdsmartcare/features/doctor_profile/views/registered_children_screen.dart';
+import 'package:asdsmartcare/features/doctor_profile/views/appointments_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:asdsmartcare/features/doctor_profile/views/DoctorSessions/Screen/sessions_screen.dart';
+import 'package:asdsmartcare/features/doctor_profile/views/sessions_screen.dart';
 
 class QuickAccessPage extends StatelessWidget {
   /// Builds a tappable card with icon, title, and subtitle.
