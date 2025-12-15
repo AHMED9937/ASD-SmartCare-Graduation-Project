@@ -4,7 +4,7 @@ import 'package:asdsmartcare/core/network/api_constants.dart';
 import 'package:asdsmartcare/features/doctors/presentation/doctors_list/screen/DoctorsListPage.dart';
 import 'package:asdsmartcare/presentation/AppStartScreen/cubit/asd_state.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/apphome/appHome.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/AiEvaluation.dart';
+import 'package:asdsmartcare/features/autism_test/presentation/Screen/AiEvaluation.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/progress.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/profileLayout/screen/profileScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -3,12 +3,12 @@ import 'package:asdsmartcare/features/doctors/presentation/booking/Screens/reser
 import 'package:asdsmartcare/features/doctors/presentation/doctors_list/cubit/doctors_list_cubit.dart';
 import 'package:asdsmartcare/features/doctors/presentation/doctors_list/cubit/doctors_list_state.dart';
 import 'package:asdsmartcare/features/doctors/presentation/doctors_list/model/GetDoctorsListModel.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Screen/AvailableMedicineScreen.dart';
+import 'package:asdsmartcare/features/medicine/presentation/Screen/AvailableMedicineScreen.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Screen/CharityMedicine.dart';
 import 'package:asdsmartcare/presentation/DoctorLayout/Home/DoctorHomeScreen.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/apphome/Education/screen/Articles.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/apphome/autsiumTest/Screen/AiEvaluation.dart';
-import 'package:asdsmartcare/presentation/ParentLayout/chatBotLayout/screen/chatScreen.dart';
+import 'package:asdsmartcare/features/education/presentation/screen/Articles.dart';
+import 'package:asdsmartcare/features/autism_test/presentation/Screen/AiEvaluation.dart';
+import 'package:asdsmartcare/features/chatbot/presentation/screen/chatScreen.dart';
 import 'package:asdsmartcare/presentation/ParentLayout/progressLayout/screens/progress.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';

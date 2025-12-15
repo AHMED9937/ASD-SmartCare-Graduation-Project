@@ -1,12 +1,11 @@
-import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:asdsmartcare/features/medicine/presentation/model/MedicinesResponse.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/FixedWidgets.dart';
 import 'package:asdsmartcare/presentation/Fixed_Widgets/TextUtils.dart';
 
-class Charitiymedicaninfo extends StatelessWidget {
-  final CharityMedicine medicen;
-  const Charitiymedicaninfo({super.key, required this.medicen});
+class MedicenInfo extends StatelessWidget {
+  final MedicineData medicen;
+  const MedicenInfo({super.key, required this.medicen});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class Charitiymedicaninfo extends StatelessWidget {
           children: [
             // ——— Title ———
             Text(
-              medicen.medicanName??"",
+              medicen.medicanName,
               style: TextStyle(  fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Color(0xFF133E87),),
@@ -35,7 +34,7 @@ class Charitiymedicaninfo extends StatelessWidget {
                 // Description
                 Expanded(
                   child: Text(
-                    medicen.medicanInfo??"",
+                    medicen.medicanInfo,
                     style: const TextStyle(
                       fontSize: 16,
                       height: 1.5,
@@ -50,7 +49,7 @@ class Charitiymedicaninfo extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(11),
                   child: Image.network(
-                    medicen.medicanImage??"",
+                    medicen.medicanImage,
                     width: 120,
                     height: 120,
                     fit: BoxFit.cover,
@@ -81,8 +80,8 @@ class Charitiymedicaninfo extends StatelessWidget {
 
             // ——— Pharmacy Tile(s) ———
             _buildPharmacyTile(
-              name: medicen.pharmacy!.pName??"",
-              location: medicen.pharmacy!.pLocation??"",
+              name: medicen.pharmacy.name,
+              location: medicen.pharmacy.location,
             ),
 
             // If you have more than one pharmacy, repeat or build a ListView.builder here...

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-import 'package:asdsmartcare/presentation/ParentLayout/apphome/AvailableMedicine/Screen/AvailableMedicineScreen.dart';
+import 'package:asdsmartcare/features/medicine/presentation/Screen/AvailableMedicineScreen.dart';
 import 'package:asdsmartcare/presentation/CharityAndDonations/Model/CharityResponse.dart';
 import 'package:asdsmartcare/features/doctors/presentation/booking/cubit/Booking/booking_cubit.dart';
 
