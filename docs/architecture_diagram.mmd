@@ -1,0 +1,74 @@
+%% ASD SmartCare - Application Architecture Diagram
+%% This diagram shows the layered architecture and data flow
+
+graph TB
+    subgraph User["👤 User Roles"]
+        Parent["Parent/Caregiver"]
+        Doctor["Doctor/Specialist"]
+    end
+
+    subgraph App["📱 Flutter Application"]
+        subgraph Presentation["Presentation Layer"]
+            direction TB
+            ParentUI["Parent Screens<br/>• Home<br/>• Booking<br/>• Chatbot<br/>• Progress"]
+            DoctorUI["Doctor Screens<br/>• Dashboard<br/>• Patients<br/>• Sessions<br/>• Clinic"]
+            SharedUI["Shared Screens<br/>• Auth<br/>• Profile<br/>• Settings"]
+            
+            Cubits["State Management<br/>(Cubit/BLoC)"]
+            
+            DesignSystem["Design System<br/>• Colors<br/>• Typography<br/>• Spacing<br/>• Components"]
+        end
+
+        subgraph Data["Data Layer"]
+            Repositories["Repositories<br/>• AuthRepository<br/>• BookingRepository<br/>• SessionRepository"]
+            
+            ApiClient["API Client<br/>(Dio)"]
+            
+            Cache["Local Cache<br/>(SharedPreferences)"]
+        end
+    end
+
+    subgraph Backend["☁️ Backend Services"]
+        API["REST API<br/>(Node.js)"]
+        AI["AI Services<br/>• Autism Screening<br/>• Chatbot NLP"]
+        DB["Database<br/>(MongoDB)"]
+        Stripe["Stripe<br/>Payments"]
+    end
+
+    %% User interactions
+    Parent --> ParentUI
+    Doctor --> DoctorUI
+    
+    %% UI to State
+    ParentUI --> Cubits
+    DoctorUI --> Cubits
+    SharedUI --> Cubits
+    
+    %% State to Data
+    Cubits --> Repositories
+    
+    %% Repository to API/Cache
+    Repositories --> ApiClient
+    Repositories --> Cache
+    
+    %% API to Backend
+    ApiClient --> API
+    ApiClient --> AI
+    ApiClient --> Stripe
+    
+    %% Backend connections
+    API --> DB
+    AI --> DB
+
+    %% Styling
+    classDef userClass fill:#e1f5fe,stroke:#01579b
+    classDef uiClass fill:#f3e5f5,stroke:#7b1fa2
+    classDef stateClass fill:#fff3e0,stroke:#ef6c00
+    classDef dataClass fill:#e8f5e9,stroke:#2e7d32
+    classDef backendClass fill:#fce4ec,stroke:#c2185b
+    
+    class Parent,Doctor userClass
+    class ParentUI,DoctorUI,SharedUI,DesignSystem uiClass
+    class Cubits stateClass
+    class Repositories,ApiClient,Cache dataClass
+    class API,AI,DB,Stripe backendClass

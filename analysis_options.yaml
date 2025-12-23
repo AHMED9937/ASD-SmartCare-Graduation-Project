@@ -1,28 +1,136 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
+# ==============================================================================
+# Analysis Options for ASD SmartCare
+# ==============================================================================
+# This file configures the Dart analyzer for static analysis.
+# Run with: flutter analyze
 #
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
+# Docs: https://dart.dev/guides/language/analysis-options
+# All rules: https://dart.dev/lints
 
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
+# Use recommended Flutter lints as base
 include: package:flutter_lints/flutter.yaml
 
-linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
-  rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+analyzer:
+  # Error severity overrides
+  errors:
+    # Treat missing returns as errors (critical for null safety)
+    missing_return: error
+    # Treat unused imports as warnings (cleanup needed)
+    unused_import: warning
+    # Treat dead code as warnings (cleanup needed)
+    dead_code: warning
+    # Treat deprecated member use as info (plan for updates)
+    deprecated_member_use: info
+    # Treat unawaited futures as warning (async safety)
+    unawaited_futures: warning
+    
+  # Exclude generated files from analysis
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "build/**"
+    - ".dart_tool/**"
+    - "**/*.mocks.dart"
+    - "lib/generated/**"
+  
+  # Language settings (relaxed for existing codebase)
+  # Enable these gradually as code is refactored:
+  # language:
+  #   strict-casts: true
+  #   strict-inference: true
+  #   strict-raw-types: true
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+linter:
+  rules:
+    # =========================================================================
+    # Error Prevention (Critical - these catch real bugs)
+    # =========================================================================
+    avoid_print: true                          # Use proper logging
+    avoid_empty_else: true                     # Likely logic error
+    avoid_relative_lib_imports: true           # Use package imports
+    avoid_returning_null_for_future: true      # Type safety
+    avoid_types_as_parameter_names: true       # Typo prevention
+    cancel_subscriptions: true                 # Memory leak prevention
+    close_sinks: true                          # Resource leak prevention
+    empty_statements: true                     # Likely typo
+    no_duplicate_case_values: true             # Logic error
+    throw_in_finally: true                     # Dangerous pattern
+    unnecessary_statements: true               # Dead code
+    valid_regexps: true                        # Catch regex errors
+    
+    # =========================================================================
+    # Type Safety (Dart 3 best practices)
+    # Enable these after refactoring existing dynamic code:
+    # =========================================================================
+    # avoid_dynamic_calls: true                # Requires refactoring dynamic API responses
+    avoid_type_to_string: true                 # Unreliable in production
+    prefer_void_to_null: true                  # Intent clarity
+    use_if_null_to_convert_nulls_to_bools: true
+    
+    # =========================================================================
+    # Style Enforcement
+    # =========================================================================
+    prefer_single_quotes: true                 # Consistency
+    prefer_const_constructors: true            # Performance
+    prefer_const_declarations: true            # Performance
+    prefer_const_literals_to_create_immutables: true
+    prefer_final_fields: true                  # Immutability
+    prefer_final_locals: true                  # Immutability
+    prefer_final_in_for_each: true             # Immutability
+    prefer_is_empty: true                      # Readability
+    prefer_is_not_empty: true                  # Readability
+    prefer_interpolation_to_compose_strings: true
+    prefer_collection_literals: true           # Modern Dart
+    prefer_spread_collections: true            # Modern Dart
+    
+    # =========================================================================
+    # Code Organization
+    # =========================================================================
+    library_private_types_in_public_api: false # Allows private types
+    sort_child_properties_last: true           # Flutter convention
+    use_key_in_widget_constructors: true       # Widget identity
+    # directives_ordering: true                # Enable after bulk import reordering
+    # sort_constructors_first: true            # Enable after class cleanup
+    
+    # =========================================================================
+    # Readability
+    # =========================================================================
+    always_declare_return_types: true          # Explicit types
+    annotate_overrides: true                   # Clear inheritance
+    prefer_adjacent_string_concatenation: true
+    unnecessary_brace_in_string_interps: true
+    unnecessary_const: true                    # Clean code
+    unnecessary_new: true                      # Modern Dart
+    unnecessary_string_escapes: true           # Clean strings
+    unnecessary_this: true                     # Clean code
+    unnecessary_nullable_for_final_variable_declarations: true
+    avoid_unnecessary_containers: true         # Flutter cleanup
+    prefer_null_aware_operators: true          # Modern Dart
+    
+    # =========================================================================
+    # Flutter-Specific
+    # =========================================================================
+    use_build_context_synchronously: true      # Async safety
+    sized_box_for_whitespace: true             # Performance
+    use_decorated_box: true                    # Performance
+    avoid_web_libraries_in_flutter: true       # Platform safety
+    
+    # =========================================================================
+    # Documentation (disabled for faster dev, enable for production)
+    # =========================================================================
+    # public_member_api_docs: true             # Uncomment for API docs
+    # package_api_docs: true                   # Uncomment for packages
+
+# ==============================================================================
+# Additional Notes
+# ==============================================================================
+# 
+# To fix all auto-fixable issues:
+#   dart fix --apply
+#
+# To format all files:
+#   dart format .
+#
+# CI Pipeline expects:
+#   - flutter analyze (zero errors)
+#   - dart format --set-exit-if-changed . (zero changes)
