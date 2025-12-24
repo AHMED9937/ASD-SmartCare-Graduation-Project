@@ -4,6 +4,8 @@
 <dict>
 <key>NSMicrophoneUsageDescription</key>
 <string>Some message to describe why you need this permission</string>
+<key>NSCameraUsageDescription</key>
+<string>Scan your card for payment</string>
 <key>NSAppTransportSecurity</key>
 <dict>
     <key>NSAllowsArbitraryLoads</key>
