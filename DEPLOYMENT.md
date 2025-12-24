@@ -87,12 +87,19 @@ For CI/CD to upload builds automatically:
 
 ## Android Signing Configuration
 
-Release builds require signing with a keystore.
+Release builds require signing with a keystore. The project's `android/app/build.gradle` is already configured to support release signing.
 
-### Generate Keystore (First Time)
+### Step 1: Generate Keystore (First Time)
+
+Navigate to the `android/` directory and run:
 
 ```bash
-# Create keystore for release signing
+# Windows (PowerShell)
+cd android
+keytool -genkey -v -keystore upload-keystore.jks -storetype JKS -keyalg RSA -keysize 2048 -validity 10000 -alias upload
+
+# Linux/macOS
+cd android
 keytool -genkey -v \
   -keystore upload-keystore.jks \
   -storetype JKS \
@@ -100,14 +107,27 @@ keytool -genkey -v \
   -keysize 2048 \
   -validity 10000 \
   -alias upload
-
-# Follow prompts to set passwords and certificate info
-# SAVE THE PASSWORDS SECURELY - you cannot recover them!
 ```
 
-### Configure Local Signing
+You will be prompted for:
+- **Keystore password**: Use a strong password (save it securely!)
+- **Key password**: Can be the same as keystore password
+- **Certificate info**: Your name, organization, location
 
-Create `android/key.properties` (NOT committed to git):
+> ⚠️ **IMPORTANT**: Save your passwords securely - you cannot recover them! If lost, you cannot update your app on the Play Store.
+
+### Step 2: Configure Local Signing
+
+Copy the example file and fill in your credentials:
+
+```bash
+# Copy template
+cp android/key.properties.example android/key.properties
+
+# Edit with your values
+```
+
+Your `android/key.properties` should look like:
 
 ```properties
 storePassword=your_keystore_password
@@ -116,48 +136,38 @@ keyAlias=upload
 storeFile=../upload-keystore.jks
 ```
 
-Update `android/app/build.gradle`:
+> **Note**: The `storeFile` path is relative to `android/app/`. Use `../upload-keystore.jks` if your keystore is in the `android/` directory.
 
-```groovy
-// Add at the top, after plugins
-def keystorePropertiesFile = rootProject.file("key.properties")
-def keystoreProperties = new Properties()
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
-android {
-    // ...existing config...
-    
-    signingConfigs {
-        release {
-            if (keystorePropertiesFile.exists()) {
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-            }
-        }
-    }
-    
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-            // ...existing config...
-        }
-    }
-}
-```
-
-### Encode Keystore for CI
+### Step 3: Verify Local Build
 
 ```bash
-# Encode keystore as base64 for GitHub Secrets
-base64 -i upload-keystore.jks | tr -d '\n' > keystore-base64.txt
+# Build release APK
+flutter build apk --release
 
-# Copy the content of keystore-base64.txt to GitHub Secrets
-cat keystore-base64.txt
+# The APK should be signed with your release key
 ```
+
+### Step 4: Encode Keystore for CI/CD
+
+Use the provided helper script to encode your keystore for GitHub Secrets:
+
+**Windows (PowerShell):**
+```powershell
+.\scripts\encode-keystore.ps1 -KeystorePath "android\upload-keystore.jks"
+```
+
+**Linux/macOS:**
+```bash
+./scripts/encode-keystore.sh android/upload-keystore.jks
+```
+
+The script will:
+1. Encode your keystore to Base64
+2. Copy it to your clipboard (if available)
+3. Save it to `keystore-base64.txt` as backup
+4. Display instructions for adding to GitHub Secrets
+
+> ⚠️ **Delete `keystore-base64.txt` after copying to GitHub!** Do NOT commit this file.
 
 ---
 
