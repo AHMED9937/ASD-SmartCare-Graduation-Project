@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: ASD SmartCare API (Auth & Booking subset)
+  version: 0.1.0-mlh
+servers:
+  - url: https://api.smartcare.example.com
+paths:
+  /auth/login:
+    post:
+      summary: Login with credentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required: [email, password]
+      responses:
+        '200':
+          description: Auth session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthSession'
+        '401':
+          description: Invalid credentials
+  /doctors/{doctorId}/booking:
+    post:
+      summary: Book a doctor slot
+      parameters:
+        - name: doctorId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'
+      responses:
+        '200':
+          description: Booking confirmed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingResponse'
+        '400':
+          description: Validation or slot unavailable
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server error
+components:
+  schemas:
+    AuthSession:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+          nullable: true
+        expiresAt:
+          type: string
+          format: date-time
+          nullable: true
+      required: [accessToken]
+    BookingRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+        slotId:
+          type: string
+        notes:
+          type: string
+          nullable: true
+      required: [userId, slotId]
+    BookingResponse:
+      type: object
+      properties:
+        bookingId:
+          type: string
+        status:
+          type: string
+          enum: [confirmed, pending]
+        startsAt:
+          type: string
+          format: date-time
+        doctorId:
+          type: string
+      required: [bookingId, status, startsAt, doctorId]

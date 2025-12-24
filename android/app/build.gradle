@@ -5,6 +5,18 @@ plugins {
     id "dev.flutter.flutter-gradle-plugin"
 }
 
+// =============================================================================
+// Release Signing Configuration
+// =============================================================================
+// Load keystore properties for release signing from key.properties file
+// This file should NOT be committed to version control (already in .gitignore)
+// For CI/CD, the workflow creates this file from GitHub Secrets
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace = "com.example.asdsmartcare"
     compileSdk = flutter.compileSdkVersion
@@ -30,11 +42,34 @@ android {
         versionName = flutter.versionName
     }
 
+    // =========================================================================
+    // Signing Configurations
+    // =========================================================================
+    signingConfigs {
+        release {
+            // Only configure if key.properties exists
+            // This allows debug builds to work without keystore setup
+            if (keystorePropertiesFile.exists()) {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            // Use release signing config if key.properties exists, otherwise fallback to debug
+            // This ensures the project builds even without release keystore configured
+            signingConfig = keystorePropertiesFile.exists() 
+                ? signingConfigs.release 
+                : signingConfigs.debug
+            
+            // Enable code shrinking and resource optimization for smaller APK
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
