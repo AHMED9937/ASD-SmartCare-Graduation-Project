@@ -19,8 +19,8 @@ class CacheHelper {
     required dynamic value,
   }) async {
     if (value is String) return _preferences?.setString(key, value);
-    if (value is bool)   return _preferences?.setBool(key, value);
-    if (value is int)    return _preferences?.setInt(key, value);
+    if (value is bool) return _preferences?.setBool(key, value);
+    if (value is int) return _preferences?.setInt(key, value);
     if (value is double) return _preferences?.setDouble(key, value);
     return null;
   }
@@ -35,7 +35,3 @@ class CacheHelper {
     return _preferences?.clear();
   }
 }
-
-
-
-

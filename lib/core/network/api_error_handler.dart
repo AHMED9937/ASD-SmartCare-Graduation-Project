@@ -3,8 +3,6 @@ import 'package:dio/dio.dart';
 import 'api_constants.dart';
 import 'api_error_model.dart';
 
-
-
 // TODO: wallahy I will refactor this .. Omar Ahmed
 enum DataSource {
   NO_CONTENT,
@@ -165,8 +163,6 @@ ApiErrorModel _handleError(DioException error) {
       return DataSource.DEFAULT.getFailure();
     case DioExceptionType.badCertificate:
       return DataSource.DEFAULT.getFailure();
-    case DioExceptionType.badResponse:
-      return DataSource.DEFAULT.getFailure();
   }
 }
 
@@ -174,6 +170,3 @@ class ApiInternalStatus {
   static const int SUCCESS = 0;
   static const int FAILURE = 1;
 }
-
-
-

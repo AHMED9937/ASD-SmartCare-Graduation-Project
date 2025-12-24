@@ -1,33 +1,39 @@
 // lib/main.dart
 
-import 'package:asdsmartcare/core/cache/cache_helper.dart';
-import 'package:asdsmartcare/core/widgets/bloc_observer.dart';
-import 'package:asdsmartcare/core/network/dio_helper.dart';
-import 'package:asdsmartcare/features/app_start/views/parent_navigation_screen.dart';
-import 'package:asdsmartcare/features/app_start/views/doctor_navigation_screen.dart';
-import 'package:asdsmartcare/features/auth/views/doctor_sign_up_screen.dart';
-import 'package:asdsmartcare/features/auth/views/loginscreen.dart';
-import 'package:asdsmartcare/features/auth/views/onboarding_navigation_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'features/app_start/controllers/asd_cubit.dart';
+
+import 'package:asdsmartcare/app/router/app_router.dart';
+import 'package:asdsmartcare/core/cache/cache_helper.dart';
+import 'package:asdsmartcare/core/design_system/theme.dart';
+import 'package:asdsmartcare/core/ui/backgrounds/mesh_gradient_background.dart';
+import 'package:asdsmartcare/core/network/dio_helper.dart';
+import 'package:asdsmartcare/core/network/api_constants.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:asdsmartcare/core/state/app_cubit.dart';
+import 'package:asdsmartcare/core/state/bloc_observer.dart';
+import 'package:asdsmartcare/doctor/navigation/doctor_navigation_screen.dart';
+import 'package:asdsmartcare/parent/navigation/parent_navigation_screen.dart';
+import 'package:asdsmartcare/parent/progress/controllers/child_progress_cubit.dart';
+import 'package:asdsmartcare/shared/auth/login/views/login_screen.dart';
+import 'package:asdsmartcare/shared/auth/onboarding/views/onboarding_screen.dart';
 
 void main() async {
-  
-
-
-  
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Stripe
+  Stripe.publishableKey = ApiConstants.stripePublishableKey;
+  await Stripe.instance.applySettings();
+
   await CacheHelper.init();
   Bloc.observer = MyBlocObserver();
   Diohelper.init();
-  
 
   // Read persisted values
-  final bool? onBoarding  = CacheHelper.getData(key: "loginSingUp");
-  final String? token     = CacheHelper.getData(key: "token");
-  final bool? rememberMe  = CacheHelper.getData(key: "rememberMe");
-  final String? role      = CacheHelper.getData(key: "role");
+  final bool? onBoarding = CacheHelper.getData(key: 'loginSingUp');
+  final String? token = CacheHelper.getData(key: 'token');
+  final bool? rememberMe = CacheHelper.getData(key: 'rememberMe');
+  final String? role = CacheHelper.getData(key: 'role');
 
   runApp(MyApp(
     onBoarding: onBoarding,
@@ -37,6 +43,12 @@ void main() async {
   ));
 }
 
+/// Root application widget.
+///
+/// Configures:
+/// - Theme from design system tokens [AppTheme.light]
+/// - Router via [AppRouter.onGenerateRoute]
+/// - Global BLoC providers
 class MyApp extends StatelessWidget {
   final bool? onBoarding;
   final String? token;
@@ -44,115 +56,72 @@ class MyApp extends StatelessWidget {
   final String? role;
 
   const MyApp({
-    Key? key,
+    super.key,
     this.onBoarding,
     this.token,
     this.rememberMe,
     this.role,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    // Decide start screen
-    Widget startScreen;
-    if (onBoarding != true) {
-      startScreen = OnboardingNavigationScreens();
-    } else if (token != null && rememberMe == true) {
-      if (role == 'doctor') {
-        startScreen = Doctornavgationscreen();
-      } else {
-        startScreen = ParentBottomNavgationScreen();
-      }
-    } else {
-      startScreen = Loginscreen();
-    }
+    // Determine initial route based on cached state
+    final String initialRoute = _determineInitialRoute();
 
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => AsdCubit()),
+        BlocProvider(create: (_) => ChildProgressCubit()),
       ],
       child: MaterialApp(
         title: 'ASD Smart Care',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.light().copyWith(
-          // Keep your accent as blue
-          primaryColor: const Color(0xFF133E87),
-          colorScheme: ThemeData.light().colorScheme.copyWith(
-            primary: const Color(0xFF133E87),
-            secondary: const Color(0xFF133E87),
-            background: Colors.white,
-            surface: Colors.white,
-          ),
 
-          // Surfaces and backgrounds
-          scaffoldBackgroundColor: Colors.white,
-          canvasColor: Colors.white,
-          cardColor: Colors.white,
-          dialogBackgroundColor: Colors.white,
+        // Use centralized theme from design system
+        theme: AppTheme.light,
 
-          // AppBar
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            iconTheme: IconThemeData(color: Colors.black),
-            titleTextStyle: TextStyle(
-              color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold
-            ),
-            elevation: 0,
-          ),
+        // Use centralized routing
+        onGenerateRoute: AppRouter.onGenerateRoute,
+        initialRoute: initialRoute,
 
-          // Bottom Navigation
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Colors.white,
-            elevation: 8,
-            selectedItemColor: Color(0xFF133E87),
-            unselectedItemColor: Colors.grey,
-            selectedIconTheme: IconThemeData(size: 28),
-            unselectedIconTheme: IconThemeData(size: 24),
-            showUnselectedLabels: true,
-          ),
+        // Fallback home (used when initialRoute is not set)
+        home: _buildInitialScreen(),
 
-          // ElevatedButtons
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF133E87),
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-          ),
-
-          // FloatingActionButtons
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: Color(0xFF133E87),
-            foregroundColor: Colors.white,
-            elevation: 0,
-          ),
-
-          // Progress indicators
-          progressIndicatorTheme: const ProgressIndicatorThemeData(
-            color: Color(0xFF133E87),
-          ),
-
-          // Text defaults
-          textTheme: Typography.blackMountainView,
-
-          // Inputs
-          inputDecorationTheme: InputDecorationTheme(
-            filled: true,
-            fillColor: Colors.white,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide.none,
-            ),
-          ),
-        ),
-        home: OnboardingNavigationScreens(),
+        // Apply global background
+        builder: (context, child) {
+          return MeshGradientBackground(child: child);
+        },
       ),
     );
   }
+
+  /// Determine the initial route based on cached user state.
+  String _determineInitialRoute() {
+    if (onBoarding != true) {
+      return AppRoutes.onboarding;
+    } else if (token != null && rememberMe == true) {
+      if (role == 'doctor') {
+        return AppRoutes.doctorHome;
+      } else {
+        return AppRoutes.parentHome;
+      }
+    } else {
+      return AppRoutes.login;
+    }
+  }
+
+  /// Build the initial screen widget (fallback for home property).
+  Widget _buildInitialScreen() {
+    if (onBoarding != true) {
+      return const OnboardingNavigationScreens();
+    } else if (token != null && rememberMe == true) {
+      if (role == 'doctor') {
+        return const Doctornavgationscreen();
+      } else {
+        return const ParentBottomNavgationScreen();
+      }
+    } else {
+      return const LoginScreen();
+    }
+  }
 }
-
-
-
-
