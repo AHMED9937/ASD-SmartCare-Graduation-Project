@@ -1,0 +1,17 @@
+# Android Keystore Configuration
+# Copy this file to key.properties and fill in your values
+# NEVER commit key.properties to version control!
+
+# Keystore password
+storePassword=your_keystore_password_here
+
+# Key password (often same as keystore password)
+keyPassword=your_key_password_here
+
+# Alias of the key in the keystore
+keyAlias=upload
+
+# Path to keystore file (relative to android/app/)
+# For CI: upload-keystore.jks (placed by workflow)
+# For local: ../signing/upload-keystore.jks
+storeFile=upload-keystore.jks

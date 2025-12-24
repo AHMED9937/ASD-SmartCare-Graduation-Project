@@ -1,0 +1,189 @@
+# ==============================================================================
+# Flutter PR Validation Workflow
+# ==============================================================================
+# Lightweight, fast checks specifically for Pull Requests
+# Provides quick feedback to contributors without running full CI pipeline
+# 
+# This workflow complements the main flutter-ci-cd.yml by focusing on:
+# - Speed: Only essential checks, no builds
+# - Developer experience: Fast feedback loop
+# - Cost efficiency: Minimal runner time
+# ==============================================================================
+
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main, develop]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+# Cancel in-progress runs when a new commit is pushed
+concurrency:
+  group: pr-validation-${{ github.head_ref }}
+  cancel-in-progress: true
+
+env:
+  FLUTTER_VERSION: '3.32.2'
+
+jobs:
+  # ===========================================================================
+  # Quick Validation (runs in ~2 minutes)
+  # ===========================================================================
+  validate:
+    name: Quick Validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    # Skip if PR is a draft
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better diff analysis
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
+          cache: true
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      # -------------------------------------------------------------------------
+      # Formatting Check
+      # -------------------------------------------------------------------------
+      - name: Check formatting
+        id: format
+        run: |
+          if ! dart format --set-exit-if-changed . 2>&1 | tee format_output.txt; then
+            echo "::error::Code formatting issues found. Run 'dart format .' locally to fix."
+            cat format_output.txt
+            exit 1
+          fi
+
+      # -------------------------------------------------------------------------
+      # Static Analysis
+      # -------------------------------------------------------------------------
+      - name: Analyze code
+        id: analyze
+        run: |
+          if ! flutter analyze --no-fatal-infos 2>&1 | tee analyze_output.txt; then
+            echo "::error::Static analysis found issues. See output above."
+            exit 1
+          fi
+
+      # -------------------------------------------------------------------------
+      # Quick Test Run (fail fast)
+      # -------------------------------------------------------------------------
+      - name: Run tests (fail fast)
+        run: flutter test --reporter=compact
+
+  # ===========================================================================
+  # PR Size Check
+  # ===========================================================================
+  pr-size:
+    name: PR Size Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR size
+        run: |
+          # Get the number of changed lines
+          ADDITIONS=$(git diff --numstat origin/${{ github.base_ref }}...HEAD | awk '{ add += $1 } END { print add }')
+          DELETIONS=$(git diff --numstat origin/${{ github.base_ref }}...HEAD | awk '{ del += $2 } END { print del }')
+          TOTAL=$((ADDITIONS + DELETIONS))
+          
+          echo "📊 PR Statistics:"
+          echo "  Additions: +$ADDITIONS"
+          echo "  Deletions: -$DELETIONS"
+          echo "  Total: $TOTAL lines changed"
+          
+          # Warn if PR is too large
+          if [ "$TOTAL" -gt 1000 ]; then
+            echo "::warning::This PR has $TOTAL lines changed. Consider breaking it into smaller PRs for easier review."
+          fi
+          
+          # Fail if PR is extremely large (optional - comment out if not desired)
+          # if [ "$TOTAL" -gt 2000 ]; then
+          #   echo "::error::This PR is too large ($TOTAL lines). Please break it into smaller PRs."
+          #   exit 1
+          # fi
+
+  # ===========================================================================
+  # Commit Message Check
+  # ===========================================================================
+  commit-check:
+    name: Commit Messages
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check commit messages
+        run: |
+          echo "📝 Checking commit messages..."
+          
+          # Get commits in this PR
+          COMMITS=$(git log --oneline origin/${{ github.base_ref }}..HEAD)
+          
+          echo "Commits in this PR:"
+          echo "$COMMITS"
+          
+          # Check for conventional commit format (optional warning)
+          # Conventional: type(scope): description
+          # Types: feat, fix, docs, style, refactor, test, chore
+          
+          while IFS= read -r line; do
+            # Skip empty lines
+            [ -z "$line" ] && continue
+            
+            # Extract commit message (remove hash)
+            MSG=$(echo "$line" | cut -d' ' -f2-)
+            
+            # Check if message is too short
+            if [ ${#MSG} -lt 10 ]; then
+              echo "::warning::Commit message too short: '$MSG'"
+            fi
+            
+            # Check for conventional commit format (informational only)
+            if ! echo "$MSG" | grep -qE "^(feat|fix|docs|style|refactor|test|chore|build|ci)(\(.+\))?: .+"; then
+              echo "::notice::Not conventional commit format: '$MSG'"
+            fi
+          done <<< "$COMMITS"
+          
+          echo "✅ Commit check complete"
+
+  # ===========================================================================
+  # Summary
+  # ===========================================================================
+  pr-ready:
+    name: PR Ready
+    runs-on: ubuntu-latest
+    needs: [validate, pr-size, commit-check]
+    if: always()
+
+    steps:
+      - name: Check all jobs
+        run: |
+          if [[ "${{ needs.validate.result }}" == "failure" ]]; then
+            echo "❌ Validation failed - please fix formatting, analysis, or test issues"
+            exit 1
+          fi
+          
+          echo "✅ All PR checks passed!"
+          echo ""
+          echo "Your PR is ready for review. The full CI pipeline will run after merge."

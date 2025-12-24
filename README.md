@@ -1,8 +1,14 @@
 # ASD SmartCare
 
-[![CI](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml/badge.svg)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml)
-[![Flutter](https://img.shields.io/badge/Flutter-3.32.x-blue.svg)](https://flutter.dev)
+<!-- Badges -->
+[![CI/CD](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml/badge.svg)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml)
+[![codecov](https://codecov.io/gh/AHMED9937/ASD-SmartCare-Graduation-Project/branch/main/graph/badge.svg)](https://codecov.io/gh/AHMED9937/ASD-SmartCare-Graduation-Project)
+[![Tests](https://img.shields.io/badge/tests-69%2B%20passing-brightgreen)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions)
+[![Flutter](https://img.shields.io/badge/Flutter-3.32.x-02569B?logo=flutter)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.5.x-0175C2?logo=dart)](https://dart.dev)
+[![GitHub release](https://img.shields.io/github/v/release/AHMED9937/ASD-SmartCare-Graduation-Project?include_prereleases&label=latest%20build)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Maintained](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/graphs/commit-activity)
 
 A cross-platform Flutter mobile application designed to support autism assessment and care management for children with Autism Spectrum Disorders (ASD).
 
@@ -231,27 +237,232 @@ flutter run \
 
 ## Docker
 
-A Docker environment is provided for consistent builds across machines.
+A Docker environment is provided for consistent, reproducible builds across all machines. This is ideal for CI/CD pipelines and ensuring team consistency.
 
-### Build the Docker Image
+### Prerequisites
+
+| Requirement | Minimum Version | Notes |
+|-------------|-----------------|-------|
+| Docker Desktop | 4.0+ | [Download](https://www.docker.com/products/docker-desktop/) |
+| Docker Engine | 20.10+ | (Included with Docker Desktop) |
+| Docker Compose | 2.0+ | (Included with Docker Desktop) |
+| Disk Space | 10GB+ | For Flutter SDK and Android SDK |
+
+> [!TIP]
+> On Windows, ensure Docker Desktop is set to use Linux containers (default setting).
+
+---
+
+### Option 1: Using Docker Compose (Recommended)
+
+Docker Compose provides predefined configurations for common tasks.
+
+#### Build the Docker Image
 
 ```bash
+docker compose build
+```
+
+#### Run All Tests
+
+```bash
+docker compose up test
+```
+
+#### Run Static Analysis
+
+```bash
+docker compose up analyze
+```
+
+#### Build Release APK
+
+```bash
+docker compose up build
+
+# APK location: ./build/app/outputs/flutter-apk/app-release.apk
+```
+
+#### Build App Bundle (for Play Store)
+
+```bash
+docker compose up build-aab
+
+# AAB location: ./build/app/outputs/bundle/release/app-release.aab
+```
+
+#### Interactive Development Shell
+
+```bash
+docker compose run --rm flutter bash
+```
+
+#### Run Custom Flutter Command
+
+```bash
+docker compose run --rm flutter flutter doctor -v
+docker compose run --rm flutter flutter test test/parent/home/home_cubit_test.dart
+```
+
+---
+
+### Option 2: Using Docker CLI
+
+For more control, use Docker commands directly.
+
+#### Build the Docker Image
+
+```bash
+# Standard build
 docker build -t asd-smartcare-build .
+
+# Build with verbose output (for debugging)
+docker build -t asd-smartcare-build --progress=plain .
+
+# Build with no cache (fresh build)
+docker build -t asd-smartcare-build --no-cache .
 ```
 
-### Run Tests in Docker
+#### Run Tests
 
 ```bash
-docker run --rm asd-smartcare-build flutter test
+# Run all tests (default command)
+docker run --rm asd-smartcare-build
+
+# Run tests with coverage
+docker run --rm asd-smartcare-build flutter test --coverage
+
+# Run specific test file
+docker run --rm asd-smartcare-build flutter test test/parent/home/home_cubit_test.dart
 ```
 
-### Build APK in Docker
+#### Run Static Analysis
+
+```bash
+docker run --rm asd-smartcare-build flutter analyze
+```
+
+#### Build Release APK
+
+<details>
+<summary><strong>Linux / macOS</strong></summary>
 
 ```bash
 docker run --rm -v $(pwd)/build:/app/build asd-smartcare-build flutter build apk --release
 ```
+</details>
 
-> 📖 See [Dockerfile](Dockerfile) for the complete container configuration.
+<details>
+<summary><strong>Windows PowerShell</strong></summary>
+
+```powershell
+docker run --rm -v ${PWD}/build:/app/build asd-smartcare-build flutter build apk --release
+```
+</details>
+
+<details>
+<summary><strong>Windows Command Prompt</strong></summary>
+
+```cmd
+docker run --rm -v %cd%/build:/app/build asd-smartcare-build flutter build apk --release
+```
+</details>
+
+**APK Output Location:** `./build/app/outputs/flutter-apk/app-release.apk`
+
+#### Build App Bundle (for Google Play)
+
+```bash
+# Linux/macOS
+docker run --rm -v $(pwd)/build:/app/build asd-smartcare-build flutter build appbundle --release
+
+# Windows PowerShell
+docker run --rm -v ${PWD}/build:/app/build asd-smartcare-build flutter build appbundle --release
+```
+
+**AAB Output Location:** `./build/app/outputs/bundle/release/app-release.aab`
+
+#### Interactive Shell (for debugging)
+
+```bash
+docker run --rm -it asd-smartcare-build bash
+
+# Inside container, you can run any Flutter command:
+flutter doctor -v
+flutter test
+flutter build apk --release
+```
+
+---
+
+### Extracting Build Artifacts
+
+After building inside Docker, artifacts are automatically available on your host machine via volume mounting.
+
+| Artifact | Path on Host Machine |
+|----------|---------------------|
+| Release APK | `./build/app/outputs/flutter-apk/app-release.apk` |
+| Debug APK | `./build/app/outputs/flutter-apk/app-debug.apk` |
+| App Bundle (AAB) | `./build/app/outputs/bundle/release/app-release.aab` |
+| Coverage Report | `./coverage/lcov.info` |
+
+**Manual Copy from Running Container:**
+
+```bash
+# Copy APK from a named container
+docker cp asd-smartcare-build-apk:/app/build/app/outputs/flutter-apk/app-release.apk ./my-app.apk
+```
+
+---
+
+### Docker Troubleshooting
+
+<details>
+<summary><strong>Build fails with "no space left on device"</strong></summary>
+
+```bash
+# Clean up Docker resources
+docker system prune -a
+docker volume prune
+```
+</details>
+
+<details>
+<summary><strong>Build is very slow</strong></summary>
+
+Ensure Docker has sufficient resources:
+- Memory: 6GB minimum (8GB recommended)
+- CPUs: 4+ cores recommended
+
+On Docker Desktop: Settings → Resources → Adjust sliders
+</details>
+
+<details>
+<summary><strong>Volume mounting issues on Windows</strong></summary>
+
+Ensure the drive is shared with Docker:
+1. Docker Desktop → Settings → Resources → File Sharing
+2. Add the drive containing your project
+3. Restart Docker Desktop
+</details>
+
+<details>
+<summary><strong>Rebuild from scratch</strong></summary>
+
+```bash
+# Using Docker Compose
+docker compose down -v
+docker compose build --no-cache
+
+# Using Docker CLI
+docker rmi asd-smartcare-build
+docker build --no-cache -t asd-smartcare-build .
+```
+</details>
+
+---
+
+> 📖 See [README_DOCKER.md](README_DOCKER.md) for complete Docker documentation including CI/CD integration, troubleshooting, and advanced usage.
 
 ---
 
