@@ -1,183 +1,445 @@
-# ASD SmartCare
+<p align="center">
+  <img src="lib/appassets/images/logo1.png" alt="ASD SmartCare Logo" width="120"/>
+</p>
 
-<!-- Badges -->
-[![CI/CD](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml/badge.svg)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml)
-[![codecov](https://codecov.io/gh/AHMED9937/ASD-SmartCare-Graduation-Project/branch/main/graph/badge.svg)](https://codecov.io/gh/AHMED9937/ASD-SmartCare-Graduation-Project)
-[![Tests](https://img.shields.io/badge/tests-69%2B%20passing-brightgreen)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions)
-[![Flutter](https://img.shields.io/badge/Flutter-3.32.x-02569B?logo=flutter)](https://flutter.dev)
-[![Dart](https://img.shields.io/badge/Dart-3.5.x-0175C2?logo=dart)](https://dart.dev)
-[![GitHub release](https://img.shields.io/github/v/release/AHMED9937/ASD-SmartCare-Graduation-Project?include_prereleases&label=latest%20build)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Maintained](https://img.shields.io/badge/Maintained-yes-green.svg)](https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/graphs/commit-activity)
+<h1 align="center">ASD SmartCare</h1>
 
-A cross-platform Flutter mobile application designed to support autism assessment and care management for children with Autism Spectrum Disorders (ASD).
+<p align="center">
+  <strong>AI-Powered Support for Families Affected by Autism Spectrum Disorder</strong>
+</p>
 
----
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.5.4+-02569B?logo=flutter" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/Dart-3.5.4+-0175C2?logo=dart" alt="Dart"/>
+  <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-green" alt="Platform"/>
+  <img src="https://img.shields.io/badge/State-BLoC%2FCubit-purple" alt="State Management"/>
+</p>
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Motivation](#motivation)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-- [Running Tests](#running-tests)
-- [Configuration](#configuration)
-- [Docker](#docker)
-- [Deployment](#deployment)
-- [Project Structure](#project-structure)
-- [Demo](#demo)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
-- [License](#license)
+<p align="center">
+  <a href="https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml">
+    <img src="https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/actions/workflows/flutter-ci-cd.yml/badge.svg" alt="CI/CD"/>
+  </a>
+  <a href="https://codecov.io/gh/AHMED9937/ASD-SmartCare-Graduation-Project">
+    <img src="https://codecov.io/gh/AHMED9937/ASD-SmartCare-Graduation-Project/branch/main/graph/badge.svg" alt="codecov"/>
+  </a>
+  <a href="https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project/releases">
+    <img src="https://img.shields.io/github/v/release/AHMED9937/ASD-SmartCare-Graduation-Project?include_prereleases&label=latest%20build" alt="GitHub release"/>
+  </a>
+</p>
 
 ---
 
-## Overview
+## 📋 Table of Contents
 
-**ASD SmartCare** is a comprehensive mobile application that bridges the gap between autism specialists (doctors) and caregivers (parents). It provides AI-powered autism screening, specialist booking, session tracking, and educational resources—all in one platform.
-
-📥 **[Download the APK](https://drive.google.com/file/d/1cRxrZ3s-ED3sZGo-PKvzXYpOMsQg_nf3/view)**
-
-## Motivation
-
-Early detection and continuous care are critical for children with autism. This project was developed to:
-
-1. **Democratize Access**: Provide an accessible screening tool for families who may not have immediate access to specialists
-2. **Streamline Care Coordination**: Connect parents with qualified autism specialists and track progress over time
-3. **Leverage AI**: Use machine learning models for preliminary autism screening through Q&A interactions
-4. **Educate Caregivers**: Provide resources, articles, and guidance for families navigating autism care
-
----
-
-## Features
-
-| Feature | Description |
-|---------|-------------|
-| 🔐 **Two-Role Authentication** | Separate flows for Doctors and Parents with secure login/signup |
-| 🤖 **AI-Powered Screening** | Conversational Q&A system for preliminary autism assessment |
-| 💬 **Autism Chatbot** | NLP-based assistant for autism-related questions |
-| 👨‍⚕️ **Doctor Booking** | Browse specialists, view availability, book appointments |
-| 💳 **Stripe Payments** | Secure payment integration for consultations |
-| 📊 **Progress Tracking** | Specialists log session outcomes; parents track child development |
-| 📚 **Educational Hub** | Articles and resources for autism care |
-| 💊 **Medicine Guide** | Pharmacy suggestions and prescription management |
-| 🎗️ **Charity Section** | Connect with nonprofit autism associations |
+- [Overview](#-overview)
+- [The Problem We Solve](#-the-problem-we-solve)
+- [Features](#-features)
+- [Architecture](#-architecture)
+- [Prerequisites](#-prerequisites)
+- [Getting Started](#-getting-started)
+- [Running Locally](#-running-locally)
+- [Quick Demo](#-quick-demo)
+- [Testing](#-testing)
+- [Project Structure](#-project-structure)
+- [Configuration](#-configuration)
+- [Contributing](#-contributing)
+- [Acknowledgements](#-acknowledgements)
+- [License](#-license)
 
 ---
 
-## Architecture
+## 🌟 Overview
 
-The application follows **Clean Architecture** with a layered design:
+**ASD SmartCare** is a comprehensive mobile application designed to support families navigating the challenges of Autism Spectrum Disorder. The app bridges the gap between parents, healthcare professionals, and educational resources through AI-powered tools and intuitive design.
+
+### Why This Project?
+
+Early intervention is critical for children with ASD. However, many families face barriers:
+- Long wait times for professional diagnosis
+- Limited access to specialized therapists
+- Difficulty tracking developmental progress
+- Lack of reliable information sources
+
+ASD SmartCare addresses these challenges by providing accessible screening tools, professional connections, and ongoing support—all in one platform.
+
+---
+
+## 🎯 The Problem We Solve
+
+| Challenge | Our Solution |
+|-----------|--------------|
+| **Limited Screening Access** | AI-powered questionnaires for preliminary autism assessment |
+| **Finding Specialists** | Directory of specialized doctors with online booking |
+| **Tracking Progress** | Visual progress dashboards for cognitive, social, and daily living skills |
+| **Information Gaps** | Educational articles and AI chatbot for instant answers |
+| **Support Networks** | Connection to autism-related charities and resources |
+
+### Who Benefits?
+
+- **Parents** seeking early screening and developmental tracking
+- **Doctors/Therapists** managing patient appointments and sessions
+- **Children** through age-appropriate interactive features
+
+---
+
+## ✨ Features
+
+### For Parents
+- 🧩 **ASD Screening Tests** - Two-tier assessment: symptom detection + severity level
+- 📊 **Progress Tracking** - Monitor child development with visual charts
+- 🤖 **AI Chatbot** - Get instant answers about autism-related topics
+- 👨‍⚕️ **Find Doctors** - Browse and book appointments with specialists
+- 📚 **Education Hub** - Access curated articles and resources
+- 💊 **Medicine Guide** - Information about common treatments
+- 💝 **Charity Connect** - Discover and support autism organizations
+
+### For Doctors
+- 📅 **Appointment Management** - Set availability and manage bookings
+- 👥 **Patient Dashboard** - View registered children and their progress
+- 📝 **Session Notes** - Document and track therapy sessions
+- ⭐ **Reviews & Ratings** - Build reputation through patient feedback
+- 🏥 **Clinic Profile** - Manage practice information
+
+---
+
+## 🏗 Architecture
+
+The app follows a **layered architecture** with clear separation of concerns:
 
 ```mermaid
 graph TB
-    subgraph Presentation["Presentation Layer"]
-        Screens["Screens/Views"]
-        Cubits["Cubits/BLoC"]
-        Widgets["UI Widgets"]
+    subgraph Presentation["📱 Presentation Layer"]
+        UI[Screens & Widgets]
+        Cubit[Cubits / BLoCs]
     end
-    
-    subgraph Domain["Domain Layer"]
-        UseCases["Business Logic"]
-        Entities["Entities"]
+
+    subgraph Domain["⚙️ Domain Layer"]
+        Models[Data Models]
+        Logic[Business Logic]
     end
-    
-    subgraph Data["Data Layer"]
-        Repos["Repositories"]
-        DataSources["API Clients"]
-        Models["Data Models"]
+
+    subgraph Data["💾 Data Layer"]
+        Repo[Repositories]
+        API[Dio HTTP Client]
+        Cache[SharedPreferences]
     end
-    
-    subgraph Core["Core"]
-        DesignSystem["Design System"]
-        Network["Network (Dio)"]
-        Cache["Cache (SharedPrefs)"]
+
+    subgraph Backend["☁️ Backend"]
+        REST[REST API - Vercel]
+        AI[AI Services]
+        DB[(Database)]
     end
-    
-    Screens --> Cubits
-    Cubits --> Repos
-    Repos --> DataSources
-    DataSources --> Network
-    
-    Widgets --> DesignSystem
-    Screens --> Widgets
+
+    UI --> Cubit
+    Cubit --> Logic
+    Logic --> Models
+    Cubit --> Repo
+    Repo --> API
+    Repo --> Cache
+    API --> REST
+    REST --> AI
+    REST --> DB
 ```
 
-**Key Patterns:**
-- **State Management**: Cubit/BLoC with sealed classes for type-safe states
-- **Repository Pattern**: Abstraction over API calls with error mapping
-- **Design System**: Centralized tokens (colors, typography, spacing)
-- **Routing**: Navigator 1.0 with centralized route table
+### State Management
 
-> 📖 See [docs/architecture.md](docs/architecture.md) for detailed architecture documentation.
+We use **Cubit** (from `flutter_bloc`) with **sealed classes** for type-safe state handling:
+
+```dart
+sealed class ScreeningState {}
+final class ScreeningInitial extends ScreeningState {}
+final class ScreeningLoading extends ScreeningState {}
+final class ScreeningSuccess extends ScreeningState { final Result result; }
+final class ScreeningError extends ScreeningState { final String message; }
+```
+
+### User Flow
+
+```mermaid
+flowchart LR
+    A[🚀 Launch] --> B{First Time?}
+    B -->|Yes| C[Onboarding]
+    B -->|No| D{Logged In?}
+    C --> E[Sign Up]
+    E --> F{Role?}
+    F -->|Parent| G[👨‍👩‍👧 Parent Home]
+    F -->|Doctor| H[👨‍⚕️ Doctor Home]
+    D -->|Yes| I{Role?}
+    D -->|No| J[Login]
+    J --> I
+    I -->|Parent| G
+    I -->|Doctor| H
+    
+    G --> K[Screening]
+    G --> L[Progress]
+    G --> M[Find Doctors]
+    G --> N[Chatbot]
+    
+    H --> O[Appointments]
+    H --> P[Patients]
+    H --> Q[Sessions]
+```
+
+### Data Model (ERD)
+
+```mermaid
+erDiagram
+    USER ||--o{ CHILD : "has"
+    USER ||--o{ APPOINTMENT : "books"
+    DOCTOR ||--o{ APPOINTMENT : "receives"
+    DOCTOR ||--o{ REVIEW : "has"
+    CHILD ||--o{ SCREENING_RESULT : "has"
+    CHILD ||--o{ PROGRESS_ENTRY : "tracks"
+    APPOINTMENT ||--|| PAYMENT : "requires"
+
+    USER {
+        string id PK
+        string email
+        string name
+        enum role "parent|doctor"
+        string avatar
+    }
+
+    DOCTOR {
+        string id PK
+        string userId FK
+        string specialty
+        float rating
+        decimal sessionPrice
+        json availableSlots
+    }
+
+    CHILD {
+        string id PK
+        string parentId FK
+        string name
+        date birthDate
+        enum sex
+    }
+
+    APPOINTMENT {
+        string id PK
+        string doctorId FK
+        string childId FK
+        datetime dateTime
+        enum status
+        string notes
+    }
+
+    SCREENING_RESULT {
+        string id PK
+        string childId FK
+        datetime date
+        string prediction
+        float confidence
+        json answers
+    }
+```
+
+> 📖 See [docs/ARCHITECTURE.md](docs/architecture.md) for detailed architecture documentation.
 
 ---
 
-## Prerequisites
+## 📋 Prerequisites
 
-| Requirement | Version |
-|-------------|---------|
-| Flutter SDK | ≥ 3.32.0 |
-| Dart SDK | ≥ 3.5.0 |
-| Android SDK | API 21+ (Android 5.0+) |
-| Java | JDK 17 |
-| Git | Latest |
+Before you begin, ensure you have the following installed:
 
-**Optional:**
-- Android Studio / VS Code with Flutter extension
-- Xcode (for iOS builds on macOS)
-- Docker (for containerized builds)
+| Requirement | Version | Check Command |
+|-------------|---------|---------------|
+| Flutter SDK | ^3.5.4 | `flutter --version` |
+| Dart SDK | ^3.5.4 | `dart --version` |
+| Android Studio | Latest | Required for Android builds |
+| Xcode | Latest | Required for iOS builds (macOS only) |
+| Git | Latest | `git --version` |
+
+### Additional Requirements
+
+- **Java JDK 17+** (for Android builds)
+- **CocoaPods** (for iOS: `sudo gem install cocoapods`)
+- **Stripe Account** (for payment features)
 
 ---
 
-## Getting Started
+## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/AHMED9937/ASD-SmartCare-Graduation-Project.git
 cd ASD-SmartCare-Graduation-Project
 ```
 
-### 2. Install Dependencies
+### Step 2: Install Dependencies
 
 ```bash
 flutter pub get
 ```
 
-### 3. Configure Environment
+### Step 3: Configure Environment Variables
 
 ```bash
 # Copy the example environment file
 cp .env.example .env
 
-# Edit .env with your API keys (see Configuration section)
+# Edit with your values
+# Required: API_BASE_URL, STRIPE_PUBLISHABLE_KEY
 ```
 
-### 4. Run the Application
+> ⚠️ **Never commit `.env` to version control!**
+
+### Step 4: Run the App
 
 ```bash
-# Run on connected device/emulator
+# For development
 flutter run
 
-# Run with specific Dart defines (if not using .env)
-flutter run --dart-define=API_BASE_URL=https://your-api.com/ \
-            --dart-define=STRIPE_PUBLISHABLE_KEY=pk_test_xxx
+# Or specify a device
+flutter run -d chrome    # Web (limited support)
+flutter run -d android   # Android emulator
+flutter run -d ios       # iOS simulator
 ```
 
 ---
 
-## Running Tests
+## 📱 Running Locally
 
-The project includes **69+ test files** covering unit, widget, and repository tests.
+### Android Emulator
+
+```bash
+# List available devices
+flutter devices
+
+# Run on Android
+flutter run -d android
+
+# Run with hot reload enabled (default)
+flutter run -d android --debug
+```
+
+### iOS Simulator (macOS only)
+
+```bash
+# Install iOS dependencies
+cd ios && pod install && cd ..
+
+# Run on iOS
+flutter run -d ios
+```
+
+### Physical Device
+
+```bash
+# Enable USB debugging on your device, then:
+flutter run
+
+# For release build on device
+flutter run --release
+```
+
+### Environment Switching
+
+```bash
+# Development (default)
+flutter run
+
+# With custom API URL
+flutter run --dart-define=API_BASE_URL=https://your-api.com/
+
+# Production build
+flutter build apk --release \
+  --dart-define=API_BASE_URL=https://production-api.com/ \
+  --dart-define=STRIPE_PUBLISHABLE_KEY=pk_live_xxx
+```
+
+---
+
+## 🎮 Quick Demo
+
+### 1. Parent Registration Flow
+
+After launching the app:
+1. Swipe through the **onboarding screens**
+2. Tap **"Get Started"**
+3. Select **"I'm a Parent"**
+4. Fill in registration details
+5. Verify email with OTP code
+
+### 2. Taking an ASD Screening Test
+
+```
+Home Screen → "Autism Test" Card → Start Test
+
+The test presents 9 structured questions:
+├── Q1: Child's age
+├── Q2: Child's sex
+├── Q3-Q8: Behavioral observations (text responses)
+└── Q9: Additional challenges
+
+→ AI analyzes responses
+→ Returns severity prediction
+```
+
+**Sample API Request:**
+```json
+POST /api/v1/ai/finalPredication_degree
+{
+  "index": 8,
+  "answer": "No additional challenges noted"
+}
+```
+
+**Sample Response:**
+```json
+{
+  "degree_prediction": "Mild ASD Traits",
+  "confidence": 0.85,
+  "recommendations": [
+    "Consider professional evaluation",
+    "Monitor social interactions"
+  ]
+}
+```
+
+### 3. Booking a Doctor Appointment
+
+```
+Home → "Find Doctors" → Select Doctor → View Available Slots → Book
+
+Payment processed via Stripe → Confirmation received
+```
+
+### 4. AI Chatbot Interaction
+
+```
+Home → "Chatbot" → Type question
+
+Example:
+User: "What are early signs of autism?"
+Bot: "Early signs may include limited eye contact, 
+      delayed speech, repetitive behaviors..."
+```
+
+---
+
+## 🧪 Testing
 
 ### Run All Tests
 
 ```bash
 flutter test
+```
+
+### Run Specific Test Directory
+
+```bash
+# Unit tests for parent features
+flutter test test/parent/
+
+# Doctor feature tests  
+flutter test test/doctor/
+
+# Core/shared tests
+flutter test test/core/
 ```
 
 ### Run with Coverage
@@ -186,479 +448,177 @@ flutter test
 # Generate coverage report
 flutter test --coverage
 
-# View coverage summary (requires lcov)
-lcov --summary coverage/lcov.info
-
-# Generate HTML report
+# View HTML report (requires lcov)
 genhtml coverage/lcov.info -o coverage/html
 open coverage/html/index.html
 ```
 
-### Run Specific Test File
+### Test Structure
 
-```bash
-flutter test test/parent/find_doctors/booking/booking_cubit_test.dart
+```
+test/
+├── app/               # Router tests
+├── core/              # Design system, network tests
+├── doctor/            # Doctor feature tests
+├── parent/            # Parent feature tests
+│   ├── screening/     # Screening cubit tests
+│   ├── progress/      # Progress tracking tests
+│   └── ...
+├── shared/            # Auth, common tests
+└── widget_test.dart   # Basic widget test
 ```
 
-### Test Categories
-
-| Category | Location | Count |
-|----------|----------|-------|
-| Unit Tests | `test/**/controllers/` | 45+ |
-| Widget Tests | `test/**/views/` | 20+ |
-| Repository Tests | `test/**/data/` | 10+ |
+> 📖 See [docs/TESTING.md](docs/TESTING.md) for detailed testing guide.
 
 ---
 
-## Configuration
+## 📁 Project Structure
+
+```
+ASD-SmartCare-Graduation-Project/
+├── 📁 lib/
+│   ├── 📁 app/
+│   │   └── router/              # Centralized navigation
+│   ├── 📁 appassets/
+│   │   └── images/              # App images and icons
+│   ├── 📁 core/
+│   │   ├── cache/               # SharedPreferences helpers
+│   │   ├── design_system/       # Theme, colors, typography
+│   │   ├── di/                  # Dependency injection
+│   │   ├── network/             # Dio client, API constants
+│   │   ├── state/               # App-wide cubits
+│   │   ├── ui/                  # Shared UI components
+│   │   └── utils/               # Helper utilities
+│   ├── 📁 doctor/
+│   │   ├── account/             # Doctor profile management
+│   │   ├── appointments/        # Availability & bookings
+│   │   ├── clinic/              # Clinic information
+│   │   ├── home/                # Doctor dashboard
+│   │   ├── my_patients/         # Patient list
+│   │   ├── navigation/          # Bottom navigation
+│   │   └── sessions/            # Therapy sessions
+│   ├── 📁 parent/
+│   │   ├── account/             # Parent profile
+│   │   ├── chatbot/             # AI chat interface
+│   │   ├── education/           # Articles & resources
+│   │   ├── find_doctors/        # Doctor discovery
+│   │   ├── home/                # Parent dashboard
+│   │   ├── my_children/         # Children management
+│   │   ├── navigation/          # Bottom navigation
+│   │   ├── progress/            # Development tracking
+│   │   └── screening/           # ASD tests
+│   ├── 📁 shared/
+│   │   ├── auth/                # Login, signup, onboarding
+│   │   ├── donations/           # Charity features
+│   │   ├── medicines/           # Medicine information
+│   │   └── widgets/             # Shared widgets
+│   └── main.dart                # App entry point
+├── 📁 test/                     # Test files (mirrors lib/)
+├── 📁 docs/                     # Documentation
+├── 📁 android/                  # Android platform code
+├── 📁 ios/                      # iOS platform code
+├── pubspec.yaml                 # Dependencies
+├── .env.example                 # Environment template
+└── README.md                    # This file
+```
+
+---
+
+## ⚙️ Configuration
 
 ### Environment Variables
 
-Create a `.env` file in the project root (see `.env.example`):
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `API_BASE_URL` | Yes | Backend API base URL |
+| `STRIPE_PUBLISHABLE_KEY` | Yes | Stripe public key (pk_xxx) |
+| `STRIPE_SECRET_KEY` | No | Server-side only |
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `API_BASE_URL` | Backend API base URL | Yes |
-| `STRIPE_PUBLISHABLE_KEY` | Stripe public key | Yes |
-| `STRIPE_SECRET_KEY` | Stripe secret key | Yes |
+### Configuration Methods
 
-### Dart Defines (Alternative)
+**Option 1: `.env` file (Development)**
+```bash
+cp .env.example .env
+# Edit .env with your values
+```
 
-Pass configuration at build time:
-
+**Option 2: `--dart-define` (CI/CD)**
 ```bash
 flutter run \
   --dart-define=API_BASE_URL=https://api.example.com/ \
-  --dart-define=STRIPE_PUBLISHABLE_KEY=pk_test_xxx \
-  --dart-define=STRIPE_SECRET_KEY=sk_test_xxx
+  --dart-define=STRIPE_PUBLISHABLE_KEY=pk_test_xxx
 ```
+
+**Option 3: GitHub Actions Secrets**
+
+Configure in repository settings → Secrets:
+- `API_BASE_URL`
+- `STRIPE_PUBLISHABLE_KEY`
+- `KEYSTORE_BASE64` (for signed APK builds)
+
+> 📖 See [docs/GITHUB_SECRETS.md](docs/GITHUB_SECRETS.md) for CI/CD configuration.
 
 ---
 
-## Docker
+## 🤝 Contributing
 
-A Docker environment is provided for consistent, reproducible builds across all machines. This is ideal for CI/CD pipelines and ensuring team consistency.
+We welcome contributions! Please follow these steps:
 
-### Prerequisites
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'feat: add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
+5. **Open** a Pull Request
 
-| Requirement | Minimum Version | Notes |
-|-------------|-----------------|-------|
-| Docker Desktop | 4.0+ | [Download](https://www.docker.com/products/docker-desktop/) |
-| Docker Engine | 20.10+ | (Included with Docker Desktop) |
-| Docker Compose | 2.0+ | (Included with Docker Desktop) |
-| Disk Space | 10GB+ | For Flutter SDK and Android SDK |
+### Code Quality Requirements
 
-> [!TIP]
-> On Windows, ensure Docker Desktop is set to use Linux containers (default setting).
-
----
-
-### Option 1: Using Docker Compose (Recommended)
-
-Docker Compose provides predefined configurations for common tasks.
-
-#### Build the Docker Image
-
+Before submitting:
 ```bash
-docker compose build
-```
+# Run analysis
+flutter analyze
 
-#### Run All Tests
+# Format code
+dart format .
 
-```bash
-docker compose up test
-```
-
-#### Run Static Analysis
-
-```bash
-docker compose up analyze
-```
-
-#### Build Release APK
-
-```bash
-docker compose up build
-
-# APK location: ./build/app/outputs/flutter-apk/app-release.apk
-```
-
-#### Build App Bundle (for Play Store)
-
-```bash
-docker compose up build-aab
-
-# AAB location: ./build/app/outputs/bundle/release/app-release.aab
-```
-
-#### Interactive Development Shell
-
-```bash
-docker compose run --rm flutter bash
-```
-
-#### Run Custom Flutter Command
-
-```bash
-docker compose run --rm flutter flutter doctor -v
-docker compose run --rm flutter flutter test test/parent/home/home_cubit_test.dart
-```
-
----
-
-### Option 2: Using Docker CLI
-
-For more control, use Docker commands directly.
-
-#### Build the Docker Image
-
-```bash
-# Standard build
-docker build -t asd-smartcare-build .
-
-# Build with verbose output (for debugging)
-docker build -t asd-smartcare-build --progress=plain .
-
-# Build with no cache (fresh build)
-docker build -t asd-smartcare-build --no-cache .
-```
-
-#### Run Tests
-
-```bash
-# Run all tests (default command)
-docker run --rm asd-smartcare-build
-
-# Run tests with coverage
-docker run --rm asd-smartcare-build flutter test --coverage
-
-# Run specific test file
-docker run --rm asd-smartcare-build flutter test test/parent/home/home_cubit_test.dart
-```
-
-#### Run Static Analysis
-
-```bash
-docker run --rm asd-smartcare-build flutter analyze
-```
-
-#### Build Release APK
-
-<details>
-<summary><strong>Linux / macOS</strong></summary>
-
-```bash
-docker run --rm -v $(pwd)/build:/app/build asd-smartcare-build flutter build apk --release
-```
-</details>
-
-<details>
-<summary><strong>Windows PowerShell</strong></summary>
-
-```powershell
-docker run --rm -v ${PWD}/build:/app/build asd-smartcare-build flutter build apk --release
-```
-</details>
-
-<details>
-<summary><strong>Windows Command Prompt</strong></summary>
-
-```cmd
-docker run --rm -v %cd%/build:/app/build asd-smartcare-build flutter build apk --release
-```
-</details>
-
-**APK Output Location:** `./build/app/outputs/flutter-apk/app-release.apk`
-
-#### Build App Bundle (for Google Play)
-
-```bash
-# Linux/macOS
-docker run --rm -v $(pwd)/build:/app/build asd-smartcare-build flutter build appbundle --release
-
-# Windows PowerShell
-docker run --rm -v ${PWD}/build:/app/build asd-smartcare-build flutter build appbundle --release
-```
-
-**AAB Output Location:** `./build/app/outputs/bundle/release/app-release.aab`
-
-#### Interactive Shell (for debugging)
-
-```bash
-docker run --rm -it asd-smartcare-build bash
-
-# Inside container, you can run any Flutter command:
-flutter doctor -v
+# Run tests
 flutter test
-flutter build apk --release
 ```
+
+> 📖 See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for detailed guidelines.  
+> 📖 See [CODE_QUALITY.md](CODE_QUALITY.md) for coding standards.
 
 ---
 
-### Extracting Build Artifacts
+## 🙏 Acknowledgements
 
-After building inside Docker, artifacts are automatically available on your host machine via volume mounting.
+### Open Source Libraries
 
-| Artifact | Path on Host Machine |
-|----------|---------------------|
-| Release APK | `./build/app/outputs/flutter-apk/app-release.apk` |
-| Debug APK | `./build/app/outputs/flutter-apk/app-debug.apk` |
-| App Bundle (AAB) | `./build/app/outputs/bundle/release/app-release.aab` |
-| Coverage Report | `./coverage/lcov.info` |
-
-**Manual Copy from Running Container:**
-
-```bash
-# Copy APK from a named container
-docker cp asd-smartcare-build-apk:/app/build/app/outputs/flutter-apk/app-release.apk ./my-app.apk
-```
-
----
-
-### Docker Troubleshooting
-
-<details>
-<summary><strong>Build fails with "no space left on device"</strong></summary>
-
-```bash
-# Clean up Docker resources
-docker system prune -a
-docker volume prune
-```
-</details>
-
-<details>
-<summary><strong>Build is very slow</strong></summary>
-
-Ensure Docker has sufficient resources:
-- Memory: 6GB minimum (8GB recommended)
-- CPUs: 4+ cores recommended
-
-On Docker Desktop: Settings → Resources → Adjust sliders
-</details>
-
-<details>
-<summary><strong>Volume mounting issues on Windows</strong></summary>
-
-Ensure the drive is shared with Docker:
-1. Docker Desktop → Settings → Resources → File Sharing
-2. Add the drive containing your project
-3. Restart Docker Desktop
-</details>
-
-<details>
-<summary><strong>Rebuild from scratch</strong></summary>
-
-```bash
-# Using Docker Compose
-docker compose down -v
-docker compose build --no-cache
-
-# Using Docker CLI
-docker rmi asd-smartcare-build
-docker build --no-cache -t asd-smartcare-build .
-```
-</details>
-
----
-
-> 📖 See [README_DOCKER.md](README_DOCKER.md) for complete Docker documentation including CI/CD integration, troubleshooting, and advanced usage.
-
----
-
-## Deployment
-
-### CI/CD Pipeline
-
-GitHub Actions automatically runs on every push/PR:
-
-1. **Format Check** - Ensures code formatting consistency
-2. **Static Analysis** - Catches potential issues
-3. **Tests** - Runs all unit and widget tests
-4. **Build** - Builds debug APK and web
-5. **Deploy** - Uploads to Firebase App Distribution (main branch only)
-
-### Manual Deployment
-
-```bash
-# Build release APK
-flutter build apk --release
-
-# Build release App Bundle (for Play Store)
-flutter build appbundle --release
-```
-
-> 📖 See [DEPLOYMENT.md](DEPLOYMENT.md) for complete deployment instructions including Firebase setup and signing configuration.
-
----
-
-## Project Structure
-
-```
-lib/
-├── app/
-│   └── router/              # Centralized routing
-├── core/
-│   ├── cache/               # SharedPreferences helper
-│   ├── design_system/       # Tokens (colors, typography, spacing)
-│   ├── network/             # Dio client, API constants
-│   ├── state/               # App-level cubits
-│   ├── ui/                  # Shared UI components
-│   └── utils/               # Utilities
-├── doctor/                  # Doctor-specific features
-│   ├── account/             # Profile management
-│   ├── appointments/        # Appointment management
-│   ├── clinic/              # Availability settings
-│   ├── home/                # Dashboard
-│   ├── my_patients/         # Patient list
-│   ├── navigation/          # Bottom nav
-│   └── sessions/            # Session management
-├── parent/                  # Parent-specific features
-│   ├── account/             # Profile management
-│   ├── chatbot/             # AI chatbot
-│   ├── education/           # Educational articles
-│   ├── find_doctors/        # Doctor search & booking
-│   ├── home/                # Dashboard
-│   ├── my_children/         # Children management
-│   ├── navigation/          # Bottom nav
-│   ├── progress/            # Progress tracking
-│   └── screening/           # Autism screening tests
-├── shared/                  # Shared across roles
-│   ├── auth/                # Login, signup, password reset
-│   ├── donations/           # Charity features
-│   └── medicines/           # Medicine guide
-└── main.dart                # App entry point
-
-test/                        # Mirror structure of lib/
-```
-
----
-
-## Demo
-
-### Sample Workflows
-
-**Parent Flow:**
-1. Login → Home Screen
-2. "AI Test" → Record responses → Submit → View autism screening results
-3. "Doctors" → Browse specialists → Book appointment → Pay via Stripe
-4. "Progress" → View session history and child development
-
-**Doctor Flow:**
-1. Login → Dashboard with stats
-2. "Patients" → View registered children
-3. "Sessions" → Log session outcomes and feedback
-4. "Clinic" → Set availability schedule
-
-### Screenshots
-
-<!-- Add screenshots here when available -->
-*Screenshots coming soon*
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-<details>
-<summary><strong>Flutter SDK not found</strong></summary>
-
-Ensure Flutter is in your PATH:
-```bash
-export PATH="$PATH:/path/to/flutter/bin"
-flutter doctor
-```
-</details>
-
-<details>
-<summary><strong>Android SDK not found</strong></summary>
-
-Set ANDROID_HOME environment variable:
-```bash
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-```
-</details>
-
-<details>
-<summary><strong>Gradle build fails</strong></summary>
-
-Try cleaning and rebuilding:
-```bash
-cd android && ./gradlew clean && cd ..
-flutter clean
-flutter pub get
-flutter run
-```
-</details>
-
-<details>
-<summary><strong>iOS build fails on macOS</strong></summary>
-
-Update CocoaPods and install dependencies:
-```bash
-cd ios
-pod deintegrate
-pod install --repo-update
-cd ..
-flutter run
-```
-</details>
-
-<details>
-<summary><strong>Tests fail with module not found</strong></summary>
-
-Regenerate generated files:
-```bash
-flutter pub get
-dart run build_runner build --delete-conflicting-outputs
-```
-</details>
-
----
-
-## Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for:
-
-- Development workflow
-- Code style guidelines
-- How to run tests before submitting PRs
-- Commit message format (Conventional Commits)
-
----
-
-## Acknowledgements
-
-### Team
-
-- **Ahmed** - Lead Developer
-- Graduation Project Team - Al-Azhar University
-
-### Technologies
-
-- [Flutter](https://flutter.dev) - UI framework
-- [flutter_bloc](https://pub.dev/packages/flutter_bloc) - State management
-- [Dio](https://pub.dev/packages/dio) - HTTP client
-- [Stripe](https://stripe.com) - Payment processing
-- [mocktail](https://pub.dev/packages/mocktail) - Testing mocks
+| Library | Purpose | Docs |
+|---------|---------|------|
+| [flutter_bloc](https://bloclibrary.dev/) | State management | [Documentation](https://bloclibrary.dev/) |
+| [dio](https://pub.dev/packages/dio) | HTTP client | [Documentation](https://pub.dev/packages/dio) |
+| [flutter_stripe](https://pub.dev/packages/flutter_stripe) | Payment processing | [Documentation](https://stripe.com/docs) |
+| [freezed](https://pub.dev/packages/freezed) | Code generation | [Documentation](https://pub.dev/packages/freezed) |
 
 ### Resources
 
 - [Flutter Documentation](https://docs.flutter.dev/)
 - [Effective Dart](https://dart.dev/guides/language/effective-dart)
-- [BLoC Library](https://bloclibrary.dev/)
+- [Autism Speaks - What is Autism?](https://www.autismspeaks.org/what-autism)
+- [CDC Autism Resources](https://www.cdc.gov/ncbddd/autism/)
+
+### Team
+
+Built as a graduation project with ❤️ for the ASD community.
 
 ---
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <p align="center">
-  Made with ❤️ for autism awareness and support
+  <sub>Made with Flutter 💙</sub>
 </p>

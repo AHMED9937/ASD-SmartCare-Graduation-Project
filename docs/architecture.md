@@ -1,167 +1,207 @@
-# Architecture Overview
+# System Architecture
 
-## Scope
+This document provides a technical deep-dive into the ASD SmartCare application architecture, design patterns, and core systems.
 
-MLH code sample refactor for ASD SmartCare Flutter app. This document describes the architectural decisions and patterns used in the codebase.
+---
 
-## Layered Architecture
+## High-Level Overview
 
+ASD SmartCare is built with Flutter using a **Layered Architecture** (Clean Architecture inspired) to ensure scalability, testability, and maintainability.
+
+```mermaid
+graph TD
+    subgraph Presentation
+        UI[Widgets/Screens]
+        Cubit[Cubit/BLoC]
+        State[State Classes]
+    end
+
+    subgraph "Domain (Business Logic)"
+        Models[Data Models]
+        Logic[Business Logic]
+    end
+
+    subgraph Data
+        Repo[Repositories]
+        DataSource[API/Cache Data Sources]
+    end
+
+    UI --> Cubit
+    Cubit --> State
+    Cubit --> Repo
+    Repo --> DataSource
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Presentation Layer                    │
-│         (Screens, Widgets, Cubits/BLoCs)               │
-├─────────────────────────────────────────────────────────┤
-│                    Domain Layer                          │
-│           (Use Cases, Business Logic)                   │
-├─────────────────────────────────────────────────────────┤
-│                    Data Layer                            │
-│    (Repositories, Data Sources, API Clients)           │
-└─────────────────────────────────────────────────────────┘
-```
 
-### Layer Responsibilities
+---
 
-**Presentation Layer (UI → Cubit)**
-- `lib/**/views/` - Screen widgets that render UI
-- `lib/**/controllers/` - Cubit/BLoC classes managing state
-- Uses design tokens from `lib/core/design_system/`
-- Uses shared UI components from `lib/core/ui/`
+## Architectural Layers
 
-**Data Layer (Repository → Datasource)**
-- `lib/**/data/` - Repository implementations
-- `lib/core/network/` - Dio client, interceptors, error handling
-- Sealed result types for type-safe error handling
+### 1. Presentation Layer
+- **Location**: `lib/**/views/` and `lib/**/controllers/`
+- **Responsibilities**: 
+    - Rendering the UI using Flutter widgets.
+    - Handling user interactions.
+    - Managing UI state via Cubits.
+- **Pattern**: BLoC/Cubit for state management. Every feature module has a `controllers/` folder containing its logic.
 
-## State Management
+### 2. Domain/Data Layer
+- **Location**: `lib/**/models/` and `lib/core/network/`
+- **Responsibilities**:
+    - Defining data structures (Models).
+    - Coordinating data flow between the UI and external services (Repositories).
+    - Interfacing with REST APIs and local storage.
 
-We use **Cubit** (from flutter_bloc) with **sealed classes** for type-safe state handling:
+---
+
+## Core Systems
+
+### State Management: Cubit
+We use `flutter_bloc`'s Cubit for its simplicity and reactivity. Each feature state is defined using **Sealed Classes** (available in Dart 3.0+) for type safety.
 
 ```dart
-// Sealed state hierarchy
-sealed class BookingState {}
-final class SlotsLoading extends BookingState {}
-final class SlotsLoaded extends BookingState { ... }
-final class BookingError extends BookingState { ... }
-```
-
-Benefits:
-- Exhaustive switch statements
-- Compile-time safety
-- Clear state transitions
-
-## Navigation
-
-**Navigator 1.0** with centralized route table in `lib/app/router/app_router.dart`:
-
-```dart
-// Route constants
-abstract final class AppRoutes {
-  static const String login = '/login';
-  static const String parentHome = '/parent/home';
-  // ...
-}
-
-// Route generator
-class AppRouter {
-  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    // Maps route names to screen widgets
-  }
+// Example: lib/parent/screening/test/controllers/autism_checker_state.dart
+sealed class AutismCheckerState {}
+final class AutismCheckerInitial extends AutismCheckerState {}
+final class AutismCheckerLoading extends AutismCheckerState {}
+final class AutismCheckerSuccess extends AutismCheckerState {
+  final PredictionModel result;
+  AutismCheckerSuccess(this.result);
 }
 ```
 
-**Route Arguments**: Type-safe argument classes for passing data between routes.
+### Dependency Injection
+- **Service Locator**: [GetIt](https://pub.dev/packages/get_it) is used to register and inject singleton instances of services, repositories, and helpers.
+- **Location**: `lib/core/di/di.dart`
+
+### Networking
+- **Engine**: [Dio](https://pub.dev/packages/dio) with [Retrofit](https://pub.dev/packages/retrofit).
+- **Interceptors**: Custom interceptors for logging and adding authentication tokens (`lib/core/network/dio_helper.dart`).
+- **Constants**: All endpoints are centralized in `lib/core/network/api_constants.dart`.
+
+---
 
 ## Design System
 
-Centralized tokens in `lib/core/design_system/`:
+The app utilizes a centralized design system to maintain visual consistency.
 
-| File | Purpose |
-|------|---------|
-| `tokens/colors.dart` | Color palette (primary, surface, error, etc.) |
-| `tokens/typography.dart` | Text styles (display, title, body, etc.) |
-| `tokens/spacing.dart` | Spacing values (xs, sm, md, lg, xl) |
-| `tokens/radius.dart` | Border radius values |
-| `theme.dart` | ThemeData consuming all tokens |
+### 1. Tokens
+Located in `lib/core/design_system/tokens/`:
+- **Colors**: Primary brand colors and semantic aliases (Success, Error, Surface).
+- **Typography**: Predefined text styles for headers, body, and labels.
+- **Spacing/Radius**: Standardized values for padding and corner rounding.
 
-## Shared UI Components
+### 2. Layout System
+- **ResponsiveContainer**: Constraints content width for readability on larger screens.
+- **AppSpacer**: Semantic spacing widgets to replace raw `SizedBox`.
 
-Reusable components in `lib/core/ui/`:
+---
 
+## Data Flow (Example: ASD Screening)
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant View as ScreeningView
+    participant Cubit as ScreeningCubit
+    participant Repo as ScreeningRepo
+    participant API as Vercel Backend
+
+    User->>View: Answers Questions
+    User->>View: Taps "Submit"
+    View->>Cubit: runAnalysis(answers)
+    Cubit->>Cubit: emit(Loading)
+    Cubit->>Repo: analyze(data)
+    Repo->>API: POST /api/v1/ai/predict
+    API-->>Repo: { "result": "Mild ASD" }
+    Repo-->>Cubit: Success(Model)
+    Cubit->>Cubit: emit(Success)
+    View->>User: Display Result Screen
 ```
-lib/core/ui/
-├── buttons/app_button.dart      # Primary/secondary buttons
-├── text_fields/app_text_field.dart  # Text input with validation
-├── search/app_search_field.dart # Search input variant
-├── cards/app_card.dart          # Card containers
-├── app_bar/app_header.dart      # App header/nav bar
-└── states/
-    ├── loading_view.dart        # Loading indicator
-    ├── error_view.dart          # Error with retry
-    └── empty_view.dart          # Empty state with action
-```
 
-## Feature Organization
+---
 
-```
+## Folder Structure Rationale
+
+Our structure is "Feature-first", inspired by MLH and Flutter best practices:
+
+```text
 lib/
-├── app/router/          # Centralized routing
-├── core/
-│   ├── design_system/   # Tokens, theme
-│   ├── network/         # Dio, API handling
-│   ├── ui/              # Shared UI components
-│   └── utils/           # Utilities
-├── doctor/              # Doctor-specific features
-├── parent/              # Parent-specific features
-└── shared/
-    ├── auth/            # Authentication (login, signup)
-    ├── donations/       # Charity/donations
-    └── medicines/       # Medicine guide
+├── core/         # Shared infrastructure (non-feature specific)
+├── shared/       # Features shared by both user types (Auth, Payments)
+├── doctor/       # Module for healthcare professional features
+└── parent/       # Module for patient/parent features
 ```
 
-## Repository Pattern
+This ensures that the `doctor` and `parent` context are completely isolated, making it easy to scale either side of the platform independently.
 
-Repositories abstract API calls with proper error mapping:
+---
 
-```dart
-sealed class BookingResult<T> {
-  const BookingResult();
-}
+## Security Architecture
+- **JWT**: Tokens are stored securely in local storage and included in HTTP headers automatically.
+- **Keys**: API keys and base URLs are injected at build time using `--dart-define` or `.env` files.
+- See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for environment configuration.
 
-final class BookingSuccess<T> extends BookingResult<T> {
-  final T data;
-  const BookingSuccess(this.data);
-}
+---
 
-final class BookingFailure<T> extends BookingResult<T> {
-  final String message;
-  final BookingErrorType type;
-  const BookingFailure({required this.message, required this.type});
-}
+## Data Model (ERD)
+
+The following diagram shows the core data entities and their relationships:
+
+```mermaid
+erDiagram
+    USER ||--o{ CHILD : "has"
+    USER ||--o{ APPOINTMENT : "books"
+    DOCTOR ||--o{ APPOINTMENT : "receives"
+    DOCTOR ||--o{ REVIEW : "has"
+    CHILD ||--o{ SCREENING_RESULT : "has"
+    CHILD ||--o{ PROGRESS_ENTRY : "tracks"
+    APPOINTMENT ||--|| PAYMENT : "requires"
+
+    USER {
+        string id PK
+        string email
+        string name
+        enum role
+        string avatar
+    }
+
+    DOCTOR {
+        string id PK
+        string userId FK
+        string specialty
+        float rating
+        decimal sessionPrice
+    }
+
+    CHILD {
+        string id PK
+        string parentId FK
+        string name
+        date birthDate
+    }
+
+    APPOINTMENT {
+        string id PK
+        string doctorId FK
+        string childId FK
+        datetime dateTime
+        enum status
+    }
+
+    SCREENING_RESULT {
+        string id PK
+        string childId FK
+        datetime date
+        string prediction
+        float confidence
+    }
 ```
 
-## Error Handling
+---
 
-- **Network errors**: Mapped to typed error enums
-- **API errors**: Parsed from response bodies
-- **UI feedback**: Error states with retry actions
+## Related Documentation
 
-## Testing Strategy
-
-| Layer | Test Type | Tools |
-|-------|-----------|-------|
-| UI | Widget tests | flutter_test, mocktail |
-| Logic | Unit tests (Cubit) | bloc_test, mocktail |
-| Data | Repository tests | flutter_test, mocktail |
-
-## Platforms
-
-- **Supported**: Android, iOS
-- **Out of scope**: Web, Desktop
-
-## Dependencies
-
-Key packages:
-- `flutter_bloc` - State management
-- `dio` - HTTP client
-- `mocktail` - Test mocking
-- `bloc_test` - Cubit/BLoC testing
+- [API_REFERENCE.md](API_REFERENCE.md) - Backend API documentation
+- [TESTING.md](TESTING.md) - Testing guide
+- [GITHUB_SECRETS.md](GITHUB_SECRETS.md) - CI/CD secrets configuration
+- [CONTRIBUTING.md](../CONTRIBUTING.md) - Development workflow
