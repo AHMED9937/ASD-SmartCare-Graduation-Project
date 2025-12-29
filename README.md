@@ -108,15 +108,58 @@ ASD SmartCare addresses these challenges by providing accessible screening tools
 
 ## 📸 Screenshots
 
+<details open>
+<summary><b>1️⃣ Onboarding & Authentication</b></summary>
 <p align="center">
-  <img src="docs/screenshots/home_screen.png" alt="Parent Home Screen" width="300"/>
-  &nbsp;&nbsp;&nbsp;
-  <img src="docs/screenshots/screening_test.png" alt="ASD Screening Test" width="300"/>
+  <img src="docs/screenshots/Onboardin_1.jpeg" width="220" alt="Onboarding 1" />
+  <img src="docs/screenshots/Onboardin_2.jpeg" width="220" alt="Onboarding 2" />
+  <img src="docs/screenshots/Onboardin_3.jpeg" width="220" alt="Onboarding 3" />
 </p>
+<p align="center">
+  <img src="docs/screenshots/Signup.jpeg" width="220" alt="Role Selection" />
+  <img src="docs/screenshots/login.jpeg" width="220" alt="Login" />
+  <img src="docs/screenshots/otp_verfication.jpeg" width="220" alt="OTP Verification" />
+</p>
+</details>
 
+<details>
+<summary><b>2️⃣ AI Screening & Progress (Parent Journey)</b></summary>
 <p align="center">
-  <sub><b>Left:</b> Parent Home Dashboard &nbsp; | &nbsp; <b>Right:</b> ASD Screening Test</sub>
+  <img src="docs/screenshots/choseAiTest_Parent.jpeg" width="220" alt="Test Selection" />
+  <img src="docs/screenshots/test_qustions_Ui_Parent.jpeg" width="220" alt="Questionnaire" />
+  <img src="docs/screenshots/test_results_Parent.png" width="220" alt="AI Results" />
+  <img src="docs/screenshots/child_progress__Parent.jpeg" width="220" alt="Child Progress" />
 </p>
+</details>
+
+<details>
+<summary><b>3️⃣ Specialist Discovery & Booking Flow</b></summary>
+<p align="center">
+  <img src="docs/screenshots/search_on_doctor_Parent.jpeg" width="180" alt="Doctor Search" />
+  <img src="docs/screenshots/docotor_profile.jpeg" width="180" alt="Doctor Profile" />
+  <img src="docs/screenshots/booking_1_schuala_Parent.png" width="180" alt="Scheduling" />
+  <img src="docs/screenshots/booking_2_Parent.png" width="180" alt="Checkout" />
+  <img src="docs/screenshots/booking_3_Parent.png" width="180" alt="Success" />
+</p>
+</details>
+
+<details>
+<summary><b>4️⃣ Care Resources & AI Assistance</b></summary>
+<p align="center">
+  <img src="docs/screenshots/chatBot__Parent.png" width="220" alt="AI Chatbot" />
+  <img src="docs/screenshots/education_Parent.jpeg" width="220" alt="Education" />
+  <img src="docs/screenshots/pharmecy_Parent.jpeg" width="220" alt="Pharmacy" />
+  <img src="docs/screenshots/charity_Parent_doctor.jpeg" width="220" alt="Charity" />
+</p>
+</details>
+
+<details>
+<summary><b>5️⃣ Doctor Management Console</b></summary>
+<p align="center">
+  <img src="docs/screenshots/doctor_home.jpeg" width="300" alt="Doctor Home" />
+  <img src="docs/screenshots/clinck_doctor.jpeg" width="300" alt="Clinic Management" />
+</p>
+</details>
 
 ---
 
