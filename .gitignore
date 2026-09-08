@@ -9,12 +9,22 @@
 .history
 .svn/
 migrate_working_dir/
+
+# Node.js / API dependencies
+node_modules/
+api/node_modules/
 # Environment files (keep .env.example tracked)
 .env
 .env.local
 .env.development
 .env.production
+api/config.env
+api/.env
+api/.env.local
+api/.env.development
+api/.env.production
 !.env.example
+!api/.env.example
 
 # Android signing
 *.jks
@@ -65,3 +75,7 @@ app.*.map.json
 
 # Temporary/generated files
 tempCodeRunnerFile.dart
+
+# Generated Firebase options - contains project-specific API keys.
+# Run `flutterfire configure` to regenerate locally.
+lib/firebase_options.dart

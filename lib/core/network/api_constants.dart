@@ -1,9 +1,11 @@
 // Real app APIs
 class ApiConstants {
   /// Base URL for the backend API. Override via --dart-define=API_BASE_URL.
+  /// Replace the default value with your deployed Vercel URL, e.g.:
+  /// flutter build apk --dart-define=API_BASE_URL=https://your-app.vercel.app/
   static const String apiBaseUrl = String.fromEnvironment(
     'API_BASE_URL',
-    defaultValue: 'https://asdproject-two.vercel.app/',
+    defaultValue: 'https://your-vercel-url.vercel.app/',
   );
 
   // login
